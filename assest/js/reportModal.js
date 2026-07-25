@@ -1,8 +1,3 @@
-// ============ Report Modal: ស្ថានភាពស្តុក (Stock Status) table ============
-// Whenever a "View" button is clicked, this fills the shared #reportModal
-// with the report's name. If the report is the Inventory / Stock Status
-// report, it also renders a real data table instead of the demo-only note.
-
 (function () {
   const LOW_STOCK_THRESHOLD = 5;
 
@@ -34,7 +29,6 @@
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;");
   }
-
   function renderStockTable() {
     const tbody = document.getElementById("reportModalTbody");
     if (!tbody) return;
