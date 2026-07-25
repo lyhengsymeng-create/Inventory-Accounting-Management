@@ -286,7 +286,7 @@
  
 <!-- Modal -->
 <div class="modal fade" id="reportModal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered">
+  <div class="modal-dialog modal-dialog-centered" id="reportModalDialog">
     <div class="modal-content" style="border-radius:14px;">
       <div class="modal-header">
         <h5 class="modal-title" id="reportModalLabel">របាយការណ៍</h5>
@@ -295,7 +295,23 @@
       <div class="modal-body">
         <p class="mb-1 text-muted">កំពុងបើក / Opening:</p>
         <p class="fw-semibold" id="reportModalName">—</p>
-        <p class="small text-muted mb-0">នេះជាទិន្នន័យសាកល្បង។ ភ្ជាប់ទៅប្រព័ន្ធខាងក្រោយរបស់អ្នកដើម្បីបង្ហាញរបាយការណ៍ពិត។<br>This is demo data. Connect your backend to render the real report.</p>
+
+        <!-- ស្ថានភាពស្តុក (Stock Status) — shown as a table for the Inventory Report -->
+        <div class="table-responsive-wrap d-none" id="reportModalTableWrap">
+          <table class="table report-table mb-0" id="reportModalTable">
+            <thead>
+              <tr>
+                <th>ផលិតផល / Product</th>
+                <th>ប្រភេទ / Category</th>
+                <th class="text-end">ស្តុកនៅសល់ / Qty</th>
+                <th>ស្ថានភាព / Status</th>
+              </tr>
+            </thead>
+            <tbody id="reportModalTbody"></tbody>
+          </table>
+        </div>
+
+        <p class="small text-muted mb-0 mt-2" id="reportModalNote">នេះជាទិន្នន័យសាកល្បង។ ភ្ជាប់ទៅប្រព័ន្ធខាងក្រោយរបស់អ្នកដើម្បីបង្ហាញរបាយការណ៍ពិត។<br>This is demo data. Connect your backend to render the real report.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">បិទ / Close</button>
@@ -315,6 +331,7 @@
 </div>
   </main>
  <script src="/assest/js/Report.js"></script>
+<script src="/assest/js/reportModal.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 </body>
