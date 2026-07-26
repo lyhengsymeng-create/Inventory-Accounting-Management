@@ -1,4 +1,4 @@
-:root {
+  :root {
       --navy-950: #0c1122;
       --navy-900: #111832;
       --navy-800: #161f42;
@@ -22,15 +22,9 @@
     }
 
     body {
-      /* font-family: 'Inter', 'Kantumruy Pro', sans-serif; */
       background: var(--page-bg);
       color: #1d2333;
       margin: 0;
-    }
-
-    [lang-km],
-    .km {
-      /* font-family: 'Kantumruy Pro', 'Inter', sans-serif; */
     }
 
     /* ===== Layout ===== */
@@ -38,133 +32,6 @@
       display: flex;
       min-height: 100vh;
     }
-
-    /* ===== Sidebar ===== */
-    /* .sidebar {
-      width: 288px;
-      flex: 0 0 288px;
-      background: linear-gradient(180deg, var(--navy-950), var(--navy-900) 60%, var(--navy-950));
-      color: var(--ink-300);
-      display: flex;
-      flex-direction: column;
-      padding: 24px 16px;
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 6px 10px 22px;
-      margin-bottom: 6px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: radial-gradient(circle at 30% 30%, var(--violet-500), #3a2fae);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      color: #fff;
-      font-size: 15px;
-      box-shadow: 0 6px 16px var(--violet-glow);
-      flex: 0 0 auto;
-    }
-
-    .brand-title {
-      font-size: 15.5px;
-      font-weight: 700;
-      color: #fff;
-      line-height: 1.25;
-    }
-
-    .brand-sub {
-      font-size: 12px;
-      color: var(--ink-500);
-    }
-
-    .nav-section-label {
-      font-size: 11px;
-      letter-spacing: .12em;
-      color: var(--ink-600);
-      font-weight: 600;
-      margin: 18px 10px 8px;
-    }
-
-    .nav-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 10px;
-      color: var(--ink-300);
-      text-decoration: none;
-      font-size: 14.5px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: background .15s ease, color .15s ease;
-      user-select: none;
-    }
-
-    .nav-link i {
-      font-size: 16px;
-      width: 18px;
-      text-align: center;
-      flex: 0 0 auto;
-      color: var(--ink-500);
-    }
-
-    .nav-link:hover {
-      background: rgba(255, 255, 255, .05);
-      color: #fff;
-    }
-
-    .nav-link:hover i {
-      color: #fff;
-    }
-
-    .nav-link.active {
-      background: rgba(255, 255, 255, .08);
-      color: #fff;
-    }
-
-    .nav-link.active i {
-      color: #fff;
-    }
-
-    .nav-caret {
-      margin-left: auto;
-      font-size: 13px;
-      color: var(--ink-500);
-      transition: transform .25s ease, color .15s ease;
-      flex: 0 0 auto;
-    }
-
-    .nav-link.active .nav-caret {
-      color: #fff;
-    }
-
-    .nav-item.open>.nav-link .nav-caret {
-      transform: rotate(90deg);
-    } */
-
-    /* ===== Drawer (drawable sub-menu) ===== */
     .nav-drawer {
       max-height: 0;
       overflow: hidden;
@@ -181,6 +48,7 @@
     .nav-drawer-inner {
       padding: 4px 0 4px 4px;
       display: flex;
+      list-style-type: none;
       flex-direction: column;
       gap: 3px;
     }
@@ -217,7 +85,7 @@
     .drawer-link:hover i {
       color: #fff;
     }
-
+    
     .drawer-link.active {
       background: rgba(255, 255, 255, .08);
       color: #fff;
@@ -228,20 +96,14 @@
       color: #fff;
     }
 
-    .sidebar-footer {
-      margin-top: auto;
-      padding: 16px 14px;
-      border-radius: var(--radius-md);
-      background: rgba(255, 255, 255, .04);
-      border: 1px solid var(--line);
-      font-size: 12.5px;
-      color: var(--ink-500);
-      line-height: 1.5;
+    .nav-caret {
+      margin-left: auto;
+      font-size: 12px;
+      transition: transform .2s ease;
     }
 
-    .sidebar-footer i {
-      color: var(--violet-500);
-      margin-right: 6px;
+    .nav-item.open .nav-caret {
+      transform: rotate(90deg);
     }
 
     /* ===== Topbar ===== */
