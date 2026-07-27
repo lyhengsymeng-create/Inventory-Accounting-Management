@@ -1,4 +1,4 @@
-:root {
+   :root {
       --ink-900: #131A2C;
       --ink-700: #2B3350;
       --ink-500: #6B7280;
@@ -16,6 +16,14 @@
       --purchase: #F08A24;
       --expense: #E5484D;
       --profit: #C9971E;
+      --bestselling: #1FAE73;
+      --slowmoving: #F0A824;
+      --customer: #2F6FED;
+      --supplier: #7C5CE0;
+      --employee: #17A398;
+      --tax: #E5484D;
+      --financial: #2F6FED;
+      --stockval: #1FAE73;
       --ok-bg: #E7F8EF;
       --ok-fg: #1B8A54;
       --bad-bg: #FDEAEA;
@@ -158,6 +166,11 @@
 
     .page-head {
       margin-bottom: 22px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
     }
 
     .page-head .eyebrow {
@@ -186,6 +199,104 @@
       font-size: 14px;
       color: var(--ink-500);
       margin: 0;
+    }
+
+    .btn-export-all {
+      border: none;
+      background: var(--brand);
+      color: #fff;
+      font-weight: 700;
+      border-radius: 12px;
+      padding: 11px 18px;
+      font-size: 13.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      box-shadow: 0 10px 24px -10px rgba(47, 111, 237, .55);
+    }
+
+    .btn-export-all:hover {
+      background: var(--brand-dark);
+      color: #fff;
+    }
+
+    /* ===== Filter bar ===== */
+    .filter-bar {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      padding: 18px 20px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr auto;
+      gap: 16px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .filter-bar label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--ink-500);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .filter-bar .form-control,
+    .filter-bar .form-select {
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      padding: 9px 12px;
+      font-size: 13.5px;
+    }
+
+    .filter-bar .form-control:focus,
+    .filter-bar .form-select:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px var(--brand-50);
+    }
+
+    .date-range-input {
+      position: relative;
+    }
+
+    .date-range-input i {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-300);
+      pointer-events: none;
+    }
+
+    .date-range-input input {
+      padding-left: 34px !important;
+    }
+
+    .btn-reset-filter {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-700);
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 9px 16px;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+      height: 40px;
+    }
+
+    .btn-reset-filter:hover {
+      background: #FAFBFD;
+    }
+
+    @media (max-width: 900px) {
+      .filter-bar {
+        grid-template-columns: 1fr;
+      }
     }
 
     .report-grid {
@@ -275,6 +386,95 @@
       transform: translateX(3px);
     }
 
+    /* ===== Daily / Weekly / Monthly quick-report card ===== */
+    .quick-report-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      grid-column: span 2;
+    }
+
+    .quick-report-card .qrc-head {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .quick-report-card .badge-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: #fff;
+      background: linear-gradient(145deg, var(--supplier), #A78CF0);
+    }
+
+    .quick-report-card .rc-title {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--ink-900);
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    .quick-report-card .rc-desc {
+      font-size: 12.5px;
+      color: var(--ink-500);
+      margin: 3px 0 0;
+      line-height: 1.55;
+    }
+
+    .quick-report-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: auto;
+    }
+
+    .quick-report-btn {
+      border: 1px solid var(--line);
+      background: #FAFBFD;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink-900);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .quick-report-btn:hover {
+      background: var(--brand-50);
+      border-color: var(--brand);
+      color: var(--brand-dark);
+    }
+
+    .quick-report-btn i.bi-chevron-right {
+      color: var(--ink-300);
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 700px) {
+      .quick-report-card {
+        grid-column: span 1;
+      }
+
+      .quick-report-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .bg-sales {
       background: linear-gradient(145deg, var(--sales), #5B8DEF);
     }
@@ -295,6 +495,38 @@
       background: linear-gradient(145deg, var(--profit), #E8BB4E);
     }
 
+    .bg-bestselling {
+      background: linear-gradient(145deg, var(--bestselling), #3FCB94);
+    }
+
+    .bg-slowmoving {
+      background: linear-gradient(145deg, var(--slowmoving), #FFC768);
+    }
+
+    .bg-customer {
+      background: linear-gradient(145deg, var(--customer), #5B8DEF);
+    }
+
+    .bg-supplier {
+      background: linear-gradient(145deg, var(--supplier), #A78CF0);
+    }
+
+    .bg-employee {
+      background: linear-gradient(145deg, var(--employee), #3FC9BB);
+    }
+
+    .bg-tax {
+      background: linear-gradient(145deg, var(--tax), #FF7A7E);
+    }
+
+    .bg-financial {
+      background: linear-gradient(145deg, var(--financial), #5B8DEF);
+    }
+
+    .bg-stockval {
+      background: linear-gradient(145deg, var(--stockval), #3FCB94);
+    }
+
     .section-title {
       font-size: 14px;
       font-weight: 700;
@@ -311,19 +543,55 @@
       flex-shrink: 0;
     }
 
-    .mini-table {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-card);
+    /* ===== Recent Generated Reports ===== */
+    .recent-reports {
+      margin-top: 30px;
     }
 
-    .mini-table table {
+    .recent-reports-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .recent-reports-head h2 {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--ink-900);
       margin: 0;
     }
 
-    .mini-table thead th {
+    .recent-reports-head a {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .recent-reports-head a:hover {
+      text-decoration: underline;
+    }
+
+    .recent-table-wrap {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .recent-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .recent-table thead th {
       background: #FAFBFD;
       font-size: 11.5px;
       text-transform: uppercase;
@@ -332,17 +600,73 @@
       font-weight: 700;
       border-bottom: 1px solid var(--line);
       padding: 12px 18px;
+      text-align: left;
+      white-space: nowrap;
     }
 
-    .mini-table tbody td {
+    .recent-table tbody td {
       padding: 13px 18px;
-      font-size: 13.5px;
+      font-size: 13px;
+      color: var(--ink-900);
       border-bottom: 1px solid var(--line);
       vertical-align: middle;
+      white-space: nowrap;
     }
 
-    .mini-table tbody tr:last-child td {
+    .recent-table tbody tr:last-child td {
       border-bottom: none;
+    }
+
+    .recent-table tbody tr:hover {
+      background: #FAFBFD;
+    }
+
+    .recent-table td.rn {
+      font-weight: 700;
+    }
+
+    .recent-table td.muted {
+      color: var(--ink-500);
+    }
+
+    .row-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: nowrap;
+    }
+
+    .row-action-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink-500);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .row-action-btn:hover {
+      background: #FAFBFD;
+    }
+
+    .row-action-btn.download {
+      border-color: var(--brand);
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .row-action-btn.download:hover {
+      background: var(--brand-dark);
+    }
+
+    @media (max-width: 900px) {
+      .recent-table-wrap {
+        overflow-x: auto;
+      }
     }
 
     .status-pill {
@@ -748,4 +1072,40 @@
         left: 0;
         width: 100%;
       }
+    }  .recent-table-wrap {
+      max-height: 380px;
+      overflow-y: auto;
+      overflow-x: auto;
+    }
+
+    .recent-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+    }
+
+    /* Modal detail table: scroll instead of growing the modal endlessly */
+    #reportModal .detail-table {
+      max-height: 340px;
+      overflow-y: auto;
+    }
+
+    #reportModal .detail-table thead th {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      background: #FAFBFD;
+    }
+
+    /* Thin, tidy scrollbars (optional cosmetic touch) */
+    .recent-table-wrap::-webkit-scrollbar,
+    #reportModal .detail-table::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    .recent-table-wrap::-webkit-scrollbar-thumb,
+    #reportModal .detail-table::-webkit-scrollbar-thumb {
+      background: var(--ink-300, #AEB4C2);
+      border-radius: 999px;
     }

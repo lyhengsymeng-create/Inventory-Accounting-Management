@@ -1,81 +1,98 @@
 const REPORTS = {
-      sales: {
-        title: "របាយការណ៍ការលក់",
-        sub: "SALES REPORT",
-        icon: "bi-graph-up-arrow",
-        color: "var(--sales), #5B8DEF",
+      bestSelling: {
+        title: "ផលិតផលលក់ដាច់",
+        sub: "BEST SELLING PRODUCTS",
+        icon: "bi-trophy-fill",
+        color: "var(--customer), #5B8DEF",
         stats: [
-          { icon: "bi-file-earmark-text-fill", color: "var(--sales)", value: "30", km: "ចំនួនវិក្កយបត្រ", en: "Total Invoice" },
-          { icon: "bi-box-seam-fill", color: "var(--inventory)", value: "85", km: "ផលិតផលបានលក់", en: "Products Sold" },
-          { icon: "bi-cash-coin", color: "var(--profit)", value: "$4,580", km: "ចំណូលសរុប", en: "Total Revenue" },
+          { icon: "bi-box-seam-fill", color: "var(--bestselling)", value: "18", km: "ផលិតផលកំពូល", en: "Top Products" },
+          { icon: "bi-cart-check-fill", color: "var(--sales)", value: "412", km: "ចំនួនលក់សរុប", en: "Units Sold" },
+          { icon: "bi-cash-coin", color: "var(--profit)", value: "$5,240", km: "ចំណូលពីផលិតផលកំពូល", en: "Revenue" },
         ],
-        headers: ["លេខវិក្កយបត្រ", "អតិថិជន", "ថ្ងៃលក់", "ចំនួន", "សរុប", "ស្ថានភាព"],
+        headers: ["លេខកូដ", "ឈ្មោះផលិតផល", "ចំនួនលក់", "ចំណូល", "និន្នាការ"],
         rows: [
-          ["INV-1001", "សុខា", "14-07-2026", "3", "$86.00", "បានទូទាត់"],
-          ["INV-1002", "អតិថិជនចរណ៍", "14-07-2026", "1", "$12.00", "បានទូទាត់"],
-          ["INV-1003", "ដារា", "13-07-2026", "2", "$100.00", "មិនទាន់ទូទាត់"],
-          ["INV-1004", "សុភា", "12-07-2026", "5", "$212.00", "បានទូទាត់"],
-          ["INV-1005", "អតិថិជនចរណ៍", "11-07-2026", "2", "$45.00", "បានទូទាត់"],
+          ["P-0012", "អង្ករសែនក្រូប ៥គ.ក", "128", "$1,280.00", "កំពុងកើនឡើង"],
+          ["P-0034", "ប្រេងឆាមាស ១លីត្រ", "95", "$760.00", "កំពុងកើនឡើង"],
+          ["P-0056", "ទឹកសុទ្ធ 500ml (កេស)", "88", "$440.00", "ស្ថិតស្ថេរ"],
+          ["P-0078", "ស្ករស ១គ.ក", "66", "$198.00", "ស្ថិតស្ថេរ"],
+          ["P-0091", "ទឹកកញ្ចប់ 1.5L", "35", "$105.00", "កំពុងធ្លាក់ចុះ"],
         ],
       },
-      inventory: {
-        title: "របាយការណ៍ស្តុក",
-        sub: "INVENTORY REPORT",
-        icon: "bi-box-seam-fill",
-        color: "var(--inventory), #3FCB94",
+      slowMoving: {
+        title: "ផលិតផលលក់យឺត",
+        sub: "SLOW MOVING PRODUCTS",
+        icon: "bi-hourglass-split",
+      color: "var(--customer), #5B8DEF",
         stats: [
-          { icon: "bi-boxes", color: "var(--inventory)", value: "312", km: "ចំនួនផលិតផលសរុប", en: "Total Products" },
-          { icon: "bi-exclamation-triangle-fill", color: "var(--expense)", value: "14", km: "ជិតអស់ស្តុក", en: "Low Stock" },
-          { icon: "bi-x-circle-fill", color: "var(--ink-500)", value: "3", km: "អស់ស្តុក", en: "Out of Stock" },
+          { icon: "bi-box-seam", color: "var(--slowmoving)", value: "22", km: "ផលិតផលលក់យឺត", en: "Slow Items" },
+          { icon: "bi-calendar-x", color: "var(--expense)", value: "45", km: "មិនលក់ក្នុងរយៈពេល (ថ្ងៃ)", en: "Days No Sale" },
+          { icon: "bi-cash-stack", color: "var(--ink-500)", value: "$1,860", km: "តម្លៃស្តុកជាប់គាំង", en: "Tied Up Value" },
         ],
-        headers: ["លេខកូដ", "ឈ្មោះផលិតផល", "ប្រភេទ", "បរិមាណ", "ស្ថានភាព"],
+        headers: ["លេខកូដ", "ឈ្មោះផលិតផល", "ចំនួនស្តុក", "ចុងក្រោយបានលក់", "ស្ថានភាព"],
         rows: [
-          ["P-0021", "ស្ករ ១គ.ក", "គ្រឿងទេស", "6", "ជិតអស់"],
-          ["P-0045", "ប្រេងឆា ១លីត្រ", "គ្រឿងទេស", "42", "គ្រប់គ្រាន់"],
-          ["P-0102", "ទឹកកញ្ចប់ 500ml", "ភេសជ្ជៈ", "0", "អស់ស្តុក"],
-          ["P-0118", "នំបុ័ង", "ម្ហូបញ៉ាំ", "58", "គ្រប់គ្រាន់"],
+          ["P-0140", "ស្ករកែវ ១គ.ក", "48", "22-05-2026", "ជិតអស់"],
+          ["P-0155", "ប្រេងអូលីវ ៥០០ml", "30", "10-05-2026", "គ្រប់គ្រាន់"],
+          ["P-0163", "ទឹកជ្រលក់ស្ពៃ", "26", "02-05-2026", "គ្រប់គ្រាន់"],
+          ["P-0178", "ចាហួយកញ្ចប់", "19", "28-04-2026", "ជិតអស់"],
         ],
       },
-      purchase: {
-        title: "របាយការណ៍ការទិញ",
-        sub: "PURCHASE REPORT",
+      customer: {
+        title: "របាយការណ៍អតិថិជន",
+        sub: "CUSTOMER REPORT",
+        icon: "bi-people-fill",
+        color: "var(--customer), #5B8DEF",
+        stats: [
+          { icon: "bi-person-fill", color: "var(--customer)", value: "186", km: "អតិថិជនសរុប", en: "Total Customers" },
+          { icon: "bi-person-plus-fill", color: "var(--inventory)", value: "14", km: "អតិថិជនថ្មី", en: "New Customers" },
+          { icon: "bi-cash-coin", color: "var(--profit)", value: "$3,960", km: "ការចំណាយសរុប", en: "Total Spend" },
+        ],
+        headers: ["ឈ្មោះអតិថិជន", "ចំនួនវិក្កយបត្រ", "ការទិញចុងក្រោយ", "ចំណាយសរុប", "ស្ថានភាព"],
+        rows: [
+          ["សុខា", "12", "14-07-2026", "$860.00", "បានទូទាត់"],
+          ["ដារា", "8", "13-07-2026", "$420.00", "មិនទាន់ទូទាត់"],
+          ["សុភា", "20", "12-07-2026", "$1,240.00", "បានទូទាត់"],
+          ["វិចិត្រា", "5", "09-07-2026", "$180.00", "បានទូទាត់"],
+        ],
+      },
+      supplier: {
+        title: "របាយការណ៍អ្នកផ្គត់ផ្គង់",
+        sub: "SUPPLIER REPORT",
         icon: "bi-truck",
-        color: "var(--purchase), #FFAE58",
+        color: "var(--customer), #5B8DEF",
         stats: [
+          { icon: "bi-people-fill", color: "var(--supplier)", value: "6", km: "អ្នកផ្គត់ផ្គង់", en: "Suppliers" },
           { icon: "bi-receipt", color: "var(--purchase)", value: "18", km: "ការបញ្ជាទិញ", en: "Purchase Orders" },
-          { icon: "bi-people-fill", color: "var(--sales)", value: "6", km: "អ្នកផ្គត់ផ្គង់", en: "Suppliers" },
           { icon: "bi-cash-stack", color: "var(--expense)", value: "$3,120", km: "ចំណាយសរុប", en: "Total Spent" },
         ],
-        headers: ["លេខបញ្ជាទិញ", "អ្នកផ្គត់ផ្គង់", "ថ្ងៃទិញ", "ចំនួន", "សរុប", "ស្ថានភាព"],
+        headers: ["អ្នកផ្គត់ផ្គង់", "ចំនួនការបញ្ជាទិញ", "ការទិញចុងក្រោយ", "សរុប", "ស្ថានភាព"],
         rows: [
-          ["PO-501", "ក្រុមហ៊ុន ម៉េងលី", "10-07-2026", "120", "$960.00", "បានទូទាត់"],
-          ["PO-502", "សហករណ៍ស្រូវមាស", "08-07-2026", "60", "$540.00", "មិនទាន់ទូទាត់"],
-          ["PO-503", "អ្នកផ្គត់ផ្គង់ភេសជ្ជៈ", "05-07-2026", "200", "$1,620.00", "បានទូទាត់"],
+          ["ក្រុមហ៊ុន ម៉េងលី", "7", "10-07-2026", "$960.00", "បានទូទាត់"],
+          ["សហករណ៍ស្រូវមាស", "4", "08-07-2026", "$540.00", "មិនទាន់ទូទាត់"],
+          ["អ្នកផ្គត់ផ្គង់ភេសជ្ជៈ", "7", "05-07-2026", "$1,620.00", "បានទូទាត់"],
         ],
       },
-      expense: {
-        title: "របាយការណ៍ចំណាយ",
-        sub: "EXPENSE REPORT",
-        icon: "bi-receipt-cutoff",
-        color: "var(--expense), #FF7A7E",
+      employee: {
+        title: "របាយការណ៍សមិទ្ធកម្មបុគ្គលិក",
+        sub: "EMPLOYEE PERFORMANCE REPORT",
+        icon: "bi-person-badge-fill",
+        color: "var(--customer), #5B8DEF",
         stats: [
-          { icon: "bi-receipt-cutoff", color: "var(--expense)", value: "27", km: "ចំនួនចំណាយ", en: "Total Entries" },
-          { icon: "bi-house-door-fill", color: "var(--purchase)", value: "5", km: "ប្រភេទចំណាយ", en: "Categories" },
-          { icon: "bi-cash", color: "var(--expense)", value: "$1,940", km: "ចំណាយសរុប", en: "Total Expense" },
+          { icon: "bi-people-fill", color: "var(--employee)", value: "12", km: "បុគ្គលិកសកម្ម", en: "Active Staff" },
+          { icon: "bi-cart-check-fill", color: "var(--sales)", value: "96", km: "វិក្កយបត្របានធ្វើ", en: "Invoices Handled" },
+          { icon: "bi-cash-coin", color: "var(--profit)", value: "$4,580", km: "ការលក់សរុប", en: "Total Sales" },
         ],
-        headers: ["កាលបរិច្ឆេទ", "ប្រភេទ", "ការពិពណ៌នា", "ចំនួនទឹកប្រាក់"],
+        headers: ["ឈ្មោះបុគ្គលិក", "តួនាទី", "វិក្កយបត្រ", "ការលក់សរុប", "ការវាយតម្លៃ"],
         rows: [
-          ["14-07-2026", "ភ្លើង/ទឹក", "វិក្កយបត្រខែកក្កដា", "$85.00"],
-          ["12-07-2026", "ជួល", "ជួលហាងខែកក្កដា", "$450.00"],
-          ["10-07-2026", "ដឹកជញ្ជូន", "ថ្លៃដឹកទំនិញ", "$60.00"],
-          ["07-07-2026", "ប្រាក់ខែ", "ប្រាក់ខែបុគ្គលិក", "$1,200.00"],
+          ["សុគន្ធ", "អ្នកលក់", "34", "$1,640.00", "ល្អប្រសើរ"],
+          ["វណ្ណា", "អ្នកលក់", "28", "$1,220.00", "ល្អ"],
+          ["ចាន់ថា", "អ្នកគិតលុយ", "34", "$1,720.00", "ល្អប្រសើរ"],
         ],
       },
       profit: {
-        title: "របាយការណ៍ប្រាក់ចំណេញ",
-        sub: "PROFIT REPORT",
-        icon: "bi-trophy-fill",
-        color: "var(--profit), #E8BB4E",
+        title: "ការវិភាគប្រាក់ចំណេញ",
+        sub: "PROFIT ANALYSIS",
+        icon: "bi-graph-up-arrow",
+        color: "var(--customer), #5B8DEF",
         stats: [
           { icon: "bi-graph-up-arrow", color: "var(--sales)", value: "$4,580", km: "ចំណូលសរុប", en: "Total Revenue" },
           { icon: "bi-receipt-cutoff", color: "var(--expense)", value: "$1,940", km: "ចំណាយសរុប", en: "Total Expense" },
@@ -88,14 +105,164 @@ const REPORTS = {
           ["ឧសភា 2026", "$4,105.00", "$1,780.00", "$2,325.00"],
         ],
       },
+      tax: {
+        title: "របាយការណ៍ពន្ធ",
+        sub: "TAX REPORT",
+        icon: "bi-percent",
+        color: "var(--customer), #5B8DEF",
+        stats: [
+          { icon: "bi-percent", color: "var(--tax)", value: "10%", km: "អត្រាពន្ធ VAT", en: "VAT Rate" },
+          { icon: "bi-cash-coin", color: "var(--sales)", value: "$4,580", km: "ចំណូលមុនពន្ធ", en: "Pre-tax Revenue" },
+          { icon: "bi-receipt", color: "var(--tax)", value: "$458", km: "ពន្ធសរុប", en: "Total Tax Collected" },
+        ],
+        headers: ["លេខវិក្កយបត្រ", "ថ្ងៃលក់", "ចំណូលមុនពន្ធ", "ពន្ធ (10%)", "សរុប"],
+        rows: [
+          ["INV-1001", "14-07-2026", "$78.18", "$7.82", "$86.00"],
+          ["INV-1002", "14-07-2026", "$10.91", "$1.09", "$12.00"],
+          ["INV-1004", "12-07-2026", "$192.73", "$19.27", "$212.00"],
+        ],
+      },
+      financial: {
+        title: "របាយការណ៍ហិរញ្ញវត្ថុ",
+        sub: "FINANCIAL STATEMENT",
+        icon: "bi-file-earmark-text-fill",
+        color: "var(--customer), #5B8DEF",
+        stats: [
+          { icon: "bi-graph-up-arrow", color: "var(--sales)", value: "$4,580", km: "ចំណូលសរុប", en: "Total Revenue" },
+          { icon: "bi-receipt-cutoff", color: "var(--expense)", value: "$1,940", km: "ចំណាយសរុប", en: "Total Expense" },
+          { icon: "bi-bank", color: "var(--financial)", value: "$18,420", km: "ទ្រព្យសកម្មសរុប", en: "Total Assets" },
+        ],
+        headers: ["ធាតុ", "ចំណាត់ថ្នាក់", "ចំនួនទឹកប្រាក់"],
+        rows: [
+          ["សាច់ប្រាក់ក្នុងដៃ", "ទ្រព្យសកម្ម", "$6,200.00"],
+          ["ស្តុកទំនិញ", "ទ្រព្យសកម្ម", "$8,420.00"],
+          ["បំណុលអ្នកផ្គត់ផ្គង់", "បំណុល", "$1,860.00"],
+          ["ប្រាក់ចំណេញរក្សាទុក", "មូលធន", "$12,760.00"],
+        ],
+      },
+      stockValuation: {
+        title: "តម្លៃស្តុក",
+        sub: "STOCK VALUATION",
+        icon: "bi-boxes",
+        color: "var(--customer), #5B8DEF",
+        stats: [
+          { icon: "bi-boxes", color: "var(--stockval)", value: "312", km: "ចំនួនផលិតផលសរុប", en: "Total Products" },
+          { icon: "bi-cash-stack", color: "var(--profit)", value: "$8,420", km: "តម្លៃស្តុកសរុប", en: "Total Stock Value" },
+          { icon: "bi-exclamation-triangle-fill", color: "var(--expense)", value: "14", km: "ជិតអស់ស្តុក", en: "Low Stock" },
+        ],
+        headers: ["លេខកូដ", "ឈ្មោះផលិតផល", "បរិមាណ", "ថ្លៃដើមឯកតា", "តម្លៃសរុប"],
+        rows: [
+          ["P-0021", "ស្ករ ១គ.ក", "6", "$0.85", "$5.10"],
+          ["P-0045", "ប្រេងឆា ១លីត្រ", "42", "$3.20", "$134.40"],
+          ["P-0118", "នំបុ័ង", "58", "$0.60", "$34.80"],
+        ],
+      },
+      daily: {
+        title: "របាយការណ៍ប្រចាំថ្ងៃ",
+        sub: "DAILY REPORT",
+        icon: "bi-calendar-day-fill",
+        color: "var(--sales), #5B8DEF",
+        stats: [
+          { icon: "bi-file-earmark-text-fill", color: "var(--sales)", value: "9", km: "ចំនួនវិក្កយបត្រ", en: "Invoices Today" },
+          { icon: "bi-cash-coin", color: "var(--profit)", value: "$412.00", km: "ចំណូលថ្ងៃនេះ", en: "Today Revenue" },
+          { icon: "bi-receipt-cutoff", color: "var(--expense)", value: "$85.00", km: "ចំណាយថ្ងៃនេះ", en: "Today Expense" },
+        ],
+        headers: ["ម៉ោង", "លេខវិក្កយបត្រ", "អតិថិជន", "សរុប", "ស្ថានភាព"],
+        rows: [
+          ["09:20 AM", "INV-1001", "សុខា", "$86.00", "បានទូទាត់"],
+          ["11:05 AM", "INV-1002", "អតិថិជនចរណ៍", "$12.00", "បានទូទាត់"],
+          ["02:40 PM", "INV-1003", "ដារា", "$100.00", "មិនទាន់ទូទាត់"],
+        ],
+      },
+      weekly: {
+        title: "របាយការណ៍ប្រចាំសប្តាហ៍",
+        sub: "WEEKLY REPORT",
+        icon: "bi-calendar-week-fill",
+        color: "var(--customer), #5B8DEF",
+        stats: [
+          { icon: "bi-file-earmark-text-fill", color: "var(--sales)", value: "30", km: "ចំនួនវិក្កយបត្រ", en: "Invoices This Week" },
+          { icon: "bi-cash-coin", color: "var(--profit)", value: "$1,860.00", km: "ចំណូលសប្តាហ៍នេះ", en: "Week Revenue" },
+          { icon: "bi-receipt-cutoff", color: "var(--expense)", value: "$620.00", km: "ចំណាយសប្តាហ៍នេះ", en: "Week Expense" },
+        ],
+        headers: ["ថ្ងៃ", "ចំនួនវិក្កយបត្រ", "ចំណូល", "ចំណាយ"],
+        rows: [
+          ["ចន្ទ 07/07", "5", "$260.00", "$90.00"],
+          ["អង្គារ 08/07", "6", "$310.00", "$70.00"],
+          ["ពុធ 09/07", "4", "$210.00", "$85.00"],
+          ["ព្រហស្បតិ៍ 10/07", "7", "$380.00", "$120.00"],
+          ["សុក្រ 11/07", "8", "$700.00", "$255.00"],
+        ],
+      },
+      monthly: {
+        title: "របាយការណ៍ប្រចាំខែ",
+        sub: "MONTHLY REPORT",
+        icon: "bi-calendar-month-fill",
+        color: "var(--financial), #5B8DEF",
+        stats: [
+          { icon: "bi-file-earmark-text-fill", color: "var(--sales)", value: "124", km: "ចំនួនវិក្កយបត្រ", en: "Invoices This Month" },
+          { icon: "bi-cash-coin", color: "var(--profit)", value: "$4,580.00", km: "ចំណូលខែនេះ", en: "Month Revenue" },
+          { icon: "bi-receipt-cutoff", color: "var(--expense)", value: "$1,940.00", km: "ចំណាយខែនេះ", en: "Month Expense" },
+        ],
+        headers: ["សប្តាហ៍", "ចំនួនវិក្កយបត្រ", "ចំណូល", "ចំណាយ"],
+        rows: [
+          ["សប្តាហ៍ទី 1", "28", "$1,020.00", "$410.00"],
+          ["សប្តាហ៍ទី 2", "30", "$1,860.00", "$620.00"],
+          ["សប្តាហ៍ទី 3", "33", "$980.00", "$480.00"],
+          ["សប្តាហ៍ទី 4", "33", "$720.00", "$430.00"],
+        ],
+      },
     };
+
+    const RECENT_REPORTS = [
+      { name: "ផលិតផលលក់ដាច់", key: "bestSelling", type: "របាយការណ៍ផលិតផល", branch: "សាខាមេ", range: "01/07/2026 - 14/07/2026", by: "So cheat", at: "14/07/2026 ម៉ោង ១០:៤៥ ព្រឹក" },
+      { name: "របាយការណ៍អតិថិជន", key: "customer", type: "របាយការណ៍អតិថិជន", branch: "គ្រប់សាខាទាំងអស់", range: "01/07/2026 - 14/07/2026", by: "Run", at: "13/07/2026 ម៉ោង ០៩:៣០ ព្រឹក" },
+      { name: "ការវិភាគប្រាក់ចំណេញ", key: "profit", type: "របាយការណ៍ហិរញ្ញវត្ថុ", branch: "សាខាមេ", range: "01/06/2026 - 30/06/2026", by: "Meng", at: "01/07/2026 ម៉ោង ០២:១៥ រសៀល" },
+      { name: "របាយការណ៍ពន្ធ", key: "tax", type: "របាយការណ៍ពន្ធ", branch: "សាខាមេ", range: "01/06/2026 - 30/06/2026", by: "Rak", at: "01/07/2026 ម៉ោង ០១:២០ រសៀល" },
+      { name: "តម្លៃស្តុក", key: "stockValuation", type: "របាយការណ៍ស្តុក", branch: "គ្រប់សាខាទាំងអស់", range: "30/06/2026", by: "Pi sey", at: "30/06/2026 ម៉ោង ១១:០៥ ព្រឹក" },
+    ];
+
+    function renderRecentReports() {
+      const body = document.getElementById('recentReportsBody');
+      body.innerHTML = RECENT_REPORTS.map((r, i) => `
+      <tr>
+        <td class="muted">${i + 1}</td>
+        <td class="rn">${r.name}</td>
+        <td>${r.type}</td>
+        <td>${r.branch}</td>
+        <td class="muted num">${r.range}</td>
+        <td>${r.by}</td>
+        <td class="muted num">${r.at}</td>
+        <td>
+          <div class="row-actions">
+            <button class="row-action-btn view" title="មើល" data-view="${r.key}"><i class="bi bi-eye"></i></button>
+            <button class="row-action-btn download" title="ទាញយក" data-download="${r.key}"><i class="bi bi-download"></i></button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+
+      body.querySelectorAll('[data-view]').forEach(btn => {
+        btn.addEventListener('click', () => openReport(btn.getAttribute('data-view')));
+      });
+      body.querySelectorAll('[data-download]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          currentReportKey = btn.getAttribute('data-download');
+          document.getElementById('btnExportPdf').click();
+        });
+      });
+    }
+
+    document.getElementById('viewAllReportsLink').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.querySelector('.report-grid').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 
     const modalEl = document.getElementById('reportModal');
     const bsModal = new bootstrap.Modal(modalEl);
     const exportModalEl = document.getElementById('exportModal');
     const bsExportModal = new bootstrap.Modal(exportModalEl);
 
-    let currentReportKey = 'sales';
+    let currentReportKey = 'bestSelling';
     // Tracks whether the export modal was opened FROM the print flow,
     // so we only reopen the report modal in that specific case —
     // not every time the export modal happens to close.
@@ -107,10 +274,15 @@ const REPORTS = {
       if (val === "ជិតអស់") return `<span class="status-pill unpaid"><i class="bi bi-exclamation-triangle-fill"></i> ជិតអស់</span>`;
       if (val === "អស់ស្តុក") return `<span class="status-pill unpaid"><i class="bi bi-x-circle-fill"></i> អស់ស្តុក</span>`;
       if (val === "គ្រប់គ្រាន់") return `<span class="status-pill paid"><i class="bi bi-check-circle-fill"></i> គ្រប់គ្រាន់</span>`;
+      if (val === "កំពុងកើនឡើង") return `<span class="status-pill paid"><i class="bi bi-arrow-up-circle-fill"></i> កំពុងកើនឡើង</span>`;
+      if (val === "កំពុងធ្លាក់ចុះ") return `<span class="status-pill unpaid"><i class="bi bi-arrow-down-circle-fill"></i> កំពុងធ្លាក់ចុះ</span>`;
+      if (val === "ស្ថិតស្ថេរ") return `<span class="status-pill paid"><i class="bi bi-dash-circle-fill"></i> ស្ថិតស្ថេរ</span>`;
+      if (val === "ល្អប្រសើរ") return `<span class="status-pill paid"><i class="bi bi-star-fill"></i> ល្អប្រសើរ</span>`;
+      if (val === "ល្អ") return `<span class="status-pill paid"><i class="bi bi-check-circle-fill"></i> ល្អ</span>`;
       return val;
     }
 
-    const STATUS_VALUES = ["បានទូទាត់", "មិនទាន់ទូទាត់", "ជិតអស់", "អស់ស្តុក", "គ្រប់គ្រាន់"];
+    const STATUS_VALUES = ["បានទូទាត់", "មិនទាន់ទូទាត់", "ជិតអស់", "អស់ស្តុក", "គ្រប់គ្រាន់", "កំពុងកើនឡើង", "កំពុងធ្លាក់ចុះ", "ស្ថិតស្ថេរ", "ល្អប្រសើរ", "ល្អ"];
 
     // Builds the always-in-DOM printable version of a report (independent of modal visibility)
     function renderPrintArea(key) {
@@ -193,9 +365,32 @@ const REPORTS = {
       el.addEventListener('click', () => openReport(el.getAttribute('data-report')));
     });
 
+    renderRecentReports();
+
     // Keep the print area in sync if the date filters change
     document.getElementById('fromDate').addEventListener('change', () => renderPrintArea(currentReportKey));
     document.getElementById('toDate').addEventListener('change', () => renderPrintArea(currentReportKey));
+
+    // ---- Filter bar: Report Type dropdown filters visible cards by category ----
+    document.getElementById('filterReportType').addEventListener('change', (e) => {
+      const val = e.target.value;
+      document.querySelectorAll('.report-card, .quick-report-card').forEach(card => {
+        const cat = card.getAttribute('data-category');
+        card.style.display = (val === 'all' || cat === val) ? '' : 'none';
+      });
+    });
+
+    document.getElementById('btnResetFilter').addEventListener('click', () => {
+      document.getElementById('filterReportType').value = 'all';
+      document.getElementById('filterBranch').selectedIndex = 0;
+      document.getElementById('filterDateRange').value = '01/07/2026 - 14/07/2026';
+      document.querySelectorAll('.report-card, .quick-report-card').forEach(card => card.style.display = '');
+      showToast('បានកំណត់តម្រងឡើងវិញ');
+    });
+
+    document.getElementById('btnExportAll').addEventListener('click', () => {
+      showToast('កំពុងរៀបចំនាំចេញរបាយការណ៍ទាំងអស់');
+    });
 
     // ---- Print button -> open export options modal ----
     document.getElementById('printTriggerBtn').addEventListener('click', () => {
@@ -277,3 +472,42 @@ const REPORTS = {
       window.location.href = `mailto:?subject=${subject}&body=${body}`;
       showToast('កំពុងបើកកម្មវិធីអ៊ីមែល');
     });
+  
+  (function () {
+    // 1. Catch and surface any script errors so you can see what's failing
+    window.addEventListener('error', function (e) {
+      console.error('[Report Debug] Script error:', e.message, 'at', e.filename + ':' + e.lineno);
+    });
+
+    // 2. Self-contained fallback: opens the modal directly via delegated click,
+    //    independent of whatever the original inline script did or didn't do.
+    document.addEventListener('click', function (e) {
+      const card = e.target.closest('[data-report]');
+      if (!card) return;
+
+      const key = card.getAttribute('data-report');
+
+      // If the original openReport function exists and works, prefer it
+      if (typeof window.openReport === 'function') {
+        try {
+          window.openReport(key);
+          return;
+        } catch (err) {
+          console.error('[Report Debug] openReport(key) threw:', err);
+        }
+      }
+
+      // Otherwise fall back to raw Bootstrap modal show, so at least
+      // something visibly happens (even without populated content)
+      const modalNode = document.getElementById('reportModal');
+      if (modalNode && window.bootstrap) {
+        console.warn('[Report Debug] Falling back to raw modal show for key:', key);
+        const fallbackModal = bootstrap.Modal.getOrCreateInstance(modalNode);
+        fallbackModal.show();
+      } else {
+        console.error('[Report Debug] Could not find #reportModal or bootstrap is not loaded.');
+      }
+    });
+
+    console.log('[Report Debug] Fallback handler attached. Click a report card and check console for errors.');
+  })();

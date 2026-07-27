@@ -1,110 +1,205 @@
-const settingsNavItem = document.getElementById('settingsNavItem');
-      const settingsToggle = document.getElementById('settingsToggle');
-      const drawerLinks = document.querySelectorAll('.drawer-link');
-      const panels = document.querySelectorAll('.panel');
-      const pageTitle = document.getElementById('pageTitle');
-      const pageSub = document.getElementById('pageSub');
+// ---- Tab switching ----
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+  });
 
-      const panelMeta = {
-        profile: { title: 'ព័ត៌មានអាជីវកម្ម', sub: 'គ្រប់គ្រងព័ត៌មានលម្អិតអំពីអាជីវកម្មរបស់អ្នក' },
-        password: { title: 'ប្តូរពាក្យសម្ងាត់', sub: 'ធ្វើបច្ចុប្បន្នភាពពាក្យសម្ងាត់ចូលប្រព័ន្ធរបស់អ្នក' },
-        backup: { title: 'បម្រុងទុកទិន្នន័យ', sub: 'បង្កើត និងគ្រប់គ្រងព័ត៌មានបម្រុងទុករបស់ប្រព័ន្ធ' },
-        system: { title: 'ការកំណត់ប្រព័ន្ធ', sub: 'កំណត់ព័ត៌មានប្រព័ន្ធទូទៅ' },
-      };
+  // ---- Business hours (Store Profile tab) ----
+  const HOURS = [
+    { day: 'ថ្ងៃច័ន្ទ', on: true, from: '09:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃអង្គារ', on: true, from: '09:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃពុធ', on: true, from: '09:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃព្រហស្បតិ៍', on: true, from: '09:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃសុក្រ', on: true, from: '09:00 ព្រឹក', to: '08:00 ល្ងាច' },
+    { day: 'ថ្ងៃសៅរ៍', on: true, from: '10:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃអាទិត្យ', on: false, from: '10:00 ព្រឹក', to: '06:00 ល្ងាច' },
+  ];
+  const hoursList = document.getElementById('hoursList');
+  hoursList.innerHTML = HOURS.map((h, i) => `
+    <div class="bh-row">
+      <div class="bh-top">
+        <span class="day">${h.day}</span>
+        <label class="switch"><input type="checkbox" ${h.on ? 'checked' : ''} data-day="${i}"><span class="slider"></span></label>
+      </div>
+      <div class="bh-times ${h.on ? '' : 'disabled'}" id="bh-times-${i}">
+        <input type="text" value="${h.from}" ${h.on ? '' : 'disabled'}>
+        <span class="sep">–</span>
+        <input type="text" value="${h.to}" ${h.on ? '' : 'disabled'}>
+      </div>
+    </div>
+  `).join('');
+  hoursList.querySelectorAll('input[data-day]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const wrap = document.getElementById('bh-times-' + cb.dataset.day);
+      wrap.classList.toggle('disabled', !cb.checked);
+      wrap.querySelectorAll('input').forEach(inp => inp.disabled = !cb.checked);
+    });
+  });
 
-      // Start open since "System Settings" is the active sub-item on load
-      if (settingsNavItem) settingsNavItem.classList.add('open');
+  // ---- Theme swatches ----
+  document.querySelectorAll('#swatchGrid .swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('#swatchGrid .swatch').forEach(s => s.classList.remove('active'));
+      sw.classList.add('active');
+    });
+  });
 
-      // Toggle the drawer open/closed when clicking "Settings"
-      if (settingsToggle) {
-        settingsToggle.addEventListener('click', (e) => {
-          e.preventDefault(); // don't navigate away, just toggle the drawer
-          settingsNavItem.classList.toggle('open');
-        });
-      }
+  // ---- Add New Branch modal ----
+  const branchOverlay = document.getElementById('branchModalOverlay');
+  const addBranchBtn = document.getElementById('addBranchBtn');
+  const branchCancelBtn = document.getElementById('branchCancelBtn');
+  const branchModalClose = document.getElementById('branchModalClose');
+  const branchSaveBtn = document.getElementById('branchSaveBtn');
+  const branchNameInput = document.getElementById('branchName');
+  const branchNameError = document.getElementById('branchNameError');
+  const branchesTbody = document.getElementById('branchesTbody');
 
-      // ===== Backup panel interactions =====
-      const backupStatusPill = document.getElementById('backupStatusPill');
-      const createBackupBtn = document.getElementById('createBackupBtn');
-      const restoreBackupBtn = document.getElementById('restoreBackupBtn');
-      const restoreFileInput = document.getElementById('restoreFileInput');
-      const backupHistoryList = document.getElementById('backupHistoryList');
-      const autoBackupSwitch = document.getElementById('autoBackupSwitch');
+  const STATUS_META = {
+    ok: { icon: 'bi-check-circle-fill', label: 'សកម្ម' },
+    warn: { icon: 'bi-exclamation-triangle-fill', label: 'កំពុងរៀបចំ' },
+    bad: { icon: 'bi-x-circle-fill', label: 'អសកម្ម' },
+  };
+  let nextStoreId = 8851;
 
-      function khmerNow() {
-        const khDigits = ['០', '១', '២', '៣', '៤', '៥', '៦', '៧', '៨', '៩'];
-        const toKh = n => String(n).split('').map(d => khDigits[d] ?? d).join('');
-        const months = ['មករា', 'កុម្ភៈ', 'មីនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្កដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
-        const now = new Date();
-        let h = now.getHours();
-        const suffix = h < 12 ? 'ព្រឹក' : 'ល្ងាច';
-        h = h % 12 || 12;
-        const m = String(now.getMinutes()).padStart(2, '0');
-        return `${toKh(now.getDate())} ${months[now.getMonth()]} ${toKh(now.getFullYear())}, ${toKh(h)}:${toKh(m)} ${suffix}`;
-      }
+  function openBranchModal(){
+    branchOverlay.classList.add('show');
+    branchNameInput.value = '';
+    document.getElementById('branchStoreId').value = '';
+    document.getElementById('branchManager').value = '';
+    document.getElementById('branchStatus').value = 'warn';
+    branchNameError.classList.remove('show');
+    setTimeout(() => branchNameInput.focus(), 50);
+  }
+  function closeBranchModal(){ branchOverlay.classList.remove('show'); }
 
-      function addHistoryEntry(label, dotClass) {
-        const li = document.createElement('li');
-        li.className = 'backup-history-item';
-        li.innerHTML = `
-        <span class="dot ${dotClass}"></span>
-        <span class="km hist-label">${label}</span>
-        <span class="hist-sep">—</span>
-        <span class="km hist-date">${khmerNow()}</span>
-      `;
-        backupHistoryList.prepend(li);
-      }
+  addBranchBtn.addEventListener('click', openBranchModal);
+  branchCancelBtn.addEventListener('click', closeBranchModal);
+  branchModalClose.addEventListener('click', closeBranchModal);
+  branchOverlay.addEventListener('click', (e) => { if (e.target === branchOverlay) closeBranchModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && branchOverlay.classList.contains('show')) closeBranchModal(); });
 
-      if (createBackupBtn) {
-        createBackupBtn.addEventListener('click', () => {
-          createBackupBtn.disabled = true;
-          createBackupBtn.querySelector('span').textContent = 'កំពុងបម្រុងទុក...';
-          backupStatusPill.textContent = 'កំពុងដំណើរការ';
-          backupStatusPill.classList.add('running');
-
-          setTimeout(() => {
-            createBackupBtn.disabled = false;
-            createBackupBtn.querySelector('span').textContent = 'បម្រុងទុកឥឡូវនេះ';
-            backupStatusPill.textContent = 'បានចាប់';
-            backupStatusPill.classList.remove('running');
-            addHistoryEntry('បម្រុងទុកបានជោគជ័យ', 'dot-green');
-          }, 1400);
-        });
-      }
-
-      if (restoreBackupBtn && restoreFileInput) {
-        restoreBackupBtn.addEventListener('click', () => restoreFileInput.click());
-        restoreFileInput.addEventListener('change', () => {
-          if (restoreFileInput.files.length) {
-            addHistoryEntry(`ស្តារពីឯកសារ៖ ${restoreFileInput.files[0].name}`, 'dot-amber');
-          }
-        });
-      }
-
-      if (autoBackupSwitch) {
-        autoBackupSwitch.addEventListener('change', () => {
-          addHistoryEntry(
-            autoBackupSwitch.checked ? 'បានបើកការបម្រុងទុកស្វ័យប្រវត្តិ' : 'បានបិទការបម្រុងទុកស្វ័យប្រវត្តិ',
-            'dot-amber'
-          );
-        });
-      }
-
-      // Switch panels when a drawer sub-item is clicked
-      drawerLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation(); // don't collapse the drawer on sub-click
-          const key = link.dataset.panel;
-
-          drawerLinks.forEach(l => l.classList.remove('active'));
-          link.classList.add('active');
-
-          panels.forEach(p => p.classList.remove('active'));
-          const target = document.getElementById('panel-' + key);
-          if (target) target.classList.add('active');
-
-          if (pageTitle) pageTitle.textContent = panelMeta[key].title;
-          if (pageSub) pageSub.textContent = panelMeta[key].sub;
-        });
+  function wireManageButtons(){
+    branchesTbody.querySelectorAll('button.btn-ghost').forEach(btn => {
+      if (btn.dataset.wired) return;
+      btn.dataset.wired = '1';
+      btn.addEventListener('click', () => {
+        const row = btn.closest('tr');
+        const name = row.querySelector('td.t').textContent;
+        showToast(`គ្រប់គ្រង "${name}" — មកដល់ឆាប់ៗនេះ`);
       });
+    });
+  }
+  wireManageButtons();
+
+  branchSaveBtn.addEventListener('click', () => {
+    const name = branchNameInput.value.trim();
+    if (!name){
+      branchNameError.classList.add('show');
+      branchNameInput.focus();
+      return;
+    }
+    branchNameError.classList.remove('show');
+
+    let storeId = document.getElementById('branchStoreId').value.trim();
+    if (!storeId){ storeId = '#' + (nextStoreId++); }
+    else if (!storeId.startsWith('#')){ storeId = '#' + storeId; }
+
+    const manager = document.getElementById('branchManager').value.trim() || 'មិនទាន់កំណត់';
+    const statusKey = document.getElementById('branchStatus').value;
+    const meta = STATUS_META[statusKey];
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="t">${name.replace(/</g,'&lt;')}</td>
+      <td>${storeId.replace(/</g,'&lt;')}</td>
+      <td>${manager.replace(/</g,'&lt;')}</td>
+      <td><span class="pill ${statusKey}"><i class="bi ${meta.icon}"></i> ${meta.label}</span></td>
+      <td><button class="btn-ghost">គ្រប់គ្រង</button></td>
+    `;
+    branchesTbody.appendChild(tr);
+    wireManageButtons();
+
+    closeBranchModal();
+    showToast(`សាខា "${name}" ត្រូវបានបន្ថែម`);
+  });
+
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(window._toastT);
+    window._toastT = setTimeout(() => { t.classList.remove('show'); document.getElementById('toastMsg').textContent = 'បានរក្សាទុកការផ្លាស់ប្តូរ'; }, 2600);
+  }
+
+  // ---- Add Custom Role modal ----
+  const roleOverlay = document.getElementById('roleModalOverlay');
+  const addRoleBtn = document.getElementById('addRoleBtn');
+  const roleCancelBtn = document.getElementById('roleCancelBtn');
+  const roleModalClose = document.getElementById('roleModalClose');
+  const roleSaveBtn = document.getElementById('roleSaveBtn');
+  const roleNameInput = document.getElementById('roleName');
+  const roleNameError = document.getElementById('roleNameError');
+  const rolesTbody = document.getElementById('rolesTbody');
+
+  const PILL_LABEL = { ok: 'ពេញលេញ', warn: 'មើលបានតែប៉ុណ្ណោះ', bad: 'គ្មាន' };
+
+  function openRoleModal(){
+    roleOverlay.classList.add('show');
+    roleNameInput.value = '';
+    document.getElementById('roleUsers').value = 0;
+    ['rolePermSales','rolePermInventory','rolePermReports','rolePermSettings'].forEach(id => {
+      document.getElementById(id).value = 'bad';
+    });
+    roleNameError.classList.remove('show');
+    setTimeout(() => roleNameInput.focus(), 50);
+  }
+  function closeRoleModal(){ roleOverlay.classList.remove('show'); }
+
+  addRoleBtn.addEventListener('click', openRoleModal);
+  roleCancelBtn.addEventListener('click', closeRoleModal);
+  roleModalClose.addEventListener('click', closeRoleModal);
+  roleOverlay.addEventListener('click', (e) => { if (e.target === roleOverlay) closeRoleModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && roleOverlay.classList.contains('show')) closeRoleModal(); });
+
+  roleSaveBtn.addEventListener('click', () => {
+    const name = roleNameInput.value.trim();
+    if (!name){
+      roleNameError.classList.add('show');
+      roleNameInput.focus();
+      return;
+    }
+    roleNameError.classList.remove('show');
+
+    const users = document.getElementById('roleUsers').value || 0;
+    const perms = ['rolePermSales','rolePermInventory','rolePermReports','rolePermSettings']
+      .map(id => document.getElementById(id).value);
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="t">${name.replace(/</g,'&lt;')}</td>
+      <td>${users}</td>
+      ${perms.map(p => `<td><span class="pill ${p}">${PILL_LABEL[p]}</span></td>`).join('')}
+    `;
+    rolesTbody.appendChild(tr);
+
+    closeRoleModal();
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = `តួនាទី "${name}" ត្រូវបានបន្ថែម`;
+    t.classList.add('show');
+    clearTimeout(window._toastT);
+    window._toastT = setTimeout(() => { t.classList.remove('show'); document.getElementById('toastMsg').textContent = 'បានរក្សាទុកការផ្លាស់ប្តូរ'; }, 2600);
+  });
+
+  // ---- Save button toast ----
+  document.getElementById('saveBtn').addEventListener('click', () => {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    clearTimeout(window._toastT);
+    window._toastT = setTimeout(() => t.classList.remove('show'), 2400);
+  });
