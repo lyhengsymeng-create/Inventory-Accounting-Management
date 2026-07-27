@@ -64,3 +64,60 @@ section{
 .card{
     border-radius:20px;
 }
+/* ===sub-menu===  */
+ .menu-toggle{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  cursor:pointer;
+  text-decoration:none;
+  color:inherit;
+}
+ 
+.nav-arrow{
+  margin-left:auto;
+  font-size:11px;
+  transition:transform .2s ease;   
+}
+
+.nav-sub{
+  font-size: 15px;
+  padding-left:28px;
+  margin:4px 0 0;
+  max-height:0;           
+  overflow:hidden;
+  transition: max-height .25s ease;
+}
+ .nav-item{
+  position:relative;
+  display:block;
+  margin:0 15px;
+  border-radius:6px;
+
+ }
+
+.nav-item.open > .nav-sub{
+  max-height:400px; 
+}
+.nav-item.open > .nav-link .nav-arrow{
+  transform:rotate(90deg);
+}
+ 
+.nav-sub .nav-link{
+  display:block;
+  padding:7px 10px;
+  border-radius:6px;
+  font-size:13.5px;
+  color:#ffe8e8bf;
+  text-decoration:none;
+}
+.nav-sub .nav-link:hover{
+  background:rgba(255,255,255,0.08);
+  color:#fff;
+}
+ 
+
+.nav-item.active > .nav-link,
+.nav-sub .nav-item.active .nav-link{
+  color:var(--blue-light, #3B82F6);
+}

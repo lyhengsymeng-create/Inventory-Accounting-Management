@@ -9,7 +9,7 @@
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="/assest/css/cheatDBAdmin.css">
-  <link rel="stylesheet" href="/assest/css/lymeng.css">
+  <link rel="stylesheet" href="/assest/css/lymengPurchase.css">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
@@ -23,15 +23,14 @@
     <!-- ============ SIDEBAR fixed (sticky, desktop only, lg and up) ============ -->
     <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style="width:250px; flex-shrink:0;">
       <div class="d-flex align-items-center gap-2 px-2 mb-4">
-        <!-- <div class="bg-violet rounded-3 d-flex align-items-center justify-content-center" style="width:38px;height:38px;">
-              <i class="bi bi-bar-chart-fill fs-5"></i>
-            </div> -->
-        <div>
-          <div class="fw-bold text-white">IAM</div>
-          <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
+        <div class="d-flex gap-2">
+          <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
+          <div>
+            <div class="fw-bold text-white ">IAM System</div>
+            <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
+          </div>
         </div>
       </div>
-
       <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">
         Main</div>
       <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
@@ -45,13 +44,15 @@
               class="bi bi-boxes"></i> Inventory Management</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
               class="bi bi-cart-check-fill"></i> Sales Management</a></li>
-             <li class="nav-item  active open ">
-           <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
+
+  
+       <li class="nav-item  active open ">
+          <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
             <i class="bi bi-truck"></i>
             <span>Purchase Management</span>
             <i class="bi bi-chevron-right nav-arrow"></i>
           </a>
-          <ul class="nav-sub collapse show " type="button" id="collapseExample">
+          <ul class="nav-sub collapse  " type="button" id="collapseExample">
             <li class="nav-item">
               <a class="nav-link" href="purchase-request.html">ស្នើសុំការទិញ</a>
             </li>
@@ -71,14 +72,13 @@
             </li>
           </ul>
         </li>
-
-        <li class="nav-item  active open ">
+         <li class="nav-item  active open  ">
            <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
             <i class="bi bi-truck"></i>
             <span>Accounting</span>
             <i class="bi bi-chevron-right nav-arrow"></i>
           </a>
-          <ul class="nav-sub collapse show " type="button" id="collapseExample">
+          <ul class="nav-sub collapse  " type="button" id="collapseExample">
             <li class="nav-item active">
               <a href="extended-ui-record-income.html" class="nav-link">កំណត់ត្រា - ប្រាក់ចំណូល   </a>
             </li>
@@ -140,16 +140,15 @@
                 class="bi bi-boxes"></i> Inventory Management</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
                 class="bi bi-cart-check-fill"></i> Sales Management</a></li>
-    
+
        <li class="nav-item  active open ">
           <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
             <i class="bi bi-truck"></i>
             <span>Purchase Management</span>
             <i class="bi bi-chevron-right nav-arrow"></i>
           </a>
-          <ul class="nav-sub collapse  " type="button" id="collapseExample">
-            <li class="nav-item">
-              <a class="nav-link" href="purchase-request.html">ស្នើសុំការទិញ</a>
+          <ul class="nav-sub collapse show " type="button" id="collapseExample">
+            <li class="nav-item"><a class="nav-link" href="purchase-request.html">ស្នើសុំការទិញ</a>
             </li>
             <li class="nav-item"><a class="nav-link" href="purchase-orders.html">ការបញ្ជាទិញ</a>
             </li>
@@ -167,13 +166,14 @@
             </li>
           </ul>
         </li>
-         <li class="nav-item  active open  ">
+
+          <li class="nav-item  active open show ">
            <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
             <i class="bi bi-truck"></i>
             <span>Accounting</span>
             <i class="bi bi-chevron-right nav-arrow"></i>
           </a>
-          <ul class="nav-sub collapse  " type="button" id="collapseExample">
+          <ul class="nav-sub collapse show " type="button" id="collapseExample">
             <li class="nav-item active">
               <a href="extended-ui-record-income.html" class="nav-link">កំណត់ត្រា - ប្រាក់ចំណូល   </a>
             </li>
@@ -203,138 +203,211 @@
 
         <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
           <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
-
         </div>
+
       </div>
     </div>
-    <main class="flex-grow-1 main-offset" style="min-width:0;">
+  </div>
+  <main class="flex-grow-1 main-offset" style="min-width:0;">
 
-      <!-- ============ STICKY NAVBAR ============ -->
-      <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
-        <div class="d-flex align-items-center gap-2">
-          <button class="btn btn-light border rounded-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
-            <i class="bi bi-list fs-5"></i>
-          </button>
+    <!-- ============ STICKY NAVBAR ============ -->
+    <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-light border rounded-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+          <i class="bi bi-list fs-5"></i>
+        </button>
+        <div>
+          <h1 class="h4 fw-bold mb-0">ការទូទាត់ទៅអ្នកផ្គត់ផ្គង់ </h1>
+          <div class="km text-secondary small">គ្រប់គ្រងព័ត៌មានការទូទាត់ទៅអ្នកផ្គត់ផ្គង់ទាំងអស់</div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
+        <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
+        <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
+          <i class="bi bi-bell-fill"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            style="font-size:.6rem;">3</span>
+        </button>
+        <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
+          <div class="avatar-circle d-flex align-items-center justify-content-center">S</div>
           <div>
-            <h1 class="h4 fw-bold mb-0">Product Management</h1>
-            <div class="km text-secondary small">គ្រប់គ្រងព័ត៌មានផលិតផលទាំងអស់</div>
+            <div class="small fw-bold lh-1">Socheat</div>
+            <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
           </div>
         </div>
-        <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
-          <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
-          <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
-            <i class="bi bi-bell-fill"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-              style="font-size:.6rem;">3</span>
-          </button>
-          <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
-            <div class="avatar-circle d-flex align-items-center justify-content-center">S</div>
-            <div>
-              <div class="small fw-bold lh-1">Socheat</div>
-              <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      <!-- ======= MAIN CONTENT ===== -->
-
-
-<div class="container py-4" style="max-width:1560px;">
-  <div class="card p-4 mb-3">
-    <div class="d-flex align-items-center gap-2 mb-3">
-      <div class="icon-wrap bg-danger-subtle text-danger">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
-          <path d="M8 12h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
       </div>
-      <h2 class="fs-6 fw-bold mb-0">កត់ត្រាចំណាយ</h2>
+    </nav>
+    <!-- === -->
+    <div class="content-wrap">
+      <div class="ledger-card">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div>
+            <div class="card-title mb-0">ប្រវត្តិការទូទាត់</div>
+            <div class="card-sub mb-0">ការទូទាត់ដែលបានធ្វើទៅអ្នកផ្គត់ផ្គង់។</div>
+          </div>
+          <button class="btn btn-ledger-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalPayment"><i
+              class="bi bi-plus-lg"></i> កត់ត្រាការទូទាត់</button>
+        </div>
+        <table class="table-ledger">
+          <thead>
+            <tr>
+              <th>លេខយោង</th>
+              <th>អ្នកផ្គត់ផ្គង់</th>
+              <th>វិក្កយបត្រ</th>
+              <th>ចំនួនទឹកប្រាក់</th>
+              <th>របៀបទូទាត់</th>
+              <th>ថ្ងៃខែ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PAY-3312</td>
+              <td>Angkor Trading Co.</td>
+              <td>INV-5498</td>
+              <td>$980.00</td>
+              <td>ផ្ទេរប្រាក់តាមធនាគារ</td>
+              <td>ថ្ងៃទី 15</td>
+            </tr>
+            <tr>
+              <td>PAY-3308</td>
+              <td>Mekong Wholesale</td>
+              <td>INV-5480</td>
+              <td>$540.00</td>
+              <td>សាច់ប្រាក់</td>
+              <td>ថ្ងៃទី 09</td>
+            </tr>
+            <tr>
+              <td>PAY-3301</td>
+              <td>Battambang Rice Dist.</td>
+              <td>INV-5455</td>
+              <td>$860.00</td>
+              <td>មូលប្បទានប័ត្រ</td>
+              <td>ថ្ងៃទី 02</td>
+            </tr>
+            <tr>
+              <td>PAY-3295</td>
+              <td>Phnom Penh Supplies</td>
+              <td>INV-5430</td>
+              <td>$1,200.00</td>
+              <td>ផ្ទេរប្រាក់តាមធនាគារ</td>
+              <td>ថ្ងៃទី 18</td>
+            </tr>
+            <tr>
+              <td>PAY-3289</td>
+              <td>Siem Reap Traders</td>
+              <td>INV-5405</td>
+              <td>$1,000.00</td>
+              <td>សាច់ប្រាក់</td>
+              <td>ថ្ងៃទី 12</td>
+            </tr>
+            <tr>
+              <td>PAY-3283</td>
+              <td>Phnom Penh Supplies</td>
+              <td>INV-5380</td>
+              <td>$1,000.00</td>
+              <td>មូលប្បទានប័ត្រ</td>
+              <td>ថ្ងៃទី 05</td>
+            </tr>
+            <tr>
+              <td>PAY-3277</td>
+              <td>Angkor Trading Co.</td>
+              <td>INV-5355</td>
+              <td>$2,000.00</td>
+              <td>ផ្ទេរប្រាក់តាមធនាគារ</td>
+              <td>ថ្ងៃទី 28</td>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">បានទូទាត់ក្នុងខែនេះ</td>
+              <td colspan="3">$7,580.00</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
     </div>
- 
-    <form id="expenseForm">
-      <div class="mb-3">
-        <label class="form-label small text-muted fw-semibold">កាលបរិច្ឆេទ</label>
-        <input type="date" class="form-control" id="expenseDate" value="2026-07-14" required>
-      </div>
-      <div class="mb-3">
-        <label class="form-label small text-muted fw-semibold">ប្រភេទ</label>
-        <select class="form-select" id="expenseCategory">
-          <option>សម្ភារៈការិយាល័យ</option><option>ថ្លៃសេវាកម្មសាធារណៈ</option><option>ថ្លៃជួល</option>
-          <option>ការដឹកជញ្ជូន</option><option>ប្រាក់បៀវត្សរ៍</option><option>ផ្សេងៗ</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label class="form-label small text-muted fw-semibold">ការពិពណ៌នា</label>
-        <input type="text" class="form-control" id="expenseDescription" placeholder="ឧ. ទិញក្រដាស និងខ្មៅដៃម៉ាស៊ីនបោះពុម្ព">
-      </div>
-      <div class="mb-3">
-        <label class="form-label small text-muted fw-semibold">ចំនួនទឹកប្រាក់ (ដុល្លារ)</label>
-        <div class="input-group">
-          <span class="input-group-text">$</span>
-          <input type="number" class="form-control" id="expenseAmount" placeholder="0.00" step="0.01" min="0" required>
+    <div class="modal fade" id="modalPayment" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-scrollable">
+        <div class="modal-content ledger-modal">
+          <div class="modal-header">
+            <h5 class="modal-title">កត់ត្រាការទូទាត់</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="form-ledger">
+              <div class="mb-3"><label>អ្នកផ្គត់ផ្គង់</label>
+                <select class="form-select">
+                  <option>Angkor Trading Co.</option>
+                  <option>Mekong Wholesale Supplies</option>
+                </select>
+              </div>
+              <div class="mb-3"><label>វិក្កយបត្រត្រូវទូទាត់</label>
+                <select class="form-select">
+                  <option>INV-5521 — $240.00</option>
+                </select>
+              </div>
+              <div class="row g-2 mb-3">
+                <div class="col-6"><label>ចំនួនទឹកប្រាក់</label><input class="form-control" value="240.00"></div>
+                <div class="col-6"><label>ថ្ងៃខែ</label><input type="date" class="form-control" value="2026-07-22">
+                </div>
+              </div>
+              <div class="mb-1"><label>របៀបទូទាត់</label>
+                <select class="form-select">
+                  <option>ផ្ទេរប្រាក់តាមធនាគារ</option>
+                  <option>សាច់ប្រាក់</option>
+                  <option>មូលប្បទានប័ត្រ</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-ledger-outline" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> បោះបង់</button>
+            <button class="btn btn-ledger-primary"
+              onclick="alert('ការទូទាត់ត្រូវបានកត់ត្រា!'); closeModal('modalPayment');"><i class="bi bi-check2"></i>
+              បញ្ជាក់ការទូទាត់</button>
+          </div>
         </div>
       </div>
-      <div class="mb-3">
-        <label class="form-label small text-muted fw-semibold">វិធីបង់ប្រាក់</label>
-        <select class="form-select" id="expensePaymentMethod">
-          <option>សាច់ប្រាក់</option><option>ផ្ទេរប្រាក់តាមធនាគារ</option><option>កាតឥណទាន</option><option>ការទូទាត់តាមទូរស័ព្ទ</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-danger w-100 fw-semibold">រក្សាទុកចំណាយ</button>
-    </form>
-  </div>
- 
-  <div class="card p-4">
-    <h3 class="fs-6 fw-bold text-danger mb-3">ចំណាយថ្មីៗ</h3>
-    <table class="table table-borderless recent mb-0 small">
-      <thead>
-        <tr class="text-muted text-uppercase" style="font-size:11px; border-bottom:1px solid #E6E9F2;">
-          <th class="fw-bold">កាលបរិច្ឆេទ</th><th class="fw-bold">ការពិពណ៌នា</th><th class="fw-bold text-end">ចំនួនទឹកប្រាក់</th>
-        </tr>
-      </thead>
-      <tbody id="expenseList"></tbody>
-    </table>
-  </div>
-</div>
- 
-<script>
-let expenseEntries = [
-  {date:'14/07/2026', desc:'ទិញក្រដាស និងខ្មៅដៃម៉ាស៊ីនបោះពុម្ព', amount:45.00},
-  {date:'13/07/2026', desc:'វិក្កយបត្រអគ្គិសនី', amount:120.00},
-  {date:'12/07/2026', desc:'វិក្កយបត្រអ៊ីនធឺណិត', amount:30.00},
-];
- 
-function fmt(n){ return '$' + n.toFixed(2); }
-function toDisplayDate(iso){ const [y,m,d] = iso.split('-'); return `${d}/${m}/${y}`; }
- 
-function renderExpenseList(){
-  const tbody = document.getElementById('expenseList');
-  tbody.innerHTML = '';
-  expenseEntries.slice(0,8).forEach(e=>{
-    const tr = document.createElement('tr');
-    tr.style.borderBottom = '1px solid #E6E9F2';
-    tr.innerHTML = `<td>${e.date}</td><td>${e.desc}</td><td class="amt text-danger">${fmt(e.amount)}</td>`;
-    tbody.appendChild(tr);
-  });
-}
-renderExpenseList();
- 
-document.getElementById('expenseForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  const amount = parseFloat(document.getElementById('expenseAmount').value) || 0;
-  const desc = document.getElementById('expenseDescription').value || document.getElementById('expenseCategory').value;
-  const date = document.getElementById('expenseDate').value;
-  if(amount <= 0){ alert('សូមបញ្ចូលចំនួនទឹកប្រាក់ត្រឹមត្រូវ។'); return; }
-  expenseEntries.unshift({date: toDisplayDate(date), desc: desc, amount: amount});
-  renderExpenseList();
-  this.reset();
-  document.getElementById('expenseDate').value = date;
-  alert('បានកត់ត្រាចំណាយចំនួន ' + fmt(amount) + ' ។');
-});
-</script>
-    </main>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Add a new row to a table by copying its last row (used by "Add item" / "Add line" buttons)
+      function addRow(tableBodyId) {
+        var tbody = document.getElementById(tableBodyId);
+        var rows = tbody.getElementsByTagName('tr');
+        var lastRow = rows[rows.length - 1];
+        var newRow = lastRow.cloneNode(true);
+
+        // clear text/number inputs in the new row so it starts empty
+        var inputs = newRow.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].value = '';
+        }
+        tbody.appendChild(newRow);
+      }
+
+      // Remove one row from a table, but always keep at least 1 row
+      function removeRow(button) {
+        var row = button.closest('tr');
+        var tbody = row.parentElement;
+        if (tbody.getElementsByTagName('tr').length > 1) {
+          row.remove();
+        }
+      }
+
+      // Close a Bootstrap modal by its id
+      function closeModal(modalId) {
+        var modalEl = document.getElementById(modalId);
+        var modalObj = bootstrap.Modal.getInstance(modalEl);
+        if (modalObj) {
+          modalObj.hide();
+        }
+      }
+    </script>
+
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
