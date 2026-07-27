@@ -5,7 +5,8 @@ html{
 body{
     margin:0;
     background:#f5f7fb;
-    font-family:Segoe UI, sans-serif;
+    font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+    font-family: "Kantumruy Pro " ,sans-serif !important ;
 }
 
 .wrapper{

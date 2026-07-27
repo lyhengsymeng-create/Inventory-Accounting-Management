@@ -1,92 +1,205 @@
-// ---- Mobile sidebar toggle ----
-const sidebar = document.getElementById('sidebar');
-const sidebarToggle = document.getElementById('sidebarToggle');
-const sidebarClose = document.getElementById('sidebarClose');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-function openSidebar() { sidebar.classList.add('open'); sidebarOverlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
-function closeSidebar() { sidebar.classList.remove('open'); sidebarOverlay.classList.remove('show'); document.body.style.overflow = ''; }
-
-sidebarToggle?.addEventListener('click', openSidebar);
-sidebarClose?.addEventListener('click', closeSidebar);
-sidebarOverlay?.addEventListener('click', closeSidebar);
-document.querySelectorAll('.sidebar .nav-link').forEach(link => link.addEventListener('click', closeSidebar));
-window.addEventListener('resize', () => { if (window.innerWidth > 991) closeSidebar(); });
-
-const navItems = document.querySelectorAll('.settings-nav-item');
-const panels = document.querySelectorAll('.settings-panel');
-navItems.forEach(item => {
-  item.addEventListener('click', () => {
-    navItems.forEach(i => i.classList.remove('active'));
-    panels.forEach(p => p.classList.remove('active'));
-    item.classList.add('active');
-    document.getElementById(item.dataset.target).classList.add('active');
+// ---- Tab switching ----
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
   });
-});
 
-function showToast(message) {
-  const toast = document.getElementById('appToast');
-  document.getElementById('toastMsg').textContent = message;
-  toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2600);
-}
-
-document.getElementById('profileForm').addEventListener('submit', e => { e.preventDefault(); showToast('បានធ្វើបច្ចុប្បន្នភាពព័ត៌មានអាជីវកម្ម'); });
-
-document.querySelectorAll('.pwd-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const input = btn.previousElementSibling;
-    const icon = btn.querySelector('i');
-    if (input.type === 'password') { input.type = 'text'; icon.classList.replace('fa-eye', 'fa-eye-slash'); }
-    else { input.type = 'password'; icon.classList.replace('fa-eye-slash', 'fa-eye'); }
-  });
-});
-
-const newPwd = document.getElementById('newPassword');
-const strengthFill = document.getElementById('strengthFill');
-const strengthLabel = document.getElementById('strengthLabel');
-newPwd.addEventListener('input', () => {
-  const val = newPwd.value;
-  let score = 0;
-  if (val.length >= 8) score++;
-  if (/[A-Z]/.test(val)) score++;
-  if (/[0-9]/.test(val)) score++;
-  if (/[^A-Za-z0-9]/.test(val)) score++;
-  const levels = [
-    { width: '0%', color: '#eceef8', label: 'ប្រើអក្សរយ៉ាងតិច 8 តួ រួមមានលេខ និងសញ្ញា' },
-    { width: '25%', color: '#e6555c', label: 'ពាក្យសម្ងាត់ខ្សោយ' },
-    { width: '50%', color: '#e2a13a', label: 'ពាក្យសម្ងាត់មធ្យម' },
-    { width: '75%', color: '#4f8dfb', label: 'ពាក្យសម្ងាត់ល្អ' },
-    { width: '100%', color: '#1fa971', label: 'ពាក្យសម្ងាត់ខ្លាំង' },
+  // ---- Business hours (Store Profile tab) ----
+  const HOURS = [
+    { day: 'ថ្ងៃច័ន្ទ', on: true, from: '09:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃអង្គារ', on: true, from: '09:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃពុធ', on: true, from: '09:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃព្រហស្បតិ៍', on: true, from: '09:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃសុក្រ', on: true, from: '09:00 ព្រឹក', to: '08:00 ល្ងាច' },
+    { day: 'ថ្ងៃសៅរ៍', on: true, from: '10:00 ព្រឹក', to: '06:00 ល្ងាច' },
+    { day: 'ថ្ងៃអាទិត្យ', on: false, from: '10:00 ព្រឹក', to: '06:00 ល្ងាច' },
   ];
-  const lvl = levels[val.length === 0 ? 0 : score];
-  strengthFill.style.width = lvl.width; strengthFill.style.background = lvl.color; strengthLabel.textContent = lvl.label;
-});
+  const hoursList = document.getElementById('hoursList');
+  hoursList.innerHTML = HOURS.map((h, i) => `
+    <div class="bh-row">
+      <div class="bh-top">
+        <span class="day">${h.day}</span>
+        <label class="switch"><input type="checkbox" ${h.on ? 'checked' : ''} data-day="${i}"><span class="slider"></span></label>
+      </div>
+      <div class="bh-times ${h.on ? '' : 'disabled'}" id="bh-times-${i}">
+        <input type="text" value="${h.from}" ${h.on ? '' : 'disabled'}>
+        <span class="sep">–</span>
+        <input type="text" value="${h.to}" ${h.on ? '' : 'disabled'}>
+      </div>
+    </div>
+  `).join('');
+  hoursList.querySelectorAll('input[data-day]').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const wrap = document.getElementById('bh-times-' + cb.dataset.day);
+      wrap.classList.toggle('disabled', !cb.checked);
+      wrap.querySelectorAll('input').forEach(inp => inp.disabled = !cb.checked);
+    });
+  });
 
-const confirmPwd = document.getElementById('confirmPassword');
-const matchMsg = document.getElementById('matchMsg');
-function checkMatch() {
-  if (!confirmPwd.value) { matchMsg.textContent = ''; return; }
-  if (confirmPwd.value === newPwd.value) { matchMsg.textContent = '✓ ពាក្យសម្ងាត់ត្រូវគ្នា'; matchMsg.style.color = '#1fa971'; }
-  else { matchMsg.textContent = '✕ ពាក្យសម្ងាត់មិនត្រូវគ្នា'; matchMsg.style.color = '#e6555c'; }
-}
-confirmPwd.addEventListener('input', checkMatch);
-newPwd.addEventListener('input', checkMatch);
+  // ---- Theme swatches ----
+  document.querySelectorAll('#swatchGrid .swatch').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('#swatchGrid .swatch').forEach(s => s.classList.remove('active'));
+      sw.classList.add('active');
+    });
+  });
 
-document.getElementById('passwordForm').addEventListener('submit', e => {
-  e.preventDefault();
-  if (newPwd.value && newPwd.value !== confirmPwd.value) { showToast('ពាក្យសម្ងាត់មិនត្រូវគ្នាទេ'); return; }
-  showToast('បានធ្វើបច្ចុប្បន្នភាពពាក្យសម្ងាត់ដោយជោគជ័យ');
-  e.target.reset(); strengthFill.style.width = '0%';
-  strengthLabel.textContent = 'ប្រើអក្សរយ៉ាងតិច 8 តួ រួមមានលេខ និងសញ្ញា';
-  matchMsg.textContent = '';
-});
+  // ---- Add New Branch modal ----
+  const branchOverlay = document.getElementById('branchModalOverlay');
+  const addBranchBtn = document.getElementById('addBranchBtn');
+  const branchCancelBtn = document.getElementById('branchCancelBtn');
+  const branchModalClose = document.getElementById('branchModalClose');
+  const branchSaveBtn = document.getElementById('branchSaveBtn');
+  const branchNameInput = document.getElementById('branchName');
+  const branchNameError = document.getElementById('branchNameError');
+  const branchesTbody = document.getElementById('branchesTbody');
 
-document.getElementById('backupBtn').addEventListener('click', () => {
-  const btn = document.getElementById('backupBtn');
-  const original = btn.innerHTML;
-  btn.disabled = true; btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> កំពុងបម្រុងទុក...';
-  setTimeout(() => { btn.disabled = false; btn.innerHTML = original; showToast('បម្រុងទុកបានជោគជ័យ'); }, 1600);
-});
+  const STATUS_META = {
+    ok: { icon: 'bi-check-circle-fill', label: 'សកម្ម' },
+    warn: { icon: 'bi-exclamation-triangle-fill', label: 'កំពុងរៀបចំ' },
+    bad: { icon: 'bi-x-circle-fill', label: 'អសកម្ម' },
+  };
+  let nextStoreId = 8851;
 
-document.getElementById('saveSystemBtn').addEventListener('click', () => showToast('បានរក្សាទុកការកំណត់ប្រព័ន្ធ'));
+  function openBranchModal(){
+    branchOverlay.classList.add('show');
+    branchNameInput.value = '';
+    document.getElementById('branchStoreId').value = '';
+    document.getElementById('branchManager').value = '';
+    document.getElementById('branchStatus').value = 'warn';
+    branchNameError.classList.remove('show');
+    setTimeout(() => branchNameInput.focus(), 50);
+  }
+  function closeBranchModal(){ branchOverlay.classList.remove('show'); }
+
+  addBranchBtn.addEventListener('click', openBranchModal);
+  branchCancelBtn.addEventListener('click', closeBranchModal);
+  branchModalClose.addEventListener('click', closeBranchModal);
+  branchOverlay.addEventListener('click', (e) => { if (e.target === branchOverlay) closeBranchModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && branchOverlay.classList.contains('show')) closeBranchModal(); });
+
+  function wireManageButtons(){
+    branchesTbody.querySelectorAll('button.btn-ghost').forEach(btn => {
+      if (btn.dataset.wired) return;
+      btn.dataset.wired = '1';
+      btn.addEventListener('click', () => {
+        const row = btn.closest('tr');
+        const name = row.querySelector('td.t').textContent;
+        showToast(`គ្រប់គ្រង "${name}" — មកដល់ឆាប់ៗនេះ`);
+      });
+    });
+  }
+  wireManageButtons();
+
+  branchSaveBtn.addEventListener('click', () => {
+    const name = branchNameInput.value.trim();
+    if (!name){
+      branchNameError.classList.add('show');
+      branchNameInput.focus();
+      return;
+    }
+    branchNameError.classList.remove('show');
+
+    let storeId = document.getElementById('branchStoreId').value.trim();
+    if (!storeId){ storeId = '#' + (nextStoreId++); }
+    else if (!storeId.startsWith('#')){ storeId = '#' + storeId; }
+
+    const manager = document.getElementById('branchManager').value.trim() || 'មិនទាន់កំណត់';
+    const statusKey = document.getElementById('branchStatus').value;
+    const meta = STATUS_META[statusKey];
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="t">${name.replace(/</g,'&lt;')}</td>
+      <td>${storeId.replace(/</g,'&lt;')}</td>
+      <td>${manager.replace(/</g,'&lt;')}</td>
+      <td><span class="pill ${statusKey}"><i class="bi ${meta.icon}"></i> ${meta.label}</span></td>
+      <td><button class="btn-ghost">គ្រប់គ្រង</button></td>
+    `;
+    branchesTbody.appendChild(tr);
+    wireManageButtons();
+
+    closeBranchModal();
+    showToast(`សាខា "${name}" ត្រូវបានបន្ថែម`);
+  });
+
+  function showToast(msg){
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    t.classList.add('show');
+    clearTimeout(window._toastT);
+    window._toastT = setTimeout(() => { t.classList.remove('show'); document.getElementById('toastMsg').textContent = 'បានរក្សាទុកការផ្លាស់ប្តូរ'; }, 2600);
+  }
+
+  // ---- Add Custom Role modal ----
+  const roleOverlay = document.getElementById('roleModalOverlay');
+  const addRoleBtn = document.getElementById('addRoleBtn');
+  const roleCancelBtn = document.getElementById('roleCancelBtn');
+  const roleModalClose = document.getElementById('roleModalClose');
+  const roleSaveBtn = document.getElementById('roleSaveBtn');
+  const roleNameInput = document.getElementById('roleName');
+  const roleNameError = document.getElementById('roleNameError');
+  const rolesTbody = document.getElementById('rolesTbody');
+
+  const PILL_LABEL = { ok: 'ពេញលេញ', warn: 'មើលបានតែប៉ុណ្ណោះ', bad: 'គ្មាន' };
+
+  function openRoleModal(){
+    roleOverlay.classList.add('show');
+    roleNameInput.value = '';
+    document.getElementById('roleUsers').value = 0;
+    ['rolePermSales','rolePermInventory','rolePermReports','rolePermSettings'].forEach(id => {
+      document.getElementById(id).value = 'bad';
+    });
+    roleNameError.classList.remove('show');
+    setTimeout(() => roleNameInput.focus(), 50);
+  }
+  function closeRoleModal(){ roleOverlay.classList.remove('show'); }
+
+  addRoleBtn.addEventListener('click', openRoleModal);
+  roleCancelBtn.addEventListener('click', closeRoleModal);
+  roleModalClose.addEventListener('click', closeRoleModal);
+  roleOverlay.addEventListener('click', (e) => { if (e.target === roleOverlay) closeRoleModal(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && roleOverlay.classList.contains('show')) closeRoleModal(); });
+
+  roleSaveBtn.addEventListener('click', () => {
+    const name = roleNameInput.value.trim();
+    if (!name){
+      roleNameError.classList.add('show');
+      roleNameInput.focus();
+      return;
+    }
+    roleNameError.classList.remove('show');
+
+    const users = document.getElementById('roleUsers').value || 0;
+    const perms = ['rolePermSales','rolePermInventory','rolePermReports','rolePermSettings']
+      .map(id => document.getElementById(id).value);
+
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="t">${name.replace(/</g,'&lt;')}</td>
+      <td>${users}</td>
+      ${perms.map(p => `<td><span class="pill ${p}">${PILL_LABEL[p]}</span></td>`).join('')}
+    `;
+    rolesTbody.appendChild(tr);
+
+    closeRoleModal();
+    const t = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = `តួនាទី "${name}" ត្រូវបានបន្ថែម`;
+    t.classList.add('show');
+    clearTimeout(window._toastT);
+    window._toastT = setTimeout(() => { t.classList.remove('show'); document.getElementById('toastMsg').textContent = 'បានរក្សាទុកការផ្លាស់ប្តូរ'; }, 2600);
+  });
+
+  // ---- Save button toast ----
+  document.getElementById('saveBtn').addEventListener('click', () => {
+    const t = document.getElementById('toast');
+    t.classList.add('show');
+    clearTimeout(window._toastT);
+    window._toastT = setTimeout(() => t.classList.remove('show'), 2400);
+  });

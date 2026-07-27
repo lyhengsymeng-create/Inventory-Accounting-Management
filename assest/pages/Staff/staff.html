@@ -8,22 +8,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="/assest/image/logos.png">
     <title>IAM System</title>
-    <!-- Bootstrap 5 CSS -->
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-   <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="/assest/css/cheatDBStaff.css">
     <link rel="stylesheet" href="/assest/css/roun_staff.css"/>
     <link rel="stylesheet" href="/assest/vendor/bootstrap-5.3.8-dist/bootstrap-5.3.8-dist/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   </head> 
-  <body>
-    <p>Lorem ipsum dolor sit amet.</p>
+  <body style="background-color: #F4F5FB;">
     <div class="app-shell">
       <!-- Backdrop for mobile sidebar -->
       <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
-
       <div class="sidebar">
         <div class="d-flex d-lg-none justify-content-end px-2 pt-2">
           <button type="button" class="btn btn-sm btn-outline-light rounded-circle" id="sidebarCloseBtn" aria-label="Close menu">
@@ -31,19 +27,31 @@
           </button>
         </div>
         <nav class="nav flex-column mt-2">
-          <a class="nav-link active"  data-tab="Dashboard" href="#"><i class="fa-solid fa-cash-register"></i>Dashboard</a>
+          <div class=" rounded-3 d-flex align-items-center p-3 gap-3">
+            <img src="/assest/image/logos.png" style="width:50px;height:50px;" alt="">
+          <div>
+          <div class="fw-bold text-white">IAM</div>
+          <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
+        </div>
+          </div>
+          <a class="nav-link active"  data-tab="Dashboard" href="#"><i class="fa-solid fa-chart-column"></i>Dashboard</a>
           <a class="nav-link        " data-tab="pos"       href="#"><i class="fa-solid fa-cash-register"></i>លក់ទំនិញ</a>
           <a class="nav-link"        data-tab="products"  href="#"><i class="fa-solid fa-box"></i>ផលិតផល</a>
           <a class="nav-link"        data-tab="inventory" href="#"><i class="fa-solid fa-boxes-stacked"></i>ស្ថានភាពស្តុក</a>
           <a class="nav-link"        data-tab="customers" href="#"><i class="fa-solid fa-users"></i>អតិថិជន</a>
           <a class="nav-link"        data-tab="reports"   href="#"><i class="fa-solid fa-chart-simple"></i>របាយការណ៍</a>
+          <a class="nav-link"        data-tab="communication" href="#"><i class="fa-solid fa-comments"></i>ទំនាក់ទំនង</a>
+          <a class="nav-link"        data-tab="attendance" href="#"><i class="fa-solid fa-calendar-check"></i>វត្តមាន</a>
           <a class="nav-link"        data-tab="account"   href="#"><i class="fa-solid fa-user-gear"></i>គណនីខ្ញុំ</a>
-         <a class="nav-link" data-tab="logout" href="/index.html"><i class="fa-solid fa-user-gear"></i> Logout</a>
+         <a class="nav-link" href="#" id="logoutBtn"><i class="fa-solid fa-user-gear"></i>ចាកចេញ</a>
         </nav>
+        <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
+        <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
+      </div>
       </div>
       <!-- Main -->
       <div class="main">
-        <div class="topbar">
+        <div class="topbar flex-wrap gap-2">
           <div class="d-flex align-items-center gap-2">
             <button type="button" class="btn btn-sm btn-outline-secondary" id="sidebarToggleBtn" aria-label="Open menu">
               <i class="fa-solid fa-bars"></i>
@@ -52,23 +60,41 @@
           </div>
           <div class="d-flex align-items-center gap-2">
             <span id="lowStockAlert" class="badge bg-danger" style="display:none!important"></span>
+
+            <!-- ស្វែងរក (Search) -->
+            <div class="position-relative">
+              <button class="btn btn-light border rounded-3" id="topbarSearchBtn" type="button" title="ស្វែងរកផលិតផល">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+              <div id="topbarSearchBox" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2" style="width:240px; z-index:1055;">
+                <input type="text" id="topbarSearchInput" class="form-control form-control-sm font-khmer" placeholder="ស្វែងរកផលិតផល ហើយចុច Enter...">
+              </div>
+            </div>
+
+            <!-- ការជូនដំណឹង (Notifications) -->
+            <div class="position-relative">
+              <button class="btn btn-light border rounded-3 position-relative" id="topbarBellBtn" type="button" title="ការជូនដំណឹង">
+                <i class="fa-solid fa-bell"></i>
+                <span id="topbarBellCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" style="font-size:.6rem;">0</span>
+              </button>
+              <div id="topbarNotifDropdown" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2 font-khmer" style="width:280px; max-height:320px; overflow:auto; z-index:1055;">
+                <div class="fw-bold small text-secondary mb-2 px-1">ការជូនដំណឹង</div>
+                <div id="topbarNotifList"></div>
+              </div>
+            </div>
+            <!-- ប្រូហ្វាល (Profile) -->
+            <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1" id="topbarProfilePill" style="cursor:pointer;" title="គណនីខ្ញុំ">
+              <img src="/assest/image/phearoun_image.jpg" alt="Profile" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;">
+              <div>
+                <div class="small fw-bold lh-1" id="topbarProfileName">រឹម ភារុន</div>
+                <div class="text-secondary lh-1" style="font-size:.7rem;">Staff</div>
+              </div>
+            </div>
           </div>
         </div>
           <!-- ============ TAB: DASHBOARD ============ -->
           <div id="tab-Dashboard" class="tab-content active">
             <div class="p-3 p-lg-4">
-       <!-- Purpose banner -->
-      <div class="purpose-banner text-white rounded-4 p-4 mb-4 shadow">
-        <div class="text-uppercase small fw-bold mb-2 km" style="letter-spacing:.1em; color:#c2b8ff; font-size:.7rem;">
-          <i class="bi bi-square-fill" style="font-size:.4rem; color:#f2b134;"></i> គោលបំណង / Purpose
-        </div>
-        <p class="km mb-1" style="max-width:640px; line-height:1.8;">
-          មើលព័ត៌មានដែលពាក់ព័ន្ធនឹងការលក់ និងការងាររបស់ខ្លួន Dashboard ផ្តល់នូវទិដ្ឋភាពរហ័សអំពីការលក់ប្រចាំថ្ងៃ
-          និងការងារដែលបានប្រគល់ជូនអ្នក
-        </p>
-        <div class="small" style="color:#9d9fd6;">Quick overview of today's sales performance and tasks assigned to you.</div>
-      </div>
-
       <!-- ============ Top KPI Cards ============ -->
       <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
         <div class="col">
@@ -138,18 +164,15 @@
                   <i class="bi bi-circle-fill" style="font-size:.5rem;"></i> Live
                 </span>
               </div>
-
               <ul class="nav nav-pills gap-2 mb-3" id="salesTabs">
                 <li class="nav-item"><button class="nav-link active py-1 px-3 small" data-sales="week">This week</button></li>
                 <li class="nav-item"><button class="nav-link py-1 px-3 small" data-sales="lastweek">Last week</button></li>
               </ul>
-
               <div class="d-flex align-items-baseline gap-2 mb-1">
                 <div class="display-6 fw-bold" id="salesAmt">$0</div>
                 <span class="badge bg-success-subtle text-success" id="salesTrend">▲ 10.4%</span>
               </div>
               <div class="km text-secondary small mb-4">ធៀបនឹងម្សិលមិញ · Compared to yesterday</div>
-
               <!-- chart -->
               <div class="d-flex align-items-end gap-2" style="height:120px;" id="chartRow">
                 <div class="chart-bar" data-h="52" data-v="8.1k"><span class="val"></span></div>
@@ -164,7 +187,6 @@
                 <div class="flex-fill">Mon</div><div class="flex-fill">Tue</div><div class="flex-fill">Wed</div>
                 <div class="flex-fill">Thu</div><div class="flex-fill">Fri</div><div class="flex-fill">Sat</div><div class="flex-fill">Sun</div>
               </div>
-
               <!-- mini stats -->
               <div class="row row-cols-3 g-2 mt-4">
                 <div class="col"><div class="bg-light rounded-3 p-3 text-center"><div class="fw-bold" id="statVisits">0</div><div class="km text-secondary" style="font-size:.7rem;">អ្នកចូលមើល · Visits</div></div></div>
@@ -174,7 +196,6 @@
             </div>
           </div>
         </div>
-
         <!-- ============ View Assigned Tasks ============ -->
         <div class="col-lg-5">
           <div class="card border-0 shadow-sm rounded-4 h-100">
@@ -197,7 +218,6 @@
                 </div>
                 <div class="km text-secondary small mt-2" id="taskSm">ការងារបានបញ្ចប់ ៣ ក្នុងចំណោម ៥</div>
               </div>
-
               <!-- task list -->
               <ul class="list-group list-group-flush" id="taskList">
                 <li class="list-group-item d-flex align-items-center gap-3 px-0 py-2 border-0 border-bottom task-item done" data-task>
@@ -206,12 +226,12 @@
                   <span class="badge bg-success-subtle text-success rounded-pill task-tag">Done</span>
                 </li>
                 <li class="list-group-item d-flex align-items-center gap-3 px-0 py-2 border-0 border-bottom task-item done" data-task>
-                  <input class="form-check-input m-0" type="checkbox" checked>
+                  <input placeholder="n" class="form-check-input m-0" type="checkbox" checked>
                   <div class="flex-grow-1"><div class="fw-semibold small task-title">Update customer records</div><div class="km text-secondary" style="font-size:.72rem;">ធ្វើបច្ចុប្បន្នភាពទិន្នន័យអតិថិជន</div></div>
                   <span class="badge bg-success-subtle text-success rounded-pill task-tag">Done</span>
                 </li>
                 <li class="list-group-item d-flex align-items-center gap-3 px-0 py-2 border-0 border-bottom task-item" data-task data-tag="high">
-                  <input class="form-check-input m-0" type="checkbox">
+                  <input placeholder="new" class="form-check-input m-0" type="checkbox">
                   <div class="flex-grow-1"><div class="fw-semibold small task-title">Prepare monthly invoice</div><div class="km text-secondary" style="font-size:.72rem;">រៀបចំវិក្កយបត្រប្រចាំខែ</div></div>
                   <span class="badge bg-danger-subtle text-danger rounded-pill task-tag">High</span>
                 </li>
@@ -264,59 +284,12 @@
               <div class="km text-secondary small">ផលិតផលដែលត្រូវបញ្ជាទិញបន្ថែមឆាប់ៗ</div>
             </div>
             <span class="badge bg-danger-subtle text-danger rounded-pill px-3 py-2">
-              <i class="bi bi-exclamation-triangle-fill"></i> <span class="km">4 ធាតុត្រូវការជាបន្ទាន់</span>
+              <i class="bi bi-exclamation-triangle-fill"></i> <span class="km" id="lowStockCountLabel">0 ធាតុត្រូវការជាបន្ទាន់</span>
             </span>
           </div>
 
-          <div class="row g-3">
-            <div class="col-md-6 col-xl-3">
-              <div class="border rounded-3 p-3 h-100">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div class="km fw-semibold small">កូកាកូឡា 330ml</div>
-                  <span class="badge bg-danger-subtle text-danger rounded-pill">Critical</span>
-                </div>
-                <div class="progress mb-1" style="height:6px;">
-                  <div class="progress-bar bg-danger" style="width:12%"></div>
-                </div>
-                <div class="km text-secondary small">នៅសល់ <b class="text-danger">12</b> ដប · ចំណុចបញ្ជាទិញ 50</div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-              <div class="border rounded-3 p-3 h-100">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div class="km fw-semibold small">ទឹកសុទ្ធ 500ml</div>
-                  <span class="badge bg-warning-subtle text-warning rounded-pill">Low</span>
-                </div>
-                <div class="progress mb-1" style="height:6px;">
-                  <div class="progress-bar bg-warning" style="width:25%"></div>
-                </div>
-                <div class="km text-secondary small">នៅសល់ <b class="text-warning">25</b> ដប · ចំណុចបញ្ជាទិញ 60</div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-              <div class="border rounded-3 p-3 h-100">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div class="km fw-semibold small">សាប៊ូលាងចាន</div>
-                  <span class="badge bg-danger-subtle text-danger rounded-pill">Critical</span>
-                </div>
-                <div class="progress mb-1" style="height:6px;">
-                  <div class="progress-bar bg-danger" style="width:8%"></div>
-                </div>
-                <div class="km text-secondary small">នៅសល់ <b class="text-danger">8</b> កំប៉ុង · ចំណុចបញ្ជាទិញ 40</div>
-              </div>
-            </div>
-            <div class="col-md-6 col-xl-3">
-              <div class="border rounded-3 p-3 h-100">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                  <div class="km fw-semibold small">ក្រែមការពារថ្ងៃ</div>
-                  <span class="badge bg-warning-subtle text-warning rounded-pill">Low</span>
-                </div>
-                <div class="progress mb-1" style="height:6px;">
-                  <div class="progress-bar bg-warning" style="width:15%"></div>
-                </div>
-                <div class="km text-secondary small">នៅសល់ <b class="text-warning">15</b> កំប៉ុង · ចំណុចបញ្ជាទិញ 30</div>
-              </div>
-            </div>
+          <div class="row g-3" id="lowStockAlertGrid">
+            <div class="col-12 text-center text-muted small km py-3">កំពុងផ្ទុកទិន្នន័យស្តុក...</div>
           </div>
         </div>
       </div>
@@ -331,19 +304,19 @@
               <h3 class="h6 fw-bold mb-3 km">ប្រតិបត្តិការថ្មីៗ <span class="text-secondary fw-normal">(Recent Transactions)</span></h3>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item d-flex justify-content-between align-items-start px-0 py-3">
-                  <div class="km"><b>Admin User</b> — បន្ថែមស្តុកចូលៈ កូកាកូឡា 330ml (+100)</div>
+                  <div class="km"><b>Admin User</b><span class="px-5">បន្ថែមស្តុកចូលៈ កូកាកូឡា 330ml (+100)</span></div>
                   <span class="text-secondary small text-nowrap ms-3">09:12 AM</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start px-0 py-3">
-                  <div class="km"><b>User Account</b> — បង្កើតវិក្កយបត្រថ្មីៈ #INV-2041</div>
+                  <div class="km"><b>User Account</b><span class="px-5"> បង្កើតវិក្កយបត្រថ្មីៈ #INV-2041</span></div>
                   <span class="text-secondary small text-nowrap ms-3">10:03 AM</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start px-0 py-3">
-                  <div class="km"><b>Admin User</b> — កែប្រែព័ត៌មានផលិតផលៈ ក្រែមការពារថ្ងៃ</div>
+                  <div class="km"><b>Admin User</b><span class="px-5">កែប្រែព័ត៌មានផលិតផលៈ ក្រែមការពារថ្ងៃ</span></div>
                   <span class="text-secondary small text-nowrap ms-3">11:47 AM</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-start px-0 py-3">
-                  <div class="km"><b>User Account</b> — បន្ថែមអតិថិជនថ្មីៈ អ្នកនាង សុភា</div>
+                  <div class="km"><b>User Account</b><span class="px-5">បន្ថែមអតិថិជនថ្មីៈ អ្នកនាង សុភា</span></div>
                   <span class="text-secondary small text-nowrap ms-3">01:20 PM</span>
                 </li>
               </ul>
@@ -359,17 +332,17 @@
 
               <div class="position-relative d-inline-block mb-3" style="width:200px; height:200px;">
                 <div class="rounded-circle" style="width:200px; height:200px;
-                     background:conic-gradient(#1f4d43 0% 30%, #c1793a 30% 56%, #7fa895 56% 74%, #e0b482 74% 90%, #d8d2c4 90% 100%);">
+                     background:conic-gradient(#e7e5ff 0% 30%, #4f46e5 30% 56%, #8a8da3 56% 74%, #e0b482 74% 90%, #f42929da 90% 100%);">
                 </div>
                 <div class="position-absolute top-50 start-50 translate-middle bg-white rounded-circle" style="width:108px; height:108px;"></div>
               </div>
 
               <div class="d-flex flex-wrap justify-content-center gap-3 small">
-                <span><i class="bi bi-circle-fill" style="color:#1f4d43;"></i> <span class="km">កូកាកូឡា</span> 30%</span>
-                <span><i class="bi bi-circle-fill" style="color:#c1793a;"></i> <span class="km">ទឹកសុទ្ធ</span> 26%</span>
-                <span><i class="bi bi-circle-fill" style="color:#7fa895;"></i> <span class="km">ខេ្សសាច់</span> 18%</span>
+                <span><i class="bi bi-circle-fill" style="color:#e7e5ff;"></i> <span class="km">កូកាកូឡា</span> 30%</span>
+                <span><i class="bi bi-circle-fill" style="color:#4f46e5;"></i> <span class="km">ទឹកសុទ្ធ</span> 26%</span>
+                <span><i class="bi bi-circle-fill" style="color:#8a8da3;"></i> <span class="km">ខេ្សសាច់</span> 18%</span>
                 <span><i class="bi bi-circle-fill" style="color:#e0b482;"></i> <span class="km">សាប៊ូលាងចាន</span> 16%</span>
-                <span><i class="bi bi-circle-fill" style="color:#d8d2c4;"></i> <span class="km">ផ្សេងទៀត</span> 10%</span>
+                <span><i class="bi bi-circle-fill" style="color:#f42929da;"></i> <span class="km">ផ្សេងទៀត</span> 10%</span>
               </div>
             </div>
           </div>
@@ -780,19 +753,33 @@
                   </select>
                 </div>
 
-                <div class="mb-3">
-                  <select class="form-select form-select-sm shadow-none font-khmer" id="pay-method-select">
+                <div class="mb-2">
+                  <select class="form-select form-select-sm shadow-none font-khmer" id="pay-method-select" onchange="onPayMethodChange()">
                     <option value="សាច់ប្រាក់">សាច់ប្រាក់ (Cash)</option>
                     <option value="ABA">ABA Bank</option>
                     <option value="វីង">វីង (Wing)</option>
+                    <option value="ចម្រុះ">ចម្រុះ (សាច់ប្រាក់ + ABA)</option>
                   </select>
                 </div>
 
+                <div class="mb-3 d-none" id="split-pay-wrap">
+                  <div class="d-flex gap-2">
+                    <input type="number" min="0" step="0.01" class="form-control form-control-sm" id="split-cash-amount" placeholder="សាច់ប្រាក់ $" oninput="renderCart()">
+                    <input type="number" min="0" step="0.01" class="form-control form-control-sm" id="split-aba-amount" placeholder="ABA $" oninput="renderCart()">
+                  </div>
+                  <small class="text-muted" id="split-pay-hint" style="font-size:11px;"></small>
+                </div>
+
+                <div class="mb-2">
+                  <label class="form-label small mb-1 font-khmer text-secondary">បញ្ចុះតម្លៃ (Discount $)</label>
+                  <input type="number" min="0" step="0.01" class="form-control form-control-sm" id="pay-discount" placeholder="0.00" value="0" oninput="renderCart()">
+                </div>
+
                 <div class="py-2 border-top border-light-subtle small text-secondary">
-                  <div class="d-flex justify-content-between mb-1"><span>តម្លៃដើម</span><span id="summary-subtotal">$5.00</span></div>
-                  <div class="d-flex justify-content-between mb-1"><span>បញ្ចុះតម្លៃ</span><span>-$0.50</span></div>
+                  <div class="d-flex justify-content-between mb-1"><span>តម្លៃដើម</span><span id="summary-subtotal">$0.00</span></div>
+                  <div class="d-flex justify-content-between mb-1"><span>បញ្ចុះតម្លៃ</span><span id="summary-discount">-$0.00</span></div>
                   <div class="d-flex justify-content-between fw-bold text-dark fs-6 pt-1 border-top border-dashed">
-                    <span>សរុប</span><span class="text-dark" id="summary-total">$4.50</span>
+                    <span>សរុប</span><span class="text-dark" id="summary-total">$0.00</span>
                   </div>
                 </div>
 
@@ -826,7 +813,7 @@
             </div>
 
             <div class="table-responsive">
-            <table id="productsTable">
+            <table id="productsTable" class="table align-middle mb-0">
               <thead>
                 <tr>
                   <th style="width:44px;"></th>
@@ -846,44 +833,43 @@
         </div>
  <!-- ============ TAB: inventory ============ -->
     <div id="tab-inventory" class="tab-content">
-          <div class="card product-card-panel mb-4">
-            <div class="card-head">
-              <h2 class="card-title">ស្ថានភាពស្តុក</h2>
-              <div class="card-tools">
-                <input type="text" id="inventorySearchInput" class="search-input" placeholder="ស្វែងរក...">
-              </div>
+          <div class="card shadow-sm border-0 bg-white rounded-3 mb-4">
+            <div class="card-header bg-light/50 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2 border-bottom-0">
+              <h6 class="mb-0 fw-bold text-secondary font-khmer">ស្ថានភាពស្តុក</h6>
+              <input type="text" id="inventorySearchInput" class="form-control form-control-sm font-khmer" style="max-width:220px;" placeholder="ស្វែងរក...">
             </div>
             <div class="table-responsive">
-            <table id="inventoryTable">
-              <thead>
-                <tr>
-                  <th>ឈ្មោះ</th>
-                  <th>ប្រភេទ</th>
-                  <th>តម្លៃលក់</th>
-                  <th>ស្តុក</th>
-                  <th>ស្ថានភាព</th>
-                </tr>
-              </thead>
-              <tbody id="inventoryTbody"></tbody>
-            </table>
+              <table id="inventoryTable" class="table table-hover align-middle mb-0">
+                <thead class="table-light text-uppercase fs-7 text-muted font-khmer">
+                  <tr>
+                    <th>ឈ្មោះ</th>
+                    <th>ប្រភេទ</th>
+                    <th>តម្លៃលក់</th>
+                    <th>ស្តុក</th>
+                    <th>ស្ថានភាព</th>
+                  </tr>
+                </thead>
+                <tbody id="inventoryTbody"></tbody>
+              </table>
             </div>
           </div>
-          <div class="card product-card-panel">
-            <div class="card-head">
-              <h2 class="card-title">ប្រវត្តិផ្លាស់ប្តូរស្តុក (បញ្ជីថ្មីៗ)</h2>
+          <div class="card shadow-sm border-0 bg-white rounded-3">
+            <div class="card-header bg-light/50 py-3 border-bottom-0">
+              <h6 class="mb-0 fw-bold text-secondary font-khmer">ប្រវត្តិផ្លាស់ប្តូរស្តុក (បញ្ជីថ្មីៗ)</h6>
             </div>
             <div class="table-responsive">
-            <table id="stockHistoryTable">
-              <thead>
-                <tr>
-                  <th>ផលិតផល</th>
-                  <th>ប្រភេទ</th>
-                  <th>ចំនួន</th>
-                  <th>ពេលវេលា</th>
-                </tr>
-              </thead>
-              <tbody id="stockHistoryTbody"></tbody>
-            </table>
+              <table id="stockHistoryTable" class="table table-hover align-middle mb-0">
+                <thead class="table-light text-uppercase fs-7 text-muted font-khmer">
+                  <tr>
+                    <th>ផលិតផល</th>
+                    <th>ប្រភេទ</th>
+                    <th>ចំនួន</th>
+                    <th>បុគ្គលិក</th>
+                    <th>ពេលវេលា</th>
+                  </tr>
+                </thead>
+                <tbody id="stockHistoryTbody"></tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -953,6 +939,36 @@
       </div>
     </div>
 
+    <!-- Customer Purchase History Modal -->
+    <div class="modal fade" id="custHistoryModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content border-0 shadow-lg rounded-3">
+          <div class="modal-header border-bottom-0 bg-light py-3">
+            <h6 class="modal-title fw-bold text-dark font-khmer" id="custHistoryTitle">ប្រវត្តិទិញ</h6>
+            <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body px-4 py-3">
+            <div class="table-responsive">
+              <table class="table table-hover align-middle mb-0">
+                <thead class="table-light text-uppercase fs-7 text-muted font-khmer">
+                  <tr>
+                    <th>មុខទំនិញ</th>
+                    <th>ការទូទាត់</th>
+                    <th>សរុប</th>
+                    <th>ពេលវេលា</th>
+                  </tr>
+                </thead>
+                <tbody id="custHistoryTbody"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer border-top-0 px-4 pb-4 pt-2">
+            <button type="button" class="btn btn-light btn-sm px-3 rounded-2 text-secondary font-khmer" data-bs-dismiss="modal">បិទ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
         <div id="tab-reports" class="tab-content">
               <div class="row g-3 mb-4">
@@ -983,8 +999,18 @@
               </div>
 
               <div class="card shadow-sm border-0 bg-white rounded-3">
-                <div class="card-header bg-light/50 py-3 d-flex justify-content-between align-items-center border-bottom-0">
+                <div class="card-header bg-light/50 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2 border-bottom-0">
                   <h6 class="mb-0 fw-bold text-secondary font-khmer">ការលក់ថ្ងៃនេះ</h6>
+                  <div class="d-flex flex-wrap align-items-center gap-2">
+                    <input type="date" class="form-control form-control-sm" id="report-date-from" style="max-width:150px;">
+                    <span class="text-muted small">ដល់</span>
+                    <input type="date" class="form-control form-control-sm" id="report-date-to" style="max-width:150px;">
+                    <button class="btn btn-moss btn-sm px-3 font-khmer" onclick="filterReportsByDate()">បង្ហាញ</button>
+                    <button class="btn btn-light btn-sm px-3 font-khmer" onclick="resetReportsFilter()">សម្អាត</button>
+                    <button class="btn btn-outline-success btn-sm px-3 font-khmer" onclick="exportReportsCSV()">
+                      <i class="fa-solid fa-file-csv me-1"></i>នាំចេញ CSV
+                    </button>
+                  </div>
                 </div>
                 
                 <div class="table-responsive">
@@ -996,7 +1022,9 @@
                         <th>អតិថិជន</th>
                         <th>ការទូទាត់</th>
                         <th>សរុប</th>
+                        <th>កាលបរិច្ឆេទ</th>
                         <th>ពេលវេលា</th>
+                        <th class="text-center" style="width: 80px;">សកម្មភាព</th>
                       </tr>
                     </thead>
                     <tbody id="reports-sales-tbody">
@@ -1006,6 +1034,123 @@
               </div>
 
             </div>
+            <!-- ============ TAB: COMMUNICATION ============ -->
+        <div id="tab-communication" class="tab-content">
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <div class="card border-0 shadow-sm rounded-3 bg-white p-4 mb-3">
+                <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">ផ្ញើសារទៅអ្នកគ្រប់គ្រង</h6>
+                <div class="font-khmer">
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold text-secondary">ប្រភេទសារ</label>
+                    <select class="form-select form-select-sm shadow-none" id="comm-type">
+                      <option value="message">សារជូនដំណឹងទូទៅ</option>
+                      <option value="support">សំណើសុំការគាំទ្រ (Support)</option>
+                      <option value="issue">រាយការណ៍បញ្ហាប្រព័ន្ធ (Bug/Issue)</option>
+                    </select>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold text-secondary">ខ្លឹមសារ</label>
+                    <textarea class="form-control form-control-custom shadow-none" id="comm-content" rows="4" placeholder="សរសេរសាររបស់អ្នកនៅទីនេះ..."></textarea>
+                  </div>
+                  <button class="btn btn-moss btn-sm px-4 rounded-2 shadow-sm font-khmer" onclick="sendCommMessage()">
+                    <i class="fa-solid fa-paper-plane me-1"></i>ផ្ញើសារ
+                  </button>
+                </div>
+              </div>
+
+              <div class="card border-0 shadow-sm rounded-3 bg-white p-4">
+                <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">ប្រវត្តិសារដែលបានផ្ញើ</h6>
+                <div id="commHistoryList" class="font-khmer" style="max-height:340px; overflow-y:auto;"></div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="card border-0 shadow-sm rounded-3 bg-white p-4">
+                <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">
+                  <i class="fa-solid fa-bullhorn me-1 text-moss"></i>សេចក្តីជូនដំណឹងពីអ្នកគ្រប់គ្រង
+                </h6>
+                <div id="announcementList" class="font-khmer" style="max-height:520px; overflow-y:auto;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <!-- ============ TAB: ATTENDANCE ============ -->
+        <div id="tab-attendance" class="tab-content">
+          <div class="row g-3">
+            <div class="col-12 col-md-5">
+              <div class="card border-0 shadow-sm rounded-3 bg-white p-4 mb-3 text-center">
+                <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">វត្តមានថ្ងៃនេះ</h6>
+                <div class="font-khmer mb-2 text-secondary small" id="att-current-date"></div>
+                <div class="font-khmer fw-bold mb-3" id="att-status-label" style="font-size:1.1rem;color:#1f4d43;">មិនទាន់ចូលធ្វើការ</div>
+                <button class="btn btn-moss w-100 rounded-2 shadow-sm font-khmer fw-bold" id="attCheckBtn" onclick="toggleAttendance()">
+                  <i class="fa-solid fa-right-to-bracket me-1"></i>ចូលធ្វើការ (Check In)
+                </button>
+              </div>
+
+              <div class="card border-0 shadow-sm rounded-3 bg-white p-4">
+                <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">សំណើសុំច្បាប់</h6>
+                <div class="font-khmer">
+                  <div class="row g-2 mb-2">
+                    <div class="col-6">
+                      <label class="form-label small fw-semibold text-secondary">ថ្ងៃចាប់ផ្តើម</label>
+                      <input type="date" class="form-control form-control-custom shadow-none form-control-sm" id="leave-start">
+                    </div>
+                    <div class="col-6">
+                      <label class="form-label small fw-semibold text-secondary">ថ្ងៃបញ្ចប់</label>
+                      <input type="date" class="form-control form-control-custom shadow-none form-control-sm" id="leave-end">
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label small fw-semibold text-secondary">មូលហេតុ</label>
+                    <textarea class="form-control form-control-custom shadow-none" id="leave-reason" rows="2" placeholder="ឧ. ឈឺ, រវល់ការគ្រួសារ..."></textarea>
+                  </div>
+                  <button class="btn btn-moss btn-sm px-4 rounded-2 shadow-sm font-khmer" onclick="submitLeaveRequest()">ដាក់សំណើ</button>
+                </div>
+                <hr class="my-3">
+                <h6 class="fw-bold text-dark font-khmer mb-2" style="font-size:.9rem;">សំណើដែលបានដាក់</h6>
+                <div id="leaveRequestList" class="font-khmer" style="max-height:220px; overflow-y:auto;"></div>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-7">
+              <div class="card border-0 shadow-sm rounded-3 bg-white p-4 mb-3">
+                <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">កាលវិភាគការងារប្រចាំសប្តាហ៍</h6>
+                <div class="table-responsive">
+                  <table class="table table-borderless align-middle mb-0 text-secondary font-khmer" style="font-size:0.88rem;">
+                    <thead>
+                      <tr class="text-muted small">
+                        <th>ថ្ងៃ</th>
+                        <th>ម៉ោងចូល</th>
+                        <th>ម៉ោងចេញ</th>
+                        <th>ស្ថានភាព</th>
+                      </tr>
+                    </thead>
+                    <tbody id="workScheduleTbody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="card border-0 shadow-sm rounded-3 bg-white p-4">
+                <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">ប្រវត្តិវត្តមាន</h6>
+                <div class="table-responsive">
+                  <table class="table table-borderless align-middle mb-0 text-secondary font-khmer" style="font-size:0.88rem;">
+                    <thead>
+                      <tr class="text-muted small">
+                        <th>កាលបរិច្ឆេទ</th>
+                        <th>ចូល</th>
+                        <th>ចេញ</th>
+                        <th>រយៈពេលធ្វើការ</th>
+                      </tr>
+                    </thead>
+                    <tbody id="attendanceHistoryTbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
  
         <!-- ============ TAB: ACCOUNT (placeholder) ============ -->
         <div id="tab-account" class="tab-content">
@@ -1013,6 +1158,15 @@
               <div class="col-12 col-md-5">
                 <div class="card border-0 shadow-sm rounded-3 bg-white p-4 mb-3">
                   <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">ព័ត៌មានគណនី</h6>
+                  <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="position-relative" style="width:72px;height:72px;">
+                      <img id="acc-avatar-img" src="/assest/image/phearoun_image.jpg" alt="Profile" class="rounded-circle border" style="width:72px;height:72px;object-fit:cover;">
+                    </div>
+                    <div>
+                      <div class="fw-bold text-dark font-khmer" id="acc-info-name-display">រឹម​ ភារុន</div>
+                      <div class="text-muted small" id="acc-info-email-display">phearoun@shop.com</div>
+                    </div>
+                  </div>
                   <div class="table-responsive">
                     <table class="table table-borderless align-middle mb-0 text-secondary font-khmer" style="font-size: 0.9rem;">
                       <tbody>
@@ -1052,6 +1206,12 @@
                 <div class="card border-0 shadow-sm rounded-3 bg-white p-4 mb-3">
                   <h6 class="fw-bold text-dark font-khmer mb-3 pb-2 border-bottom border-light-subtle">កែប្រែព័ត៌មានផ្ទាល់ខ្លួន</h6>
                   <div class="font-khmer">
+                    <div class="mb-3 d-flex align-items-center gap-3">
+                      <div class="position-relative" style="width:60px;height:60px;">
+                        <img id="acc-avatar-preview" src="/assest/image/phearoun_image.jpg" alt="Profile" class="rounded-circle border" style="width:60px;height:60px;object-fit:cover;">
+                      </div>
+                      <div class="text-muted" style="font-size:12px;">រូបភាពប្រូហ្វាលថេរ (ពីថតឯកសាររូបភាព)</div>
+                    </div>
                     <div class="mb-3">
                       <label class="form-label small fw-semibold text-secondary">ឈ្មោះ</label>
                       <input type="text" class="form-control form-control-custom shadow-none" id="edit-acc-name" value="រឹម​ ភារុន">
@@ -1096,7 +1256,7 @@
         <h3 class="modal-title font-khmer" style="text-align:center;">ស្កេន QR ដើម្បីទូទាត់</h3>
         <p class="text-muted small mb-3 font-khmer">សូមឲ្យអតិថិជនស្កេន QR Code ខាងក្រោមដើម្បីទូទាត់ប្រាក់</p>
         <div class="d-flex justify-content-center mb-3">
-          <img id="qrPaymentImage" src="../../image/ABA KHQR.jpg" alt="ABA KHQR Code" style="width:220px;height:auto;border:1px solid #e7e3d9;border-radius:12px;padding:8px;background:#fff;">
+          <img id="qrPaymentImage" src="../../image/QR.jpg" alt="ABA KHQR Code" style="width:220px;height:auto;border:1px solid #e7e3d9;border-radius:12px;padding:8px;background:#fff;">
         </div>
         <div class="mb-1 text-muted small font-khmer">ចំនួនទឹកប្រាក់ត្រូវទូទាត់</div>
         <div class="fw-bold mb-2" style="font-size:1.9rem;color:#1f4d43;" id="qrPaymentTotal">$0.00</div>
@@ -1104,6 +1264,44 @@
         <div class="modal-actions" style="justify-content:center;">
           <button class="btn btn-outline font-khmer" id="cancelQrPaymentBtn">បោះបង់</button>
           <button class="btn btn-accent font-khmer" id="confirmQrPaymentBtn">បានទទួលការទូទាត់</button>
+        </div>
+      </div>
+    </div>
+    <!-- Receipt Modal (បង្ហាញបន្ទាប់ពីទទួលការទូទាត់ជោគជ័យ) -->
+    <div class="modal-overlay" id="receiptModal">
+      <div class="modal-box font-khmer" id="receiptPrintArea" style="width:340px;">
+        <div class="text-center mb-2">
+          <img src="/assest/image/logos.png" alt="IAM" style="width:40px;height:40px;">
+          <div class="fw-bold" style="font-size:1.1rem;">IAM SHOP</div>
+          <div class="text-muted" style="font-size:.75rem;">វិក្កយបត្រលក់ / Sales Receipt</div>
+        </div>
+        <div class="border-top border-bottom py-2 mb-2" style="font-size:.8rem;">
+          <div class="d-flex justify-content-between"><span class="text-muted">លេខវិក្កយបត្រ</span><span class="fw-semibold" id="receiptInvoiceId">#0</span></div>
+          <div class="d-flex justify-content-between"><span class="text-muted">កាលបរិច្ឆេទ</span><span id="receiptDate">--</span></div>
+          <div class="d-flex justify-content-between"><span class="text-muted">ម៉ោង</span><span id="receiptTime">--</span></div>
+          <div class="d-flex justify-content-between"><span class="text-muted">អ្នកគិតលុយ</span><span id="receiptCashier">--</span></div>
+          <div class="d-flex justify-content-between"><span class="text-muted">អតិថិជន</span><span id="receiptCustomer">--</span></div>
+        </div>
+        <table class="w-100" style="font-size:.82rem;">
+          <thead>
+            <tr class="text-muted border-bottom">
+              <th class="text-start fw-normal py-1">មុខទំនិញ</th>
+              <th class="text-end fw-normal py-1">ចំនួន</th>
+              <th class="text-end fw-normal py-1">សរុប</th>
+            </tr>
+          </thead>
+          <tbody id="receiptItemsBody"></tbody>
+        </table>
+        <div class="border-top pt-2 mt-1" style="font-size:.85rem;">
+          <div class="d-flex justify-content-between"><span class="text-muted">តម្លៃដើម</span><span id="receiptSubtotal">$0.00</span></div>
+          <div class="d-flex justify-content-between"><span class="text-muted">បញ្ចុះតម្លៃ</span><span id="receiptDiscount">-$0.00</span></div>
+          <div class="d-flex justify-content-between fw-bold border-top pt-1 mt-1" style="font-size:1.05rem;color:#1f4d43;"><span>សរុប</span><span id="receiptTotal">$0.00</span></div>
+          <div class="d-flex justify-content-between text-muted mt-1" style="font-size:.78rem;"><span>ការទូទាត់</span><span id="receiptPaymentMethod">--</span></div>
+        </div>
+        <div class="text-center text-muted mt-3" style="font-size:.75rem;">សូមអរគុណសម្រាប់ការគាំទ្រ! 🙏</div>
+        <div class="modal-actions justify-content-center mt-3 no-print">
+          <button class="btn btn-outline font-khmer" id="closeReceiptBtn">បិទ</button>
+          <button class="btn btn-accent font-khmer" id="printReceiptBtn"><i class="fa-solid fa-print me-1"></i>បោះពុម្ព</button>
         </div>
       </div>
     </div>

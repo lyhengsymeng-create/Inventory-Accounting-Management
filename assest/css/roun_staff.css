@@ -1,9 +1,9 @@
 :root {
-  --ink: #0a5c23;
-  --paper: rgba(248, 243, 243, 0.849);
+  --ink: #171933;
+  --paper: #ffffff;
   --moss: #71bedc;
   --moss-light: #e7efe9;
-  --clay: #b6562f;
+  --clay: #4F46E5;
   --line: #d9d3c4;
 }
 
@@ -21,7 +21,6 @@ body {
 }
 /* Dashboard Elements */
 .purpose-banner {
-  background: linear-gradient(135deg, #1f4d43 0%, #0b5e28 100%);
   color: white;
 }
 .chart-container {
@@ -82,7 +81,7 @@ body {
 }
 
 .sidebar {
-  width: 300px;
+  width: 260px;
   height: 100vh; 
   background: var(--ink);
   color: #f1efe7;
@@ -91,6 +90,7 @@ body {
   left: 0;
   display: flex;
   flex-direction: column;
+  padding: 0px 17px;
  
 }
 
@@ -118,9 +118,8 @@ body {
 }
 
 .sidebar .nav-link.active {
-  background: rgba(255, 255, 255, 0.08);
+  background: #4F46E5;
   color: #fff;
-  border-left-color: var(--clay);
 }
 
 .sidebar .sidebar-foot {
@@ -132,8 +131,7 @@ body {
 }
 
 .main {
-  margin-left: 300px; 
-  padding: 20px;
+  margin-left: 298px; 
   width: calc(100% - 300px); 
 }
 
@@ -147,7 +145,7 @@ body {
   z-index: 900;
   background: var(--paper);   /* ពណ៌ដូចផ្ទៃខាងក្រោយទំព័រ ដើម្បីកុំឲ្យខ្លឹមសារបាំង */
   padding: 14px 25px;
-  /* border-bottom: 1px solid var(--line); */
+
 }
 
 .stat-card {
@@ -442,6 +440,8 @@ body {
       }
       .icon-add{background:#2ac43fd1;color:#fff;}
       .icon-add:hover{background:#2ac43fd1;}
+      .icon-remove{background:#f0ad4e;color:#fff;}
+      .icon-remove:hover{background:#ec971f;}
       .icon-edit{background:#eef0ee;color:#3a3f3d;}
       .icon-edit:hover{background:#e2e5e2;}
       .icon-del{background:#d9534f;color:#fff;}
@@ -549,7 +549,91 @@ body {
         #productGrid .product-card .card-body h5.h6 { font-size: .85rem; }
         #productGrid .product-card .card img { height: 100px; }
       }
-   
-      
-  
 
+/* ---------- ស្ថានភាពស្តុក / Products / Stock history tables ---------- */
+#productsTable,
+#inventoryTable,
+#stockHistoryTable {
+  font-size: 0.9rem;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+#productsTable thead th,
+#inventoryTable thead th,
+#stockHistoryTable thead th {
+  background: #f7f8fa;
+  color: #57606a;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  border-bottom: 1px solid var(--line, #e5e7eb);
+  padding: 12px 14px;
+  white-space: nowrap;
+}
+
+#productsTable tbody td,
+#inventoryTable tbody td,
+#stockHistoryTable tbody td {
+  padding: 12px 14px;
+  vertical-align: middle;
+  border-bottom: 1px solid #f0f1f3;
+  color: #33373d;
+}
+
+#productsTable tbody tr:last-child td,
+#inventoryTable tbody tr:last-child td,
+#stockHistoryTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#productsTable tbody tr:hover td,
+#inventoryTable tbody tr:hover td,
+#stockHistoryTable tbody tr:hover td {
+  background: #fafbfc;
+}
+
+/* ស្តុកទាប / មានស្តុក badges inside the tables */
+#inventoryTable .badge-stock,
+#productsTable .badge-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  background: #d1e7dd;
+  color: #0f5132;
+}
+
+#inventoryTable .badge-stock.badge-low,
+#productsTable .badge-status.badge-low {
+  background: #fff3cd;
+  color: #664d03;
+}
+
+#productsTable .badge-status.badge-out {
+  background: #f8d7da;
+  color: #842029;
+}
+
+/* ---------- បោះពុម្ពវិក្កយបត្រ (Print receipt) ---------- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #receiptPrintArea, #receiptPrintArea * {
+    visibility: visible;
+  }
+  #receiptPrintArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  #receiptPrintArea .no-print {
+    display: none !important;
+  }
+}
