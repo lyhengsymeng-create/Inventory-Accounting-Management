@@ -368,7 +368,7 @@ function confirmQrPayment() {
                 <small class="text-muted" style="font-size: 11px;">ID: #CUST-${c.id}</small>
               </div>
             </div>
-            ${c.hasDebt ? '<span class="badge bg-danger-subtle text-danger border border-danger-subtle rounded-pill font-khmer" style="font-size:10px; padding: 4px 8px;">មានបំណុល</span>' : '<span class="badge bg-light text-muted border rounded-pill font-khmer" style="font-size:10px; padding: 4px 8px;">ធម្មតា</span>'}
+            ${c.hasDebt ? '<span class="badge border rounded-pill bg-light text-muted rounded-pill font-khmer" style="font-size:10px; padding: 4px 8px;">ធម្មតា</span>' : '<span class="badge bg-light text-muted border rounded-pill font-khmer" style="font-size:10px; padding: 4px 8px;">ធម្មតា</span>'}
           </div>
           
           <div class="customer-info my-2 py-2 border-top border-bottom border-light-subtle" style="font-size: 0.85rem;">
