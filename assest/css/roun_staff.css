@@ -90,6 +90,7 @@ body {
   left: 0;
   display: flex;
   flex-direction: column;
+  padding: 0px 17px;
  
 }
 
@@ -440,6 +441,8 @@ body {
       }
       .icon-add{background:#2ac43fd1;color:#fff;}
       .icon-add:hover{background:#2ac43fd1;}
+      .icon-remove{background:#f0ad4e;color:#fff;}
+      .icon-remove:hover{background:#ec971f;}
       .icon-edit{background:#eef0ee;color:#3a3f3d;}
       .icon-edit:hover{background:#e2e5e2;}
       .icon-del{background:#d9534f;color:#fff;}
@@ -615,3 +618,23 @@ body {
   color: #842029;
 }
 
+/* ---------- បោះពុម្ពវិក្កយបត្រ (Print receipt) ---------- */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #receiptPrintArea, #receiptPrintArea * {
+    visibility: visible;
+  }
+  #receiptPrintArea {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  #receiptPrintArea .no-print {
+    display: none !important;
+  }
+}
