@@ -1,6 +1,3 @@
-
-
-
 document.querySelectorAll('.sidebar .nav-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
@@ -30,6 +27,7 @@ document.querySelectorAll('.sidebar .nav-link').forEach(link => {
 
 // កន្ត្រកទំនិញបច្ចុប្បន្ន (Cart State)
 let cart = [];
+let nextInvoiceId = 1; // លេខរៀងវិក្កយបត្រ សម្រាប់ Void/Refund
 
 // ១. អនុគមន៍ចុចបន្ថែមផលិតផលចូលកន្ត្រក
 function addToCart(id, name, price) {
@@ -44,20 +42,25 @@ function addToCart(id, name, price) {
   renderCart();
 }
 
-// ២. អនុគមន៍បង្ហាញ និងគណនាទិន្នន័យក្នុងកន្ត្រក
+// ២. អនុគមន៍បង្ហាញ និងគណនាទិន្នន័យក្នុងកន្ត្រក (រួមទាំងបញ្ចុះតម្លៃ + ការទូទាត់ចម្រុះ)
 function renderCart() {
   const wrapper = document.getElementById('cart-items-wrapper');
   const emptyMsg = document.getElementById('cart-empty-msg');
-  
+  const discountInput = document.getElementById('pay-discount');
+  const discountEl = document.getElementById('summary-discount');
+  const totalEl = document.getElementById('summary-total');
+
   if (cart.length === 0) {
     wrapper.innerHTML = `<p class="text-muted small text-center my-3" id="cart-empty-msg">មិនទាន់មានទំនិញ</p>`;
     document.getElementById('summary-subtotal').textContent = "$0.00";
-    document.getElementById('summary-total').textContent = "$0.00";
+    if (discountEl) discountEl.textContent = "-$0.00";
+    totalEl.textContent = "$0.00";
+    updateSplitPayHint(0);
     return;
   }
 
   let subtotal = 0;
-  
+
   wrapper.innerHTML = cart.map(item => {
     const itemTotal = item.price * item.quantity;
     subtotal += itemTotal;
@@ -76,9 +79,56 @@ function renderCart() {
     `;
   }).join('');
 
+  // បញ្ចុះតម្លៃ (មិនអាចលើសសរុប ឬអវិជ្ជមានទេ)
+  let discount = discountInput ? parseFloat(discountInput.value) || 0 : 0;
+  if (discount < 0) discount = 0;
+  if (discount > subtotal) discount = subtotal;
+
+  const total = subtotal - discount;
+
   // បច្ចុប្បន្នភាពតម្លៃសរុប
   document.getElementById('summary-subtotal').textContent = `$${subtotal.toFixed(2)}`;
-  document.getElementById('summary-total').textContent = `$${subtotal.toFixed(2)}`;
+  if (discountEl) discountEl.textContent = `-$${discount.toFixed(2)}`;
+  totalEl.textContent = `$${total.toFixed(2)}`;
+
+  updateSplitPayHint(total);
+}
+
+// ការទូទាត់ចម្រុះ (Split payment) — បង្ហាញ/លាក់ប្រអប់សាច់ប្រាក់ + ABA
+function onPayMethodChange() {
+  const select = document.getElementById('pay-method-select');
+  const wrap = document.getElementById('split-pay-wrap');
+  if (!select || !wrap) return;
+
+  if (select.value === 'ចម្រុះ') {
+    wrap.classList.remove('d-none');
+  } else {
+    wrap.classList.add('d-none');
+  }
+  renderCart();
+}
+
+// ត្រួតពិនិត្យថាតើសាច់ប្រាក់ + ABA បូកគ្នាស្មើនឹងសរុបដែរឬអត់
+function updateSplitPayHint(total) {
+  const select = document.getElementById('pay-method-select');
+  const hint = document.getElementById('split-pay-hint');
+  if (!select || !hint || select.value !== 'ចម្រុះ') {
+    if (hint) hint.textContent = '';
+    return;
+  }
+  const cash = parseFloat(document.getElementById('split-cash-amount')?.value) || 0;
+  const aba = parseFloat(document.getElementById('split-aba-amount')?.value) || 0;
+  const remaining = total - (cash + aba);
+  if (Math.abs(remaining) < 0.01) {
+    hint.className = 'text-success';
+    hint.textContent = 'គ្រប់ចំនួនហើយ ✓';
+  } else if (remaining > 0) {
+    hint.className = 'text-danger';
+    hint.textContent = `នៅខ្វះ $${remaining.toFixed(2)}`;
+  } else {
+    hint.className = 'text-danger';
+    hint.textContent = `លើសចំនួន $${Math.abs(remaining).toFixed(2)}`;
+  }
 }
 
 // ៣. អនុគមន៍ដកមុខទំនិញចេញពីកន្ត្រកម្តងមួយៗ
@@ -106,7 +156,34 @@ function handleCheckout() {
     return;
   }
 
+  // ការត្រួតពិនិត្យស្តុកចុងក្រោយ មុននឹងបន្តទៅការទូទាត់ (ការពារករណីស្តុកបានផ្លាស់ប្តូររវាងពេលបន្ថែម និងពេលគិតលុយ)
+  for (const item of cart) {
+    const card = document.querySelector(`#productGrid .product-card[data-pid="${item.id}"]`);
+    if (!card) continue;
+    const stockEl = card.querySelectorAll('.card-body p')[1];
+    if (!stockEl) continue;
+    const stockMatch = stockEl.textContent.replace(/[^0-9]/g, '');
+    const stock = parseInt(stockMatch, 10);
+    if (!isNaN(stock) && item.quantity > stock) {
+      showPosToast(`ស្តុក "${item.name}" នៅសល់ត្រឹមតែ ${stock} ប៉ុណ្ណោះ! សូមកែចំនួនក្នុងកន្ត្រក។`);
+      return;
+    }
+  }
+
+  const paymentSelect = document.getElementById('pay-method-select');
   const totalPrice = document.getElementById('summary-total').textContent;
+
+  // ត្រួតពិនិត្យការទូទាត់ចម្រុះ មុននឹងបន្ត
+  if (paymentSelect && paymentSelect.value === 'ចម្រុះ') {
+    const total = parseFloat(totalPrice.replace('$', '')) || 0;
+    const cash = parseFloat(document.getElementById('split-cash-amount')?.value) || 0;
+    const aba = parseFloat(document.getElementById('split-aba-amount')?.value) || 0;
+    if (Math.abs(total - (cash + aba)) >= 0.01) {
+      showPosToast("សាច់ប្រាក់ + ABA ត្រូវតែបូកគ្នាស្មើនឹងសរុប!");
+      return;
+    }
+  }
+
   openQrPaymentModal(totalPrice);
 }
 
@@ -125,6 +202,41 @@ function closeQrPaymentModal() {
   if (modal) modal.classList.remove('open');
 }
 
+// ============ វិក្កយបត្រ (Receipt Modal) ============
+function openReceiptModal(invoice, cartSnapshot, subtotalAmount) {
+  const modal = document.getElementById('receiptModal');
+  if (!modal) return;
+
+  document.getElementById('receiptInvoiceId').textContent = `#${String(invoice.id).padStart(5, '0')}`;
+  document.getElementById('receiptDate').textContent = invoice.date;
+  document.getElementById('receiptTime').textContent = invoice.time;
+  document.getElementById('receiptCashier').textContent = document.getElementById('acc-info-name')?.textContent || '--';
+  document.getElementById('receiptCustomer').textContent = invoice.customer;
+  document.getElementById('receiptPaymentMethod').textContent = invoice.payment_method;
+
+  document.getElementById('receiptItemsBody').innerHTML = cartSnapshot.map(i => `
+    <tr>
+      <td class="py-1">${i.name}</td>
+      <td class="text-end py-1">${i.quantity}</td>
+      <td class="text-end py-1">$${(i.price * i.quantity).toFixed(2)}</td>
+    </tr>`).join('');
+
+  document.getElementById('receiptSubtotal').textContent = `$${subtotalAmount.toFixed(2)}`;
+  document.getElementById('receiptDiscount').textContent = `-$${(invoice.discount || 0).toFixed(2)}`;
+  document.getElementById('receiptTotal').textContent = invoice.total_price;
+
+  modal.classList.add('open');
+}
+
+function closeReceiptModal() {
+  const modal = document.getElementById('receiptModal');
+  if (modal) modal.classList.remove('open');
+}
+
+function printReceipt() {
+  window.print();
+}
+
 // ៥.២ ចុច "បានទទួលការទូទាត់" -> បញ្ចប់ការលក់ពិតប្រាកដ (កត់ត្រា invoice + សម្អាតកន្ត្រក)
 function confirmQrPayment() {
   if (cart.length === 0) {
@@ -135,24 +247,47 @@ function confirmQrPayment() {
   // ប្រមូលព័ត៌មានការទូទាត់
   const customerSelect = document.getElementById('pay-customer');
   const customerName = customerSelect.options[customerSelect.selectedIndex].text;
+  const customerId = customerSelect.value ? parseInt(customerSelect.value) : null;
   const paymentSelect = document.getElementById('pay-method-select');
-  const paymentMethod = paymentSelect ? paymentSelect.value : '';
+  let paymentMethod = paymentSelect ? paymentSelect.value : '';
   const totalPrice = document.getElementById('summary-total').textContent;
+  const totalAmount = parseFloat(totalPrice.replace('$', '')) || 0;
+  const discountInput = document.getElementById('pay-discount');
+  const discountAmount = discountInput ? (parseFloat(discountInput.value) || 0) : 0;
+
+  // ព័ត៌មានលម្អិតការទូទាត់ចម្រុះ (សាច់ប្រាក់ + ABA)
+  if (paymentMethod === 'ចម្រុះ') {
+    const cash = parseFloat(document.getElementById('split-cash-amount')?.value) || 0;
+    const aba = parseFloat(document.getElementById('split-aba-amount')?.value) || 0;
+    paymentMethod = `ចម្រុះ (សាច់ប្រាក់ $${cash.toFixed(2)} + ABA $${aba.toFixed(2)})`;
+  }
 
   // បង្កើតបញ្ជីឈ្មោះមុខទំនិញសរុប (ឧ. អង្ករ ៥គីឡូ x2)
   const itemsSummary = cart.map(i => `${i.name} (x${i.quantity})`).join(', ');
 
-  // បង្កើតពេលវេលាបច្ចុប្បន្ន (ម៉ោង:នាទី)
+  // បង្កើតពេលវេលា/កាលបរិច្ឆេទបច្ចុប្បន្ន
   const now = new Date();
   const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const dateStr = now.toISOString().slice(0, 10);
 
-  // ទិន្នន័យវិក្កយបត្រថ្មី
+  // រក្សាទុករូបភាពថតកន្ត្រកមុននឹងសម្អាត (ត្រូវការសម្រាប់បង្ហាញវិក្កយបត្រ)
+  const cartSnapshot = cart.map(i => ({ name: i.name, price: i.price, quantity: i.quantity }));
+  const subtotalAmount = cartSnapshot.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+  // ទិន្នន័យវិក្កយបត្រថ្មី (រក្សាទុក items ជារចនាសម្ព័ន្ធ ដើម្បីអាចត្រឡប់ស្តុកមកវិញបាននៅពេល Void)
   const newInvoice = {
+    id: nextInvoiceId++,
     item_name: itemsSummary,
+    items: cart.map(i => ({ pid: i.id, name: i.name, quantity: i.quantity })),
     customer: customerName === "ភ្ញៀវទូទៅ" ? "ភ្ញៀវទូទៅ" : customerName,
+    customerId: customerId,
     payment_method: paymentMethod,
     total_price: totalPrice,
-    time: timeStr
+    discount: discountAmount,
+    pointsEarned: (customerId && customerName !== "ភ្ញៀវទូទៅ") ? Math.floor(totalAmount) : 0,
+    time: timeStr,
+    date: dateStr,
+    voided: false
   };
 
   // សន្មតថា currentSales គឺជា Array របាយការណ៍របស់អ្នក (នៅក្នុង Tab Report)
@@ -163,17 +298,42 @@ function confirmQrPayment() {
     }
   }
 
+  // ពិន្ទុសមាជិក (Loyalty points) — ១ពិន្ទុ ក្នុងមួយដុល្លារ សម្រាប់អតិថិជនដែលមានក្នុងបញ្ជី (មិនមែនភ្ញៀវទូទៅ)
+  if (customerId && typeof customers !== 'undefined') {
+    const cust = customers.find(c => c.id === customerId);
+    if (cust) {
+      cust.points = (cust.points || 0) + Math.floor(totalAmount);
+      if (typeof renderCustomers === 'function') renderCustomers();
+    }
+  }
+
   closeQrPaymentModal();
+
+  // បង្ហាញវិក្កយបត្រជាផ្ទាំង Modal
+  openReceiptModal(newInvoice, cartSnapshot, subtotalAmount);
+
   clearCart(); // សម្អាតកន្ត្រកទទេវិញ
+
+  // សម្អាតប្រអប់បញ្ចុះតម្លៃ + ការទូទាត់ចម្រុះ សម្រាប់ការលក់លើកក្រោយ
+  const discountEl2 = document.getElementById('pay-discount');
+  if (discountEl2) discountEl2.value = 0;
+  const cashEl = document.getElementById('split-cash-amount');
+  const abaEl = document.getElementById('split-aba-amount');
+  if (cashEl) cashEl.value = '';
+  if (abaEl) abaEl.value = '';
+  const splitWrap = document.getElementById('split-pay-wrap');
+  if (splitWrap) splitWrap.classList.add('d-none');
+  if (paymentSelect) paymentSelect.value = 'សាច់ប្រាក់';
+
   showPosToast("លក់ដោយជោគជ័យ! 🎉", 2500);
 }
 
 // customers
   let customers = [
-    { id: 1, name: "រឹម​ ភារុន", phone: "096 555 123", email: "roun@mail.com", address: "ភ្នំពេញ", hasDebt: true },
-    { id: 2, name: "វ៉េត សុជាតិ", phone: "012 888 999", email: "cheak@mail.com", address: "សៀមរាប", hasDebt: false },
-    { id: 3, name: "ចាន់​ សារ៉ាក់", phone: "088 777 666", email: "rak@mail.com", address: "បាត់ដំបង", hasDebt: false },
-    { id: 3, name: "លីហេង ស៊ីម៉េង", phone: "088 777 666", email: "meng@mail.com", address: "បាត់ដំបង", hasDebt: false }
+    { id: 1, name: "រឹម​ ភារុន", phone: "096 555 123", email: "roun@mail.com", address: "ភ្នំពេញ", hasDebt: true, points: 24 },
+    { id: 2, name: "វ៉េត សុជាតិ", phone: "012 888 999", email: "cheak@mail.com", address: "សៀមរាប", hasDebt: false, points: 8 },
+    { id: 3, name: "ចាន់​ សារ៉ាក់", phone: "088 777 666", email: "rak@mail.com", address: "បាត់ដំបង", hasDebt: false, points: 0 },
+    { id: 3, name: "លីហេង ស៊ីម៉េង", phone: "088 777 666", email: "meng@mail.com", address: "បាត់ដំបង", hasDebt: false, points: 15 }
   ];
 
   // ចាក់បញ្ចូលឈ្មោះអតិថិជនពិតប្រាកដទៅក្នុងបញ្ជីជ្រើសរើសអតិថិជននៅផ្ទាំងគិតលុយ
@@ -217,7 +377,15 @@ function confirmQrPayment() {
             <div class="text-secondary"><i class="fa-solid fa-location-dot me-1 text-muted w-20"></i> ${c.address || '---'}</div>
           </div>
 
+          <div class="d-flex align-items-center gap-1 mb-2">
+            <i class="fa-solid fa-star text-warning" style="font-size:11px;"></i>
+            <span class="fw-semibold font-khmer" style="font-size:12px;">ពិន្ទុសមាជិក៖ ${c.points || 0} pts</span>
+          </div>
+
           <div class="d-flex justify-content-end gap-1 mt-2">
+            <button class="btn btn-light btn-sm text-success border-0 rounded-2" onclick="viewCustomerHistory(${c.id})" title="ប្រវត្តិទិញ">
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </button>
             <button class="btn btn-light btn-sm text-primary border-0 rounded-2" onclick="editCust(${c.id})" data-bs-toggle="modal" data-bs-target="#custModal" title="កែប្រែ">
               <i class="fa-solid fa-pen-to-square"></i>
             </button>
@@ -253,15 +421,16 @@ function saveCust() {
   }
 
   if (id) {
-    // ករណីកែប្រែទិន្នន័យ (Edit)
+    // ករណីកែប្រែទិន្នន័យ (Edit) — រក្សាទុកពិន្ទុសមាជិកចាស់ មិនឲ្យបាត់
     const index = customers.findIndex(c => c.id == id);
     if (index !== -1) {
-      customers[index] = { id: Number(id), name, phone, email, address, hasDebt };
+      const existingPoints = customers[index].points || 0;
+      customers[index] = { id: Number(id), name, phone, email, address, hasDebt, points: existingPoints };
     }
   } else {
     // ករណីបន្ថែមថ្មី (Add)
     const newId = customers.length > 0 ? Math.max(...customers.map(c => c.id)) + 1 : 1;
-    customers.push({ id: newId, name, phone, email, address, hasDebt });
+    customers.push({ id: newId, name, phone, email, address, hasDebt, points: 0 });
   }
 
   // ១. បច្ចុប្បន្នភាពកាតនៅលើអេក្រង់
@@ -317,6 +486,46 @@ function saveCust() {
     renderCustomers(filtered);
   }
 
+  // ៨. អនុគមន៍មើលប្រវត្តិទិញរបស់អតិថិជន
+  function normalizeName(str) {
+    return (str || '').replace(/\s+/g, '').toLowerCase();
+  }
+
+  function viewCustomerHistory(id) {
+    const c = customers.find(cust => cust.id === id);
+    if (!c) return;
+
+    document.getElementById('custHistoryTitle').textContent = `ប្រវត្តិទិញ — ${c.name}`;
+    const tbody = document.getElementById('custHistoryTbody');
+    const target = normalizeName(c.name);
+
+    const matches = (typeof currentSales !== 'undefined' ? currentSales : []).filter(s => {
+      const n = normalizeName(s.customer);
+      return n === target || n.includes(target) || target.includes(n);
+    });
+
+    if (matches.length === 0) {
+      tbody.innerHTML = `<tr class="empty-row"><td colspan="4" class="text-center text-muted font-khmer py-3">មិនទាន់មានប្រវត្តិទិញសម្រាប់អតិថិជននេះទេ។</td></tr>`;
+    } else {
+      tbody.innerHTML = matches.map(s => `
+        <tr>
+          <td class="font-khmer">${s.item_name}</td>
+          <td class="font-khmer">${s.payment_method}</td>
+          <td class="fw-bold">${s.total_price}</td>
+          <td>${s.time}</td>
+        </tr>
+      `).join('');
+    }
+
+    const modalEl = document.getElementById('custHistoryModal');
+    if (window.bootstrap && window.bootstrap.Modal) {
+      window.bootstrap.Modal.getOrCreateInstance(modalEl).show();
+    } else {
+      modalEl.classList.add('show');
+      modalEl.style.display = 'block';
+    }
+  }
+
   // ដំណើរការដំបូងបង្អស់
   renderCustomers();
 
@@ -324,25 +533,26 @@ function saveCust() {
 
     
         const currentSales = [
-        { item_name: "កាហ្វេទឹកដោះគោទឹកកក", customer: "រឹម​ ភារុន", payment_method: "ABA", total_price: "$2.50", time: "08:30 AM" },
-        { item_name: "តែបៃតងក្រូចឆ្មា", customer: "វ៉៉េង សុជាតិ", payment_method: "សាច់ប្រាក់", total_price: "$1.75", time: "09:15 AM" },
-        { item_name: "នំខេកសូកូឡា", customer: "វ់េត ចាន់សារ៉ាក់", payment_method: "ABA", total_price: "$4.00", time: "10:00 AM" },
-        { item_name: "ទឹកក្រូចដប", customer: "លី ហេងស៊ីម៉េង", payment_method: "វីង", total_price: "$3.50", time: "11:20 AM" },
-        { item_name: "នំខេកសូកូឡា", customer: "ឃួន​ សុភាក់", payment_method: "ABA", total_price: "$8.50", time: "12:20 AM" },
-        { item_name: "ទឹកក្រូចដប", customer: "វង់ វិទូ", payment_method: "AC", total_price: "$50", time: "1:20 AM" },
-        { item_name: "កាហ្វេទឹកដោះគោទឹកកក", customer: "សយ សុខណា", payment_method: "សាច់ប្រាក់", total_price: "$70", time: "10:20 AM" },
-        { item_name: "ពោត ", customer: "វេង វណ្ណនា", payment_method: "ABA", total_price: "$10.50", time: "4:20 AM" },
-        { item_name: "ទឹកប្រេងឆា", customer: "សុខ ជា", payment_method: "AC", total_price: "$13.50", time: "1:20 AM" }
+        { item_name: "កាហ្វេទឹកដោះគោទឹកកក", customer: "រឹម​ ភារុន", payment_method: "ABA", total_price: "$2.50", time: "08:30 AM", date: "2026-07-25" },
+        { item_name: "តែបៃតងក្រូចឆ្មា", customer: "វ៉៉េង សុជាតិ", payment_method: "សាច់ប្រាក់", total_price: "$1.75", time: "09:15 AM", date: "2026-07-25" },
+        { item_name: "នំខេកសូកូឡា", customer: "វ់េត ចាន់សារ៉ាក់", payment_method: "ABA", total_price: "$4.00", time: "10:00 AM", date: "2026-07-24" },
+        { item_name: "ទឹកក្រូចដប", customer: "លី ហេងស៊ីម៉េង", payment_method: "វីង", total_price: "$3.50", time: "11:20 AM", date: "2026-07-24" },
+        { item_name: "នំខេកសូកូឡា", customer: "ឃួន​ សុភាក់", payment_method: "ABA", total_price: "$8.50", time: "12:20 AM", date: "2026-07-23" },
+        { item_name: "ទឹកក្រូចដប", customer: "វង់ វិទូ", payment_method: "AC", total_price: "$50", time: "1:20 AM", date: "2026-07-23" },
+        { item_name: "កាហ្វេទឹកដោះគោទឹកកក", customer: "សយ សុខណា", payment_method: "សាច់ប្រាក់", total_price: "$70", time: "10:20 AM", date: "2026-07-22" },
+        { item_name: "ពោត ", customer: "វេង វណ្ណនា", payment_method: "ABA", total_price: "$10.50", time: "4:20 AM", date: "2026-07-21" },
+        { item_name: "ទឹកប្រេងឆា", customer: "សុខ ជា", payment_method: "AC", total_price: "$13.50", time: "1:20 AM", date: "2026-07-21" }
         ];
 
         function renderReportTable(sales = []) {
         const tbody = document.getElementById('reports-sales-tbody');
         document.getElementById('report-today-sales').textContent = sales.length;
+        window.__currentReportRows = sales; // used by CSV export
 
         if (sales.length === 0) {
             tbody.innerHTML = `
             <tr>
-                <td colspan="6" class="text-center py-5 text-muted fs-7 italic font-khmer">
+                <td colspan="8" class="text-center py-5 text-muted fs-7 italic font-khmer">
                 មិនទាន់មានការលក់នៅឡើយទេ
                 </td>
             </tr>
@@ -351,9 +561,9 @@ function saveCust() {
         }
 
         tbody.innerHTML = sales.map((item, index) => `
-            <tr class="font-khmer">
+            <tr class="font-khmer ${item.voided ? 'opacity-50' : ''}">
             <td class="text-center text-muted">${index + 1}</td>
-            <td class="fw-bold text-dark">${item.item_name}</td>
+            <td class="fw-bold text-dark" style="${item.voided ? 'text-decoration:line-through;' : ''}">${item.item_name}</td>
             <td class="text-secondary">${item.customer || 'ពោត'}</td>
             <td>
                 <span class="badge rounded-pill bg-success-subtle text-success border border-success-subtle px-2.5 py-1" style="font-size: 11px;">
@@ -361,9 +571,114 @@ function saveCust() {
                 </span>
             </td>
             <td class="fw-bold text-dark">${item.total_price}</td>
+            <td class="text-muted fs-7">${item.date || '—'}</td>
             <td class="text-muted fs-7">${item.time}</td>
+            <td class="text-center">
+                ${item.voided
+                  ? '<span class="badge bg-danger-subtle text-danger border border-danger-subtle" style="font-size:10px;">បានលុបចោល</span>'
+                  : (item.id != null ? `<button class="btn btn-outline-danger btn-sm py-0 px-2" style="font-size:11px;" onclick="voidSale(${item.id})" title="Void/Refund"><i class="fa-solid fa-rotate-left"></i> Void</button>` : '')}
+            </td>
             </tr>
         `).join('');
+        }
+
+        // ============ ត្រងតាមកាលបរិច្ឆេទផ្ទាល់ខ្លួន (Custom date-range filter) ============
+        function filterReportsByDate() {
+          const fromEl = document.getElementById('report-date-from');
+          const toEl = document.getElementById('report-date-to');
+          const from = fromEl && fromEl.value ? fromEl.value : null;
+          const to = toEl && toEl.value ? toEl.value : null;
+
+          let filtered = currentSales;
+          if (from) filtered = filtered.filter(s => s.date >= from);
+          if (to) filtered = filtered.filter(s => s.date <= to);
+
+          renderReportTable(filtered);
+        }
+
+        function resetReportsFilter() {
+          const fromEl = document.getElementById('report-date-from');
+          const toEl = document.getElementById('report-date-to');
+          if (fromEl) fromEl.value = '';
+          if (toEl) toEl.value = '';
+          renderReportTable(currentSales);
+        }
+
+        // ============ នាំចេញ CSV (Export) ============
+        function exportReportsCSV() {
+          const rows = window.__currentReportRows || currentSales;
+          if (!rows.length) {
+            alert('គ្មានទិន្នន័យសម្រាប់នាំចេញទេ។');
+            return;
+          }
+          const header = ['#', 'មុខទំនិញ', 'អតិថិជន', 'ការទូទាត់', 'សរុប', 'កាលបរិច្ឆេទ', 'ពេលវេលា', 'ស្ថានភាព'];
+          const escapeCsv = (val) => `"${String(val).replace(/"/g, '""')}"`;
+          const lines = [header.map(escapeCsv).join(',')];
+          rows.forEach((r, i) => {
+            lines.push([i + 1, r.item_name, r.customer || '', r.payment_method, r.total_price, r.date || '', r.time, r.voided ? 'បានលុបចោល' : 'ធម្មតា']
+              .map(escapeCsv).join(','));
+          });
+          const csvContent = '\uFEFF' + lines.join('\r\n'); // BOM for correct Khmer text in Excel
+          const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `sales-report-${new Date().toISOString().slice(0, 10)}.csv`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }
+
+        // ============ Void / Refund (លុបចោលការលក់) ============
+        function voidSale(invoiceId) {
+          if (typeof currentSales === 'undefined') return;
+          const invoice = currentSales.find(s => s.id === invoiceId);
+          if (!invoice || invoice.voided) return;
+
+          const ok = confirm(
+            `តើអ្នកចង់លុបចោលការលក់នេះមែនទេ?\n\nមុខទំនិញ: ${invoice.item_name}\nសរុប: ${invoice.total_price}\n\nស្តុកទំនិញនឹងត្រូវបានត្រឡប់មកវិញ។`
+          );
+          if (!ok) return;
+
+          invoice.voided = true;
+
+          // ត្រឡប់ស្តុកមកវិញ ទាំងកាត POS (dataset.pid) និង products array (ផ្ទាំង ស្ថានភាពស្តុក)
+          if (Array.isArray(invoice.items)) {
+            invoice.items.forEach(it => {
+              const card = document.querySelector(`#productGrid .product-card[data-pid="${it.pid}"]`);
+              if (card) {
+                const stockEl = card.querySelectorAll('.card-body p')[1];
+                if (stockEl) {
+                  const match = stockEl.textContent.match(/[\d.]+/);
+                  const currentStock = match ? parseFloat(match[0]) : 0;
+                  const newStock = currentStock + it.quantity;
+                  stockEl.textContent = stockEl.textContent.replace(/[\d.]+/, String(newStock));
+                }
+              }
+
+              if (typeof products !== 'undefined') {
+                const prod = products.find(p => p.name === it.name);
+                if (prod) prod.stock += it.quantity;
+              }
+
+              if (typeof logStockMovement === 'function') {
+                logStockMovement(it.name, 'in', it.quantity);
+              }
+            });
+          }
+
+          // ដកពិន្ទុសមាជិកដែលបានទទួលពីការលក់នេះ (បើមាន)
+          if (invoice.customerId && invoice.pointsEarned && typeof customers !== 'undefined') {
+            const cust = customers.find(c => c.id === invoice.customerId);
+            if (cust) {
+              cust.points = Math.max(0, (cust.points || 0) - invoice.pointsEarned);
+              if (typeof renderCustomers === 'function') renderCustomers();
+            }
+          }
+
+          renderReportTable(window.__currentReportRows || currentSales);
+          showPosToast('បានលុបចោលការលក់ ហើយស្តុកត្រូវបានត្រឡប់មកវិញ ↩️');
         }
 
         renderReportTable(currentSales);
@@ -442,13 +757,21 @@ function saveCust() {
           const priceMatch = priceEl.textContent.replace(/[^0-9.]/g, '');
           const price = parseFloat(priceMatch) || 0;
 
-          // បើអស់ស្តុក កុំបន្ថែមទៅកន្ត្រក
+          // ការពិនិត្យស្តុកមុនលក់ — ការពារកុំឲ្យលក់លើសស្តុកដែលមានពិត
           if (stockEl) {
             const stockMatch = stockEl.textContent.replace(/[^0-9]/g, '');
             const stock = parseInt(stockMatch, 10);
-            if (!isNaN(stock) && stock <= 0) {
-              showPosToast(`${name} អស់ស្តុក!`);
-              return;
+            if (!isNaN(stock)) {
+              if (stock <= 0) {
+                showPosToast(`${name} អស់ស្តុក!`);
+                return;
+              }
+              const existingItem = cart.find(i => i.id === card.dataset.pid);
+              const qtyInCart = existingItem ? existingItem.quantity : 0;
+              if (qtyInCart + 1 > stock) {
+                showPosToast(`ស្តុក "${name}" នៅសល់ត្រឹមតែ ${stock} ប៉ុណ្ណោះ!`);
+                return;
+              }
             }
           }
 
@@ -574,6 +897,7 @@ function saveCust() {
             <td>
               <div class="row-actions">
                 <button class="icon-btn icon-add" title="បន្ថែមស្តុក" data-action="addstock" data-id="${p.id}"><i class="fa-solid fa-plus"></i></button>
+                <button class="icon-btn icon-remove" title="ដកស្តុក" data-action="removestock" data-id="${p.id}"><i class="fa-solid fa-minus"></i></button>
                 <button class="icon-btn icon-edit" title="កែប្រែ" data-action="edit" data-id="${p.id}"><i class="fa-solid fa-pen"></i></button>
                 <button class="icon-btn icon-del" title="លុប" data-action="delete" data-id="${p.id}"><i class="fa-solid fa-trash"></i></button>
               </div>
@@ -581,6 +905,52 @@ function saveCust() {
           `;
           tbody.appendChild(tr);
         });
+
+        renderLowStockAlert();
+      }
+
+      // ============ Low Stock Alert (Dashboard) — driven by real product/stock data ============
+      const REORDER_POINT_MULTIPLIER = 5; // ចំណុចបញ្ជាទិញ = LOW_STOCK_THRESHOLD x multiplier (ការប៉ាន់ស្មាន)
+
+      function renderLowStockAlert() {
+        const grid = document.getElementById('lowStockAlertGrid');
+        const countLabel = document.getElementById('lowStockCountLabel');
+        if (!grid || !countLabel) return;
+
+        const lowItems = products
+          .filter(p => p.stock <= LOW_STOCK_THRESHOLD * 3) // "ជិតអស់" band used for the dashboard widget
+          .sort((a, b) => a.stock - b.stock)
+          .slice(0, 4);
+
+        countLabel.textContent = `${lowItems.length} ធាតុត្រូវការជាបន្ទាន់`;
+
+        if (lowItems.length === 0) {
+          grid.innerHTML = `<div class="col-12 text-center text-muted small km py-3">គ្មានផលិតផលជិតអស់ស្តុកនាពេលនេះទេ 🎉</div>`;
+          return;
+        }
+
+        grid.innerHTML = lowItems.map(p => {
+          const reorderPoint = LOW_STOCK_THRESHOLD * REORDER_POINT_MULTIPLIER;
+          const isCritical = p.stock <= LOW_STOCK_THRESHOLD;
+          const pct = Math.max(4, Math.min(100, Math.round((p.stock / reorderPoint) * 100)));
+          const badgeClass = isCritical ? 'bg-danger-subtle text-danger' : 'bg-warning-subtle text-warning';
+          const barClass = isCritical ? 'bg-danger' : 'bg-warning';
+          const numClass = isCritical ? 'text-danger' : 'text-warning';
+          const label = isCritical ? 'Critical' : 'Low';
+          return `
+            <div class="col-md-6 col-xl-3">
+              <div class="border rounded-3 p-3 h-100">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                  <div class="km fw-semibold small">${escapeHtml(p.name)}</div>
+                  <span class="badge ${badgeClass} rounded-pill">${label}</span>
+                </div>
+                <div class="progress mb-1" style="height:6px;">
+                  <div class="progress-bar ${barClass}" style="width:${pct}%"></div>
+                </div>
+                <div class="km text-secondary small">នៅសល់ <b class="${numClass}">${p.stock}</b> ឯកតា · ចំណុចបញ្ជាទិញ ${reorderPoint}</div>
+              </div>
+            </div>`;
+        }).join('');
       }
 
       function escapeHtml(str) {
@@ -646,6 +1016,12 @@ function saveCust() {
       if (qrCancelBtn) qrCancelBtn.addEventListener('click', () => closeQrPaymentModal());
       if (qrConfirmBtn) qrConfirmBtn.addEventListener('click', () => confirmQrPayment());
 
+      // Receipt modal buttons
+      const closeReceiptBtn = document.getElementById('closeReceiptBtn');
+      const printReceiptBtn = document.getElementById('printReceiptBtn');
+      if (closeReceiptBtn) closeReceiptBtn.addEventListener('click', () => closeReceiptModal());
+      if (printReceiptBtn) printReceiptBtn.addEventListener('click', () => printReceipt());
+
       document.getElementById('saveProductBtn').addEventListener('click', () => {
         const name = fName.value.trim();
         const category = fCategory.value;
@@ -705,6 +1081,22 @@ function saveCust() {
             const n = parseInt(qty);
             if (!isNaN(n) && n > 0) {
               p.stock += n;
+              logStockMovement(p.name, 'in', n);
+              render();
+            }
+          }
+        } else if (action === 'removestock') {
+          const p = products.find(p => p.id === id);
+          const qty = prompt('បញ្ចូលចំនួនស្តុកត្រូវដកសម្រាប់ "' + p.name + '"', '1');
+          if (qty !== null) {
+            const n = parseInt(qty);
+            if (!isNaN(n) && n > 0) {
+              if (n > p.stock) {
+                alert('ចំនួនត្រូវដកលើសពីស្តុកនៅសល់ (' + p.stock + ')។');
+                return;
+              }
+              p.stock -= n;
+              logStockMovement(p.name, 'out', n);
               render();
             }
           }
@@ -740,11 +1132,24 @@ function saveCust() {
         { product: "គ្រាកគូឡ្យា កំប៉ុង", type: "out", qty: 1, time: "30/06/2026 14:00" },
         { product: "សាប៊ូកក់សក់",     type: "out", qty: 4, time: "30/06/2026 14:00" },
       ];
- 
+
+      // ឈ្មោះបុគ្គលិកដែលកំពុងចូលប្រើប្រាស់ប្រព័ន្ធ (ត្រូវគ្នានឹងផ្ទាំង "គណនីខ្ញុំ")
+      const CURRENT_STAFF_NAME = document.getElementById('acc-info-name')
+        ? document.getElementById('acc-info-name').textContent.trim()
+        : 'បុគ្គលិក';
+
+      // កត់ត្រាព្រឹត្តិការណ៍ស្តុកចូល/ចេញ ព្រមទាំងឈ្មោះបុគ្គលិកដែលធ្វើសកម្មភាព (audit trail)
+      function logStockMovement(productName, type, qty) {
+        const now = new Date();
+        const time = now.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        stockHistory.unshift({ product: productName, type, qty, time, staff: CURRENT_STAFF_NAME });
+        renderInventory();
+      }
+
       const inventorySearchInput = document.getElementById('inventorySearchInput');
       const inventoryTbody = document.getElementById('inventoryTbody');
       const stockHistoryTbody = document.getElementById('stockHistoryTbody');
- 
+
       function renderInventory() {
         const keyword = (inventorySearchInput ? inventorySearchInput.value : '').trim().toLowerCase();
         const list = products.filter(p => p.name.toLowerCase().includes(keyword));
@@ -787,6 +1192,7 @@ function saveCust() {
             <td class="prod-name">${escapeHtml(h.product)}</td>
             <td class="${typeClass}">${typeLabel}</td>
             <td>${h.qty}</td>
+            <td>${escapeHtml(h.staff || '—')}</td>
             <td>${escapeHtml(h.time)}</td>
           `;
           stockHistoryTbody.appendChild(tr);
@@ -800,6 +1206,10 @@ function saveCust() {
       renderInventory();
    
   // ១. អនុគមន៍រក្សាទុកការកែប្រែប្រវត្តិរូប (Profile)
+  // ============ រូបភាពប្រូហ្វាល (Profile picture) ============
+  // រូបភាពប្រូហ្វាលឥឡូវប្រើជារូបភាពថេរពីថតឯកសារ /assest/image/ (មិនមែនអាប់ឡូតដោយអ្នកប្រើទេ)
+  // ដូច្នេះមិនចាំបាច់មានអនុគមន៍អាប់ឡូត ឬ localStorage សម្រាប់រូបភាពនេះទៀតទេ។
+
   function updateProfile() {
     const nameVal = document.getElementById('edit-acc-name').value.trim();
     const emailVal = document.getElementById('edit-acc-email').value.trim();
@@ -812,6 +1222,12 @@ function saveCust() {
     // ធ្វើបច្ចុប្បន្នភាពអក្សរនៅលើកាតខាងឆ្វេងភ្លាមៗ (Real-time)
     document.getElementById('acc-info-name').textContent = nameVal;
     document.getElementById('acc-info-email').textContent = emailVal;
+    const nameDisplay = document.getElementById('acc-info-name-display');
+    const emailDisplay = document.getElementById('acc-info-email-display');
+    if (nameDisplay) nameDisplay.textContent = nameVal;
+    if (emailDisplay) emailDisplay.textContent = emailVal;
+    const topbarProfileName = document.getElementById('topbarProfileName');
+    if (topbarProfileName) topbarProfileName.textContent = nameVal;
 
     alert("រក្សាទុកព័ត៌មានផ្ទាល់ខ្លួនជោគជ័យ!");
   }
@@ -1199,5 +1615,112 @@ function saveCust() {
           if (window.innerWidth >= 992) closeSidebar();
         });
       })();
-   
-   
+
+      // ============ Topbar: ស្វែងរក / ការជូនដំណឹង / ប្រូហ្វាល ============
+      (function () {
+        function switchToTab(tabKey) {
+          const link = document.querySelector(`.sidebar .nav-link[data-tab="${tabKey}"]`);
+          if (link) link.click();
+        }
+
+        function closeAllTopbarPopups(except) {
+          ['topbarSearchBox', 'topbarNotifDropdown'].forEach(id => {
+            if (id === except) return;
+            const el = document.getElementById(id);
+            if (el) el.classList.add('d-none');
+          });
+        }
+
+        // ---------- ស្វែងរកផលិតផល (Search) ----------
+        const searchBtn = document.getElementById('topbarSearchBtn');
+        const searchBox = document.getElementById('topbarSearchBox');
+        const searchInput = document.getElementById('topbarSearchInput');
+
+        if (searchBtn && searchBox && searchInput) {
+          searchBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeAllTopbarPopups('topbarSearchBox');
+            searchBox.classList.toggle('d-none');
+            if (!searchBox.classList.contains('d-none')) searchInput.focus();
+          });
+
+          searchInput.addEventListener('keydown', (e) => {
+            if (e.key !== 'Enter') return;
+            const keyword = searchInput.value.trim();
+            if (!keyword) return;
+
+            // លោតទៅផ្ទាំង "ផលិតផល" ហើយបំពេញពាក្យស្វែងរកឲ្យស្វ័យប្រវត្តិ
+            switchToTab('products');
+            const posSearchBox = document.getElementById('searchBox');
+            if (posSearchBox) {
+              posSearchBox.value = keyword;
+              posSearchBox.dispatchEvent(new Event('input'));
+            }
+            searchBox.classList.add('d-none');
+            searchInput.value = '';
+          });
+        }
+
+        // ---------- ការជូនដំណឹង (Notifications) — ផ្អែកលើទិន្នន័យស្តុកទាបពិតប្រាកដ ----------
+        const bellBtn = document.getElementById('topbarBellBtn');
+        const bellCount = document.getElementById('topbarBellCount');
+        const notifDropdown = document.getElementById('topbarNotifDropdown');
+        const notifList = document.getElementById('topbarNotifList');
+
+        function renderTopbarNotifications() {
+          if (!bellCount || !notifList || typeof products === 'undefined') return;
+
+          const lowItems = products
+            .filter(p => p.stock <= LOW_STOCK_THRESHOLD * 3)
+            .sort((a, b) => a.stock - b.stock);
+
+          if (lowItems.length === 0) {
+            bellCount.classList.add('d-none');
+            notifList.innerHTML = `<div class="text-muted small text-center py-3">គ្មានការជូនដំណឹងថ្មីទេ 🎉</div>`;
+            return;
+          }
+
+          bellCount.textContent = lowItems.length;
+          bellCount.classList.remove('d-none');
+
+          notifList.innerHTML = lowItems.slice(0, 8).map(p => {
+            const isCritical = p.stock <= LOW_STOCK_THRESHOLD;
+            return `
+              <div class="d-flex align-items-start gap-2 py-2 border-bottom border-light-subtle" style="font-size:0.82rem;">
+                <i class="fa-solid ${isCritical ? 'fa-triangle-exclamation text-danger' : 'fa-circle-exclamation text-warning'} mt-1"></i>
+                <div>
+                  <div class="fw-semibold text-dark">${p.name}</div>
+                  <div class="text-muted">នៅសល់ត្រឹមតែ ${p.stock} ឯកតា</div>
+                </div>
+              </div>`;
+          }).join('');
+        }
+
+        if (bellBtn && notifDropdown) {
+          bellBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeAllTopbarPopups('topbarNotifDropdown');
+            renderTopbarNotifications();
+            notifDropdown.classList.toggle('d-none');
+          });
+        }
+
+        // ហៅភ្លាមៗ ដើម្បីបង្ហាញលេខ Bell ត្រឹមត្រូវតាំងពីទាំង Dashboard បើកដំបូង
+        renderTopbarNotifications();
+
+        // ---------- ប្រូហ្វាល (Profile pill) — ចុចដើម្បីទៅផ្ទាំង "គណនីខ្ញុំ" ----------
+        const profilePill = document.getElementById('topbarProfilePill');
+        if (profilePill) {
+          profilePill.addEventListener('click', () => switchToTab('account'));
+        }
+
+        // ធ្វើឲ្យឈ្មោះនៅលើ Topbar ដូចគ្នានឹងឈ្មោះក្នុងផ្ទាំង "គណនីខ្ញុំ" ជានិច្ច
+        const topbarProfileName = document.getElementById('topbarProfileName');
+        const accInfoName = document.getElementById('acc-info-name');
+        if (topbarProfileName && accInfoName) {
+          topbarProfileName.textContent = accInfoName.textContent;
+        }
+
+        // បិទ popup ទាំងអស់ ពេលចុចនៅកន្លែងផ្សេង
+        document.addEventListener('click', () => closeAllTopbarPopups());
+      })();
