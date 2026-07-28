@@ -1,4 +1,4 @@
-   :root {
+  :root {
       --ink-900: #131A2C;
       --ink-700: #2B3350;
       --ink-500: #6B7280;
@@ -259,19 +259,20 @@
 
     .date-range-input {
       position: relative;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
-    .date-range-input i {
-      position: absolute;
-      left: 12px;
-      top: 50%;
-      transform: translateY(-50%);
+    .date-range-input input[type="date"] {
+      flex: 1 1 0;
+      min-width: 0;
+    }
+
+    .date-range-input .drs {
       color: var(--ink-300);
-      pointer-events: none;
-    }
-
-    .date-range-input input {
-      padding-left: 34px !important;
+      font-size: 12px;
+      flex-shrink: 0;
     }
 
     .btn-reset-filter {
