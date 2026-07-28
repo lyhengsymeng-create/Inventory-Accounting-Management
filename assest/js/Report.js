@@ -3,7 +3,7 @@ const REPORTS = {
         title: "ផលិតផលលក់ដាច់",
         sub: "BEST SELLING PRODUCTS",
         icon: "bi-trophy-fill",
-        color: "var(--customer), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-box-seam-fill", color: "var(--bestselling)", value: "18", km: "ផលិតផលកំពូល", en: "Top Products" },
           { icon: "bi-cart-check-fill", color: "var(--sales)", value: "412", km: "ចំនួនលក់សរុប", en: "Units Sold" },
@@ -22,7 +22,7 @@ const REPORTS = {
         title: "ផលិតផលលក់យឺត",
         sub: "SLOW MOVING PRODUCTS",
         icon: "bi-hourglass-split",
-      color: "var(--customer), #5B8DEF",
+      color: " #181a35",
         stats: [
           { icon: "bi-box-seam", color: "var(--slowmoving)", value: "22", km: "ផលិតផលលក់យឺត", en: "Slow Items" },
           { icon: "bi-calendar-x", color: "var(--expense)", value: "45", km: "មិនលក់ក្នុងរយៈពេល (ថ្ងៃ)", en: "Days No Sale" },
@@ -40,7 +40,7 @@ const REPORTS = {
         title: "របាយការណ៍អតិថិជន",
         sub: "CUSTOMER REPORT",
         icon: "bi-people-fill",
-        color: "var(--customer), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-person-fill", color: "var(--customer)", value: "186", km: "អតិថិជនសរុប", en: "Total Customers" },
           { icon: "bi-person-plus-fill", color: "var(--inventory)", value: "14", km: "អតិថិជនថ្មី", en: "New Customers" },
@@ -58,7 +58,7 @@ const REPORTS = {
         title: "របាយការណ៍អ្នកផ្គត់ផ្គង់",
         sub: "SUPPLIER REPORT",
         icon: "bi-truck",
-        color: "var(--customer), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-people-fill", color: "var(--supplier)", value: "6", km: "អ្នកផ្គត់ផ្គង់", en: "Suppliers" },
           { icon: "bi-receipt", color: "var(--purchase)", value: "18", km: "ការបញ្ជាទិញ", en: "Purchase Orders" },
@@ -75,7 +75,7 @@ const REPORTS = {
         title: "របាយការណ៍សមិទ្ធកម្មបុគ្គលិក",
         sub: "EMPLOYEE PERFORMANCE REPORT",
         icon: "bi-person-badge-fill",
-        color: "var(--customer), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-people-fill", color: "var(--employee)", value: "12", km: "បុគ្គលិកសកម្ម", en: "Active Staff" },
           { icon: "bi-cart-check-fill", color: "var(--sales)", value: "96", km: "វិក្កយបត្របានធ្វើ", en: "Invoices Handled" },
@@ -92,7 +92,7 @@ const REPORTS = {
         title: "ការវិភាគប្រាក់ចំណេញ",
         sub: "PROFIT ANALYSIS",
         icon: "bi-graph-up-arrow",
-        color: "var(--customer), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-graph-up-arrow", color: "var(--sales)", value: "$4,580", km: "ចំណូលសរុប", en: "Total Revenue" },
           { icon: "bi-receipt-cutoff", color: "var(--expense)", value: "$1,940", km: "ចំណាយសរុប", en: "Total Expense" },
@@ -109,7 +109,7 @@ const REPORTS = {
         title: "របាយការណ៍ពន្ធ",
         sub: "TAX REPORT",
         icon: "bi-percent",
-        color: "var(--customer), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-percent", color: "var(--tax)", value: "10%", km: "អត្រាពន្ធ VAT", en: "VAT Rate" },
           { icon: "bi-cash-coin", color: "var(--sales)", value: "$4,580", km: "ចំណូលមុនពន្ធ", en: "Pre-tax Revenue" },
@@ -126,7 +126,7 @@ const REPORTS = {
         title: "របាយការណ៍ហិរញ្ញវត្ថុ",
         sub: "FINANCIAL STATEMENT",
         icon: "bi-file-earmark-text-fill",
-        color: "var(--customer), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-graph-up-arrow", color: "var(--sales)", value: "$4,580", km: "ចំណូលសរុប", en: "Total Revenue" },
           { icon: "bi-receipt-cutoff", color: "var(--expense)", value: "$1,940", km: "ចំណាយសរុប", en: "Total Expense" },
@@ -144,7 +144,7 @@ const REPORTS = {
         title: "តម្លៃស្តុក",
         sub: "STOCK VALUATION",
         icon: "bi-boxes",
-        color: "var(--customer), #5B8DEF",
+        ccolor: " #181a35",
         stats: [
           { icon: "bi-boxes", color: "var(--stockval)", value: "312", km: "ចំនួនផលិតផលសរុប", en: "Total Products" },
           { icon: "bi-cash-stack", color: "var(--profit)", value: "$8,420", km: "តម្លៃស្តុកសរុប", en: "Total Stock Value" },
@@ -161,7 +161,7 @@ const REPORTS = {
         title: "របាយការណ៍ប្រចាំថ្ងៃ",
         sub: "DAILY REPORT",
         icon: "bi-calendar-day-fill",
-        color: "var(--sales), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-file-earmark-text-fill", color: "var(--sales)", value: "9", km: "ចំនួនវិក្កយបត្រ", en: "Invoices Today" },
           { icon: "bi-cash-coin", color: "var(--profit)", value: "$412.00", km: "ចំណូលថ្ងៃនេះ", en: "Today Revenue" },
@@ -178,7 +178,7 @@ const REPORTS = {
         title: "របាយការណ៍ប្រចាំសប្តាហ៍",
         sub: "WEEKLY REPORT",
         icon: "bi-calendar-week-fill",
-        color: "var(--customer), #5B8DEF",
+        color: " #181a35",
         stats: [
           { icon: "bi-file-earmark-text-fill", color: "var(--sales)", value: "30", km: "ចំនួនវិក្កយបត្រ", en: "Invoices This Week" },
           { icon: "bi-cash-coin", color: "var(--profit)", value: "$1,860.00", km: "ចំណូលសប្តាហ៍នេះ", en: "Week Revenue" },
@@ -197,7 +197,7 @@ const REPORTS = {
         title: "របាយការណ៍ប្រចាំខែ",
         sub: "MONTHLY REPORT",
         icon: "bi-calendar-month-fill",
-        color: "var(--financial), #5B8DEF",
+       color: " #181a35",
         stats: [
           { icon: "bi-file-earmark-text-fill", color: "var(--sales)", value: "124", km: "ចំនួនវិក្កយបត្រ", en: "Invoices This Month" },
           { icon: "bi-cash-coin", color: "var(--profit)", value: "$4,580.00", km: "ចំណូលខែនេះ", en: "Month Revenue" },
@@ -380,10 +380,21 @@ const REPORTS = {
       });
     });
 
+    // ---- Top filter-bar date range: keep the modal's from/to dates in sync too ----
+    document.getElementById('filterFromDate').addEventListener('change', (e) => {
+      document.getElementById('fromDate').value = e.target.value;
+      renderPrintArea(currentReportKey);
+    });
+    document.getElementById('filterToDate').addEventListener('change', (e) => {
+      document.getElementById('toDate').value = e.target.value;
+      renderPrintArea(currentReportKey);
+    });
+
     document.getElementById('btnResetFilter').addEventListener('click', () => {
       document.getElementById('filterReportType').value = 'all';
       document.getElementById('filterBranch').selectedIndex = 0;
-      document.getElementById('filterDateRange').value = '01/07/2026 - 14/07/2026';
+      document.getElementById('filterFromDate').value = '2026-07-01';
+      document.getElementById('filterToDate').value = '2026-07-14';
       document.querySelectorAll('.report-card, .quick-report-card').forEach(card => card.style.display = '');
       showToast('បានកំណត់តម្រងឡើងវិញ');
     });
@@ -415,62 +426,27 @@ const REPORTS = {
     });
 
     // ---- Export option handlers ----
+    // NOTE: These buttons intentionally do nothing right now. The popup
+    // still opens and closes normally, but Preview/Print/PDF/Excel/Email
+    // are disabled (no window.print(), no file generation, no mailto).
     document.getElementById('btnPreview').addEventListener('click', () => {
-      window.print();
+      // disabled: no action
     });
 
     document.getElementById('btnPrintNow').addEventListener('click', () => {
-      window.print();
+      // disabled: no action
     });
 
     document.getElementById('btnExportPdf').addEventListener('click', () => {
-      try {
-        const data = REPORTS[currentReportKey];
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF({ unit: 'pt', format: 'a4' });
-        doc.setFontSize(14);
-        doc.text(`${data.title} (${data.sub})`, 40, 40);
-        doc.setFontSize(10);
-        const from = document.getElementById('fromDate').value || '-';
-        const to = document.getElementById('toDate').value || '-';
-        doc.text(`Period: ${from} - ${to}`, 40, 58);
-        doc.autoTable({
-          startY: 72,
-          head: [data.headers],
-          body: data.rows,
-          styles: { fontSize: 9 },
-          headStyles: { fillColor: [47, 111, 237] },
-        });
-        doc.save(`${currentReportKey}-report.pdf`);
-        showToast('បាននាំចេញជា PDF ជោគជ័យ');
-      } catch (e) {
-        showToast('មិនអាចនាំចេញ PDF បានទេ');
-      }
+      // disabled: no action
     });
 
     document.getElementById('btnExportExcel').addEventListener('click', () => {
-      try {
-        const data = REPORTS[currentReportKey];
-        const sheetData = [data.headers, ...data.rows];
-        const ws = XLSX.utils.aoa_to_sheet(sheetData);
-        const wb = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(wb, ws, data.sub.slice(0, 28));
-        XLSX.writeFile(wb, `${currentReportKey}-report.xlsx`);
-        showToast('បាននាំចេញជា Excel ជោគជ័យ');
-      } catch (e) {
-        showToast('មិនអាចនាំចេញ Excel បានទេ');
-      }
+      // disabled: no action
     });
 
     document.getElementById('btnSendEmail').addEventListener('click', () => {
-      const data = REPORTS[currentReportKey];
-      const from = document.getElementById('fromDate').value || '-';
-      const to = document.getElementById('toDate').value || '-';
-      const subject = encodeURIComponent(`${data.title} (${data.sub}) - ${from} to ${to}`);
-      const bodyLines = data.stats.map(s => `${s.km} (${s.en}): ${s.value}`).join('%0D%0A');
-      const body = `សូមមើលរបាយការណ៍ភ្ជាប់ខាងក្រោម៖%0D%0A%0D%0A${bodyLines}`;
-      window.location.href = `mailto:?subject=${subject}&body=${body}`;
-      showToast('កំពុងបើកកម្មវិធីអ៊ីមែល');
+      // disabled: no action
     });
   
   (function () {
