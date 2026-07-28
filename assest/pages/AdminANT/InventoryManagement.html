@@ -21,7 +21,7 @@
 
 <body>
   <div class="d-flex flex-lg-row flex-column">
-    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style="width:250px; flex-shrink:0;">
+    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style=" flex-shrink:0;">
       <div class="d-flex align-items-center gap-2 px-2 mb-4">
         <!-- <div class="bg-violet rounded-3 d-flex align-items-center justify-content-center" style="width:38px;height:38px;">
           <i class="bi bi-bar-chart-fill fs-5"></i>
@@ -40,23 +40,34 @@
         <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
-          <!-- <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href=""></a></li> -->
+        <li class="nav-item">
+          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false" aria-controls="attendanceSubmenu1">
+            <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+          </ul>
+        </li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
-          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i> ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
+          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i>ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i class="bi bi-gear-fill"></i> ការកំណត់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ </a></li>
-        </ul>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+          
+      </ul>
 
       <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
         <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
       </div>
     </aside>
 
-    <!-- ============ OFFCANVAS SIDEBAR (mobile / tablet, below lg) ============ -->
     <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
       <div class="offcanvas-header">
         <div class="d-flex align-items-center gap-2">
@@ -80,16 +91,28 @@
         <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
-          <!-- <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href=""></a></li> -->
+        <li class="nav-item">
+          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false" aria-controls="attendanceSubmenu1">
+            <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+          </ul>
+        </li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
-          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i> ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
+          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i>ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i class="bi bi-gear-fill"></i> ការកំណត់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ </a></li>
-        </ul>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+          
+      </ul>
 
         <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
           <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
@@ -97,7 +120,6 @@
       </div>
     </div>
     <main class="flex-grow-1 main-offset" style="min-width:0;">
-      <!-- ============ STICKY NAVBAR ============ -->
       <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
         <div class="d-flex align-items-center gap-2">
           <button class="btn btn-light border rounded-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
@@ -127,8 +149,6 @@
       </nav>
 
       <div class="p-3 p-lg-4">
-
-        <!-- ============ Purpose banner ============ -->
         <div class="row g-3 mb-3">
           <div class="col-6 col-lg-3">
             <div class="toolbar-card d-flex align-items-center gap-3 mb-0">
@@ -168,7 +188,6 @@
           </div>
         </div>
 
-        <!-- Quick actions: matches the 5 core purposes of Inventory Management -->
         <div class="toolbar-card mb-3">
           <p class="text-secondary mb-3" style="font-size:12px; font-weight:600; letter-spacing:.3px;">សកម្មភាពរហ័ស /
             QUICK ACTIONS</p>
@@ -220,8 +239,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Toolbar: search / filter / add -->
         <div class="toolbar-card d-flex flex-wrap align-items-center gap-3">
           <div class="search-box flex-grow-1" style="min-width:220px;">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -247,8 +264,6 @@
         </div>
 
         <div class="mb-3"></div>
-
-        <!-- Products table -->
         <div class="table-card">
           <div class="table-responsive">
             <table class="table" id="productTable">
@@ -582,7 +597,6 @@
                   <td>
                     <div class="d-flex align-items-center gap-3">
                       <div class="prod-thumb tone-purple">
-                        <!-- <img style="width: 10px; height: 10px; object-fit: cover;" src="https://www.ebay.co.uk/itm/380970307916" alt=""> -->
                         <i class="fa-solid fa-socks"></i></div>
                       <div>
                         <div class="prod-name">ស្បែកជើងកវែង Boots Size 42</div>
@@ -1050,15 +1064,9 @@
         </div>
       </div>
 
-      <!-- Modal: Low Stock Alerts / Notification settings -->
       <script>
-// ============ salesManagement.js ============
-// Renders the sales/invoice table, KPI cards, invoice builder,
-// receipt preview, cancel-sale flow, and sales history for SalesManagement.html
 
 document.addEventListener('DOMContentLoaded', function () {
-
-  // ---------- Sample data (replace with API data later) ----------
   const catalog = [
     { name: 'អាវយឺតកប្បាស ពណ៌ខ្មៅ', price: 12.00 },
     { name: 'ស្បែកជើងកីឡា Size 41', price: 68.00 },
@@ -1207,7 +1215,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('saveInvoiceBtn').addEventListener('click', function () {
     bootstrap.Modal.getInstance(document.getElementById('createInvoiceModal')).hide();
     showToast('Invoice created successfully');
-    // TODO: push the new invoice into `sales`, then renderTable()/renderKpis()
   });
 
   // ---------- Print Receipt modal ----------
@@ -1235,7 +1242,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('confirmPrintBtn').addEventListener('click', function () {
     bootstrap.Modal.getInstance(document.getElementById('printReceiptModal')).hide();
     showToast('Receipt sent to printer');
-    // TODO: trigger window.print() or a dedicated print template
   });
 
   // ---------- Cancel Sales modal ----------
@@ -1248,7 +1254,6 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('confirmCancelSaleBtn').addEventListener('click', function () {
     bootstrap.Modal.getInstance(document.getElementById('cancelSalesModal')).hide();
     showToast('Sale cancelled and stock restored');
-    // TODO: set matching sale's status to 'cancelled', then renderTable()/renderKpis()
   });
 
   // ---------- Sales History modal ----------
@@ -1272,15 +1277,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }).join('');
   }
 
-  // ---------- Wire up table filters ----------
   document.getElementById('invoiceSearch').addEventListener('input', renderTable);
   document.getElementById('statusFilter').addEventListener('change', renderTable);
 
-  // ---------- Modal show events to (re)populate dynamic content ----------
   document.getElementById('printReceiptModal').addEventListener('show.bs.modal', populatePrintSelect);
   document.getElementById('cancelSalesModal').addEventListener('show.bs.modal', populateCancelSelect);
 
-  // ---------- Initial render ----------
   renderKpis();
   renderTable();
   renderHistory();
