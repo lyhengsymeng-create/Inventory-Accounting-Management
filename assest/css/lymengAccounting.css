@@ -4,14 +4,14 @@ body {
   font-family: 'Noto Sans Khmer', sans-serif;
   background-color: #F3F5FB;
   color: #1E2A44;
-  font-size: 20px;
+  font-size: 14px;
 }
 a {
   color: #1E2A44;
   text-decoration: none;
   text-decoration: underline;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 .container {

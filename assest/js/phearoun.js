@@ -1311,6 +1311,11 @@ function saveCust() {
 });
 
 
+  // សំខាន់៖ prefix នេះត្រូវប្រើដូចគ្នាបេះបិទ នៅគ្រប់ទំព័រ (Staff + Admin)
+  // ដើម្បីឲ្យទិន្នន័យ (ឧ. សំណើសុំច្បាប់) អាចអានឃើញឆ្លងទំព័រតាមរយៈ localStorage តែមួយ
+  const STAFF_STORAGE_PREFIX = 'iam_staff_';
+  window.STAFF_STORAGE_PREFIX = STAFF_STORAGE_PREFIX;
+
   function loadFromStorage(key, fallback) {
     try {
       const raw = localStorage.getItem(STAFF_STORAGE_PREFIX + key);
@@ -1487,7 +1492,7 @@ function saveCust() {
       <div class="border-bottom border-light-subtle py-2">
         <div class="d-flex justify-content-between align-items-start mb-1">
           <span class="fw-semibold text-dark" style="font-size:.85rem;">${r.start} → ${r.end}</span>
-          <span class="badge bg-warning-subtle text-warning-emphasis px-2 py-1" style="font-size:10px;">${r.status}</span>
+          <span class="badge ${r.status === 'បានអនុម័ត' ? 'bg-success-subtle text-success-emphasis' : r.status === 'បានបដិសេធ' ? 'bg-danger-subtle text-danger-emphasis' : 'bg-warning-subtle text-warning-emphasis'} px-2 py-1" style="font-size:10px;">${r.status}</span>
         </div>
         <div class="text-secondary" style="font-size:.8rem;">${r.reason}</div>
       </div>
@@ -1554,7 +1559,14 @@ function saveCust() {
       return;
     }
 
-    leaveRequests.unshift({ start, end, reason, status: 'កំពុងរង់ចាំអនុម័ត' });
+    const staffName = document.getElementById('acc-info-name')?.textContent || 'បុគ្គលិក';
+    leaveRequests.unshift({
+      id: Date.now(),
+      staff: staffName,
+      start, end, reason,
+      status: 'កំពុងរង់ចាំអនុម័ត',
+      submittedAt: new Date().toISOString()
+    });
     saveToStorage('leaveRequests', leaveRequests);
 
     startInput.value = '';

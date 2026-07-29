@@ -4,23 +4,286 @@ body {
   font-family: 'Noto Sans Khmer', sans-serif;
   background-color: #F3F5FB;
   color: #1E2A44;
-  font-size: 8px;
 }
-th , td ,a{
-  color: #060707;
-  text-decoration: none;
-  font-weight: 400;
-  font-size: 18px;
-}
-.container-fluid {
-  max-width: 1560px;
 
+:root {
+  --blue: #1D4ED8;
+  /* main brand color */
+  --blue-dark: #12275C;
+  --blue-light: #3B82F6;
+  /* accent color */
+  --ink: #22262B;
+  /* text color */
+  --ink-soft: #6B7280;
+  /* muted text */
+  --line: #E5E9F0;
+  /* borders */
 }
-.ph-card {
+
+
+
+
+.content-wrap {
+  padding: 28px;
+}
+
+.page-heading {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--blue-dark);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ===== Cards ===== */
+.ledger-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  padding: 22px;
+}
+
+.ledger-card+.ledger-card {
+  margin-top: 20px;
+}
+
+.card-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--blue-dark);
+  margin-bottom: 2px;
+}
+
+.card-sub {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 18px 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.stat-label {
+  font-size: 15.5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.stat-value {
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--blue-dark);
+}
+
+.stat-delta {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stat-delta.up {
+  color: var(--blue);
+}
+
+.stat-delta.down {
+  color: #DC2626;
+}
+
+/* ===== Table ===== */
+.table-ledger {
   width: 100%;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 20px;  
+  border-collapse: collapse;
+  font-size: 13.5px;
 }
 
+.table-ledger thead th {
+  text-align: left;
+  font-size: 15.5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink-soft);
+  padding: 9px 12px;
+  border-bottom: 2px solid var(--blue);
+  background: rgba(29, 78, 216, 0.05);
+}
 
+.table-ledger tbody td {
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+.table-ledger tbody tr:hover {
+  background: rgba(59, 130, 246, 0.06);
+}
+
+.table-ledger tfoot td {
+  padding: 11px 12px;
+  font-weight: 600;
+  border-top: 2px solid var(--blue);
+}
+
+/* ===== Status badges — flat, sit level with the table row (no tilt) =====
+   These colors are semantic (success/warning/danger/neutral), so they stay
+   the same regardless of the brand color above. */
+.badge-status {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.badge-green {
+  color: #fff;
+  background: #15803D;
+}
+
+.badge-gold {
+  color: #fff;
+  background: #D97706;
+}
+
+.badge-red {
+  color: #fff;
+  background: #DC2626;
+}
+
+.badge-gray {
+  color: #fff;
+  background: var(--ink-soft);
+}
+
+/* ===== Buttons ===== */
+.btn-ledger-primary {
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.btn-ledger-primary:hover {
+  background: var(--blue-dark);
+  color: #fff;
+}
+
+.btn-ledger-outline {
+  background: #fff;
+  border: 1.5px solid var(--blue);
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.btn-ledger-outline:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+.btn-red {
+  background: #fff;
+  border: 1.5px solid #DC2626;
+  color: #DC2626;
+  font-weight: 600;
+  font-size: 12.5px;
+}
+
+.btn-red:hover {
+  background: #DC2626;
+  color: #fff;
+}
+
+.btn-gold {
+  background: var(--blue-light);
+  border: 1px solid var(--blue-light);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12.5px;
+}
+
+.btn-gold:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ===== Forms ===== */
+.form-ledger label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-ledger .form-control,
+.form-ledger .form-select {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  font-size: 13.5px;
+}
+
+.form-ledger .form-control:focus,
+.form-ledger .form-select:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.12);
+}
+
+.progress-ledger {
+  height: 8px;
+  border-radius: 5px;
+  background: rgba(29, 78, 216, 0.08);
+}
+
+.progress-ledger .bar {
+  height: 100%;
+  border-radius: 5px;
+  background: var(--blue);
+}
+
+.progress-ledger .bar.warn {
+  background: #D97706;
+}
+
+.progress-ledger .bar.over {
+  background: #DC2626;
+}
+
+/* ===== Modal ===== */
+.ledger-modal {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ledger-modal .modal-header {
+  background: var(--blue);
+  color: #fff;
+  border-bottom: 3px solid var(--blue-light);
+}
+
+.ledger-modal .modal-body {
+  background: #fff;
+}
+
+.ledger-modal .modal-footer {
+  background: #fff;
+  border-top: 1px solid var(--line);
+}
+
+.ledger-modal .btn-close {
+  filter: invert(1) grayscale(1) brightness(2);
+}
