@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       case 'weekend': return '<i class="bi bi-dash-circle text-secondary"></i>';
       case 'present': return '<i class="bi bi-check-circle-fill text-success"></i>';
       case 'leave': return '<i class="bi bi-x-circle-fill text-danger"></i>';
-      case 'holiday': return '<i class="bi bi-star-fill" style="color:#f5b301;"></i>';
+      case 'holiday': return '<i class="bi bi-circle-fill" style="color:#f5b301;"></i>';
       default: return '';
     }
   }
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function dayStatus(empId, year, month, day) {
     const date = new Date(year, month, day);
     const dow = date.getDay();
+    // 5-day work week: Saturday(6) and Sunday(0) are non-working days.
     if (dow === 0 || dow === 6) return 'weekend';
     // fixed monthly holiday example: 1st of month
     if (day === 1 && month === 0) return 'holiday';
