@@ -140,10 +140,10 @@ body {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
-  position: sticky;   /* ← ជាប់ថេរពេល scroll */
+  position: sticky;   
   top: 0;
   z-index: 900;
-  background: var(--paper);   /* ពណ៌ដូចផ្ទៃខាងក្រោយទំព័រ ដើម្បីកុំឲ្យខ្លឹមសារបាំង */
+  background: var(--paper);   
   padding: 14px 25px;
 
 }
@@ -196,7 +196,6 @@ body {
   color: #fff !important;
 }
 
-/* ---------- POS ---------- */
 .product-tile {
   background: #fff;
   border: 1px solid var(--line);
@@ -324,9 +323,9 @@ body {
 }
 
 #productGrid .product-card .card img {
-  height: 160px;        /* កំណត់ជម្រៅឲ្យស្មើគ្នាទាំងអស់ */
+  height: 160px;       
   width: 100%;
-  object-fit: cover;     /* កាត់រូបភាពឲ្យសមទំហំ មិនឲ្យខូចសមាមាត្រ */
+  object-fit: cover;     
   border-radius: 8px 8px 0 0;
 }
 
@@ -347,12 +346,9 @@ body {
   transition: 0.5s;
   overflow: hidden;
 }
-
-      /* ---------- Tab switching ---------- */
       .tab-content { display: none; }
       .tab-content.active { display: block; }
 
-      /* ---------- Products page extra styles (not covered by roun_staff.css) ---------- */
       .card.product-card-panel{
         border:1px solid #e7e3d9;
         border-radius:14px;
@@ -438,7 +434,7 @@ body {
         cursor:pointer;
         font-size:13px;
       }
-      .icon-add{background:#2ac43fd1;color:#fff;}
+      /* .icon-add{background:#2ac43fd1;color:#fff;}
       .icon-add:hover{background:#2ac43fd1;}
       .icon-remove{background:#f0ad4e;color:#fff;}
       .icon-remove:hover{background:#ec971f;}
@@ -446,7 +442,7 @@ body {
       .icon-edit:hover{background:#e2e5e2;}
       .icon-del{background:#d9534f;color:#fff;}
       .icon-del:hover{background:#c9302c;}
-      .empty-row td{text-align:center;padding:36px 0;color:#7c8582;}
+      .empty-row td{text-align:center;padding:36px 0;color:#7c8582;} */
 
       /* ---------- Modals ---------- */
       .modal-overlay{
@@ -486,10 +482,6 @@ body {
   .fs-7 { font-size: 0.85rem !important; }
   .font-khmer { font-family: 'Kantumruy Pro', 'Hanuman', sans-serif; }
 
-
-  
-
-  /* ជំនួយស្ទីលបន្ថែមឱ្យកាន់តែប្រណីត */
   .form-control-custom {
     border-color: #e2e8f0;
     border-radius: 6px;
@@ -498,11 +490,7 @@ body {
   .font-khmer { font-family: 'Kantumruy Pro', sans-serif; }
   .fs-7 { font-size: 0.85rem !important; }
 
-
-      /* Hamburger button: hidden on desktop, shown on tablet/mobile */
       #sidebarToggleBtn { display: none; }
-
-      /* Backdrop shown behind the sidebar when it's open on mobile */
       .sidebar-backdrop {
         display: none;
         position: fixed;
@@ -537,10 +525,8 @@ body {
         }
         .topbar h5 { font-size: 1rem; }
 
-        /* Product grid cards: tighten spacing a bit on small screens */
         #productGrid .product-card .card img { height: 120px; }
 
-        /* Cart panel: don't let it get too tall before the fold on phones */
         #cart-items-wrapper { max-height: 160px !important; }
       }
 
@@ -550,7 +536,6 @@ body {
         #productGrid .product-card .card img { height: 100px; }
       }
 
-/* ---------- ស្ថានភាពស្តុក / Products / Stock history tables ---------- */
 #productsTable,
 #inventoryTable,
 #stockHistoryTable {
@@ -594,7 +579,6 @@ body {
   background: #fafbfc;
 }
 
-/* ស្តុកទាប / មានស្តុក badges inside the tables */
 #inventoryTable .badge-stock,
 #productsTable .badge-status {
   display: inline-block;
@@ -617,7 +601,6 @@ body {
   color: #842029;
 }
 
-/* ---------- បោះពុម្ពវិក្កយបត្រ (Print receipt) ---------- */
 @media print {
   body * {
     visibility: hidden;
