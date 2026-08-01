@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="km">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,393 +10,581 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="/assest/css/cheatDBAdmin.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
-<div class="d-flex flex-lg-row flex-column">
-  <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style="width:250px; flex-shrink:0;">
-    <div class="d-flex align-items-center gap-2 px-2 mb-4">
-      <div class="d-flex gap-2">
-            <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
-            <div>
-              <div class="fw-bold text-white ">IAM System</div>
-            <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
-          </div>
-      </div>
-    </div>
-
-    <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">Main</div>
-      <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
-        <!-- <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href=""></a></li> -->
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i> ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i class="bi bi-gear-fill"></i> ការកំណត់</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ </a></li>
-      </ul>
-    <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
-      <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
-    </div>
-  </aside>
-
-  <!-- ============ OFFCANVAS SIDEBAR (mobile / tablet, below lg) ============ -->
-  <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
-    <div class="offcanvas-header">
-      <div class="d-flex align-items-center gap-2">
+  <div class="d-flex flex-lg-row flex-column">
+    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style="flex-shrink:0;">
+      <div class="d-flex align-items-center gap-2 px-2 mb-4">
         <div class="d-flex gap-2">
-            <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
-            <div>
-              <div class="fw-bold text-white ">IAM System</div>
+          <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
+          <div>
+            <div class="fw-bold text-white ">IAM System</div>
             <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
           </div>
+        </div>
       </div>
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body p-3">
-      <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">Main</div>
-        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
-          <!-- <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href=""></a></li> -->
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i> ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i class="bi bi-gear-fill"></i> ការកំណត់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ </a></li>
-        </ul>
-      <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
+
+      <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">
+        Main</div>
+      <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
+              class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2"
+            href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+        <li class="nav-item">
+          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)"
+            data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false"
+            aria-controls="attendanceSubmenu1">
+            <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+              class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
+              class="bi bi-boxes"></i>ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+              class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
+              class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i
+              class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i
+              class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
+              class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
+              class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
+              class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+
+      </ul>
+      <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
         <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
       </div>
-    </div>
-  </div>
+    </aside>
 
-  <!-- ============ MAIN CONTENT ============ -->
-  <main class="flex-grow-1 main-offset" style="min-width:0;">
-
-    <!-- ============ STICKY NAVBAR ============ -->
-    <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
-      <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-light border rounded-3 d-lg-none" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
-          <i class="bi bi-list fs-5"></i>
-        </button>
-        <div>
-          <h1 class="h4 fw-bold mb-0">ការគ្រប់គ្រងបុគ្គលិក</h1>
-          <div class="km text-secondary small">គ្រប់គ្រងព័ត៌មានបុគ្គលិកទាំងអស់</div>
-        </div>
-      </div>
-      <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
-        <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
-        <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
-          <i class="bi bi-bell-fill"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:.6rem;">3</span>
-        </button>
-        <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
-          <div class="avatar-circle d-flex align-items-center justify-content-center"><img src="/assest/image/DSC_1535 copy.JPG" alt=""></div>
-          <div>
-            <div class="small fw-bold lh-1">Socheat</div>
-            <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <div class="p-3 p-lg-4">
-
-      <!-- ============ KPI Cards ============ -->
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
-        <div class="col">
-          <div class="card border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body p-3 p-lg-4">
-              <div class="km text-secondary small mb-2">បុគ្គលិកសរុប</div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-circle" style="color:#1f4d43; font-size:.6rem;"></i>
-                <span class="fw-bold" id="kpiTotal" style="font-size:2rem; color:#1f4d43;">0</span>
-              </div>
-              <div class="km text-secondary small mt-1">គណនីចុះបញ្ជីទាំងអស់</div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body p-3 p-lg-4">
-              <div class="km text-secondary small mb-2">សកម្ម</div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-circle" style="color:#1f4d43; font-size:.6rem;"></i>
-                <span class="fw-bold" id="kpiActive" style="font-size:2rem; color:#1f4d43;">0</span>
-              </div>
-              <div class="km text-secondary small mt-1">Active accounts</div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body p-3 p-lg-4">
-              <div class="km text-secondary small mb-2">អសកម្ម</div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-circle" style="color:#c1793a; font-size:.6rem;"></i>
-                <span class="fw-bold" id="kpiInactive" style="font-size:2rem; color:#c1793a;">0</span>
-              </div>
-              <div class="km text-secondary small mt-1">Disabled accounts</div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body p-3 p-lg-4">
-              <div class="km text-secondary small mb-2">អ្នកគ្រប់គ្រង</div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-circle" style="color:#c1793a; font-size:.6rem;"></i>
-                <span class="fw-bold" id="kpiAdmins" style="font-size:2rem; color:#c1793a;">0</span>
-              </div>
-              <div class="km text-secondary small mt-1">Admin / Manager role</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ----------------- Staff Table ----------------- -->
-      <div class="card border-0 shadow-sm rounded-4">
-        <div class="card-body p-4">
-          <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+    <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
+      <div class="offcanvas-header">
+        <div class="d-flex align-items-center gap-2">
+          <div class="d-flex gap-2">
+            <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
             <div>
-              <h2 class="h5 fw-bold mb-0">Staff List</h2>
-              <div class="km text-secondary small">បញ្ជីបុគ្គលិកទាំងអស់</div>
+              <div class="fw-bold text-white ">IAM System</div>
+              <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
             </div>
-            <div class="d-flex gap-2 flex-wrap">
-              <input type="text" class="form-control rounded-3" id="staffSearch" placeholder="ស្វែងរកបុគ្គលិក... / Search staff" style="min-width:220px;">
-              <button class="btn text-white rounded-3 d-flex align-items-center gap-2" style="background:var(--violet);" data-bs-toggle="modal" data-bs-target="#staffModal" id="addStaffBtn">
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body p-3">
+        <div class="text-uppercase small text-secondary fw-bold px-2 mb-2"
+          style="letter-spacing:.08em; font-size:.7rem;">Main</div>
+        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
+                class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2"
+              href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+          <li class="nav-item">
+            <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)"
+              data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false"
+              aria-controls="attendanceSubmenu1">
+              <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+            </a>
+            <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+              <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+              <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+              <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+                class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
+                class="bi bi-boxes"></i>ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+                class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
+                class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i
+                class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i
+                class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
+                class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
+                class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
+                class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+
+        </ul>
+        <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
+          <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
+        </div>
+      </div>
+    </div>
+
+    <main class="flex-grow-1 main-offset" style="min-width:0;">
+      <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-light border rounded-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+            <i class="bi bi-list fs-5"></i>
+          </button>
+          <div>
+            <h1 class="h4 fw-bold mb-0">ការគ្រប់គ្រងបុគ្គលិក</h1>
+            <div class="km text-secondary small">គ្រប់គ្រងព័ត៌មានបុគ្គលិកទាំងអស់</div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
+          <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
+          <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
+            <i class="bi bi-bell-fill"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              style="font-size:.6rem;">3</span>
+          </button>
+          <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
+            <div class="avatar-circle d-flex align-items-center justify-content-center"><img
+                src="/assest/image/DSC_1535 copy.JPG" alt=""></div>
+            <div>
+              <div class="small fw-bold lh-1">Socheat</div>
+              <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="p-3 p-lg-4">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">បុគ្គលិកសរុប</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#1f4d43; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiTotal" style="font-size:2rem; color:#1f4d43;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">គណនីចុះបញ្ជីទាំងអស់</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">សកម្ម</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#1f4d43; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiActive" style="font-size:2rem; color:#1f4d43;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">Active accounts</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">អសកម្ម</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#c1793a; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiInactive" style="font-size:2rem; color:#c1793a;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">Disabled accounts</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">អ្នកគ្រប់គ្រង</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#c1793a; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiAdmins" style="font-size:2rem; color:#c1793a;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">Admin / Manager role</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------- Staff Table ----------------- -->
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+              <div>
+                <h2 class="h5 fw-bold mb-0">Staff List</h2>
+                <div class="km text-secondary small">បញ្ជីបុគ្គលិកទាំងអស់</div>
+              </div>
+            </div>
+
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-3 justify-content-end">
+              <div class="position-relative" style="min-width:320px; max-width:320px;">
+                <i class="bi bi-search position-absolute top-50 translate-middle-y text-secondary"
+                  style="left:14px; font-size:13px;"></i>
+                <input type="text" class="form-control rounded-3" id="staffSearch"
+                  placeholder="ស្វែងរកបុគ្គលិក... / Search staff" style="padding-left:36px;">
+              </div>
+
+              <button class="btn text-white rounded-3 d-flex align-items-center gap-2" style="background:var(--violet);"
+                data-bs-toggle="modal" data-bs-target="#staffModal" id="addStaffBtn">
                 <i class="bi bi-person-plus-fill"></i> Add Staff
               </button>
             </div>
-          </div>
 
-          <div class="table-responsive">
-            <table class="table align-middle">
-              <thead>
-                <tr class="text-secondary small text-uppercase">
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Staff</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Role</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Phone</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Status</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;" class="text-end">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="staffTableBody"><!-- rows injected by JS --></tbody>
-            </table>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr class="text-secondary small text-uppercase">
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Staff</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Role</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Phone</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Status</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;" class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="staffTableBody"><!-- rows injected by JS --></tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
 
-    </div>
-  </main>
-</div>
+        <!-- ----------------- Leave Requests (សំណើសុំច្បាប់) ----------------- -->
+        <div class="card border-0 shadow-sm rounded-4 mt-4">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+              <div>
+                <h2 class="h5 fw-bold mb-0">Leave Requests</h2>
+                <div class="km text-secondary small">សំណើសុំច្បាប់ពីបុគ្គលិក — ត្រូវការការអនុម័ត</div>
+              </div>
+              <span class="badge rounded-pill bg-danger-subtle text-danger-emphasis px-3 py-2 d-none"
+                id="leaveReqPendingBadge" style="font-size:.78rem;"></span>
+            </div>
 
-<!-- ============ Add / Edit Staff Modal ============ -->
-<div class="modal fade" id="staffModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-4">
-      <div class="modal-header border-0">
-        <h5 class="modal-title fw-bold" id="staffModalTitle">Add Staff</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr class="text-secondary small text-uppercase">
+                    <th style="font-size:.72rem; letter-spacing:.05em;">បុគ្គលិក</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">កាលបរិច្ឆេទ</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">មូលហេតុ</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">ស្ថានភាព</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;" class="text-end">សកម្មភាព</th>
+                  </tr>
+                </thead>
+                <tbody id="leaveRequestsTableBody"><!-- rows injected by JS --></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="modal-body">
-        <form id="staffForm">
-          <input type="hidden" id="staffId">
-          <div class="mb-3">
-            <label class="form-label small fw-semibold">Full Name <span class="km text-secondary">/ ឈ្មោះពេញ</span></label>
-            <input type="text" class="form-control rounded-3" id="staffName" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label small fw-semibold">Phone <span class="km text-secondary">/ លេខទូរស័ព្ទ</span></label>
-            <input type="text" class="form-control rounded-3" id="staffPhone" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label small fw-semibold">Role <span class="km text-secondary">/ តួនាទី</span></label>
-            <select class="form-select rounded-3" id="staffRole">
-              <option value="Admin">Admin</option>
-              <option value="Manager">Manager</option>
-              <option value="Cashier" selected>Cashier</option>
-              <option value="Stock Clerk">Stock Clerk</option>
-            </select>
-          </div>
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="staffActive" checked>
-            <label class="form-check-label small fw-semibold" for="staffActive">Active account</label>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn text-white rounded-3" style="background:var(--violet);" id="saveStaffBtn">Save</button>
+    </main>
+  </div>
+
+  <div class="modal fade" id="staffModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="staffModalTitle">Add Staff</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="staffForm">
+            <input type="hidden" id="staffId">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Full Name <span class="km text-secondary">/
+                  ឈ្មោះពេញ</span></label>
+              <input type="text" class="form-control rounded-3" id="staffName" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Phone <span class="km text-secondary">/
+                  លេខទូរស័ព្ទ</span></label>
+              <input type="text" class="form-control rounded-3" id="staffPhone" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Role <span class="km text-secondary">/ តួនាទី</span></label>
+              <select class="form-select rounded-3" id="staffRole">
+                <option value="Admin">Admin</option>
+                <option value="Manager">Manager</option>
+                <option value="Cashier" selected>Cashier</option>
+                <option value="Stock Clerk">Stock Clerk</option>
+              </select>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="staffActive" checked>
+              <label class="form-check-label small fw-semibold" for="staffActive">Active account</label>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn text-white rounded-3" style="background:var(--violet);"
+            id="saveStaffBtn">Save</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ============ View Profile Modal (one-page profile) ============ -->
-<style>
-  #profileModal .modal-dialog{ max-width:960px; }
-  #profileModal .modal-content{ overflow:hidden; }
-  #profileModal .profile-banner{
-    background:linear-gradient(135deg,#1f2733 0%,#181a35 100%);
-    padding:28px 24px 56px;
-    position:relative;
-  }
-  #profileModal .profile-avatar-wrap{
-    width:92px; height:92px; margin:-46px auto 0; border-radius:50%;
-    border:4px solid #fff; background:#f1f3f5; overflow:hidden; box-shadow:0 4px 14px rgba(0,0,0,.15);position: relative;
-  }
-  #profileModal .profile-avatar-wrap img{ width:100%; height:100%; object-fit:cover; object-position:top center; display:block;position: absolute; z-index:10 ;}
-  #profileModal .profile-avatar-wrap .avatar-fallback{
-    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
-    font-weight:700; font-size:1.3rem; color:#1f4d43; background:#e7efeb;
-  }
-  #profileModal .profile-stats{ border-top:1px solid #eee; border-bottom:1px solid #eee; }
-  #profileModal .profile-stats .col{ padding:14px 4px; }
-  #profileModal .profile-stats .col + .col{ border-left:1px solid #eee; }
-  #profileModal .side-tabs .nav-link{
-    border:0; border-bottom:2px solid transparent; border-radius:0; color:#8a8f98; padding:8px 4px; margin-right:18px;
-  }
-  #profileModal .side-tabs .nav-link.active{ color:#1f4d43; border-bottom-color:var(--violet,#6f5bd0); background:none; }
-  #profileModal .main-tabs .nav-link{
-    border:0; border-bottom:2px solid transparent; border-radius:0; color:#8a8f98; padding:10px 4px; margin-right:24px; font-size:.92rem;
-  }
-  #profileModal .main-tabs .nav-link.active{ color:#1f2733; border-bottom-color:var(--violet,#6f5bd0); background:none; }
-  #profileModal .info-field .label{ font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; color:#9aa0a8; }
-  #profileModal .info-field .value{ font-size:.86rem; font-weight:600; color:#1f2733; }
-  #profileModal .section-title{ font-weight:700; font-size:.95rem; color:#1f2733; }
-  #profileModal .pane{ display:none; }
-  #profileModal .pane.active{ display:block; }
-  #profileModal .side-pane{ display:none; }
-  #profileModal .side-pane.active{ display:block; }
-</style>
+  <style>
+    #profileModal .modal-dialog {
+      max-width: 960px;
+    }
 
-<div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content rounded-4 border-0">
-      <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" style="z-index:5;" data-bs-dismiss="modal"></button>
+    #profileModal .modal-content {
+      overflow: hidden;
+    }
 
-      <div class="d-flex flex-column flex-md-row">
+    #profileModal .profile-banner {
+      background: linear-gradient(135deg, #1f2733 0%, #181a35 100%);
+      padding: 28px 24px 56px;
+      position: relative;
+    }
 
-        <!-- LEFT column: identity card -->
-        <div style="width:100%; max-width:260px; flex-shrink:0;" class="border-end">
-          <div class="profile-banner text-center">
-            <h5 id="profileName" class="fw-bold text-white mb-1"></h5>
-            <div id="profilePositionTag" class="small text-white-50"></div>
-          </div>
+    #profileModal .profile-avatar-wrap {
+      width: 92px;
+      height: 92px;
+      margin: -46px auto 0;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      background: #f1f3f5;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+      position: relative;
+    }
 
-          <div class="profile-avatar-wrap">
-            <img id="profileImage" src="" style="display:none; z-index: 9099;">
-            <div id="profileInitials" class="avatar-fallback"></div>
-          </div>
+    #profileModal .profile-avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      position: absolute;
+      z-index: 10;
+    }
 
-          <div class="text-center px-3 mt-2">
-            <div class="km text-secondary small" id="profileDeptLine"></div>
-            <div class="d-flex align-items-center justify-content-center gap-1 text-secondary small mt-1">
-              <i class="bi bi-telephone-fill" style="font-size:.7rem;"></i>
-              <span id="profilePhone"></span>
+    #profileModal .profile-avatar-wrap .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #1f4d43;
+      background: #e7efeb;
+    }
+
+    #profileModal .profile-stats {
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+    }
+
+    #profileModal .profile-stats .col {
+      padding: 14px 4px;
+    }
+
+    #profileModal .profile-stats .col+.col {
+      border-left: 1px solid #eee;
+    }
+
+    #profileModal .side-tabs .nav-link {
+      border: 0;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      color: #8a8f98;
+      padding: 8px 4px;
+      margin-right: 18px;
+    }
+
+    #profileModal .side-tabs .nav-link.active {
+      color: #1f4d43;
+      border-bottom-color: var(--violet, #6f5bd0);
+      background: none;
+    }
+
+    #profileModal .main-tabs .nav-link {
+      border: 0;
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      color: #8a8f98;
+      padding: 10px 4px;
+      margin-right: 24px;
+      font-size: .92rem;
+    }
+
+    #profileModal .main-tabs .nav-link.active {
+      color: #1f2733;
+      border-bottom-color: var(--violet, #6f5bd0);
+      background: none;
+    }
+
+    #profileModal .info-field .label {
+      font-size: .68rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #9aa0a8;
+    }
+
+    #profileModal .info-field .value {
+      font-size: .86rem;
+      font-weight: 600;
+      color: #1f2733;
+    }
+
+    #profileModal .section-title {
+      font-weight: 700;
+      font-size: .95rem;
+      color: #1f2733;
+    }
+
+    #profileModal .pane {
+      display: none;
+    }
+
+    #profileModal .pane.active {
+      display: block;
+    }
+
+    #profileModal .side-pane {
+      display: none;
+    }
+
+    #profileModal .side-pane.active {
+      display: block;
+    }
+  </style>
+
+  <div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content rounded-4 border-0">
+        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" style="z-index:5;"
+          data-bs-dismiss="modal"></button>
+
+        <div class="d-flex flex-column flex-md-row">
+
+          <div style="width:100%; max-width:260px; flex-shrink:0;" class="border-end">
+            <div class="profile-banner text-center">
+              <h5 id="profileName" class="fw-bold text-white mb-1"></h5>
+              <div id="profilePositionTag" class="small text-white-50"></div>
+            </div>
+
+            <div class="profile-avatar-wrap">
+              <img id="profileImage" src="" style="display:none; z-index: 9099;">
+              <div id="profileInitials" class="avatar-fallback"></div>
+            </div>
+
+            <div class="text-center px-3 mt-2">
+              <div class="km text-secondary small" id="profileDeptLine"></div>
+              <div class="d-flex align-items-center justify-content-center gap-1 text-secondary small mt-1">
+                <i class="bi bi-telephone-fill" style="font-size:.7rem;"></i>
+                <span id="profilePhone"></span>
+              </div>
+            </div>
+
+            <div class="row text-center mx-0 mt-3 profile-stats g-0">
+              <div class="col">
+                <div class="fw-bold" style="font-size:1.15rem;" id="statOneVal"></div>
+                <div class="text-secondary" style="font-size:.66rem;" id="statOneLabel"></div>
+              </div>
+              <div class="col">
+                <div class="fw-bold" style="font-size:1.15rem;" id="statTwoVal"></div>
+                <div class="text-secondary" style="font-size:.66rem;" id="statTwoLabel"></div>
+              </div>
+              <div class="col">
+                <div class="fw-bold" style="font-size:1.15rem;" id="statThreeVal"></div>
+                <div class="text-secondary" style="font-size:.66rem;" id="statThreeLabel"></div>
+              </div>
+            </div>
+
+            <ul class="nav side-tabs px-3 pt-3 mb-0">
+              <li class="nav-item"><button type="button" class="nav-link active small fw-semibold"
+                  data-side-tab="bio">About</button></li>
+              <li class="nav-item"><button type="button" class="nav-link small fw-semibold"
+                  data-side-tab="access">Access</button></li>
+            </ul>
+            <div class="px-3 pb-4 pt-2">
+              <div class="side-pane active" data-side-pane="bio">
+                <p id="profileBio" class="text-secondary small mb-0"></p>
+              </div>
+              <div class="side-pane" data-side-pane="access">
+                <div id="profileAccessBadges" class="d-flex flex-wrap gap-1"></div>
+              </div>
             </div>
           </div>
 
-          <div class="row text-center mx-0 mt-3 profile-stats g-0">
-            <div class="col">
-              <div class="fw-bold" style="font-size:1.15rem;" id="statOneVal"></div>
-              <div class="text-secondary" style="font-size:.66rem;" id="statOneLabel"></div>
-            </div>
-            <div class="col">
-              <div class="fw-bold" style="font-size:1.15rem;" id="statTwoVal"></div>
-              <div class="text-secondary" style="font-size:.66rem;" id="statTwoLabel"></div>
-            </div>
-            <div class="col">
-              <div class="fw-bold" style="font-size:1.15rem;" id="statThreeVal"></div>
-              <div class="text-secondary" style="font-size:.66rem;" id="statThreeLabel"></div>
-            </div>
-          </div>
+          <!-- RIGHT column: details -->
+          <div class="flex-grow-1" style="min-width:0;">
+            <ul class="nav main-tabs px-4 pt-4 mb-0">
+              <li class="nav-item"><button type="button" class="nav-link active" data-main-tab="about"><i
+                    class="bi bi-person-fill me-1"></i>About Me</button></li>
+              <li class="nav-item"><button type="button" class="nav-link" data-main-tab="activity"><i
+                    class="bi bi-clock-history me-1"></i>Activity</button></li>
+            </ul>
 
-          <ul class="nav side-tabs px-3 pt-3 mb-0">
-            <li class="nav-item"><button type="button" class="nav-link active small fw-semibold" data-side-tab="bio">About</button></li>
-            <li class="nav-item"><button type="button" class="nav-link small fw-semibold" data-side-tab="access">Access</button></li>
-          </ul>
-          <div class="px-3 pb-4 pt-2">
-            <div class="side-pane active" data-side-pane="bio">
-              <p id="profileBio" class="text-secondary small mb-0"></p>
-            </div>
-            <div class="side-pane" data-side-pane="access">
-              <div id="profileAccessBadges" class="d-flex flex-wrap gap-1"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- RIGHT column: details -->
-        <div class="flex-grow-1" style="min-width:0;">
-          <ul class="nav main-tabs px-4 pt-4 mb-0">
-            <li class="nav-item"><button type="button" class="nav-link active" data-main-tab="about"><i class="bi bi-person-fill me-1"></i>About Me</button></li>
-            <li class="nav-item"><button type="button" class="nav-link" data-main-tab="activity"><i class="bi bi-clock-history me-1"></i>Activity</button></li>
-          </ul>
-
-          <div class="p-4">
-            <div class="pane active" data-main-pane="about">
-              <div class="section-title mb-3">About</div>
-              <div class="row g-3 mb-4">
-                <div class="col-6 col-lg-3 info-field">
-                  <div class="label">Full Name</div>
-                  <div class="value" id="profileFullName"></div>
+            <div class="p-4">
+              <div class="pane active" data-main-pane="about">
+                <div class="section-title mb-3">About</div>
+                <div class="row g-3 mb-4">
+                  <div class="col-6 col-lg-3 info-field">
+                    <div class="label">Full Name</div>
+                    <div class="value" id="profileFullName"></div>
+                  </div>
+                  <div class="col-6 col-lg-3 info-field">
+                    <div class="label">Mobile</div>
+                    <div class="value" id="profileMobile"></div>
+                  </div>
+                  <div class="col-6 col-lg-3 info-field">
+                    <div class="label">Email</div>
+                    <div class="value text-truncate" id="profileEmail"></div>
+                  </div>
+                  <div class="col-6 col-lg-3 info-field">
+                    <div class="label">Status</div>
+                    <span id="profileStatus" class="badge rounded-pill"></span>
+                  </div>
                 </div>
-                <div class="col-6 col-lg-3 info-field">
-                  <div class="label">Mobile</div>
-                  <div class="value" id="profileMobile"></div>
-                </div>
-                <div class="col-6 col-lg-3 info-field">
-                  <div class="label">Email</div>
-                  <div class="value text-truncate" id="profileEmail"></div>
-                </div>
-                <div class="col-6 col-lg-3 info-field">
-                  <div class="label">Status</div>
-                  <span id="profileStatus" class="badge rounded-pill"></span>
-                </div>
+
+                <div class="section-title mb-2">Employment Details</div>
+                <div id="profileEmploymentList" class="mb-4"></div>
+
+                <div class="section-title mb-2">System Access &amp; Permissions</div>
+                <div id="profileAccessList"></div>
               </div>
 
-              <div class="section-title mb-2">Employment Details</div>
-              <div id="profileEmploymentList" class="mb-4"></div>
-
-              <div class="section-title mb-2">System Access &amp; Permissions</div>
-              <div id="profileAccessList"></div>
-            </div>
-
-            <div class="pane" data-main-pane="activity">
-              <div class="section-title mb-3">Activity History</div>
-              <div id="profileHistoryList" class="d-flex flex-column gap-2" style="max-height:340px; overflow-y:auto;"></div>
+              <div class="pane" data-main-pane="activity">
+                <div class="section-title mb-3">Activity History</div>
+                <div id="profileHistoryList" class="d-flex flex-column gap-2"
+                  style="max-height:340px; overflow-y:auto;"></div>
+              </div>
             </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- Bootstrap Toast -->
-<div class="toast-container position-fixed bottom-0 start-50 translate-middle-x mb-4">
-  <div id="liveToast" class="toast align-items-center text-white bg-dark border-0" role="alert">
-    <div class="d-flex">
-      <div class="toast-body" id="toastBody">Updated</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+  <!-- Bootstrap Toast -->
+  <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x mb-4">
+    <div id="liveToast" class="toast align-items-center text-white bg-dark border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body" id="toastBody">Updated</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
     </div>
   </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/assest/js/employeeManagement.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assest/js/employeeManagement.js"></script>
 </body>
+
 </html>

@@ -1,48 +1,37 @@
 document.querySelectorAll('.sidebar .nav-link').forEach(link => {
   link.addEventListener('click', function(e) {
     e.preventDefault();
-    
-    // ដក Active ពីគ្រប់លីង និងផ្ទាំងចាស់
     document.querySelectorAll('.sidebar .nav-link').forEach(l => l.classList.remove('active'));
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    
-    // បន្ថែម Active លើលីងដែលបានចុច
+   
     this.classList.add('active');
-    
-    // បង្ហាញផ្ទាំងមាតិកាថ្មី
+
     const targetTab = this.getAttribute('data-tab');
     const activeContent = document.getElementById(`tab-${targetTab}`);
     if (activeContent) {
       activeContent.classList.add('active');
     }
     
-    // ប្តូរចំណងជើង Topbar តាមទំព័រ
     const pageTitle = document.getElementById('pageTitle');
     if(pageTitle) {
       pageTitle.innerText = this.textContent.trim();
     }
   });
 });
-
-
-// កន្ត្រកទំនិញបច្ចុប្បន្ន (Cart State)
 let cart = [];
-let nextInvoiceId = 1; // លេខរៀងវិក្កយបត្រ សម្រាប់ Void/Refund
-
-// ១. អនុគមន៍ចុចបន្ថែមផលិតផលចូលកន្ត្រក
+let nextInvoiceId = 1; 
 function addToCart(id, name, price) {
   const existingItem = cart.find(item => item.id === id);
   
   if (existingItem) {
-    existingItem.quantity += 1; // បើមានហើយ បន្ថែមចំនួន ១ ថែមទៀត
+    existingItem.quantity += 1;
   } else {
-    cart.push({ id, name, price, quantity: 1 }); // បើអត់ទាន់មាន ថែមមុខទំនិញថ្មី
+    cart.push({ id, name, price, quantity: 1 }); 
   }
   
   renderCart();
 }
 
-// ២. អនុគមន៍បង្ហាញ និងគណនាទិន្នន័យក្នុងកន្ត្រក (រួមទាំងបញ្ចុះតម្លៃ + ការទូទាត់ចម្រុះ)
 function renderCart() {
   const wrapper = document.getElementById('cart-items-wrapper');
   const emptyMsg = document.getElementById('cart-empty-msg');
@@ -79,14 +68,13 @@ function renderCart() {
     `;
   }).join('');
 
-  // បញ្ចុះតម្លៃ (មិនអាចលើសសរុប ឬអវិជ្ជមានទេ)
+
   let discount = discountInput ? parseFloat(discountInput.value) || 0 : 0;
   if (discount < 0) discount = 0;
   if (discount > subtotal) discount = subtotal;
 
   const total = subtotal - discount;
 
-  // បច្ចុប្បន្នភាពតម្លៃសរុប
   document.getElementById('summary-subtotal').textContent = `$${subtotal.toFixed(2)}`;
   if (discountEl) discountEl.textContent = `-$${discount.toFixed(2)}`;
   totalEl.textContent = `$${total.toFixed(2)}`;
@@ -94,7 +82,6 @@ function renderCart() {
   updateSplitPayHint(total);
 }
 
-// ការទូទាត់ចម្រុះ (Split payment) — បង្ហាញ/លាក់ប្រអប់សាច់ប្រាក់ + ABA
 function onPayMethodChange() {
   const select = document.getElementById('pay-method-select');
   const wrap = document.getElementById('split-pay-wrap');
@@ -108,7 +95,6 @@ function onPayMethodChange() {
   renderCart();
 }
 
-// ត្រួតពិនិត្យថាតើសាច់ប្រាក់ + ABA បូកគ្នាស្មើនឹងសរុបដែរឬអត់
 function updateSplitPayHint(total) {
   const select = document.getElementById('pay-method-select');
   const hint = document.getElementById('split-pay-hint');
@@ -131,7 +117,6 @@ function updateSplitPayHint(total) {
   }
 }
 
-// ៣. អនុគមន៍ដកមុខទំនិញចេញពីកន្ត្រកម្តងមួយៗ
 function removeFromCart(id) {
   const item = cart.find(i => i.id === id);
   if (item) {
@@ -143,20 +128,17 @@ function removeFromCart(id) {
   renderCart();
 }
 
-// ៤. អនុគមន៍សម្អាតកន្ត្រកចោលទាំងអស់
 function clearCart() {
   cart = [];
   renderCart();
 }
 
-// ៥. អនុគមន៍ចុច Checkout -> បើក Modal QR Code ឲ្យអតិថិជនស្កេនទូទាត់សិន
 function handleCheckout() {
   if (cart.length === 0) {
     showPosToast("កន្ត្រកទទេ! សូមជ្រើសរើសទំនិញសិន");
     return;
   }
 
-  // ការត្រួតពិនិត្យស្តុកចុងក្រោយ មុននឹងបន្តទៅការទូទាត់ (ការពារករណីស្តុកបានផ្លាស់ប្តូររវាងពេលបន្ថែម និងពេលគិតលុយ)
   for (const item of cart) {
     const card = document.querySelector(`#productGrid .product-card[data-pid="${item.id}"]`);
     if (!card) continue;
@@ -173,7 +155,7 @@ function handleCheckout() {
   const paymentSelect = document.getElementById('pay-method-select');
   const totalPrice = document.getElementById('summary-total').textContent;
 
-  // ត្រួតពិនិត្យការទូទាត់ចម្រុះ មុននឹងបន្ត
+
   if (paymentSelect && paymentSelect.value === 'ចម្រុះ') {
     const total = parseFloat(totalPrice.replace('$', '')) || 0;
     const cash = parseFloat(document.getElementById('split-cash-amount')?.value) || 0;
@@ -187,7 +169,6 @@ function handleCheckout() {
   openQrPaymentModal(totalPrice);
 }
 
-// ៥.១ បើក Modal QR Code (ប្រើ QR ABA KHQR ពិតប្រាកដរបស់ហាង) ព្រមទាំងបង្ហាញចំនួនទឹកប្រាក់ត្រូវទូទាត់
 function openQrPaymentModal(totalPrice) {
   const modal = document.getElementById('qrPaymentModal');
   const totalEl = document.getElementById('qrPaymentTotal');
@@ -202,7 +183,6 @@ function closeQrPaymentModal() {
   if (modal) modal.classList.remove('open');
 }
 
-// ============ វិក្កយបត្រ (Receipt Modal) ============
 function openReceiptModal(invoice, cartSnapshot, subtotalAmount) {
   const modal = document.getElementById('receiptModal');
   if (!modal) return;
@@ -237,14 +217,14 @@ function printReceipt() {
   window.print();
 }
 
-// ៥.២ ចុច "បានទទួលការទូទាត់" -> បញ្ចប់ការលក់ពិតប្រាកដ (កត់ត្រា invoice + សម្អាតកន្ត្រក)
+
 function confirmQrPayment() {
   if (cart.length === 0) {
     closeQrPaymentModal();
     return;
   }
 
-  // ប្រមូលព័ត៌មានការទូទាត់
+  
   const customerSelect = document.getElementById('pay-customer');
   const customerName = customerSelect.options[customerSelect.selectedIndex].text;
   const customerId = customerSelect.value ? parseInt(customerSelect.value) : null;
@@ -255,26 +235,25 @@ function confirmQrPayment() {
   const discountInput = document.getElementById('pay-discount');
   const discountAmount = discountInput ? (parseFloat(discountInput.value) || 0) : 0;
 
-  // ព័ត៌មានលម្អិតការទូទាត់ចម្រុះ (សាច់ប្រាក់ + ABA)
+  
   if (paymentMethod === 'ចម្រុះ') {
     const cash = parseFloat(document.getElementById('split-cash-amount')?.value) || 0;
     const aba = parseFloat(document.getElementById('split-aba-amount')?.value) || 0;
     paymentMethod = `ចម្រុះ (សាច់ប្រាក់ $${cash.toFixed(2)} + ABA $${aba.toFixed(2)})`;
   }
 
-  // បង្កើតបញ្ជីឈ្មោះមុខទំនិញសរុប (ឧ. អង្ករ ៥គីឡូ x2)
+
   const itemsSummary = cart.map(i => `${i.name} (x${i.quantity})`).join(', ');
 
-  // បង្កើតពេលវេលា/កាលបរិច្ឆេទបច្ចុប្បន្ន
+
   const now = new Date();
   const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const dateStr = now.toISOString().slice(0, 10);
 
-  // រក្សាទុករូបភាពថតកន្ត្រកមុននឹងសម្អាត (ត្រូវការសម្រាប់បង្ហាញវិក្កយបត្រ)
+
   const cartSnapshot = cart.map(i => ({ name: i.name, price: i.price, quantity: i.quantity }));
   const subtotalAmount = cartSnapshot.reduce((sum, i) => sum + i.price * i.quantity, 0);
 
-  // ទិន្នន័យវិក្កយបត្រថ្មី (រក្សាទុក items ជារចនាសម្ព័ន្ធ ដើម្បីអាចត្រឡប់ស្តុកមកវិញបាននៅពេល Void)
   const newInvoice = {
     id: nextInvoiceId++,
     item_name: itemsSummary,
@@ -290,15 +269,15 @@ function confirmQrPayment() {
     voided: false
   };
 
-  // សន្មតថា currentSales គឺជា Array របាយការណ៍របស់អ្នក (នៅក្នុង Tab Report)
+
   if (typeof currentSales !== 'undefined') {
-    currentSales.unshift(newInvoice); // បញ្ចូលទៅលើគេបង្អស់
+    currentSales.unshift(newInvoice); 
     if (typeof renderReportTable === 'function') {
-      renderReportTable(currentSales); // ហៅតារាងរបាយការណ៍ឱ្យ Refresh បង្ហាញទិន្នន័យថ្មី
+      renderReportTable(currentSales); 
     }
   }
 
-  // ពិន្ទុសមាជិក (Loyalty points) — ១ពិន្ទុ ក្នុងមួយដុល្លារ សម្រាប់អតិថិជនដែលមានក្នុងបញ្ជី (មិនមែនភ្ញៀវទូទៅ)
+ 
   if (customerId && typeof customers !== 'undefined') {
     const cust = customers.find(c => c.id === customerId);
     if (cust) {
@@ -309,12 +288,11 @@ function confirmQrPayment() {
 
   closeQrPaymentModal();
 
-  // បង្ហាញវិក្កយបត្រជាផ្ទាំង Modal
+
   openReceiptModal(newInvoice, cartSnapshot, subtotalAmount);
 
-  clearCart(); // សម្អាតកន្ត្រកទទេវិញ
+  clearCart(); 
 
-  // សម្អាតប្រអប់បញ្ចុះតម្លៃ + ការទូទាត់ចម្រុះ សម្រាប់ការលក់លើកក្រោយ
   const discountEl2 = document.getElementById('pay-discount');
   if (discountEl2) discountEl2.value = 0;
   const cashEl = document.getElementById('split-cash-amount');
@@ -336,7 +314,7 @@ function confirmQrPayment() {
     { id: 3, name: "លីហេង ស៊ីម៉េង", phone: "088 777 666", email: "meng@mail.com", address: "បាត់ដំបង", hasDebt: false, points: 15 }
   ];
 
-  // ចាក់បញ្ចូលឈ្មោះអតិថិជនពិតប្រាកដទៅក្នុងបញ្ជីជ្រើសរើសអតិថិជននៅផ្ទាំងគិតលុយ
+  
   function populatePosCustomerSelect() {
     const select = document.getElementById('pay-customer');
     if (!select) return;
@@ -421,30 +399,28 @@ function saveCust() {
   }
 
   if (id) {
-    // ករណីកែប្រែទិន្នន័យ (Edit) — រក្សាទុកពិន្ទុសមាជិកចាស់ មិនឲ្យបាត់
+ 
     const index = customers.findIndex(c => c.id == id);
     if (index !== -1) {
       const existingPoints = customers[index].points || 0;
       customers[index] = { id: Number(id), name, phone, email, address, hasDebt, points: existingPoints };
     }
   } else {
-    // ករណីបន្ថែមថ្មី (Add)
+   
     const newId = customers.length > 0 ? Math.max(...customers.map(c => c.id)) + 1 : 1;
     customers.push({ id: newId, name, phone, email, address, hasDebt, points: 0 });
   }
 
-  // ១. បច្ចុប្បន្នភាពកាតនៅលើអេក្រង់
   renderCustomers(); 
 
-  // ២. វិធីបិទ Modal បែបកាត់ផ្តាច់ $100\%$ (ដោះស្រាយបញ្ហាគាំង)
   const modalEl = document.getElementById('custModal');
   
-  // រកប៊ូតុង X ឬប៊ូតុងបិទ នៅក្នុង Modal រួចបញ្ជាឱ្យវាចុច (Click) ដោយស្វ័យប្រវត្តិ
+
   const closeBtn = modalEl.querySelector('.btn-close') || modalEl.querySelector('[data-bs-dismiss="modal"]');
   if (closeBtn) {
     closeBtn.click();
   } else {
-    // បើស្វែងរកប៊ូតុងមិនឃើញ គឺប្រើវិធីលាក់កំបាំងតាម CSS
+    
     modalEl.classList.remove('show');
     modalEl.style.display = 'none';
     const backdrop = document.querySelector('.modal-backdrop');
@@ -454,7 +430,7 @@ function saveCust() {
     document.body.style.paddingRight = '';
   }
 }
-  // ៥. អនុគមន៍រុញទិន្នន័យចាស់ចូលក្នុងប្រអប់ដើម្បីកែប្រែ
+ 
   function editCust(id) {
     const c = customers.find(cust => cust.id === id);
     if (!c) return;
@@ -468,7 +444,7 @@ function saveCust() {
     document.getElementById('custDebt').checked = c.hasDebt;
   }
 
-  // ៦. អនុគមន៍លុបអតិថិជន
+
   function deleteCust(id) {
     if (confirm("តើអ្នកពិតជាចង់លុបអតិថិជននេះមែនទេ?")) {
       customers = customers.filter(c => c.id !== id);
@@ -476,7 +452,6 @@ function saveCust() {
     }
   }
 
-  // ៧. អនុគមន៍ស្វែងរកអតិថិជន
   function searchCustomers() {
     const val = document.getElementById('custSearch').value.toLowerCase();
     const filtered = customers.filter(c => 
@@ -486,7 +461,7 @@ function saveCust() {
     renderCustomers(filtered);
   }
 
-  // ៨. អនុគមន៍មើលប្រវត្តិទិញរបស់អតិថិជន
+
   function normalizeName(str) {
     return (str || '').replace(/\s+/g, '').toLowerCase();
   }
@@ -526,11 +501,7 @@ function saveCust() {
     }
   }
 
-  // ដំណើរការដំបូងបង្អស់
   renderCustomers();
-
-
-
     
         const currentSales = [
         { item_name: "កាហ្វេទឹកដោះគោទឹកកក", customer: "រឹម​ ភារុន", payment_method: "ABA", total_price: "$2.50", time: "08:30 AM", date: "2026-07-25" },
@@ -582,7 +553,7 @@ function saveCust() {
         `).join('');
         }
 
-        // ============ ត្រងតាមកាលបរិច្ឆេទផ្ទាល់ខ្លួន (Custom date-range filter) ============
+       
         function filterReportsByDate() {
           const fromEl = document.getElementById('report-date-from');
           const toEl = document.getElementById('report-date-to');
@@ -630,7 +601,7 @@ function saveCust() {
           URL.revokeObjectURL(url);
         }
 
-        // ============ Void / Refund (លុបចោលការលក់) ============
+       
         function voidSale(invoiceId) {
           if (typeof currentSales === 'undefined') return;
           const invoice = currentSales.find(s => s.id === invoiceId);
@@ -643,7 +614,7 @@ function saveCust() {
 
           invoice.voided = true;
 
-          // ត្រឡប់ស្តុកមកវិញ ទាំងកាត POS (dataset.pid) និង products array (ផ្ទាំង ស្ថានភាពស្តុក)
+          
           if (Array.isArray(invoice.items)) {
             invoice.items.forEach(it => {
               const card = document.querySelector(`#productGrid .product-card[data-pid="${it.pid}"]`);
@@ -668,7 +639,7 @@ function saveCust() {
             });
           }
 
-          // ដកពិន្ទុសមាជិកដែលបានទទួលពីការលក់នេះ (បើមាន)
+          
           if (invoice.customerId && invoice.pointsEarned && typeof customers !== 'undefined') {
             const cust = customers.find(c => c.id === invoice.customerId);
             if (cust) {
@@ -700,23 +671,22 @@ function saveCust() {
           e.preventDefault();
           const tabName = link.dataset.tab;
 
-          // toggle active sidebar link
+          
           document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
           link.classList.add('active');
 
-          // toggle visible content section
+         
           document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
           const target = document.getElementById('tab-' + tabName);
           if (target) target.classList.add('active');
 
-          // update the page title in the topbar
+        
           const pageTitle = document.getElementById('pageTitle');
           if (pageTitle) pageTitle.textContent = tabTitles[tabName] || '';
         });
       });
 
-// POS: search + category filter
-    
+
       const filterCat = document.getElementById('filterCat');
       const searchBox = document.getElementById('searchBox');
       const productCards = document.querySelectorAll('#productGrid .product-card');
@@ -737,9 +707,9 @@ function saveCust() {
       filterCat.addEventListener('change', applyPosFilter);
       searchBox.addEventListener('input', applyPosFilter);
 
-      // POS: ចុចលើកាតផលិតផល -> បន្ថែមទៅកន្ត្រក ហើយលោតទៅផ្ទាំងកន្ត្រកសម្រាប់គិតលុយ
+     
       productCards.forEach((card, index) => {
-        // ផ្តល់ id ថេរតាមកាត ដើម្បីឲ្យ addToCart ដឹងថាជាមុខទំនិញតែមួយ
+        
         if (!card.dataset.pid) {
           card.dataset.pid = 'pos-' + index;
         }
@@ -753,11 +723,11 @@ function saveCust() {
 
           const name = nameEl.textContent.trim();
 
-          // ទាញយកតម្លៃជាលេខ ទោះបីទម្រង់សរសេរខុសគ្នា (ឧ. "$1.50", "0.30$")
+          
           const priceMatch = priceEl.textContent.replace(/[^0-9.]/g, '');
           const price = parseFloat(priceMatch) || 0;
 
-          // ការពិនិត្យស្តុកមុនលក់ — ការពារកុំឲ្យលក់លើសស្តុកដែលមានពិត
+        
           if (stockEl) {
             const stockMatch = stockEl.textContent.replace(/[^0-9]/g, '');
             const stock = parseInt(stockMatch, 10);
@@ -778,7 +748,7 @@ function saveCust() {
           addToCart(card.dataset.pid, name, price);
           showPosToast(`បានបន្ថែម "${name}" ចូលកន្ត្រក`);
 
-          // លោត(scroll)ទៅផ្ទាំងកន្ត្រកសម្រាប់ធ្វើការគិតលុយ
+          
           const cartPanel = document.getElementById('cartPanel');
           if (cartPanel) {
             cartPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -797,11 +767,6 @@ function saveCust() {
         showPosToast._t = setTimeout(() => toastEl.classList.remove('show'), duration);
       }
     
-
-      
-   // PRODUCTS: table, search, tabs, add/edit/delete 
-
-      // ---------- Sample data (replace with API data in a real app) ----------
       let products = [
         { id: 1, name: "អង្គរ ៥គីឡូ",       category: "គ្រឿងទេស",   price: 6.50, stock: 11 },
         { id: 2, name: "ប្រេងសា ១លីត្រ",     category: "គ្រឿងទេស",   price: 3.20, stock: 12 },
@@ -879,7 +844,7 @@ function saveCust() {
         tbody.innerHTML = '';
 
         if (list.length === 0) {
-          tbody.innerHTML = `<tr class="empty-row"><td colspan="8">មិនមានផលិតផលត្រូវនឹងលក្ខខណ្ឌនេះទេ</td></tr>`;
+          tbody.innerHTML = `<tr class="empty-row"><td colspan="7">មិនមានផលិតផលត្រូវនឹងលក្ខខណ្ឌនេះទេ</td></tr>`;
           return;
         }
 
@@ -894,14 +859,6 @@ function saveCust() {
             <td>$${p.price.toFixed(2)}</td>
             <td>${p.stock}</td>
             <td><span class="badge-stock ${isLow ? 'badge-low' : ''}">${isLow ? 'ស្តុកទាប' : 'គ្រប់គ្រាន់'}</span></td>
-            <td>
-              <div class="row-actions">
-                <button class="icon-btn icon-add" title="បន្ថែមស្តុក" data-action="addstock" data-id="${p.id}"><i class="fa-solid fa-plus"></i></button>
-                <button class="icon-btn icon-remove" title="ដកស្តុក" data-action="removestock" data-id="${p.id}"><i class="fa-solid fa-minus"></i></button>
-                <button class="icon-btn icon-edit" title="កែប្រែ" data-action="edit" data-id="${p.id}"><i class="fa-solid fa-pen"></i></button>
-                <button class="icon-btn icon-del" title="លុប" data-action="delete" data-id="${p.id}"><i class="fa-solid fa-trash"></i></button>
-              </div>
-            </td>
           `;
           tbody.appendChild(tr);
         });
@@ -909,8 +866,8 @@ function saveCust() {
         renderLowStockAlert();
       }
 
-      // ============ Low Stock Alert (Dashboard) — driven by real product/stock data ============
-      const REORDER_POINT_MULTIPLIER = 5; // ចំណុចបញ្ជាទិញ = LOW_STOCK_THRESHOLD x multiplier (ការប៉ាន់ស្មាន)
+     
+      const REORDER_POINT_MULTIPLIER = 5; 
 
       function renderLowStockAlert() {
         const grid = document.getElementById('lowStockAlertGrid');
@@ -918,7 +875,7 @@ function saveCust() {
         if (!grid || !countLabel) return;
 
         const lowItems = products
-          .filter(p => p.stock <= LOW_STOCK_THRESHOLD * 3) // "ជិតអស់" band used for the dashboard widget
+          .filter(p => p.stock <= LOW_STOCK_THRESHOLD * 3) 
           .sort((a, b) => a.stock - b.stock)
           .slice(0, 4);
 
@@ -983,7 +940,8 @@ function saveCust() {
       const fPrice = document.getElementById('fPrice');
       const fStock = document.getElementById('fStock');
 
-      document.getElementById('openAddBtn').addEventListener('click', () => openProductModal(null));
+      const openAddBtnEl = document.getElementById('openAddBtn');
+      if (openAddBtnEl) openAddBtnEl.addEventListener('click', () => openProductModal(null));
       document.getElementById('cancelProductBtn').addEventListener('click', () => closeProductModal());
 
       function openProductModal(id) {
@@ -1107,9 +1065,7 @@ function saveCust() {
 
 
       
-  //INVENTORY: stock table + stock movement history 
   
-      // ---------- Sample stock movement history (replace with API data in a real app) ----------
       let stockHistory = [
         { product: "អង្គរ ៥គីឡូ",     type: "out", qty: 1, time: "09/07/2026 00:26" },
         { product: "ប្រេងសា ១លីត្រ",   type: "out", qty: 1, time: "09/07/2026 00:26" },
@@ -1205,10 +1161,7 @@ function saveCust() {
  
       renderInventory();
    
-  // ១. អនុគមន៍រក្សាទុកការកែប្រែប្រវត្តិរូប (Profile)
-  // ============ រូបភាពប្រូហ្វាល (Profile picture) ============
-  // រូបភាពប្រូហ្វាលឥឡូវប្រើជារូបភាពថេរពីថតឯកសារ /assest/image/ (មិនមែនអាប់ឡូតដោយអ្នកប្រើទេ)
-  // ដូច្នេះមិនចាំបាច់មានអនុគមន៍អាប់ឡូត ឬ localStorage សម្រាប់រូបភាពនេះទៀតទេ។
+  
 
   function updateProfile() {
     const nameVal = document.getElementById('edit-acc-name').value.trim();
@@ -1269,7 +1222,7 @@ function saveCust() {
     }
   }
 
-// Mobile sidebar toggle (kept local to staff.html, no other files touched) -->
+
   
       (function () {
         const sidebar = document.querySelector('.sidebar');
@@ -1291,14 +1244,14 @@ function saveCust() {
         if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
         backdrop.addEventListener('click', closeSidebar);
 
-        // Close the mobile drawer automatically after picking a menu item
+        
         sidebar.querySelectorAll('.nav-link[data-tab]').forEach(link => {
           link.addEventListener('click', () => {
             if (window.innerWidth < 992) closeSidebar();
           });
         });
 
-        // If the window is resized back up to desktop width, make sure the drawer state resets
+       
         window.addEventListener('resize', () => {
           if (window.innerWidth >= 992) closeSidebar();
         });
@@ -1310,6 +1263,10 @@ function saveCust() {
   window.location.href = "../../../index.html";
 });
 
+
+  
+  const STAFF_STORAGE_PREFIX = 'iam_staff_';
+  window.STAFF_STORAGE_PREFIX = STAFF_STORAGE_PREFIX;
 
   function loadFromStorage(key, fallback) {
     try {
@@ -1421,7 +1378,7 @@ function saveCust() {
     showPosToast('បានផ្ញើសារទៅអ្នកគ្រប់គ្រងដោយជោគជ័យ! 📨');
   }
 
-// ========================= 11. Attendance =========================
+
   let attendanceState = loadFromStorage('attendanceState', { checkedIn: false, checkInTime: null });
 
   let attendanceHistory = loadFromStorage('attendanceHistory', [
@@ -1487,7 +1444,7 @@ function saveCust() {
       <div class="border-bottom border-light-subtle py-2">
         <div class="d-flex justify-content-between align-items-start mb-1">
           <span class="fw-semibold text-dark" style="font-size:.85rem;">${r.start} → ${r.end}</span>
-          <span class="badge bg-warning-subtle text-warning-emphasis px-2 py-1" style="font-size:10px;">${r.status}</span>
+          <span class="badge ${r.status === 'បានអនុម័ត' ? 'bg-success-subtle text-success-emphasis' : r.status === 'បានបដិសេធ' ? 'bg-danger-subtle text-danger-emphasis' : 'bg-warning-subtle text-warning-emphasis'} px-2 py-1" style="font-size:10px;">${r.status}</span>
         </div>
         <div class="text-secondary" style="font-size:.8rem;">${r.reason}</div>
       </div>
@@ -1554,7 +1511,14 @@ function saveCust() {
       return;
     }
 
-    leaveRequests.unshift({ start, end, reason, status: 'កំពុងរង់ចាំអនុម័ត' });
+    const staffName = document.getElementById('acc-info-name')?.textContent || 'បុគ្គលិក';
+    leaveRequests.unshift({
+      id: Date.now(),
+      staff: staffName,
+      start, end, reason,
+      status: 'កំពុងរង់ចាំអនុម័ត',
+      submittedAt: new Date().toISOString()
+    });
     saveToStorage('leaveRequests', leaveRequests);
 
     startInput.value = '';
@@ -1581,8 +1545,7 @@ function saveCust() {
   }
 
 
-// Mobile sidebar toggle (kept local to staff.html, no other files touched) -->
-  
+
       (function () {
         const sidebar = document.querySelector('.sidebar');
         const toggleBtn = document.getElementById('sidebarToggleBtn');
@@ -1610,7 +1573,7 @@ function saveCust() {
           });
         });
 
-        // If the window is resized back up to desktop width, make sure the drawer state resets
+       
         window.addEventListener('resize', () => {
           if (window.innerWidth >= 992) closeSidebar();
         });
@@ -1649,7 +1612,7 @@ function saveCust() {
             const keyword = searchInput.value.trim();
             if (!keyword) return;
 
-            // លោតទៅផ្ទាំង "ផលិតផល" ហើយបំពេញពាក្យស្វែងរកឲ្យស្វ័យប្រវត្តិ
+           
             switchToTab('products');
             const posSearchBox = document.getElementById('searchBox');
             if (posSearchBox) {
@@ -1661,7 +1624,7 @@ function saveCust() {
           });
         }
 
-        // ---------- ការជូនដំណឹង (Notifications) — ផ្អែកលើទិន្នន័យស្តុកទាបពិតប្រាកដ ----------
+        
         const bellBtn = document.getElementById('topbarBellBtn');
         const bellCount = document.getElementById('topbarBellCount');
         const notifDropdown = document.getElementById('topbarNotifDropdown');
@@ -1705,22 +1668,45 @@ function saveCust() {
           });
         }
 
-        // ហៅភ្លាមៗ ដើម្បីបង្ហាញលេខ Bell ត្រឹមត្រូវតាំងពីទាំង Dashboard បើកដំបូង
+        
         renderTopbarNotifications();
 
-        // ---------- ប្រូហ្វាល (Profile pill) — ចុចដើម្បីទៅផ្ទាំង "គណនីខ្ញុំ" ----------
+        
         const profilePill = document.getElementById('topbarProfilePill');
         if (profilePill) {
           profilePill.addEventListener('click', () => switchToTab('account'));
         }
 
-        // ធ្វើឲ្យឈ្មោះនៅលើ Topbar ដូចគ្នានឹងឈ្មោះក្នុងផ្ទាំង "គណនីខ្ញុំ" ជានិច្ច
+        
         const topbarProfileName = document.getElementById('topbarProfileName');
         const accInfoName = document.getElementById('acc-info-name');
         if (topbarProfileName && accInfoName) {
           topbarProfileName.textContent = accInfoName.textContent;
         }
 
-        // បិទ popup ទាំងអស់ ពេលចុចនៅកន្លែងផ្សេង
+        
         document.addEventListener('click', () => closeAllTopbarPopups());
+      })();
+
+      
+      (function () {
+        const tabButtons = document.querySelectorAll('#inventoryNavTabs [data-tab-target]');
+        if (tabButtons.length === 0) return;
+
+        tabButtons.forEach(btn => {
+          btn.addEventListener('click', () => {
+            const targetId = btn.getAttribute('data-tab-target');
+            const card = btn.closest('.card');
+            if (!card) return;
+
+            tabButtons.forEach(b => {
+              b.classList.toggle('active', b === btn);
+              b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+            });
+
+            card.querySelectorAll('.tab-pane').forEach(pane => {
+              pane.classList.toggle('d-none', pane.id !== targetId);
+            });
+          });
+        });
       })();

@@ -20,12 +20,825 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
     rel="stylesheet">
+    <style>
+      :root {
+      --blue: #2f6fed;
+      --blue-dark: #1f53c4;
+      --blue-50: #eaf1ff;
+      --ink-900: #111827;
+      --ink-700: #374151;
+      --ink-500: #6b7280;
+      --ink-300: #9ca3af;
+      --line: #e5e7eb;
+      --bg: #f6f7fb;
+      --panel: #ffffff;
+      --green: #16a34a;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --shadow: 0 1px 2px rgba(17, 24, 39, .03), 0 6px 20px -10px rgba(17, 24, 39, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink-900);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .main {
+      flex: 1 1 auto;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      height: 64px;
+      flex: 0 0 64px;
+      background: #fff;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 26px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .store-pick {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .store-pick .ic {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--blue-50);
+      color: var(--blue-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .store-pick .nm {
+      font-size: 13.5px;
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .store-pick .id {
+      font-size: 11px;
+      color: var(--ink-300);
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+
+    .store-pick i.chev {
+      color: var(--ink-300);
+      margin-left: 2px;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-500);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .icon-btn .dot {
+      position: absolute;
+      top: 6px;
+      right: 7px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #ef4444;
+      border: 2px solid #fff;
+    }
+
+    .page {
+      padding: 26px 30px 60px;
+      max-width: 1280px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .page-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .page-head h1 {
+      font-size: 23px;
+      font-weight: 800;
+      margin: 0 0 4px;
+    }
+
+    .page-head p {
+      font-size: 13.5px;
+      color: var(--ink-500);
+      margin: 0;
+    }
+
+    .btn-save {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 11px 18px;
+      font-size: 13.5px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+      cursor: pointer;
+      box-shadow: 0 10px 22px -12px rgba(47, 111, 237, .6);
+    }
+
+    .btn-save:hover {
+      background: var(--blue-dark);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 4px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 24px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      padding: 10px 16px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--ink-500);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+    }
+
+    .tab-btn:hover {
+      color: var(--ink-900);
+    }
+
+    .tab-btn.active {
+      color: var(--blue);
+      border-color: var(--blue);
+      font-weight: 700;
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width:960px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15.5px;
+      font-weight: 800;
+      margin: 0 0 18px;
+    }
+
+    .card-title .ic {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      background: var(--blue-50);
+      color: var(--blue-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .form-row.single {
+      grid-template-columns: 1fr;
+    }
+
+    @media (max-width:640px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label.field-label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--ink-700);
+      margin-bottom: 6px;
+    }
+
+    .field-hint {
+      font-size: 11.5px;
+      color: var(--ink-300);
+      margin-top: 5px;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=tel],
+    input[type=password],
+    input[type=date],
+    input[type=time],
+    input[type=number],
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 13.5px;
+      font-family: inherit;
+      color: var(--ink-900);
+      background: #fff;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-50);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .logo-box {
+      width: 64px;
+      height: 64px;
+      border-radius: 12px;
+      border: 1.5px solid var(--line);
+      background: #fafbfd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink-300);
+      font-size: 20px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .logo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .logo-meta .t {
+      font-size: 15 px;
+      font-weight: 700;
+    }
+
+    .logo-meta .s {
+      font-size: 15px;
+      color: var(--ink-300);
+      margin: 2px 0 8px;
+    }
+
+    .btn-ghost {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 7px;
+      padding: 5px 10px;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--ink-700);
+      cursor: pointer;
+    }
+
+    .btn-link-danger {
+      border: none;
+      background: none;
+      color: #dc2626;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .toggle-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .toggle-row:first-child {
+      padding-top: 0;
+    }
+
+    .toggle-row .t {
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .toggle-row .s {
+      font-size: 12px;
+      color: var(--ink-500);
+      margin-top: 2px;
+    }
+
+    .switch {
+      position: relative;
+      width: 42px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .switch .slider {
+      position: absolute;
+      inset: 0;
+      background: #d1d5db;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: .15s;
+    }
+
+    .switch .slider:before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: .15s;
+    }
+
+    .switch input:checked+.slider {
+      background: var(--blue);
+    }
+
+    .switch input:checked+.slider:before {
+      transform: translateX(18px);
+    }
+
+    .bh-row {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bh-row:last-child {
+      border-bottom: none;
+    }
+
+    .bh-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .bh-top .day {
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    .bh-times {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .bh-times input {
+      padding: 8px 10px;
+      font-size: 12.5px;
+    }
+
+    .bh-times .sep {
+      color: var(--ink-300);
+      font-size: 12px;
+    }
+
+    .bh-times.disabled input {
+      background: #f3f4f6;
+      color: var(--ink-300);
+    }
+
+    .tbl-wrap {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      background: #fafbfd;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+      color: var(--ink-500);
+      font-weight: 700;
+      padding: 11px 16px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+    }
+
+    tbody td {
+      padding: 12px 16px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: middle;
+    }
+
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .pill.ok {
+      background: #e7f8ef;
+      color: #1b8a54;
+    }
+
+    .pill.warn {
+      background: #fff4e5;
+      color: #b96c11;
+    }
+
+    .pill.bad {
+      background: #fdeaea;
+      color: #c13333;
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+      gap: 12px;
+    }
+
+    .swatch {
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 10px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .swatch.active {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px var(--blue-50);
+    }
+
+    .swatch .dot {
+      width: 100%;
+      height: 34px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .swatch .lbl {
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, .45);
+      z-index: 29;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease;
+    }
+
+    .sidebar-overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    @media (max-width:900px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 30;
+        transform: translateX(-100%);
+        transition: transform .2s ease;
+        box-shadow: 0 20px 50px -20px rgba(17, 24, 39, .4);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-overlay {
+        display: block;
+      }
+
+      .store-pick .id {
+        display: none;
+      }
+
+      .page {
+        padding: 18px 16px 50px;
+      }
+
+      .topbar {
+        padding: 0 14px;
+      }
+
+      .page-head {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-save {
+        align-self: flex-start;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+
+    @media (max-width:640px) {
+      .store-pick .nm {
+        max-width: 120px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .top-actions {
+        gap: 6px;
+      }
+
+      .form-row {
+        gap: 14px;
+      }
+
+      .grid-3 {
+        gap: 12px;
+      }
+
+      .tbl-wrap {
+        overflow-x: auto;
+      }
+
+      .tbl-wrap table {
+        min-width: 520px;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(17, 24, 39, .5);
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.show {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 30px 70px -20px rgba(17, 24, 39, .4);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal-head h3 {
+      font-size: 16px;
+      font-weight: 800;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-close {
+      border: none;
+      background: #f4f5f9;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      color: var(--ink-500);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-body {
+      padding: 20px 22px;
+    }
+
+    .modal-foot {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 16px 22px;
+      border-top: 1px solid var(--line);
+    }
+
+    .field-error {
+      font-size: 11.5px;
+      color: #dc2626;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .field-error.show {
+      display: block;
+    }
+
+    .toast-lite {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: var(--ink-900);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 12px 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: .2s ease;
+    }
+
+    .toast-lite.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .toast-lite i {
+      color: #3fcb94;
+    }
+    </style>
     
 </head>
 
 <body>
   <div class="d-flex flex-lg-row flex-column">
-    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style="width:250px; flex-shrink:0;">
+    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style=" flex-shrink:0;">
       <div class="d-flex align-items-center gap-2 px-2 mb-4">
         <div class="d-flex gap-2">
           <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
@@ -39,35 +852,36 @@
       <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">
         Main</div>
       <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
-              class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
-              class="bi bi-people-fill"></i> Employee Management</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
-              class="bi bi-box-seam-fill"></i> Product Management</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
-              class="bi bi-boxes"></i> Inventory Management</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
-              class="bi bi-cart-check-fill"></i> Sales Management</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i
-              class="bi bi-truck"></i> Purchase Management</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i
-              class="bi bi-calculator-fill"></i> Accounting</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
-              class="bi bi-bar-chart-line-fill"></i> Reports</a></li>
-        <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="Settings.html"><i
-              class="bi bi-gear-fill"></i> Settings</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
-              class="bi bi-box-arrow-right"></i> Log Out</a></li>
-
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+        <li class="nav-item">
+          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false" aria-controls="attendanceSubmenu1">
+            <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+          </ul>
+        </li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i>ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
+          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="Settings.html"><i class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+          
       </ul>
 
       <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
         <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
       </div>
     </aside>
-
-    <!-- ============ OFFCANVAS SIDEBAR (mobile / tablet, below lg) ============ -->
+             <!-- offcanvas-headeroffcanvas-header -->
     <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
       <div class="offcanvas-header">
         <div class="d-flex align-items-center gap-2">
@@ -88,28 +902,31 @@
       <div class="offcanvas-body p-3">
         <div class="text-uppercase small text-secondary fw-bold px-2 mb-2"
           style="letter-spacing:.08em; font-size:.7rem;">Main</div>
-        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenuOff">
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
-                class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
-                class="bi bi-people-fill"></i> Employee Management</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
-                class="bi bi-box-seam-fill"></i> Product Management</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
-                class="bi bi-boxes"></i> Inventory Management</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
-                class="bi bi-cart-check-fill"></i> Sales Management</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i
-                class="bi bi-truck"></i> Purchase Management</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i
-                class="bi bi-calculator-fill"></i> Accounting</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
-                class="bi bi-bar-chart-line-fill"></i> Reports</a></li>
-          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="Settings.html"><i
-                class="bi bi-gear-fill"></i> Settings</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
-                class="bi bi-box-arrow-right"></i> Log Out</a></li>
-        </ul>
+        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+        <li class="nav-item">
+          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false" aria-controls="attendanceSubmenu1">
+            <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+          </ul>
+        </li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i>ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
+          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="Settings.html"><i class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+          
+      </ul>
 
         <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
           <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
@@ -146,8 +963,7 @@
         </div>
       </nav>
 
-      <!-- ================= MAIN ================= -->
-      <div class="main">
+     <div class="main">
 
 
         <div class="page">
@@ -168,10 +984,9 @@
             <button class="tab-btn" data-tab="tax">ពន្ធ &amp; បង្កាន់ដៃ</button>
             <button class="tab-btn" data-tab="users">អ្នកប្រើប្រាស់ &amp; តួនាទី</button>
             <button class="tab-btn" data-tab="notifications">ការជូនដំណឹង</button>
+            <button class="tab-btn" data-tab="audit">កំណត់ត្រាសវនកម្ម</button>
             
           </nav>
-
-          <!-- ============ GENERAL ============ -->
           <section class="panel active" id="panel-general">
             <div class="grid-2">
               <div>
@@ -260,7 +1075,6 @@
             </div>
           </section>
 
-          <!-- ============ STORE PROFILE ============ -->
           <section class="panel" id="panel-profile">
             <div class="grid-2">
               <div>
@@ -362,7 +1176,6 @@
             </div>
           </section>
 
-          <!-- ============ BRANCH MANAGEMENT ============ -->
           <section class="panel" id="panel-branch">
             <div class="card">
               <div class="card-title"><span class="ic"><i class="bi bi-diagram-3-fill"></i></span> សាខា</div>
@@ -407,7 +1220,6 @@
             </div>
           </section>
 
-          <!-- ============ PAYMENT METHODS ============ -->
           <section class="panel" id="panel-payment">
             <div class="grid-2">
               <div>
@@ -473,8 +1285,6 @@
               </div>
             </div>
           </section>
-
-          <!-- ============ TAXES & RECEIPTS ============ -->
           <section class="panel" id="panel-tax">
             <div class="grid-2">
               <div>
@@ -520,8 +1330,6 @@
               </div>
             </div>
           </section>
-
-          <!-- ============ USERS & ROLES ============ -->
           <section class="panel" id="panel-users">
             <div class="card">
               <div class="card-title"><span class="ic"><i class="bi bi-person-vcard-fill"></i></span>
@@ -570,8 +1378,7 @@
                   បន្ថែមតួនាទីផ្ទាល់ខ្លួន</button></div>
             </div>
           </section>
-
-          <!-- ============ NOTIFICATIONS ============ -->
+          <!-- ==============notifications============= -->
           <section class="panel" id="panel-notifications">
             <div class="grid-2">
               <div>
@@ -621,8 +1428,63 @@
               </div>
             </div>
           </section>
-
-          <!-- ============ AUDIT LOG ============ -->
+          <!-- ==============backup============= -->
+          <section class="panel" id="panel-backup">
+            <div class="grid-2">
+              <div>
+                <div class="card">
+                  <div class="card-title"><span class="ic"><i class="bi bi-cloud-arrow-up-fill"></i></span> បម្រុងទុក
+                    &amp; ស្តារមូលដ្ឋានទិន្នន័យឡើងវិញ</div>
+                  <div class="toggle-row">
+                    <div>
+                      <div class="t">ការបម្រុងទុកស្វ័យប្រវត្តិប្រចាំថ្ងៃ</div>
+                      <div class="s">ដំណើរការរាល់យប់ម៉ោង ២:០០ ព្រឹក</div>
+                    </div><label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                  </div>
+                  <div style="display:flex; gap:10px; margin-top:16px; flex-wrap:wrap;">
+                    <button class="btn-save" style="box-shadow:none;"><i class="bi bi-cloud-arrow-down-fill"></i>
+                      បម្រុងទុកឥឡូវនេះ</button>
+                    <button class="btn-ghost"><i class="bi bi-arrow-counterclockwise"></i> ស្តារពីឯកសារ</button>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="card">
+                  <div class="card-title"><span class="ic"><i class="bi bi-clock-history"></i></span> ការបម្រុងទុកថ្មីៗ
+                  </div>
+                  <div class="tbl-wrap">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>កាលបរិច្ឆេទ</th>
+                          <th>ទំហំ</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>25-07-2026, 02:00 ព្រឹក</td>
+                          <td>84 MB</td>
+                          <td><span class="pill ok">រួចរាល់</span></td>
+                        </tr>
+                        <tr>
+                          <td>24-07-2026, 02:00 ព្រឹក</td>
+                          <td>83 MB</td>
+                          <td><span class="pill ok">រួចរាល់</span></td>
+                        </tr>
+                        <tr>
+                          <td>23-07-2026, 02:00 ព្រឹក</td>
+                          <td>81 MB</td>
+                          <td><span class="pill ok">រួចរាល់</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- ==============audit============= -->
           <section class="panel" id="panel-audit">
             <div class="card">
               <div class="card-title"><span class="ic"><i class="bi bi-journal-text"></i></span> កំណត់ត្រាសវនកម្ម</div>
@@ -666,12 +1528,52 @@
               </div>
             </div>
           </section>
+          <!-- ==============theme============= -->
+          <section class="panel" id="panel-theme">
+            <div class="card">
+              <div class="card-title"><span class="ic"><i class="bi bi-palette-fill"></i></span> ការកំណត់រូបរាង</div>
+              <label class="field-label" style="margin-bottom:12px;">ពណ៌សំខាន់</label>
+              <div class="swatch-grid" id="swatchGrid">
+                <div class="swatch active" data-color="#2f6fed">
+                  <div class="dot" style="background:#2f6fed"></div>
+                  <div class="lbl">ខៀវ</div>
+                </div>
+                <div class="swatch" data-color="#1fae73">
+                  <div class="dot" style="background:#1fae73"></div>
+                  <div class="lbl">បៃតង</div>
+                </div>
+                <div class="swatch" data-color="#f08a24">
+                  <div class="dot" style="background:#f08a24"></div>
+                  <div class="lbl">ទឹកក្រូច</div>
+                </div>
+                <div class="swatch" data-color="#c9971e">
+                  <div class="dot" style="background:#c9971e"></div>
+                  <div class="lbl">មាស</div>
+                </div>
+                <div class="swatch" data-color="#7c3aed">
+                  <div class="dot" style="background:#7c3aed"></div>
+                  <div class="lbl">ស្វាយ</div>
+                </div>
+              </div>
+              <div class="toggle-row" style="margin-top:8px;">
+                <div>
+                  <div class="t">របៀបងងឹត</div>
+                  <div class="s">ប្តូរចំណុចប្រទាក់ទៅផ្ទៃខាងក្រោយងងឹត</div>
+                </div><label class="switch"><input type="checkbox"><span class="slider"></span></label>
+              </div>
+              <div class="toggle-row">
+                <div>
+                  <div class="t">ភាពតឹងតែងបង្ហាញ</div>
+                  <div class="s">កាត់បន្ថយគម្លាតដើម្បីបង្ហាញបានច្រើននៅលើអេក្រង់</div>
+                </div><label class="switch"><input type="checkbox"><span class="slider"></span></label>
+              </div>
+            </div>
+          </section>
 
         </div>
       </div>
   </div>
 
-  <!-- ================= ADD CUSTOM ROLE MODAL ================= -->
   <div class="modal-overlay" id="roleModalOverlay">
     <div class="modal-box">
       <div class="modal-head">
@@ -738,7 +1640,6 @@
     </div>
   </div>
 
-  <!-- ================= ADD NEW BRANCH MODAL ================= -->
   <div class="modal-overlay" id="branchModalOverlay">
     <div class="modal-box">
       <div class="modal-head">
@@ -788,6 +1689,205 @@
   </main>
   <script src="/assest/js/setting.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script>
+     // ---- Tab switching ----
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+
+    // ---- Business hours (Store Profile tab) ----
+    const HOURS = [
+      { day: 'ថ្ងៃច័ន្ទ', on: true, from: '08:00 ព្រឹក', to: '05:00 ល្ងាច' },
+      { day: 'ថ្ងៃអង្គារ', on: true, from: '08:00 ព្រឹក', to: '05:00 ល្ងាច' },
+      { day: 'ថ្ងៃពុធ', on: true, from: '08:00 ព្រឹក', to: '05:00 ល្ងាច' },
+      { day: 'ថ្ងៃព្រហស្បតិ៍', on: true, from: '08:00 ព្រឹក', to: '05:00 ល្ងាច' },
+      { day: 'ថ្ងៃសុក្រ', on: true, from: '08:00ព្រឹក', to: '05:00 ល្ងាច' },
+      { day: 'ថ្ងៃសៅរ៍', on: true, from: '10:00 ព្រឹក', to: '05:00 ល្ងាច' },
+      { day: 'ថ្ងៃអាទិត្យ', on: false, from: '10:00 ព្រឹក', to: '05:00 ល្ងាច' },
+    ];
+    const hoursList = document.getElementById('hoursList');
+    hoursList.innerHTML = HOURS.map((h, i) => `
+    <div class="bh-row">
+      <div class="bh-top">
+        <span class="day">${h.day}</span>
+        <label class="switch"><input type="checkbox" ${h.on ? 'checked' : ''} data-day="${i}"><span class="slider"></span></label>
+      </div>
+      <div class="bh-times ${h.on ? '' : 'disabled'}" id="bh-times-${i}">
+        <input type="text" value="${h.from}" ${h.on ? '' : 'disabled'}>
+        <span class="sep">–</span>
+        <input type="text" value="${h.to}" ${h.on ? '' : 'disabled'}>
+      </div>
+    </div>
+  `).join('');
+    hoursList.querySelectorAll('input[data-day]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        const wrap = document.getElementById('bh-times-' + cb.dataset.day);
+        wrap.classList.toggle('disabled', !cb.checked);
+        wrap.querySelectorAll('input').forEach(inp => inp.disabled = !cb.checked);
+      });
+    });
+
+    // ---- Add New Branch modal ----
+    const branchOverlay = document.getElementById('branchModalOverlay');
+    const addBranchBtn = document.getElementById('addBranchBtn');
+    const branchCancelBtn = document.getElementById('branchCancelBtn');
+    const branchModalClose = document.getElementById('branchModalClose');
+    const branchSaveBtn = document.getElementById('branchSaveBtn');
+    const branchNameInput = document.getElementById('branchName');
+    const branchNameError = document.getElementById('branchNameError');
+    const branchesTbody = document.getElementById('branchesTbody');
+
+    const STATUS_META = {
+      ok: { icon: 'bi-check-circle-fill', label: 'សកម្ម' },
+      warn: { icon: 'bi-exclamation-triangle-fill', label: 'កំពុងរៀបចំ' },
+      bad: { icon: 'bi-x-circle-fill', label: 'អសកម្ម' },
+    };
+    let nextStoreId = 8851;
+
+    function openBranchModal() {
+      branchOverlay.classList.add('show');
+      branchNameInput.value = '';
+      document.getElementById('branchStoreId').value = '';
+      document.getElementById('branchManager').value = '';
+      document.getElementById('branchStatus').value = 'warn';
+      branchNameError.classList.remove('show');
+      setTimeout(() => branchNameInput.focus(), 50);
+    }
+    function closeBranchModal() { branchOverlay.classList.remove('show'); }
+
+    addBranchBtn.addEventListener('click', openBranchModal);
+    branchCancelBtn.addEventListener('click', closeBranchModal);
+    branchModalClose.addEventListener('click', closeBranchModal);
+    branchOverlay.addEventListener('click', (e) => { if (e.target === branchOverlay) closeBranchModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && branchOverlay.classList.contains('show')) closeBranchModal(); });
+
+    function wireManageButtons() {
+      branchesTbody.querySelectorAll('button.btn-ghost').forEach(btn => {
+        if (btn.dataset.wired) return;
+        btn.dataset.wired = '1';
+        btn.addEventListener('click', () => {
+          const row = btn.closest('tr');
+          const name = row.querySelector('td.t').textContent;
+          showToast(`គ្រប់គ្រង "${name}" — មកដល់ឆាប់ៗនេះ`);
+        });
+      });
+    }
+    wireManageButtons();
+
+    branchSaveBtn.addEventListener('click', () => {
+      const name = branchNameInput.value.trim();
+      if (!name) {
+        branchNameError.classList.add('show');
+        branchNameInput.focus();
+        return;
+      }
+      branchNameError.classList.remove('show');
+
+      let storeId = document.getElementById('branchStoreId').value.trim();
+      if (!storeId) { storeId = '#' + (nextStoreId++); }
+      else if (!storeId.startsWith('#')) { storeId = '#' + storeId; }
+
+      const manager = document.getElementById('branchManager').value.trim() || 'មិនទាន់កំណត់';
+      const statusKey = document.getElementById('branchStatus').value;
+      const meta = STATUS_META[statusKey];
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+      <td class="t">${name.replace(/</g, '&lt;')}</td>
+      <td>${storeId.replace(/</g, '&lt;')}</td>
+      <td>${manager.replace(/</g, '&lt;')}</td>
+      <td><span class="pill ${statusKey}"><i class="bi ${meta.icon}"></i> ${meta.label}</span></td>
+      <td><button class="btn-ghost">គ្រប់គ្រង</button></td>
+    `;
+      branchesTbody.appendChild(tr);
+      wireManageButtons();
+
+      closeBranchModal();
+      showToast(`សាខា "${name}" ត្រូវបានបន្ថែម`);
+    });
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      t.classList.add('show');
+      clearTimeout(window._toastT);
+      window._toastT = setTimeout(() => { t.classList.remove('show'); document.getElementById('toastMsg').textContent = 'បានរក្សាទុកការផ្លាស់ប្តូរ'; }, 2600);
+    }
+
+    // ---- Add Custom Role modal ----
+    const roleOverlay = document.getElementById('roleModalOverlay');
+    const addRoleBtn = document.getElementById('addRoleBtn');
+    const roleCancelBtn = document.getElementById('roleCancelBtn');
+    const roleModalClose = document.getElementById('roleModalClose');
+    const roleSaveBtn = document.getElementById('roleSaveBtn');
+    const roleNameInput = document.getElementById('roleName');
+    const roleNameError = document.getElementById('roleNameError');
+    const rolesTbody = document.getElementById('rolesTbody');
+
+    const PILL_LABEL = { ok: 'ពេញលេញ', warn: 'មើលបានតែប៉ុណ្ណោះ', bad: 'គ្មាន' };
+
+    function openRoleModal() {
+      roleOverlay.classList.add('show');
+      roleNameInput.value = '';
+      document.getElementById('roleUsers').value = 0;
+      ['rolePermSales', 'rolePermInventory', 'rolePermReports', 'rolePermSettings'].forEach(id => {
+        document.getElementById(id).value = 'bad';
+      });
+      roleNameError.classList.remove('show');
+      setTimeout(() => roleNameInput.focus(), 50);
+    }
+    function closeRoleModal() { roleOverlay.classList.remove('show'); }
+
+    addRoleBtn.addEventListener('click', openRoleModal);
+    roleCancelBtn.addEventListener('click', closeRoleModal);
+    roleModalClose.addEventListener('click', closeRoleModal);
+    roleOverlay.addEventListener('click', (e) => { if (e.target === roleOverlay) closeRoleModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && roleOverlay.classList.contains('show')) closeRoleModal(); });
+
+    roleSaveBtn.addEventListener('click', () => {
+      const name = roleNameInput.value.trim();
+      if (!name) {
+        roleNameError.classList.add('show');
+        roleNameInput.focus();
+        return;
+      }
+      roleNameError.classList.remove('show');
+
+      const users = document.getElementById('roleUsers').value || 0;
+      const perms = ['rolePermSales', 'rolePermInventory', 'rolePermReports', 'rolePermSettings']
+        .map(id => document.getElementById(id).value);
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+      <td class="t">${name.replace(/</g, '&lt;')}</td>
+      <td>${users}</td>
+      ${perms.map(p => `<td><span class="pill ${p}">${PILL_LABEL[p]}</span></td>`).join('')}
+    `;
+      rolesTbody.appendChild(tr);
+
+      closeRoleModal();
+      const t = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = `តួនាទី "${name}" ត្រូវបានបន្ថែម`;
+      t.classList.add('show');
+      clearTimeout(window._toastT);
+      window._toastT = setTimeout(() => { t.classList.remove('show'); document.getElementById('toastMsg').textContent = 'បានរក្សាទុកការផ្លាស់ប្តូរ'; }, 2600);
+    });
+
+    // ---- Save button toast ----
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      clearTimeout(window._toastT);
+      window._toastT = setTimeout(() => t.classList.remove('show'), 2400);
+    });
+  </script>
 </body>
 
 </html>

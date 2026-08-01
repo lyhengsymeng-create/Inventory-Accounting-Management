@@ -43,17 +43,52 @@ body {
 /* ---------------- Sidebar (fixed, does not scroll with page) ---------------- */
 .sidebar {
   background: linear-gradient(180deg, var(--navy-2), var(--navy-1));
-  height: 100vh;
+  height: 100vh ;
+  width: 290px !important;
   position: fixed;
   top: 0;
   left: 0;
   overflow-y: auto;
   z-index: 1030;
+
+  /* slim, themed scrollbar (Firefox) */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, .25) transparent;
+}
+
+/* slim, themed scrollbar (WebKit / Chrome / Edge) */
+.sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, .25);
+  border-radius: 999px;
+}
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, .4);
+}
+
+.offcanvas.offcanvas-start {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, .25) transparent;
+}
+.offcanvas.offcanvas-start::-webkit-scrollbar {
+  width: 6px;
+}
+.offcanvas.offcanvas-start::-webkit-scrollbar-track {
+  background: transparent;
+}
+.offcanvas.offcanvas-start::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, .25);
+  border-radius: 999px;
 }
 
 /* pushes the main content right so it isn't hidden under the fixed sidebar */
 .main-offset {
-  margin-left: 250px;
+  margin-left: 290px;
 }
 
 .sidebar .nav-link {
@@ -78,7 +113,7 @@ body {
 .offcanvas.offcanvas-start {
   background: linear-gradient(180deg, var(--navy-2), var(--navy-1));
   color: #fff;
-  width: 270px;
+  width: 290px;
 }
 
 .offcanvas .btn-close {
@@ -362,4 +397,74 @@ body {
   .sticky-nav .rounded-pill div[style*="0.7rem"] {
     font-size: .6rem;
   }
+}
+/* ---------------- Sidebar submenu (collapsible groups, e.g. Attendance) ---------------- */
+.sidebar .nav-link.submenu-toggle,
+.offcanvas .nav-link.submenu-toggle {
+  width: 100%;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.sidebar .nav-link.submenu-toggle .ai-badge,
+.offcanvas .nav-link.submenu-toggle .ai-badge {
+  background: var(--violet);
+  color: #fff;
+  font-size: .6rem;
+  font-weight: 700;
+  padding: .12rem .4rem;
+  letter-spacing: .03em;
+}
+
+.sidebar .submenu-chevron,
+.offcanvas .submenu-chevron {
+  transition: transform .2s ease;
+  font-size: .75rem;
+  color: #a9acc6;
+}
+
+.sidebar .nav-link.submenu-toggle[aria-expanded="true"] .submenu-chevron,
+.offcanvas .nav-link.submenu-toggle[aria-expanded="true"] .submenu-chevron {
+  transform: rotate(180deg);
+}
+
+.sidebar .submenu,
+.offcanvas .submenu {
+  list-style: none;
+  padding-left: 0;
+  margin: .25rem 0 0;
+}
+
+.sidebar .submenu .nav-link,
+.offcanvas .submenu .nav-link {
+  padding: .5rem .9rem .5rem 2.4rem;
+  font-size: .85rem;
+  font-weight: 600;
+  color: #a9acc6;
+  position: relative;
+}
+
+.sidebar .submenu .nav-link:hover,
+.offcanvas .submenu .nav-link:hover {
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+}
+
+.sidebar .submenu .nav-link.active,
+.offcanvas .submenu .nav-link.active {
+  background: rgba(79, 70, 229, .25);
+  color: #fff;
+}
+
+.sidebar .submenu .nav-link.active::before,
+.offcanvas .submenu .nav-link.active::before {
+  content: "";
+  position: absolute;
+  left: 1.15rem;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translateY(-50%);
 }

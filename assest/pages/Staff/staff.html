@@ -801,7 +801,6 @@
               <h2 class="card-title">បញ្ជីផលិតផលទាំងអស់</h2>
               <div class="card-tools">
                 <input type="text" id="searchInput" class="search-input" placeholder="ស្វែងរក...">
-                <button class="btn btn-accent" id="openAddBtn"><i class="fa-solid fa-plus"></i>បន្ថែមផលិតផល</button>
               </div>
             </div>
 
@@ -823,7 +822,6 @@
                   <th>តម្លៃលក់</th>
                   <th>ស្តុក</th>
                   <th>ស្ថានភាព</th>
-                  <th style="width:140px;"></th>
                 </tr>
               </thead>
               <tbody id="productsTbody"></tbody>
@@ -833,43 +831,61 @@
         </div>
  <!-- ============ TAB: inventory ============ -->
     <div id="tab-inventory" class="tab-content">
-          <div class="card shadow-sm border-0 bg-white rounded-3 mb-4">
-            <div class="card-header bg-light/50 py-3 d-flex justify-content-between align-items-center flex-wrap gap-2 border-bottom-0">
-              <h6 class="mb-0 fw-bold text-secondary font-khmer">ស្ថានភាពស្តុក</h6>
-              <input type="text" id="inventorySearchInput" class="form-control form-control-sm font-khmer" style="max-width:220px;" placeholder="ស្វែងរក...">
-            </div>
-            <div class="table-responsive">
-              <table id="inventoryTable" class="table table-hover align-middle mb-0">
-                <thead class="table-light text-uppercase fs-7 text-muted font-khmer">
-                  <tr>
-                    <th>ឈ្មោះ</th>
-                    <th>ប្រភេទ</th>
-                    <th>តម្លៃលក់</th>
-                    <th>ស្តុក</th>
-                    <th>ស្ថានភាព</th>
-                  </tr>
-                </thead>
-                <tbody id="inventoryTbody"></tbody>
-              </table>
-            </div>
-          </div>
           <div class="card shadow-sm border-0 bg-white rounded-3">
-            <div class="card-header bg-light/50 py-3 border-bottom-0">
-              <h6 class="mb-0 fw-bold text-secondary font-khmer">ប្រវត្តិផ្លាស់ប្តូរស្តុក (បញ្ជីថ្មីៗ)</h6>
+            <div class="card-header bg-light/50 pt-3 pb-0 border-bottom-0">
+              <ul class="nav nav-tabs border-0 font-khmer" id="inventoryNavTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active fw-bold" id="stockStatusTab" data-tab-target="stockStatusPane" type="button" role="tab" aria-controls="stockStatusPane" aria-selected="true">
+                    ស្ថានភាពស្តុក
+                  </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link fw-bold" id="stockHistoryTab" data-tab-target="stockHistoryPane" type="button" role="tab" aria-controls="stockHistoryPane" aria-selected="false">
+                    ប្រវត្តិផ្លាស់ប្តូរស្តុក (បញ្ជីថ្មីៗ)
+                  </button>
+                </li>
+              </ul>
             </div>
-            <div class="table-responsive">
-              <table id="stockHistoryTable" class="table table-hover align-middle mb-0">
-                <thead class="table-light text-uppercase fs-7 text-muted font-khmer">
-                  <tr>
-                    <th>ផលិតផល</th>
-                    <th>ប្រភេទ</th>
-                    <th>ចំនួន</th>
-                    <th>បុគ្គលិក</th>
-                    <th>ពេលវេលា</th>
-                  </tr>
-                </thead>
-                <tbody id="stockHistoryTbody"></tbody>
-              </table>
+
+            <div class="tab-pane-content">
+              <!-- ស្ថានភាពស្តុក -->
+              <div class="tab-pane" id="stockStatusPane" role="tabpanel" aria-labelledby="stockStatusTab">
+                <div class="d-flex justify-content-end p-3 pb-0">
+                  <input type="text" id="inventorySearchInput" class="form-control form-control-sm font-khmer" style="max-width:220px;" placeholder="ស្វែងរក...">
+                </div>
+                <div class="table-responsive">
+                  <table id="inventoryTable" class="table table-hover align-middle mb-0">
+                    <thead class="table-light text-uppercase fs-7 text-muted font-khmer">
+                      <tr>
+                        <th>ឈ្មោះ</th>
+                        <th>ប្រភេទ</th>
+                        <th>តម្លៃលក់</th>
+                        <th>ស្តុក</th>
+                        <th>ស្ថានភាព</th>
+                      </tr>
+                    </thead>
+                    <tbody id="inventoryTbody"></tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- ប្រវត្តិផ្លាស់ប្តូរស្តុក (បញ្ជីថ្មីៗ) -->
+              <div class="tab-pane d-none" id="stockHistoryPane" role="tabpanel" aria-labelledby="stockHistoryTab">
+                <div class="table-responsive">
+                  <table id="stockHistoryTable" class="table table-hover align-middle mb-0">
+                    <thead class="table-light text-uppercase fs-7 text-muted font-khmer">
+                      <tr>
+                        <th>ផលិតផល</th>
+                        <th>ប្រភេទ</th>
+                        <th>ចំនួន</th>
+                        <th>បុគ្គលិក</th>
+                        <th>ពេលវេលា</th>
+                      </tr>
+                    </thead>
+                    <tbody id="stockHistoryTbody"></tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
