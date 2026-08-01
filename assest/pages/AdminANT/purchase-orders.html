@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="/assest/css/cheatDBAdmin.css">
+  <link rel="stylesheet" href="/assest/css/lymengPurchase.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="d-flex flex-lg-row flex-column">
+    <!-- ============ SIDEBAR fixed (sticky, desktop only, lg and up) ============ -->
+    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style="width:250px; flex-shrink:0;">
+      <div class="d-flex align-items-center gap-2 px-2 mb-4">
+        <div class="d-flex gap-2">
+          <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
+          <div>
+            <div class="fw-bold text-white ">IAM System</div>
+            <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">
+        Main</div>
+      <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
+              class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
+              class="bi bi-people-fill"></i> Employee Management</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+              class="bi bi-box-seam-fill"></i> Product Management</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
+              class="bi bi-boxes"></i> Inventory Management</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+              class="bi bi-cart-check-fill"></i> Sales Management</a></li>
+
+       
+        <li class="nav-item  active open ">
+          <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
+            <i class="bi bi-truck"></i>
+            <span>Purchase Management</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </a>
+          <ul class="nav-sub collapse show " type="button" id="collapseExample">
+            <li class="nav-item">
+              <a class="nav-link" href="purchase-request.html">ស្នើសុំការទិញ</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="purchase-orders.html">ការបញ្ជាទិញ</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញដែលកំពុងរងចាំ</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="P-ReceivedPurchaseOrders.html">ការបញ្ជាទិញដែលទទួលបាន</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="P-SupplierInvoices.html">វិក្កយបត្រពីអ្នកផ្គត់ផ្គង់</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseReturns.html">ការត្រឡប់ទំនិញ</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="P-SupplierPayments.html">ការទូទាត់ទៅអ្នកផ្គត់ផ្គង់</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item  active open show ">
+           <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
+            <i class="bi bi-truck"></i>
+            <span>Accounting</span>
+            <i class="bi bi-chevron-right nav-arrow"></i>
+          </a>
+          <ul class="nav-sub collapse show " type="button" id="collapseExample">
+            <li class="nav-item active">
+              <a href="extended-ui-record-income.html" class="nav-link">កំណត់ត្រា - ប្រាក់ចំណូល   </a>
+            </li>
+            <li class="nav-item">
+              <a href="extended-ui-Record-Expenses.html" class="nav-link">កំណត់ត្រា - ចំណាយ
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="extended-ui-Profit-Loss-Report.html" class="nav-link">របាយការណ៍ប្រាក់ចំណូលនិងចំណាយ
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="extended-ui-Cash-Flow-Report.html" class="nav-link">របាយការណ៍សារពើភ័ណ្ឌ
+              
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
+              class="bi bi-bar-chart-line-fill"></i> Reports</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
+              class="bi bi-gear-fill"></i> Settings</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="#"><i
+              class="bi bi-box-arrow-right"></i> Log Out</a></li>
+
+      </ul>
+
+      <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
+        <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
+      </div>
+    </aside>
+
+    <!-- ============ OFFCANVAS SIDEBAR (mobile / tablet, below lg) ============ -->
+    <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
+      <div class="offcanvas-header">
+        <div class="d-flex align-items-center gap-2">
+          <div class="bg-violet rounded-3 d-flex align-items-center justify-content-center"
+            style="width:34px;height:34px;">
+            <i class="bi bi-bar-chart-fill"></i>
+          </div>
+          <div>
+            <div class="fw-bold text-white">ខ្មែរដាស</div>
+            <div class="km small text-secondary" style="font-size:.7rem;">ប្រព័ន្ធគ្រប់គ្រង</div>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body p-3">
+        <div class="text-uppercase small text-secondary fw-bold px-2 mb-2"
+          style="letter-spacing:.08em; font-size:.7rem;">Main</div>
+        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenuOff">
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
+                class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
+                class="bi bi-people-fill"></i> Employee Management</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+                class="bi bi-box-seam-fill"></i> Product Management</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
+                class="bi bi-boxes"></i> Inventory Management</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+                class="bi bi-cart-check-fill"></i> Sales Management</a></li>
+
+          <li class="nav-item active open ">
+            <a href="javascript:void(0)" class="nav-link d-flex align-items-center gap-2 nav-link nav-toggle">
+              <i class="bi bi-truck"></i>
+              <span>Purchase Management</span>
+              <i class="bi bi-chevron-right nav-arrow"></i>
+            </a>
+            <ul class="nav-sub ">
+              <li class="nav-item"><a class="nav-link" href="purchase-request.html"></a>
+                <div class="text-truncate" data-i18n="Purchase Request">ស្នើសុំការទិញ</div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="purchase-orders.html"></a>
+                <div class="text-truncate" data-i18n="Purchase Orders">ការបញ្ជាទិញ</div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html"></a>
+                <div class="text-truncate" data-i18n="Pending Purchase Orders">ការបញ្ជាទិញដែលកំពុងរងចាំ</div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="P-ReceivedPurchaseOrders.html"></a>
+                <div class="text-truncate" data-i18n="Received Purchase Orders">ការបញ្ជាទិញដែលទទួលបាន</div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="P-SupplierInvoices.html"></a>
+                <div class="text-truncate" data-i18n="Supplier Invoices">វិក្កយបត្រពីអ្នកផ្គត់ផ្គង់</div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseReturns.html"></a>
+                <div class="text-truncate" data-i18n="Purchase Returns">ការត្រឡប់ទំនិញ</div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="P-SupplierPayments.html"></a>
+                <div class="text-truncate" data-i18n="Supplier Payments">ការទូទាត់ទៅអ្នកផ្គត់ផ្គង់</div>
+              </li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html"></a>
+                <div class="text-truncate" data-i18n="Purchase History">ប្រវត្តិការទិញ</div>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item active open">
+            <a href="javascript:void(0)" class="nav-link d-flex align-items-center gap-2 nav-link nav-toggle">
+              <i class="bi bi-calculator-fill"></i>
+              <span>Accounting</span>
+              <i class="bi bi-chevron-right nav-arrow"></i>
+            </a>
+            <ul class="nav-sub ">
+              <li class="nav-item active"><a href="extended-ui-record-income.html" class="nav-link">
+                  <div class="text-truncate" data-i18n="Perfect Scrollbar">Record - Income</div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="extended-ui-Record-Expenses.html" class="nav-link">
+                  <div class="text-truncate" data-i18n="Text Divider">Record - Expenses</div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="extended-ui-Profit-Loss-Report.html" class="nav-link">
+                  <div class="text-truncate" data-i18n="Text Divider">Profit Loss Report</div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="extended-ui-Cash-Flow-Report.html" class="nav-link">
+                  <div class="text-truncate" data-i18n="Text Divider">Cash Flow Report</div>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
+                class="bi bi-bar-chart-line-fill"></i> Reports</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
+                class="bi bi-gear-fill"></i> Settings</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="#"><i
+                class="bi bi-box-arrow-right"></i> Log Out</a></li>
+
+        </ul>
+
+        <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
+          <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <main class="flex-grow-1 main-offset" style="min-width:0;">
+
+    <!-- ============ STICKY NAVBAR ============ -->
+    <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
+      <div class="d-flex align-items-center gap-2">
+        <button class="btn btn-light border rounded-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+          <i class="bi bi-list fs-5"></i>
+        </button>
+        <div>
+          <h1 class="h4 fw-bold mb-0">ការបញ្ជាទិញ</h1>
+          <div class="km text-secondary small">គ្រប់គ្រងព័ត៌មានការបញ្ជាទិញទាំងអស់</div>
+        </div>
+      </div>
+      <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
+        <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
+        <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
+          <i class="bi bi-bell-fill"></i>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+            style="font-size:.6rem;">3</span>
+        </button>
+        <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
+          <div class="avatar-circle d-flex align-items-center justify-content-center">S</div>
+          <div>
+            <div class="small fw-bold lh-1">Socheat</div>
+            <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- === -->
+    <div class="content-wrap">
+      <div class="ledger-card">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+          <div>
+            <div class="card-title mb-0 display-1">ការបញ្ជាទិញទាំងអស់</div>
+            <div class="card-sub mb-0">បង្កើតពីសំណើដែលបានអនុម័ត ហើយផ្ញើទៅអ្នកផ្គត់ផ្គង់។</div>
+          </div>
+          <br>
+          <br>
+          <button class="btn btn-ledger-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalNewPO"><i
+              class="bi bi-plus-lg"></i> បង្កើតការបញ្ជាទិញ</button>
+        </div>
+        <table class="table-ledger">
+          <thead>
+            <tr>
+              <th>លេខ PO</th>
+              <th>លេខសំណើ</th>
+              <th>អ្នកផ្គត់ផ្គង់</th>
+              <th>ថ្ងៃបញ្ជាទិញ</th>
+              <th>តម្លៃសរុប</th>
+              <th>ស្ថានភាព</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PO-2231</td>
+              <td>PR-1041</td>
+              <td>Angkor Trading Co.</td>
+              <td>ថ្ងៃទី 12</td>
+              <td>$240.00</td>
+              <td><span class="badge-status badge-green">បានផ្ញើ</span></td>
+            </tr>
+            <tr>
+              <td>PO-2214</td>
+              <td>PR-1038</td>
+              <td>Mekong Wholesale</td>
+              <td>ថ្ងៃទី 08</td>
+              <td>$1,120.00</td>
+              <td><span class="badge-status badge-green">បានផ្ញើ</span></td>
+            </tr>
+            <tr>
+              <td>PO-2201</td>
+              <td>PR-1035</td>
+              <td>Siem Reap Hardware</td>
+              <td>ថ្ងៃទី 05</td>
+              <td>$412.50</td>
+              <td><span class="badge-status badge-green">បានផ្ញើ</span></td>
+            </tr>
+            <tr>
+              <td>PO-2190</td>
+              <td>PR-1030</td>
+              <td>Battambang Rice Dist.</td>
+              <td>ថ្ងៃទី 30 មិថុនា</td>
+              <td>$860.00</td>
+              <td><span class="badge-status badge-gray">សេចក្ដីព្រាង</span></td>
+            </tr>
+            <tr>
+              <td>PO-2180</td>
+              <td>PR-1025</td>
+              <td>Phnom Penh Electronics</td>
+              <td>ថ្ងៃទី 25 មិថុនា</td>
+              <td>$1,500.00</td>
+              <td><span class="badge-status badge-green">បានផ្ញើ</span></td>
+            </tr>
+            <tr>
+              <td>PO-2180</td>
+              <td>PR-1025</td>
+              <td>Phnom Penh Electronics</td>
+              <td>ថ្ងៃទី 25 មិថុនា</td>
+              <td>$1,500.00</td>
+              <td><span class="badge-status badge-green">បានផ្ញើ</span></td>
+            </tr>
+            <tr>
+              <td>PO-2170</td>
+              <td>PR-1020</td>
+              <td>Siem Reap Hardware</td>
+              <td>ថ្ងៃទី 20 មិថុនា</td>
+              <td>$412.50</td>
+              <td><span class="badge-status badge-gray">សេចក្ដីព្រាង</span></td>
+            </tr>
+            <tr>
+              <td>PO-2160</td>
+              <td>PR-1015</td>
+              <td>Angkor Trading Co.</td>
+              <td>ថ្ងៃទី 15 មិថុនា</td>
+              <td>$240.00</td>
+              <td><span class="badge-status badge-green">បានផ្ញើ</span></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal fade" id="modalNewPO" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-md modal-dialog-scrollable">
+        <div class="modal-content ledger-modal">
+          <div class="modal-header">
+            <h5 class="modal-title">បង្កើតការបញ្ជាទិញថ្មី</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form class="form-ledger">
+              <div class="mb-3"><label>សំណើដែលបានអនុម័ត</label>
+                <select class="form-select">
+                  <option>PR-1041 — Mekong Wholesale — $1,120.00</option>
+                  <option>PR-1040 — Battambang Rice Dist. — $860.00</option>
+                </select>
+              </div>
+              <div class="row g-2 mb-3">
+                <div class="col-6"><label>ថ្ងៃបញ្ជាទិញ</label><input type="date" class="form-control"
+                    value="2026-07-22"></div>
+                <div class="col-6"><label>ថ្ងៃរំពឹងទុកដឹកជញ្ជូន</label><input type="date" class="form-control"
+                    value="2026-08-01"></div>
+              </div>
+              <div class="mb-1"><label>កំណត់ចំណាំសម្រាប់អ្នកផ្គត់ផ្គង់</label><textarea class="form-control"
+                  rows="2"></textarea></div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-ledger-outline" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i> បោះបង់</button>
+            <button class="btn btn-ledger-primary"
+              onclick="alert('ការបញ្ជាទិញត្រូវបានបង្កើត ហើយផ្ញើទៅអ្នកផ្គត់ផ្គង់!'); closeModal('modalNewPO');"><i
+                class="bi bi-send-check"></i> បង្កើត និងផ្ញើ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    // Add a new row to a table by copying its last row (used by "Add item" / "Add line" buttons)
+    function addRow(tableBodyId) {
+      var tbody = document.getElementById(tableBodyId);
+      var rows = tbody.getElementsByTagName('tr');
+      var lastRow = rows[rows.length - 1];
+      var newRow = lastRow.cloneNode(true);
+
+      // clear text/number inputs in the new row so it starts empty
+      var inputs = newRow.getElementsByTagName('input');
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].value = '';
+      }
+      tbody.appendChild(newRow);
+    }
+
+    // Remove one row from a table, but always keep at least 1 row
+    function removeRow(button) {
+      var row = button.closest('tr');
+      var tbody = row.parentElement;
+      if (tbody.getElementsByTagName('tr').length > 1) {
+        row.remove();
+      }
+    }
+
+    // Close a Bootstrap modal by its id
+    function closeModal(modalId) {
+      var modalEl = document.getElementById(modalId);
+      var modalObj = bootstrap.Modal.getInstance(modalEl);
+      if (modalObj) {
+        modalObj.hide();
+      }
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assest/js/lymeng-menu.js"></script>
+
+</body>
+
+</html>

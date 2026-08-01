@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
   const toastEl = document.getElementById('liveToast');
@@ -18,31 +17,66 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   let staff = [
-    // {
-    //   id: 1,
-    //   name: 'Veth Socheat',
-    //   phone: '012 345 678',
-    //   role: 'Manager',
-    //   active: true,
-    //   image: 'https://www.recordnet.com/story/lifestyle/2021/03/22/photographs-vs-pictures-whatever-you-call-it-photograph-still-photograph/4729332001/'
-    // },
-    { id: 1, name: 'Veth Socheat',        phone: '012 345 678', role: 'Manager',     active: true , image: '/assest/image/DSC_1535 copy.jpg' },
-    { id: 2, name: 'Rim Phearoun', phone: '096 555 210', role: 'Cashier', active: true , image: '/assest/image/phearoun_image.jpg'},
-    { id: 3, name: 'Vet Chansarak', phone: '077 888 001', role: 'Admin', active: true , image: '/assest/image/DSC_1541 copy.jpg' },
-    { id: 4, name: 'Lyheng Symeny', phone: '070 222 456', role: 'Stock Clerk', active: false , image: '/assest/image/meng_image.jpg'},
-    { id: 5, name: 'Sok Pisey', phone: '012 909 333', role: 'Cashier', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXKt6OpGc7iHjVJSEUr9pV7EyG821ENIwipSvKStOVTQ&s=10'},
-    { id: 6, name: 'Sok Dara', phone: '016 700 990', role: 'Manager', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP66xZe_6NzZqJBWm79x8S2MHyt4QklAK-9-jQ-IRAFw&s=10'},
-    { id: 7, name: 'Sopheak', phone: '010 90 88 57', role: 'Cashier', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10'},
-    { id: 8, name: 'Heng Sylong', phone: '096 97 777 254', role: 'Stock Clerk', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gR8rxs27HynIOIU9zUAwqEZdJ8ktrvK22xDCiUj59Q&s=10'},
-    { id: 9, name: 'Mar Kara', phone: '019 903 7653', role: 'Cashier', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNYGSGXdKsitrPTKO01bs5O4HF5-gE0nIJmXlpj2wvdQ&s=10'},
-    { id: 10, name: 'Ket Nita', phone: '096 788 761', role: 'Cashier', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqvkVePxJYjtmCw7U3PJJ2s-9QFCa2GZgyREqd1vqsTQ&s=10'},
-    { id: 11, name: 'An Kaknika', phone: '097 897 123', role: 'Stock Clerk', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIkWkutiMeF0Kn6EiEZH8ia6YGtmOLJ4CPBp7E0jYSfg&s=10'},
-    { id: 12, name: 'Keo Mongkol', phone: '098 7621 973', role: 'Cashier', active: true , image: 'https://www.film.ru/sites/default/files/people/3691694-1223605.jpg'},
-    { id: 13, name: 'La Salite', phone: '018 8234 030', role: 'Cashier', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWkDYE0rFwfLrIL6tf3eqAsBDFtBRBMTWZvbj6AhLYxQ&s=10'},
-    { id: 14, name: 'Sok Pulok', phone: '010 3333 982', role: 'Stock Clerk', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjtfj-F7qJuBJ1vLEd5uGozcYtivP1Y0UNSnJeHXo2gw&s=10'},
-    { id: 15, name: 'Ma Tis', phone: '096 722 223', role: 'Cashier', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOgqBjcyS4qayRqGrmtnfuJYyUS2edZw7u5LDiJwdeQQ&s=10'},
-    { id: 16, name: 'Veng Chandara', phone: '018 8983 772', role: 'Cashier', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlJBG4_NlYDT2Qr8aNxDE4VkKIqc0y-JRcwP48OOVGqA&s=10'},
-    { id: 17, name: 'Hoeu Kimhor', phone: '017 9632 843', role: 'Stock Clerk', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOR7eJMzFIlughDjnortGFHJo1OwBBqwZSUMnDT1YI4w&s=10'}
+    { id: 1, name: 'Veth Socheat',        phone: '012 345 678', role: 'Admin',     active: true , image: '/assest/image/DSC_1535 copy.jpg',
+      email: 'socheat.veth@iam.com', department: 'Management', joinDate: '2022-03-14', lastLogin: '2026-07-25 08:12',
+      manages: 7, modules: ['Employees', 'Products', 'Inventory', 'Sales', 'Purchases', 'Accounting', 'Reports'],
+      history: [
+        { action: 'Logged in', time: '2026-07-25 08:12' },
+        { action: 'Approved sale #SL-2291', time: '2026-07-24 16:40' },
+        { action: 'Added new staff: Sok Pisey', time: '2026-07-20 10:05' },
+        { action: 'Updated product price list', time: '2026-07-18 09:30' },
+      ] },
+    { id: 2, name: 'Rim Phearoun', phone: '096 555 210', role: 'Admin', active: true , image: '/assest/image/phearoun_image.jpg',
+      email: 'phearoun.rim@iam.com', department: 'Management', joinDate: '2022-06-02', lastLogin: '2026-07-25 07:55',
+      manages: 7, modules: ['Employees', 'Sales', 'Purchases', 'Reports'],
+      history: [
+        { action: 'Logged in', time: '2026-07-25 07:55' },
+        { action: 'Disabled account: Lyheng Symeny', time: '2026-07-22 14:12' },
+        { action: 'Generated monthly report', time: '2026-07-01 09:00' },
+      ] },
+    { id: 3, name: 'Vet Chansarak', phone: '077 888 001', role: 'Staff', active: true , image: '/assest/image/DSC_1541 copy.jpg',
+      email: 'chansarak.vet@iam.com', department: 'Sales Floor', joinDate: '2023-01-10', lastLogin: '2026-07-25 09:02',
+      position: 'Cashier', supervisor: 'Veth Socheat', shift: 'Morning (7am - 3pm)', salesCount: 42, attendance: '96%',
+      history: [
+        { action: 'Logged in', time: '2026-07-25 09:02' },
+        { action: 'Processed sale #SL-2305', time: '2026-07-25 09:20' },
+        { action: 'Clocked out', time: '2026-07-24 18:00' },
+      ] },
+    { id: 4, name: 'Lyheng Symeny', phone: '070 222 456', role: 'Staff', active: false , image: '/assest/image/meng_image.jpg',
+      email: 'symeny.lyheng@iam.com', department: 'Stock Room', joinDate: '2023-05-22', lastLogin: '2026-07-21 08:30',
+      position: 'Stock Clerk', supervisor: 'Rim Phearoun', shift: 'Evening (2pm - 10pm)', salesCount: 0, attendance: '71%',
+      history: [
+        { action: 'Account disabled by Admin', time: '2026-07-22 14:12' },
+        { action: 'Logged in', time: '2026-07-21 08:30' },
+      ] },
+    { id: 5, name: 'Sok Pisey', phone: '012 909 333', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXKt6OpGc7iHjVJSEUr9pV7EyG821ENIwipSvKStOVTQ&s=10',
+      email: 'pisey.sok@iam.com', department: 'Sales Floor', joinDate: '2024-02-01', lastLogin: '2026-07-25 08:45',
+      position: 'Cashier', supervisor: 'Veth Socheat', shift: 'Morning (7am - 3pm)', salesCount: 35, attendance: '99%',
+      history: [
+        { action: 'Logged in', time: '2026-07-25 08:45' },
+        { action: 'Processed sale #SL-2299', time: '2026-07-24 13:10' },
+      ] },
+    { id: 6, name: 'Sok Dara', phone: '016 700 990', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP66xZe_6NzZqJBWm79x8S2MHyt4QklAK-9-jQ-IRAFw&s=10',
+      email: 'dara.sok@iam.com', department: 'Stock Room', joinDate: '2023-09-18', lastLogin: '2026-07-25 08:50',
+      position: 'Stock Clerk', supervisor: 'Rim Phearoun', shift: 'Morning (7am - 3pm)', salesCount: 0, attendance: '94%',
+      history: [
+        { action: 'Logged in', time: '2026-07-25 08:50' },
+        { action: 'Received inventory shipment', time: '2026-07-23 11:00' },
+      ] },
+    { id: 7, name: 'Sopheak', phone: '010 90 88 57', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10',
+      email: 'sopheak@iam.com', department: 'Sales Floor', joinDate: '2024-08-05', lastLogin: '2026-07-25 07:40',
+      position: 'Cashier', supervisor: 'Rim Phearoun', shift: 'Evening (2pm - 10pm)', salesCount: 18, attendance: '88%',
+      history: [
+        { action: 'Logged in', time: '2026-07-25 07:40' },
+        { action: 'Processed sale #SL-2280', time: '2026-07-19 15:22' },
+      ] },
+    { id: 8, name: 'Heng Sylong', phone: '096 97 777 254', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gR8rxs27HynIOIU9zUAwqEZdJ8ktrvK22xDCiUj59Q&s=10',
+      email: 'sylong.heng@iam.com', department: 'Sales Floor', joinDate: '2024-11-12', lastLogin: '2026-07-25 08:05',
+      position: 'Cashier', supervisor: 'Veth Socheat', shift: 'Morning (7am - 3pm)', salesCount: 27, attendance: '92%',
+      history: [
+        { action: 'Logged in', time: '2026-07-25 08:05' },
+        { action: 'Updated own phone number', time: '2026-07-15 12:00' },
+      ] },
   ];
   let nextId = staff.length + 1;
 
@@ -70,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
       s.name.toLowerCase().includes(query) ||
       s.phone.toLowerCase().includes(query) ||
       s.role.toLowerCase().includes(query) ||
-      s.image.toLowerCase().includes(query)
+      (s.image || '').toLowerCase().includes(query)
     );
 
     tbody.innerHTML = '';
@@ -80,8 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     rows.forEach(s => {
-         console.log("Staff Data:", s);
-    console.log("Profile Image:", s.image);
       const tr = document.createElement('tr');
       const roleClass = roleColors[s.role] || 'bg-secondary-subtle text-secondary';
       tr.innerHTML = `
@@ -91,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ${s.image
           ? `<img src="${s.image}" 
           class="rounded-circle w-100 h-100"
-          style="object-fit:cover;">`
+          style="object-fit:cover; object-position:top center;">`
           : initials(s.name)
         }
 </div>
@@ -107,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </td>
         <td class="text-end">
           <div class="d-flex justify-content-end gap-1">
+            <button class="btn btn-sm btn-light border rounded-3" data-action="view" data-id="${s.id}" title="View Profile"><i class="bi bi-eye-fill"></i></button>
             <button class="btn btn-sm btn-light border rounded-3" data-action="edit" data-id="${s.id}" title="Edit"><i class="bi bi-pencil-square"></i></button>
             <button class="btn btn-sm btn-light border rounded-3" data-action="reset" data-id="${s.id}" title="Reset Password"><i class="bi bi-key-fill"></i></button>
             <button class="btn btn-sm btn-light border rounded-3" data-action="toggle" data-id="${s.id}" title="${s.active ? 'Disable' : 'Enable'}">
@@ -155,12 +188,189 @@ document.addEventListener('DOMContentLoaded', () => {
       if (s) { Object.assign(s, { name, phone, role, active }); }
       notify('Staff updated');
     } else {
-      staff.push({ id: nextId++, name, phone, role, active });
+      const today = new Date().toISOString().slice(0, 10);
+      staff.push({
+        id: nextId++, name, phone, role, active, image: '',
+        email: '', department: isAdminRole(role) ? 'Management' : 'Sales Floor',
+        joinDate: today, lastLogin: '—',
+        manages: 0, modules: [],
+        position: role, supervisor: '—', shift: '—', salesCount: 0, attendance: '—',
+        history: [{ action: 'Account created', time: today }]
+      });
       notify('Staff added');
     }
 
     staffModal.hide();
     renderAll();
+  });
+
+  /* ---------------- View Profile modal ---------------- */
+  const profileModalEl = document.getElementById('profileModal');
+  const profileModal = new bootstrap.Modal(profileModalEl);
+
+  const isAdminRole = (role) => role === 'Admin' || role === 'Manager';
+
+  function yearsSince(dateStr) {
+    if (!dateStr) return '—';
+    const start = new Date(dateStr);
+    if (isNaN(start)) return '—';
+    const now = new Date();
+    let years = now.getFullYear() - start.getFullYear();
+    const m = now.getMonth() - start.getMonth();
+    if (m < 0 || (m === 0 && now.getDate() < start.getDate())) years--;
+    return years <= 0 ? '<1' : String(years);
+  }
+
+  function bioText(s, admin) {
+    const tenure = yearsSince(s.joinDate);
+    if (admin) {
+      return `${s.name} has served as ${s.role} in the ${s.department || '—'} department since ${s.joinDate || '—'} `
+        + `(${tenure} yr${tenure === '1' ? '' : 's'} with the company), overseeing ${s.manages ?? 0} staff members `
+        + `and managing access across ${(s.modules || []).length} system module${(s.modules || []).length === 1 ? '' : 's'}.`;
+    }
+    return `${s.name} works as a ${s.position || s.role} in the ${s.department || '—'} department, reporting to `
+      + `${s.supervisor || '—'} on the ${s.shift || '—'} shift. Joined on ${s.joinDate || '—'} `
+      + `(${tenure} yr${tenure === '1' ? '' : 's'} with the company), with an attendance record of ${s.attendance || '—'}.`;
+  }
+
+  function fieldRow(label, value) {
+    return `<div class="d-flex justify-content-between border-bottom py-2">
+      <span class="text-secondary small">${label}</span>
+      <span class="fw-medium small">${value}</span>
+    </div>`;
+  }
+
+  function permBadge(text, positive) {
+    return `<span class="badge rounded-pill ${positive ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary'} me-1 mb-1">${text}</span>`;
+  }
+
+  function openProfile(s) {
+    const roleClass = roleColors[s.role] || 'bg-secondary-subtle text-secondary';
+    const admin = isAdminRole(s.role);
+
+    // --- Left card ---
+    document.getElementById('profileName').textContent = s.name;
+    document.getElementById('profilePositionTag').textContent = admin ? s.role : (s.position || s.role);
+    document.getElementById('profileDeptLine').textContent = s.department || '—';
+    document.getElementById('profilePhone').textContent = s.phone;
+
+    const img = document.getElementById('profileImage');
+    const initialsEl = document.getElementById('profileInitials');
+    if (s.image) {
+      img.src = s.image;
+      img.style.display = 'block';
+      initialsEl.style.display = 'none';
+    } else {
+      initialsEl.textContent = initials(s.name);
+      initialsEl.style.display = 'flex';
+      img.style.display = 'none';
+    }
+
+    // Stats row
+    if (admin) {
+      document.getElementById('statOneVal').textContent = yearsSince(s.joinDate);
+      document.getElementById('statOneLabel').textContent = 'Years';
+      document.getElementById('statTwoVal').textContent = s.manages ?? 0;
+      document.getElementById('statTwoLabel').textContent = 'Manages';
+      document.getElementById('statThreeVal').textContent = (s.history || []).length;
+      document.getElementById('statThreeLabel').textContent = 'Activities';
+    } else {
+      document.getElementById('statOneVal').textContent = yearsSince(s.joinDate);
+      document.getElementById('statOneLabel').textContent = 'Years';
+      document.getElementById('statTwoVal').textContent = s.salesCount ?? 0;
+      document.getElementById('statTwoLabel').textContent = 'Sales';
+      document.getElementById('statThreeVal').textContent = s.attendance || '—';
+      document.getElementById('statThreeLabel').textContent = 'Attendance';
+    }
+
+    document.getElementById('profileBio').textContent = bioText(s, admin);
+
+    const accessBadges = document.getElementById('profileAccessBadges');
+    if (admin) {
+      const modules = s.modules || [];
+      accessBadges.innerHTML = modules.length
+        ? modules.map(m => `<span class="badge rounded-pill bg-light text-dark border">${m}</span>`).join('')
+        : `<span class="text-secondary small">No modules assigned</span>`;
+    } else {
+      accessBadges.innerHTML = `
+        <span class="badge rounded-pill bg-light text-dark border">${s.position || s.role}</span>
+        <span class="badge rounded-pill bg-light text-dark border">${s.shift || '—'}</span>
+        <span class="badge rounded-pill bg-light text-dark border">Supervisor: ${s.supervisor || '—'}</span>
+      `;
+    }
+
+    // --- Right column: About tab ---
+    document.getElementById('profileFullName').textContent = s.name;
+    document.getElementById('profileMobile').textContent = s.phone;
+    document.getElementById('profileEmail').textContent = s.email || '—';
+
+    const statusEl = document.getElementById('profileStatus');
+    statusEl.textContent = s.active ? 'Active' : 'Disabled';
+    statusEl.className = `badge rounded-pill ${s.active ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary'}`;
+
+    const employmentList = document.getElementById('profileEmploymentList');
+    employmentList.innerHTML =
+      fieldRow('Staff ID', s.id) +
+      fieldRow('Role', `<span class="badge rounded-pill ${roleClass}">${s.role}</span>`) +
+      fieldRow('Department', s.department || '—') +
+      fieldRow('Join Date', s.joinDate || '—') +
+      fieldRow('Last Login', s.lastLogin || '—') +
+      (admin ? '' : fieldRow('Supervisor', s.supervisor || '—') + fieldRow('Shift', s.shift || '—'));
+
+    const accessList = document.getElementById('profileAccessList');
+    if (admin) {
+      accessList.innerHTML =
+        permBadge('Full System Access', true) +
+        permBadge('Can Manage Staff', true) +
+        permBadge('Can Approve Sales', true) +
+        permBadge('Can View Reports', true) +
+        `<div class="text-secondary small mt-2">Manages ${s.manages ?? 0} staff members across ${(s.modules || []).length} modules.</div>`;
+    } else {
+      accessList.innerHTML =
+        permBadge('Limited System Access', false) +
+        permBadge('Can Process Sales', true) +
+        `<div class="text-secondary small mt-2">Sales handled this month: ${s.salesCount ?? 0} · Attendance: ${s.attendance || '—'}</div>`;
+    }
+
+    // --- Activity tab ---
+    const historyEl = document.getElementById('profileHistoryList');
+    const history = s.history || [];
+    if (history.length === 0) {
+      historyEl.innerHTML = `<div class="text-secondary small text-center py-3">No activity recorded</div>`;
+    } else {
+      historyEl.innerHTML = history.map(h => `
+        <div class="d-flex align-items-start gap-2 border rounded-3 p-2">
+          <i class="bi bi-dot fs-4 lh-1 ${admin ? 'text-danger' : 'text-secondary'}"></i>
+          <div>
+            <div class="small fw-medium">${h.action}</div>
+            <div class="text-secondary" style="font-size:.72rem;">${h.time}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // reset tabs to default state
+    profileModalEl.querySelectorAll('[data-side-tab]').forEach(b => b.classList.toggle('active', b.dataset.sideTab === 'bio'));
+    profileModalEl.querySelectorAll('[data-side-pane]').forEach(p => p.classList.toggle('active', p.dataset.sidePane === 'bio'));
+    profileModalEl.querySelectorAll('[data-main-tab]').forEach(b => b.classList.toggle('active', b.dataset.mainTab === 'about'));
+    profileModalEl.querySelectorAll('[data-main-pane]').forEach(p => p.classList.toggle('active', p.dataset.mainPane === 'about'));
+
+    profileModal.show();
+  }
+
+  // Tab switching inside the profile modal
+  profileModalEl.addEventListener('click', (e) => {
+    const sideBtn = e.target.closest('[data-side-tab]');
+    if (sideBtn) {
+      profileModalEl.querySelectorAll('[data-side-tab]').forEach(b => b.classList.toggle('active', b === sideBtn));
+      profileModalEl.querySelectorAll('[data-side-pane]').forEach(p => p.classList.toggle('active', p.dataset.sidePane === sideBtn.dataset.sideTab));
+      return;
+    }
+    const mainBtn = e.target.closest('[data-main-tab]');
+    if (mainBtn) {
+      profileModalEl.querySelectorAll('[data-main-tab]').forEach(b => b.classList.toggle('active', b === mainBtn));
+      profileModalEl.querySelectorAll('[data-main-pane]').forEach(p => p.classList.toggle('active', p.dataset.mainPane === mainBtn.dataset.mainTab));
+    }
   });
 
   /* ---------------- Row actions ---------------- */
@@ -172,7 +382,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const s = staff.find(x => x.id === id);
     if (!s) return;
 
-    if (action === 'edit') {
+    if (action === 'view') {
+      openProfile(s);
+
+    } else if (action === 'edit') {
       staffModalTitle.textContent = 'Edit Staff';
       document.getElementById('staffId').value = s.id;
       document.getElementById('staffName').value = s.name;
