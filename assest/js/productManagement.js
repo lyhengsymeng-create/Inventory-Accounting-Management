@@ -1,9 +1,3 @@
-/* ==========================================================
-   productManagement.js — Product list, categories, suppliers.
-   In-memory demo data, same interaction pattern as
-   employeeManagement.js.
-   ========================================================== */
-
 document.addEventListener('DOMContentLoaded', () => {
 
   const toastEl = document.getElementById('liveToast');

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="km">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,304 +10,396 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="/assest/css/cheatDBAdmin.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
+    rel="stylesheet">
 </head>
+
 <body>
 
-<div class="d-flex flex-lg-row flex-column">
-  <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style=" flex-shrink:0;">
-    <div class="d-flex align-items-center gap-2 px-2 mb-4">
-      <div class="d-flex gap-2">
-            <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
-            <div>
-              <div class="fw-bold text-white ">IAM System</div>
-            <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
-          </div>
-      </div>
-    </div>
-
-    <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">Main</div>
-      <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
-        <li class="nav-item">
-          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="true" aria-controls="attendanceSubmenu1">
-            <i class="bi bi-calendar-check-fill"></i>វត្តមាន
-            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
-          </a>
-          <ul class="nav flex-column submenu collapse show" id="attendanceSubmenu1">
-            <li class="nav-item"><a class="nav-link active" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
-            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
-          </ul>
-        </li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i> ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i class="bi bi-gear-fill"></i> ការកំណត់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
-          
-      </ul>
-
-    <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
-      <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
-    </div>
-  </aside>
-
-  <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
-    <div class="offcanvas-header">
-      <div class="d-flex align-items-center gap-2">
+  <div class="d-flex flex-lg-row flex-column">
+    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style=" flex-shrink:0;">
+      <div class="d-flex align-items-center gap-2 px-2 mb-4">
         <div class="d-flex gap-2">
-            <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
-            <div>
-              <div class="fw-bold text-white ">IAM System</div>
+          <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
+          <div>
+            <div class="fw-bold text-white ">IAM System</div>
             <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
           </div>
+        </div>
       </div>
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body p-3">
-      <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">Main</div>
-       <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+
+      <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">
+        Main</div>
+      <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
+              class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
+              class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
         <li class="nav-item">
-          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)" data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="true" aria-controls="attendanceSubmenu1">
-            <i class="bi bi-calendar-check-fill"></i>វត្តមាន
+          <a aria-controls="attendanceSubmenu1" aria-expanded="true"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-calendar-check-fill"></i> វត្តមាន
             <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
           </a>
           <ul class="nav flex-column submenu collapse show" id="attendanceSubmenu1">
             <li class="nav-item"><a class="nav-link active" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
             <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
           </ul>
         </li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i class="bi bi-boxes"></i> ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i class="bi bi-gear-fill"></i> ការកំណត់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
-          
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+              class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
+              class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+              class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
+              class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+        <li class="nav-item">
+          <a aria-controls="purchaseSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="purchaseSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="PurchaseRequest.html">ស្នើសុំការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="CreatePurchaseOrder.html">បង្កើតការបញ្ជាទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
+            <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a aria-controls="accountingSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#accountingSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-calculator-fill"></i> គណនេយ្យ
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="accountingSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#income">កត់ត្រា - ចំណូល</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#expenses">កត់ត្រា - ចំណាយ</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#pl">របាយការណ៍ចំណេញ-ខាត</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
+              class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
+              class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
+              class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
       </ul>
 
-      <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
+      <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
         <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
       </div>
-    </div>
-  </div>
-  <main class="flex-grow-1 main-offset" style="min-width:0;">
-    <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
-      <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-light border rounded-3 d-lg-none" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
-          <i class="bi bi-list fs-5"></i>
-        </button>
-        <div>
-          <h1 class="h4 fw-bold mb-0">Today's Attendance</h1>
-          <div class="km text-secondary small">តាមដានវត្តមានបុគ្គលិកប្រចាំថ្ងៃ</div>
-        </div>
-      </div>
-      <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
-        <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
-        <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
-          <i class="bi bi-bell-fill"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:.6rem;">3</span>
-        </button>
-        <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
-          <div class="avatar-circle d-flex align-items-center justify-content-center"><img src="/assest/image/DSC_1535 copy.JPG" alt=""></div>
-          <div>
-            <div class="small fw-bold lh-1">Socheat</div>
-            <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
-          </div>
-        </div>
-      </div>
-    </nav>
+    </aside>
 
-    <div class="p-3 p-lg-4">
-
-      <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+    <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
+      <div class="offcanvas-header">
         <div class="d-flex align-items-center gap-2">
-          <input type="date" class="form-control rounded-3" id="attendanceDate" style="max-width:190px;">
-          <button class="btn btn-light border rounded-3" id="todayBtn">Today</button>
-        </div>
-      </div>
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
-        <div class="col">
-          <div class="card border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body p-3 p-lg-4">
-              <div class="km text-secondary small mb-2">មកធ្វើការ</div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-circle" style="color:#1f4d43; font-size:.6rem;"></i>
-                <span class="font-serif" id="kpiPresent" style="font-size:2rem; color:#1f4d43;">0</span>
-              </div>
-              <div class="km text-secondary small mt-1">Present today</div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body p-3 p-lg-4">
-              <div class="km text-secondary small mb-2">មកយឺត</div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-circle" style="color:#c1793a; font-size:.6rem;"></i>
-                <span class="font-serif" id="kpiLate" style="font-size:2rem; color:#c1793a;">0</span>
-              </div>
-              <div class="km text-secondary small mt-1">Late arrivals</div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body p-3 p-lg-4">
-              <div class="km text-secondary small mb-2">អវត្តមាន</div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-circle" style="color:#c0392b; font-size:.6rem;"></i>
-                <span class="font-serif" id="kpiAbsent" style="font-size:2rem; color:#c0392b;">0</span>
-              </div>
-              <div class="km text-secondary small mt-1">Absent today</div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card border-0 shadow-sm rounded-4 h-100">
-            <div class="card-body p-3 p-lg-4">
-              <div class="km text-secondary small mb-2">ពាក់កណ្តាលថ្ងៃ</div>
-              <div class="d-flex align-items-center gap-2">
-                <i class="bi bi-circle" style="color:#4f46e5; font-size:.6rem;"></i>
-                <span class="font-serif" id="kpiHalfDay" style="font-size:2rem; color:#4f46e5;">0</span>
-              </div>
-              <div class="km text-secondary small mt-1">Half day</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ----------------- Attendance Table ----------------- -->
-      <div class="card border-0 shadow-sm rounded-4">
-        <div class="card-body p-4">
-          <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+          <div class="d-flex gap-2">
+            <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
             <div>
-              <h2 class="h5 fw-bold mb-0">Today's Attendance</h2>
-              <div class="km text-secondary small">បញ្ជីវត្តមានបុគ្គលិកទាំងអស់</div>
+              <div class="fw-bold text-white ">IAM System</div>
+              <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
             </div>
-            <div class="d-flex gap-2 flex-wrap">
-              <input type="text" class="form-control rounded-3" id="attendanceSearch" placeholder="ស្វែងរកបុគ្គលិក... / Search employee" style="min-width:220px;">
-              <select class="form-select rounded-3" id="statusFilter" style="max-width:160px;">
-                <option value="">All Status</option>
+          </div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body p-3">
+        <div class="text-uppercase small text-secondary fw-bold px-2 mb-2"
+          style="letter-spacing:.08em; font-size:.7rem;">Main</div>
+        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenuOff">
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
+                class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
+                class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+          <li class="nav-item">
+            <a aria-controls="attendanceSubmenu2" aria-expanded="true"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+              <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+            </a>
+            <ul class="nav flex-column submenu collapse show" id="attendanceSubmenu2">
+              <li class="nav-item"><a class="nav-link active" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+              <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
+              <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+                class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
+                class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+                class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
+                class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+          <li class="nav-item">
+            <a aria-controls="purchaseSubmenu2" aria-expanded="false"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+              <i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+            </a>
+            <ul class="nav flex-column submenu collapse" id="purchaseSubmenu2">
+              <li class="nav-item"><a class="nav-link" href="PurchaseRequest.html">ស្នើសុំការទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="CreatePurchaseOrder.html">បង្កើតការបញ្ជាទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
+              <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a aria-controls="accountingSubmenu2" aria-expanded="false"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#accountingSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+              <i class="bi bi-calculator-fill"></i> គណនេយ្យ
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+            </a>
+            <ul class="nav flex-column submenu collapse" id="accountingSubmenu2">
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#income">កត់ត្រា - ចំណូល</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#expenses">កត់ត្រា - ចំណាយ</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#pl">របាយការណ៍ចំណេញ-ខាត</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
+                class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
+                class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
+                class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+        </ul>
+
+        <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
+          <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
+        </div>
+      </div>
+    </div>
+    <main class="flex-grow-1 main-offset" style="min-width:0;">
+      <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
+        <div class="d-flex align-items-center gap-2">
+          <button class="btn btn-light border rounded-3 d-lg-none" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
+            <i class="bi bi-list fs-5"></i>
+          </button>
+          <div>
+            <h1 class="h4 fw-bold mb-0">វត្តមានថ្ងៃនេះ</h1>
+            <div class="km text-secondary small">តាមដានវត្តមានបុគ្គលិកប្រចាំថ្ងៃ</div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
+          <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
+          <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
+            <i class="bi bi-bell-fill"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              style="font-size:.6rem;">3</span>
+          </button>
+          <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
+            <div class="avatar-circle d-flex align-items-center justify-content-center"><img
+                src="/assest/image/DSC_1535 copy.JPG" alt=""></div>
+            <div>
+              <div class="small fw-bold lh-1">Socheat</div>
+              <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="p-3 p-lg-4">
+
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-3">
+          <div class="d-flex align-items-center gap-2">
+            <input type="date" class="form-control rounded-3" id="attendanceDate" style="max-width:190px;">
+            <button class="btn btn-light border rounded-3" id="todayBtn">Today</button>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">មកធ្វើការ</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#1f4d43; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiPresent" style="font-size:2rem; color:#1f4d43;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">Present today</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">មកយឺត</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#c1793a; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiLate" style="font-size:2rem; color:#c1793a;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">Late arrivals</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">អវត្តមាន</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#c0392b; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiAbsent" style="font-size:2rem; color:#c0392b;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">Absent today</div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">ពាក់កណ្តាលថ្ងៃ</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#4f46e5; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiHalfDay" style="font-size:2rem; color:#4f46e5;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">Half day</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ----------------- Attendance Table ----------------- -->
+        <div class="card border-0 shadow-sm rounded-4">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+              <div>
+                <h2 class="h5 fw-bold mb-0">Today's Attendance</h2>
+                <div class="km text-secondary small">បញ្ជីវត្តមានបុគ្គលិកទាំងអស់</div>
+              </div>
+              <div class="d-flex gap-2 flex-wrap">
+                <input type="text" class="form-control rounded-3" id="attendanceSearch"
+                  placeholder="ស្វែងរកបុគ្គលិក... / Search employee" style="min-width:220px;">
+                <select class="form-select rounded-3" id="statusFilter" style="max-width:160px;">
+                  <option value="">All Status</option>
+                  <option value="Present">Present</option>
+                  <option value="Late">Late</option>
+                  <option value="Absent">Absent</option>
+                  <option value="Half Day">Half Day</option>
+                  <option value="On Leave">On Leave</option>
+                </select>
+                <button class="btn text-white rounded-3 d-flex align-items-center gap-2"
+                  style="background:var(--violet);" data-bs-toggle="modal" data-bs-target="#attendanceModal"
+                  id="addAttendanceBtn">
+                  <i class="bi bi-plus-lg"></i> Add Record
+                </button>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr class="text-secondary small text-uppercase">
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Employee Name</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">First In</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Break</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Last Out</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Total Hours</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Status</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">Shift</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;" class="text-end">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="attendanceTableBody"><!-- rows injected by JS --></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <div class="modal fade" id="attendanceModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="attendanceModalTitle">Add Attendance Record</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="attendanceForm">
+            <input type="hidden" id="attendanceRecordId">
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">Employee <span class="km text-secondary">/
+                  បុគ្គលិក</span></label>
+              <select class="form-select rounded-3" id="attendanceEmployee" required></select>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold">First In</label>
+                <input type="time" class="form-control rounded-3" id="attendanceFirstIn">
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Last Out</label>
+                <input type="time" class="form-control rounded-3" id="attendanceLastOut">
+              </div>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Break</label>
+                <input type="time" class="form-control rounded-3" id="attendanceBreak">
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold">Shift</label>
+                <select class="form-select rounded-3" id="attendanceShift">
+                  <option value="General">General</option>
+                  <option value="Early">Early</option>
+                  <option value="Late">Late</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-1">
+              <label class="form-label small fw-semibold">Status <span class="km text-secondary">/
+                  ស្ថានភាព</span></label>
+              <select class="form-select rounded-3" id="attendanceStatus">
                 <option value="Present">Present</option>
                 <option value="Late">Late</option>
                 <option value="Absent">Absent</option>
                 <option value="Half Day">Half Day</option>
                 <option value="On Leave">On Leave</option>
               </select>
-              <button class="btn text-white rounded-3 d-flex align-items-center gap-2" style="background:var(--violet);" data-bs-toggle="modal" data-bs-target="#attendanceModal" id="addAttendanceBtn">
-                <i class="bi bi-plus-lg"></i> Add Record
-              </button>
             </div>
-          </div>
-
-          <div class="table-responsive">
-            <table class="table align-middle">
-              <thead>
-                <tr class="text-secondary small text-uppercase">
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Employee Name</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">First In</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Break</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Last Out</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Total Hours</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Status</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;">Shift</th>
-                  <th style="font-size:.72rem; letter-spacing:.05em;" class="text-end">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="attendanceTableBody"><!-- rows injected by JS --></tbody>
-            </table>
-          </div>
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn text-white rounded-3" style="background:var(--violet);"
+            id="saveAttendanceBtn">Save</button>
         </div>
       </div>
-
     </div>
-  </main>
-</div>
+  </div>
 
-<div class="modal fade" id="attendanceModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content rounded-4">
-      <div class="modal-header border-0">
-        <h5 class="modal-title fw-bold" id="attendanceModalTitle">Add Attendance Record</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <form id="attendanceForm">
-          <input type="hidden" id="attendanceRecordId">
-          <div class="mb-3">
-            <label class="form-label small fw-semibold">Employee <span class="km text-secondary">/ បុគ្គលិក</span></label>
-            <select class="form-select rounded-3" id="attendanceEmployee" required></select>
-          </div>
-          <div class="row g-3 mb-3">
-            <div class="col-6">
-              <label class="form-label small fw-semibold">First In</label>
-              <input type="time" class="form-control rounded-3" id="attendanceFirstIn">
-            </div>
-            <div class="col-6">
-              <label class="form-label small fw-semibold">Last Out</label>
-              <input type="time" class="form-control rounded-3" id="attendanceLastOut">
-            </div>
-          </div>
-          <div class="row g-3 mb-3">
-            <div class="col-6">
-              <label class="form-label small fw-semibold">Break</label>
-              <input type="time" class="form-control rounded-3" id="attendanceBreak">
-            </div>
-            <div class="col-6">
-              <label class="form-label small fw-semibold">Shift</label>
-              <select class="form-select rounded-3" id="attendanceShift">
-                <option value="General">General</option>
-                <option value="Early">Early</option>
-                <option value="Late">Late</option>
-              </select>
-            </div>
-          </div>
-          <div class="mb-1">
-            <label class="form-label small fw-semibold">Status <span class="km text-secondary">/ ស្ថានភាព</span></label>
-            <select class="form-select rounded-3" id="attendanceStatus">
-              <option value="Present">Present</option>
-              <option value="Late">Late</option>
-              <option value="Absent">Absent</option>
-              <option value="Half Day">Half Day</option>
-              <option value="On Leave">On Leave</option>
-            </select>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer border-0">
-        <button type="button" class="btn btn-light rounded-3" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="btn text-white rounded-3" style="background:var(--violet);" id="saveAttendanceBtn">Save</button>
+  <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x mb-4">
+    <div id="liveToast" class="toast align-items-center text-white bg-dark border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body" id="toastBody">Updated</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
       </div>
     </div>
   </div>
-</div>
 
-<div class="toast-container position-fixed bottom-0 start-50 translate-middle-x mb-4">
-  <div id="liveToast" class="toast align-items-center text-white bg-dark border-0" role="alert">
-    <div class="d-flex">
-      <div class="toast-body" id="toastBody">Updated</div>
-      <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-    </div>
-  </div>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="/assest/js/attendanceManagement.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assest/js/attendanceManagement.js"></script>
 </body>
+
 </html>
