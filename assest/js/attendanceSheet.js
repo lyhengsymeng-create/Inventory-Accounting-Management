@@ -18,6 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const tbody = document.getElementById('sheetTableBody');
   const filterLabel = document.getElementById('sheetFilterLabel');
 
+  
+  const toastEl = document.getElementById('liveToast');
+  const toastBody = document.getElementById('toastBody');
+  const toast = toastEl ? new bootstrap.Toast(toastEl, { delay: 1800 }) : null;
+  function notify(msg) {
+    if (!toast) return;
+    toastBody.textContent = msg;
+    toast.show();
+  }
+
   function populateSelectors() {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -120,4 +130,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   populateSelectors();
   render();
+
 });
