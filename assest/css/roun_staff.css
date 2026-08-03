@@ -1,5 +1,5 @@
 :root {
-  --ink: #171933;
+  --ink: #17172d;
   --paper: #ffffff;
   --moss: #71bedc;
   --moss-light: #e7efe9;
@@ -81,8 +81,8 @@ body {
 }
 
 .sidebar {
-  width: 260px;
-  height: 100vh; 
+  width:290px !important;
+  height:100vh;
   background: var(--ink);
   color: #f1efe7;
   position: fixed;
@@ -101,7 +101,7 @@ body {
 }
 
 .sidebar .nav-link {
-  color: #c9c6bb;
+  color: #cfd2dc;
   padding: 0.55rem 1.25rem;
   font-size: 0.9rem;
   border-left: 3px solid transparent;

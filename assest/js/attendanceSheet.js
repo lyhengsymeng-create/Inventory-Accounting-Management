@@ -18,6 +18,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const tbody = document.getElementById('sheetTableBody');
   const filterLabel = document.getElementById('sheetFilterLabel');
 
+  
+  const toastEl = document.getElementById('liveToast');
+  const toastBody = document.getElementById('toastBody');
+  const toast = toastEl ? new bootstrap.Toast(toastEl, { delay: 1800 }) : null;
+  function notify(msg) {
+    if (!toast) return;
+    toastBody.textContent = msg;
+    toast.show();
+  }
+
   function populateSelectors() {
     const now = new Date();
     const currentYear = now.getFullYear();
@@ -120,4 +130,94 @@ document.addEventListener('DOMContentLoaded', () => {
 
   populateSelectors();
   render();
+
+/* ---------------- Leave Requests (សំណើសុំច្បាប់ពី Staff) ---------------- */
+  
+  const LEAVE_STORAGE_KEY = 'iam_staff_leaveRequests';
+
+  function loadLeaveRequests() {
+    try {
+      const raw = localStorage.getItem(LEAVE_STORAGE_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch (e) {
+      console.warn('Failed to read leave requests', e);
+      return [];
+    }
+  }
+
+  function saveLeaveRequests(list) {
+    try {
+      localStorage.setItem(LEAVE_STORAGE_KEY, JSON.stringify(list));
+    } catch (e) {
+      console.warn('Failed to save leave requests', e);
+    }
+  }
+
+  function leaveStatusBadge(status) {
+    if (status === 'បានអនុម័ត') return `<span class="badge bg-success-subtle text-success-emphasis">${status}</span>`;
+    if (status === 'បានបដិសេធ') return `<span class="badge bg-danger-subtle text-danger-emphasis">${status}</span>`;
+    return `<span class="badge bg-warning-subtle text-warning-emphasis">${status}</span>`;
+  }
+
+  function renderLeaveRequestsTable() {
+    const tbody = document.getElementById('leaveRequestsTableBody');
+    const pendingBadge = document.getElementById('leaveReqPendingBadge');
+    if (!tbody) return;
+
+    const list = loadLeaveRequests();
+    const pendingCount = list.filter(r => r.status === 'កំពុងរង់ចាំអនុម័ត').length;
+
+    if (pendingBadge) {
+      if (pendingCount > 0) {
+        pendingBadge.textContent = `${pendingCount} កំពុងរង់ចាំ`;
+        pendingBadge.classList.remove('d-none');
+      } else {
+        pendingBadge.classList.add('d-none');
+      }
+    }
+
+    if (list.length === 0) {
+      tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-4">មិនទាន់មានសំណើសុំច្បាប់ទេ</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = list.map(r => `
+      <tr>
+        <td class="fw-semibold">${r.staff || '—'}</td>
+        <td>${r.start} → ${r.end}</td>
+        <td class="text-secondary" style="max-width:220px;">${r.reason}</td>
+        <td>${leaveStatusBadge(r.status)}</td>
+        <td class="text-end">
+          ${r.status === 'កំពុងរង់ចាំអនុម័ត' ? `
+            <button class="btn btn-sm btn-success rounded-3 me-1" data-leave-approve="${r.id}"><i class="bi bi-check-lg"></i> Approve</button>
+            <button class="btn btn-sm btn-outline-danger rounded-3" data-leave-reject="${r.id}"><i class="bi bi-x-lg"></i> Reject</button>
+          ` : '<span class="text-muted small">—</span>'}
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  document.getElementById('leaveRequestsTableBody')?.addEventListener('click', (e) => {
+    const approveBtn = e.target.closest('[data-leave-approve]');
+    const rejectBtn = e.target.closest('[data-leave-reject]');
+    if (!approveBtn && !rejectBtn) return;
+
+    const id = Number((approveBtn || rejectBtn).dataset.leaveApprove || (approveBtn || rejectBtn).dataset.leaveReject);
+    const list = loadLeaveRequests();
+    const item = list.find(r => r.id === id);
+    if (!item) return;
+
+    if (approveBtn) {
+      item.status = 'បានអនុម័ត';
+      notify(`Leave request for ${item.staff || 'staff'} approved`);
+    } else {
+      item.status = 'បានបដិសេធ';
+      notify(`Leave request for ${item.staff || 'staff'} rejected`);
+    }
+    saveLeaveRequests(list);
+    renderLeaveRequestsTable();
+  });
+
+  renderLeaveRequestsTable();
+
 });
