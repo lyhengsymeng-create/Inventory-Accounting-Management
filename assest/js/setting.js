@@ -1,4 +1,4 @@
- // ---- Tab switching ----
+// ---- Tab switching ----
     const tabBtns = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.panel');
     tabBtns.forEach(btn => {
@@ -17,8 +17,8 @@
       { day: 'ថ្ងៃពុធ', on: true, from: '08:00 ព្រឹក', to: '05:00 ល្ងាច' },
       { day: 'ថ្ងៃព្រហស្បតិ៍', on: true, from: '08:00 ព្រឹក', to: '05:00 ល្ងាច' },
       { day: 'ថ្ងៃសុក្រ', on: true, from: '08:00ព្រឹក', to: '05:00 ល្ងាច' },
-      { day: 'ថ្ងៃសៅរ៍', on: true, from: '10:00 ព្រឹក', to: '05:00 ល្ងាច' },
-      { day: 'ថ្ងៃអាទិត្យ', on: false, from: '10:00 ព្រឹក', to: '05:00 ល្ងាច' },
+      { day: 'ថ្ងៃសៅរ៍', on: true, from: '08:00 ព្រឹក', to: '11:00 ព្រឹក' },
+      // { day: 'ថ្ងៃអាទិត្យ', on: false, from: '08:00 ព្រឹក', to: '11:00 ព្រឹក' },
     ];
     const hoursList = document.getElementById('hoursList');
     hoursList.innerHTML = HOURS.map((h, i) => `
