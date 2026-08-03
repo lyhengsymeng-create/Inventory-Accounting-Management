@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const employees = [
     { id: 3, name: 'Vet Chansarak', image: '/assest/image/DSC_1541 copy.jpg', shift: 'General' },
     { id: 4, name: 'Lyheng Symeny', image: '/assest/image/meng_image.jpg', shift: 'Late' },
-    { id: 5, name: 'Sok Pisey', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXKt6OpGc7iHjVJSEUr9pV7EyG821ENIwipSvKStOVTQ&s=10', shift: 'General' },
+    { id: 5, name: 'Rim Phearoun', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXKt6OpGc7iHjVJSEUr9pV7EyG821ENIwipSvKStOVTQ&s=10', shift: 'General' },
     { id: 6, name: 'Sok Dara', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP66xZe_6NzZqJBWm79x8S2MHyt4QklAK-9-jQ-IRAFw&s=10', shift: 'Early' },
-    { id: 7, name: 'Sopheak', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10', shift: 'Late' },
+    { id: 7, name: 'Sok Pisey', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10', shift: 'Late' },
     { id: 8, name: 'Heng Sylong', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gR8rxs27HynIOIU9zUAwqEZdJ8ktrvK22xDCiUj59Q&s=10', shift: 'General' },
   ];
 
@@ -44,23 +44,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function seedTodayRecords() {
     return [
-      { id: 1, empId: 3, firstIn: '09:00', break: '13:00', lastOut: '18:00', status: 'Present', shift: 'General' },
-      { id: 2, empId: 5, firstIn: '10:00', break: '14:00', lastOut: '19:00', status: 'Present', shift: 'Late' },
-      { id: 3, empId: 6, firstIn: '08:30', break: '12:30', lastOut: '17:30', status: 'Present', shift: 'Early' },
-      { id: 4, empId: 4, firstIn: '09:00', break: '13:00', lastOut: '14:00', status: 'Half Day', shift: 'General' },
-      { id: 5, empId: 7, firstIn: '09:30', break: '13:30', lastOut: '18:30', status: 'Late', shift: 'General' },
-      { id: 6, empId: 8, firstIn: '08:00', break: '12:00', lastOut: '16:00', status: 'Present', shift: 'Early' },
+      { id: 1, empId: 3, firstIn: '08:00', break: '12:00', lastOut: '17:00', status: 'Present', shift: 'General' },
+      { id: 1, empId: 3, firstIn: '08:00', break: '12:00', lastOut: '17:00', status: 'Present', shift: 'General' },
+      { id: 2, empId: 5, firstIn: '08:00', break: '12:00', lastOut: '17:00', status: 'Present', shift: 'General' },
+      { id: 3, empId: 6, firstIn: '08:00', break: '12:00', lastOut: '17:00', status: 'Present', shift: 'General' },
+      { id: 4, empId: 4, firstIn: '08:00', break: 'hasa',     lastOut: '12:00', status: 'Half Day', shift: 'General' },
+      { id: 5, empId: 7, firstIn: '08:15', break: '12:00', lastOut: '17:00', status: 'Late', shift: 'General' },
+      { id: 6, empId: 8, firstIn: '08:00', break: '12:00', lastOut: '17:00', status: 'Present', shift: 'General' },
+      // { id: 6, empId: 8, firstIn: '08:00', break: '12:00', lastOut: '17:00', status: 'Present', shift: 'General' },
     ];
   }
 
-  // Records are stored per-date: { '2026-07-25': [ {id, empId, firstIn, break, lastOut, status, shift}, ... ] }
-  let allRecords = loadFromStorage('attendanceRecords', {});
-  let currentDate = todayStr();
-  if (!allRecords[currentDate]) {
-    allRecords[currentDate] = seedTodayRecords();
-    saveToStorage('attendanceRecords', allRecords);
-  }
-  let nextRecordId = Math.max(0, ...Object.values(allRecords).flat().map(r => r.id)) + 1;
+// Records are stored per-date: { '2026-07-25': [ {id, empId, firstIn, break, lastOut, status, shift}, ... ] }
+// SEED_VERSION: bump this any time seedTodayRecords() changes, so browsers with
+// stale cached localStorage data automatically pick up the new seed values.
+const SEED_VERSION = 2;
+let allRecords = loadFromStorage('attendanceRecords', {});
+let currentDate = todayStr();
+const storedSeedVersion = loadFromStorage('attendanceSeedVersion', 0);
+if (storedSeedVersion !== SEED_VERSION || !allRecords[currentDate]) {
+  allRecords[currentDate] = seedTodayRecords();
+  saveToStorage('attendanceRecords', allRecords);
+  saveToStorage('attendanceSeedVersion', SEED_VERSION);
+}
+let nextRecordId = Math.max(0, ...Object.values(allRecords).flat().map(r => r.id)) + 1;
 
   const dateInput = document.getElementById('attendanceDate');
   const todayBtn = document.getElementById('todayBtn');
@@ -89,13 +96,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return `${h}h ${String(m).padStart(2, '0')}m`;
   }
 
-  function to12h(t) {
-    if (!t) return '-';
-    let [h, m] = t.split(':').map(Number);
-    const ampm = h >= 12 ? 'PM' : 'AM';
-    h = h % 12; if (h === 0) h = 12;
-    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
-  }
+function to12h(t) {
+  if (!t || !/^\d{1,2}:\d{2}$/.test(t)) return '-';
+  let [h, m] = t.split(':').map(Number);
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12; if (h === 0) h = 12;
+  return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} ${ampm}`;
+}
 
   function populateEmployeeSelect() {
     empSelect.innerHTML = employees.map(e => `<option value="${e.id}">${e.name}</option>`).join('');

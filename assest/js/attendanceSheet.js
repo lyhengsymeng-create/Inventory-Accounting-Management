@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const employees = [
-    { id: 3, name: 'Vet Chansarak', image: '/assest/image/DSC_1541 copy.jpg' },
-    { id: 4, name: 'Lyheng Symeny', image: '/assest/image/meng_image.jpg' },
-    { id: 5, name: 'Sok Pisey', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXKt6OpGc7iHjVJSEUr9pV7EyG821ENIwipSvKStOVTQ&s=10' },
+    { id: 3, name: 'Vet Chansarak', image: '../../../assest/image/DSC_1541 copy.jpg' },
+    { id: 4, name: 'Lyheng Symeny', image: '../../../assest/image/meng_image.jpg' },
+    { id: 5, name: 'Rim Phearoun', image: '../../../assest/image/phearoun_image.jpg' },
     { id: 6, name: 'Sok Dara', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP66xZe_6NzZqJBWm79x8S2MHyt4QklAK-9-jQ-IRAFw&s=10' },
-    { id: 7, name: 'Sopheak', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10' },
+    { id: 7, name: 'Sok Pisey', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10' },
     { id: 8, name: 'Heng Sylong', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gR8rxs27HynIOIU9zUAwqEZdJ8ktrvK22xDCiUj59Q&s=10' },
   ];
 
@@ -54,27 +54,30 @@ document.addEventListener('DOMContentLoaded', () => {
     return x - Math.floor(x);
   }
 
-  // icon markup per day status
+  // icon markup per day status, wrapped in a colored circular badge
   function dayIcon(status) {
-    switch (status) {
-      case 'weekend': return '<i class="bi bi-dash-circle text-secondary"></i>';
-      case 'present': return '<i class="bi bi-check-circle-fill text-success"></i>';
-      case 'leave': return '<i class="bi bi-x-circle-fill text-danger"></i>';
-      case 'holiday': return '<i class="bi bi-circle-fill" style="color:#f5b301;"></i>';
-      default: return '';
-    }
+    const icons = {
+      weekend: 'bi-dash',
+      present: 'bi-check-lg',
+      leave: 'bi-x-lg',
+      holiday: 'bi-star-fill',
+      half: 'bi-star-half',
+    };
+    const icon = icons[status] || '';
+    return `<span class="day-badge status-${status}"><i class="bi ${icon}"></i></span>`;
   }
 
   function dayStatus(empId, year, month, day) {
     const date = new Date(year, month, day);
     const dow = date.getDay();
-    // 5-day work week: Saturday(6) and Sunday(0) are non-working days.
-    if (dow === 0 || dow === 6) return 'weekend';
+    // 6-day work week: Sunday(0) is off; Saturday(6) is a half-day (morning only).
+    if (dow === 0) return 'weekend';
     // fixed monthly holiday example: 1st of month
     if (day === 1 && month === 0) return 'holiday';
     const r = seededRandom(empId * 1000 + month * 31 + day);
     if (r > 0.9) return 'leave';
     if (r > 0.85) return 'holiday';
+    if (dow === 6) return 'half';
     return 'present';
   }
 
@@ -92,17 +95,23 @@ document.addEventListener('DOMContentLoaded', () => {
       th.style.fontSize = '.72rem';
       th.style.minWidth = '38px';
       th.textContent = d;
+      const dow = new Date(year, month, d).getDay();
+      if (dow === 0) th.classList.add('weekend-col');
+      if (dow === 6) th.classList.add('half-col');
       headerRow.appendChild(th);
     }
 
     tbody.innerHTML = employees.map(emp => {
       const avatar = emp.image
-        ? `<img src="${emp.image}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;" alt="">`
-        : `<div style="width:28px;height:28px;border-radius:50%;background:#e7efeb;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;color:#1f4d43;">${initials(emp.name)}</div>`;
+        ? `<img class="emp-avatar" src="${emp.image}" alt="">`
+        : `<div class="emp-avatar-fallback">${initials(emp.name)}</div>`;
       let cells = '';
       for (let d = 1; d <= daysInMonth; d++) {
         const status = dayStatus(emp.id, year, month, d);
-        cells += `<td>${dayIcon(status)}</td>`;
+        let colCls = '';
+        if (status === 'weekend') colCls = ' weekend-col';
+        else if (status === 'half') colCls = ' half-col';
+        cells += `<td class="${colCls.trim()}">${dayIcon(status)}</td>`;
       }
       return `
       <tr>
