@@ -1,260 +1,570 @@
-
 <!DOCTYPE html>
-<html lang="en">
- 
+
+<html lang="km">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inventory Management</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" href="/assest/css/cheatDBAdmin.css">
-  <link rel="stylesheet" href="/assest/css/lymengAccounting.css">
-  <link rel="stylesheet" href="/assest/css/menu-toggle-styles.css">
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <link href="/assest/image/logos.png" rel="icon" />
+  <title>ប្រព័ន្ធ IAM — គណនេយ្យ</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="/assest/css/cheatDBAdmin.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
   <link
-    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
-    rel="stylesheet">
- 
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;display=swap"
+    rel="stylesheet" />
+  <style>
+    .acct-tab-btn {
+      border: 1px solid #e7e7f2;
+      background: #fff;
+      color: #5c5e77;
+      border-radius: .85rem;
+      padding: .55rem 1rem;
+      font-size: .85rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .acct-tab-btn.active {
+      background: var(--violet);
+      border-color: var(--violet);
+      color: #fff;
+    }
+
+    .acct-tab-pane {
+      display: none;
+    }
+
+    .acct-tab-pane.show {
+      display: block;
+    }
+
+    .kpi-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: .9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+  </style>
 </head>
- 
+
 <body>
   <div class="d-flex flex-lg-row flex-column">
-    <!-- ============ SIDEBAR fixed (sticky, desktop only, lg and up) ============ -->
-    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style="width:250px; flex-shrink:0;">
+    <aside class="sidebar text-white p-3 d-none d-lg-flex flex-column" style="width:290px; flex-shrink:0;">
       <div class="d-flex align-items-center gap-2 px-2 mb-4">
-        <!-- <div class="bg-violet rounded-3 d-flex align-items-center justify-content-center" style="width:38px;height:38px;">
-              <i class="bi bi-bar-chart-fill fs-5"></i>
-            </div> -->
-        <div>
-          <div class="fw-bold text-white">IAM</div>
-          <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
+        <div class="d-flex gap-2">
+          <img alt="" class="w-25 h-25" src="/assest/image/logos.png" />
+          <div>
+            <div class="fw-bold text-white">ប្រព័ន្ធ IAM</div>
+            <div class="km small text-secondary">ប្រព័ន្ធគ្រប់គ្រង</div>
+          </div>
         </div>
       </div>
-
       <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">
-        Main</div>
+        មេនុយចម្បង</div>
       <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
-              class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+              class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
-              class="bi bi-people-fill"></i> Employee Management</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
-              class="bi bi-box-seam-fill"></i> Product Management</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
-              class="bi bi-boxes"></i> Inventory Management</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
-              class="bi bi-cart-check-fill"></i> Sales Management</a></li>
- 
-       <li class="nav-item  active open ">
-           <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
-            <i class="bi bi-truck"></i>
-            <span>Purchase Management</span>
-            <i class="bi bi-chevron-right nav-arrow"></i>
+              class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+        <li class="nav-item">
+          <a aria-controls="attendanceSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
           </a>
-          <ul class="nav-sub collapse  " type="button" id="collapseExample">
-            <li class="nav-item">
-              <a class="nav-link" href="purchase-request.html">ស្នើសុំការទិញ</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="purchase-orders.html">ការបញ្ជាទិញ</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញដែលកំពុងរងចាំ</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="P-ReceivedPurchaseOrders.html">ការបញ្ជាទិញដែលទទួលបាន</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="P-SupplierInvoices.html">វិក្កយបត្រពីអ្នកផ្គត់ផ្គង់</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="PurchaseReturns.html">ការត្រឡប់ទំនិញ</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="P-SupplierPayments.html">ការទូទាត់ទៅអ្នកផ្គត់ផ្គង់</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a>
-            </li>
+          <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">សន្លឹកវត្តមាន</a></li>
           </ul>
         </li>
-
-        <li class="nav-item  active open show ">
-           <a class="nav-link d-flex align-items-center gap-2 nav-link menu-toggle"   data-bs-toggle="collapse" href="#collapseExample" role="button" >
-            <i class="bi bi-truck"></i>
-            <span>Accounting</span>
-            <i class="bi bi-chevron-right nav-arrow"></i>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+              class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
+              class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+              class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
+              class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+        <li class="nav-item">
+          <a aria-controls="purchaseSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
           </a>
-          <ul class="nav-sub collapse show " type="button" id="collapseExample">
-            <li class="nav-item active">
-              <a href="extended-ui-record-income.html" class="nav-link">កំណត់ត្រា - ប្រាក់ចំណូល   </a>
-            </li>
-            <li class="nav-item">
-              <a href="extended-ui-Record-Expenses.html" class="nav-link">កំណត់ត្រា - ចំណាយ
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="extended-ui-Profit-Loss-Report.html" class="nav-link">របាយការណ៍ប្រាក់ចំណូលនិងចំណាយ
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="extended-ui-Cash-Flow-Report.html" class="nav-link">របាយការណ៍សារពើភ័ណ្ឌ
-              
-              </a>
-            </li>
+          <ul class="nav flex-column submenu collapse" id="purchaseSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="PurchaseRequest.html">ស្នើសុំការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="CreatePurchaseOrder.html">បង្កើតការបញ្ជាទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
+            <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a aria-controls="accountingSubmenu1" aria-expanded="true"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#accountingSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-calculator-fill"></i> គណនេយ្យ
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse show" id="accountingSubmenu1">
+            <li class="nav-item"><a class="nav-link active" href="Accounting.html#income">កត់ត្រា - ចំណូល</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#expenses">កត់ត្រា - ចំណាយ</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#pl">របាយការណ៍ចំណេញ-ខាត</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
-              class="bi bi-bar-chart-line-fill"></i> Reports</a></li>
+              class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
-              class="bi bi-gear-fill"></i> Settings</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="#"><i
-              class="bi bi-box-arrow-right"></i> Log Out</a></li>
-
+              class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
+              class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
       </ul>
- 
       <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
         <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
       </div>
     </aside>
- 
-    <!-- ============ OFFCANVAS SIDEBAR (mobile / tablet, below lg) ============ -->
-    <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
+    <div class="offcanvas offcanvas-start d-lg-none" id="mobileSidebar" tabindex="-1">
       <div class="offcanvas-header">
         <div class="d-flex align-items-center gap-2">
-          <div class="bg-violet rounded-3 d-flex align-items-center justify-content-center"
-            style="width:34px;height:34px;">
-            <i class="bi bi-bar-chart-fill"></i>
-          </div>
-          <div>
-            <div class="fw-bold text-white">ខ្មែរដាស</div>
-            <div class="km small text-secondary" style="font-size:.7rem;">ប្រព័ន្ធគ្រប់គ្រង</div>
+          <div class="d-flex gap-2">
+            <img alt="" class="w-25 h-25" src="/assest/image/logos.png" />
+            <div>
+              <div class="fw-bold text-white">ប្រព័ន្ធ IAM</div>
+              <div class="km small text-secondary" style="font-size:.7rem;">ប្រព័ន្ធគ្រប់គ្រង</div>
+            </div>
           </div>
         </div>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <button aria-label="បិទ" class="btn-close" data-bs-dismiss="offcanvas" type="button"></button>
       </div>
       <div class="offcanvas-body p-3">
         <div class="text-uppercase small text-secondary fw-bold px-2 mb-2"
-          style="letter-spacing:.08em; font-size:.7rem;">Main</div>
+          style="letter-spacing:.08em; font-size:.7rem;">មេនុយចម្បង</div>
         <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenuOff">
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
-                class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+                class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
-                class="bi bi-people-fill"></i> Employee Management</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
-                class="bi bi-box-seam-fill"></i> Product Management</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
-                class="bi bi-boxes"></i> Inventory Management</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
-                class="bi bi-cart-check-fill"></i> Sales Management</a></li>
- 
-            <li class="nav-item active open ">
-          <a href="javascript:void(0)" class="nav-link d-flex align-items-center gap-2 nav-link nav-toggle">
-            <i class="bi bi-truck"></i>
-            <span>Purchase Management</span>
-            <i class="bi bi-chevron-right nav-arrow"></i>
-          </a>
-          <ul class="nav-sub ">
-            <li class="nav-item"><a class="nav-link" href="purchase-request.html"></a>
-              <div class="text-truncate" data-i18n="Purchase Request">ស្នើសុំការទិញ</div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="purchase-orders.html"></a>
-              <div class="text-truncate" data-i18n="Purchase Orders">ការបញ្ជាទិញ</div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html"></a>
-              <div class="text-truncate" data-i18n="Pending Purchase Orders">ការបញ្ជាទិញដែលកំពុងរងចាំ</div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="P-ReceivedPurchaseOrders.html"></a>
-              <div class="text-truncate" data-i18n="Received Purchase Orders">ការបញ្ជាទិញដែលទទួលបាន</div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="P-SupplierInvoices.html"></a>
-              <div class="text-truncate" data-i18n="Supplier Invoices">វិក្កយបត្រពីអ្នកផ្គត់ផ្គង់</div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="PurchaseReturns.html"></a>
-              <div class="text-truncate" data-i18n="Purchase Returns">ការត្រឡប់ទំនិញ</div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="P-SupplierPayments.html"></a>
-              <div class="text-truncate" data-i18n="Supplier Payments">ការទូទាត់ទៅអ្នកផ្គត់ផ្គង់</div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html"></a>
-              <div class="text-truncate" data-i18n="Purchase History">ប្រវត្តិការទិញ</div>
-            </li>
-          </ul>
-        </li>
- 
-          <li class="nav-item active open">
-            <a href="javascript:void(0)" class="nav-link d-flex align-items-center gap-2 nav-link nav-toggle">
-              <i class="bi bi-calculator-fill"></i>
-              <span>Accounting</span>
-              <i class="bi bi-chevron-right nav-arrow"></i>
+                class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+          <li class="nav-item">
+            <a aria-controls="attendanceSubmenu2" aria-expanded="false"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+              <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
             </a>
-            <ul class="nav-sub ">
-              <li class="nav-item active"><a href="extended-ui-record-income.html" class="nav-link">
-            <div class="text-truncate" data-i18n="Perfect Scrollbar">Record - Income</div>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="extended-ui-Record-Expenses.html" class="nav-link">
-                  <div class="text-truncate" data-i18n="Text Divider">Record - Expenses</div>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="extended-ui-Profit-Loss-Report.html" class="nav-link">
-                  <div class="text-truncate" data-i18n="Text Divider">Profit Loss Report</div>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="extended-ui-Cash-Flow-Report.html" class="nav-link">
-                  <div class="text-truncate" data-i18n="Text Divider">Cash Flow Report</div>
-                </a>
-              </li>
+            <ul class="nav flex-column submenu collapse" id="attendanceSubmenu2">
+              <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+              <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
+              <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">សន្លឹកវត្តមាន</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+                class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
+                class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+                class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
+                class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+          <li class="nav-item">
+            <a aria-controls="purchaseSubmenu2" aria-expanded="false"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+              <i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+            </a>
+            <ul class="nav flex-column submenu collapse" id="purchaseSubmenu2">
+              <li class="nav-item"><a class="nav-link" href="PurchaseRequest.html">ស្នើសុំការទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="CreatePurchaseOrder.html">បង្កើតការបញ្ជាទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
+              <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a aria-controls="accountingSubmenu2" aria-expanded="true"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#accountingSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+              <i class="bi bi-calculator-fill"></i> គណនេយ្យ
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+            </a>
+            <ul class="nav flex-column submenu collapse show" id="accountingSubmenu2">
+              <li class="nav-item"><a class="nav-link active" href="Accounting.html#income">កត់ត្រា - ចំណូល</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#expenses">កត់ត្រា - ចំណាយ</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#pl">របាយការណ៍ចំណេញ-ខាត</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
-                class="bi bi-bar-chart-line-fill"></i> Reports</a></li>
+                class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
-                class="bi bi-gear-fill"></i> Settings</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="#"><i
-                class="bi bi-box-arrow-right"></i> Log Out</a></li>
- 
+                class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
+                class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
         </ul>
- 
         <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
           <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
         </div>
- 
       </div>
     </div>
-  </div>
-      <main class="flex-grow-1 main-offset" style="min-width:0;">
- 
-    <!-- ============ STICKY NAVBAR ============ -->
-    <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
-      <div class="d-flex align-items-center gap-2">
-        <button class="btn btn-light border rounded-3 d-lg-none" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar">
-          <i class="bi bi-list fs-5"></i>
-        </button>
-        <div>
-          <h1 class="h4 fw-bold mb-0">Product Management</h1>
-          <div class="km text-secondary small">គ្រប់គ្រងព័ត៌មានផលិតផលទាំងអស់</div>
-        </div>
-      </div>
-      <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
-        <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
-        <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
-          <i class="bi bi-bell-fill"></i>
-          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:.6rem;">3</span>
-        </button>
-        <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
-          <div class="avatar-circle d-flex align-items-center justify-content-center">S</div>
+    <main class="flex-grow-1 main-offset" style="min-width:0;">
+      <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
+        <div class="d-flex align-items-center gap-2">
+          <button aria-controls="mobileSidebar" class="btn btn-light border rounded-3 d-lg-none"
+            data-bs-target="#mobileSidebar" data-bs-toggle="offcanvas" type="button">
+            <i class="bi bi-list fs-5"></i>
+          </button>
           <div>
-            <div class="small fw-bold lh-1">Socheat</div>
-            <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
+            <h1 class="h4 fw-bold mb-0">គណនេយ្យ</h1>
+            <div class="km text-secondary small">កត់ត្រាចំណូល ចំណាយ និងតាមដានលំហូរសាច់ប្រាក់</div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
+          <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
+            <i class="bi bi-bell-fill"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              style="font-size:.6rem;">2</span>
+          </button>
+          <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
+            <div class="avatar-circle d-flex align-items-center justify-content-center"><img
+                src="/assest/image/DSC_1535 copy.JPG" alt=""></div>
+            <div>
+            <div>
+              <div class="small fw-bold lh-1">Socheat</div>
+              <div class="text-secondary lh-1" style="font-size:.7rem;">អ្នកគ្រប់គ្រង</div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="p-3 p-lg-4">
+        <!-- ----------- KPI Cards ----------- -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
+                <div class="kpi-icon" style="background:#e7f5ee;color:#1f4d43;"><i class="bi bi-graph-up-arrow"></i>
+                </div>
+                <div>
+                  <div class="km text-secondary small mb-1">ចំណូលសរុប</div>
+                  <div class="fw-bold" id="kpiIncome" style="font-size:1.6rem; color:#1f4d43;">$0.00</div>
+                  <div class="text-secondary small">ចំណូលសរុប</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
+                <div class="kpi-icon" style="background:#fdece3;color:#c1793a;"><i class="bi bi-graph-down-arrow"></i>
+                </div>
+                <div>
+                  <div class="km text-secondary small mb-1">ចំណាយសរុប</div>
+                  <div class="fw-bold" id="kpiExpense" style="font-size:1.6rem; color:#c1793a;">$0.00</div>
+                  <div class="text-secondary small">ចំណាយសរុប</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
+                <div class="kpi-icon" style="background:#eee9ff;color:var(--violet);"><i
+                    class="bi bi-piggy-bank-fill"></i></div>
+                <div>
+                  <div class="km text-secondary small mb-1">ប្រាក់ចំណេញសុទ្ធ</div>
+                  <div class="fw-bold" id="kpiProfit" style="font-size:1.6rem; color:var(--violet);">$0.00</div>
+                  <div class="text-secondary small">ប្រាក់ចំណេញសុទ្ធ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
+                <div class="kpi-icon" style="background:#e7ecff;color:#2f4bd6;"><i class="bi bi-wallet2"></i></div>
+                <div>
+                  <div class="km text-secondary small mb-1">សមតុល្យសាច់ប្រាក់</div>
+                  <div class="fw-bold" id="kpiCash" style="font-size:1.6rem; color:#2f4bd6;">$0.00</div>
+                  <div class="text-secondary small">សមតុល្យសាច់ប្រាក់</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ----------- Tabs ----------- -->
+        <div class="d-flex gap-2 mb-4 flex-wrap" id="acctTabs">
+          <button class="acct-tab-btn active" data-tab="income">កត់ត្រា - ចំណូល</button>
+          <button class="acct-tab-btn" data-tab="expenses">កត់ត្រា - ចំណាយ</button>
+          <button class="acct-tab-btn" data-tab="pl">របាយការណ៍ចំណេញ-ខាត</button>
+          <button class="acct-tab-btn" data-tab="cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</button>
+        </div>
+        <!-- ----------- Income Tab ----------- -->
+        <div class="acct-tab-pane show" id="pane-income">
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+                <div>
+                  <h2 class="h5 fw-bold mb-0">កំណត់ត្រាចំណូល</h2>
+                  <div class="km text-secondary small">កំណត់ត្រាចំណូលទាំងអស់</div>
+                </div>
+                <div class="d-flex gap-2 flex-wrap">
+                  <input class="form-control rounded-3" id="incomeSearch" placeholder="ស្វែងរកចំណូល..."
+                    style="min-width:200px;" type="text" />
+                  <button class="btn text-white rounded-3 d-flex align-items-center gap-2" data-bs-target="#incomeModal"
+                    data-bs-toggle="modal" id="addIncomeBtn" style="background:var(--violet);">
+                    <i class="bi bi-plus-circle-fill"></i> កត់ត្រាចំណូល
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr class="text-secondary small text-uppercase">
+                      <th style="font-size:.72rem;">កាលបរិច្ឆេទ</th>
+                      <th style="font-size:.72rem;">ប្រភព</th>
+                      <th style="font-size:.72rem;">ប្រភេទ</th>
+                      <th style="font-size:.72rem;">វិធីសាស្ត្រ</th>
+                      <th style="font-size:.72rem;">ចំនួនទឹកប្រាក់</th>
+                      <th class="text-end" style="font-size:.72rem;">សកម្មភាព</th>
+                    </tr>
+                  </thead>
+                  <tbody id="incomeTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ----------- Expenses Tab ----------- -->
+        <div class="acct-tab-pane" id="pane-expenses">
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+                <div>
+                  <h2 class="h5 fw-bold mb-0">កំណត់ត្រាចំណាយ</h2>
+                  <div class="km text-secondary small">កំណត់ត្រាចំណាយទាំងអស់</div>
+                </div>
+                <div class="d-flex gap-2 flex-wrap">
+                  <input class="form-control rounded-3" id="expenseSearch" placeholder="ស្វែងរកចំណាយ..."
+                    style="min-width:200px;" type="text" />
+                  <button class="btn text-white rounded-3 d-flex align-items-center gap-2"
+                    data-bs-target="#expenseModal" data-bs-toggle="modal" id="addExpenseBtn"
+                    style="background:var(--clay);">
+                    <i class="bi bi-plus-circle-fill"></i> កត់ត្រាចំណាយ
+                  </button>
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr class="text-secondary small text-uppercase">
+                      <th style="font-size:.72rem;">កាលបរិច្ឆេទ</th>
+                      <th style="font-size:.72rem;">អ្នកទទួលប្រាក់</th>
+                      <th style="font-size:.72rem;">ប្រភេទ</th>
+                      <th style="font-size:.72rem;">វិធីសាស្ត្រ</th>
+                      <th style="font-size:.72rem;">ចំនួនទឹកប្រាក់</th>
+                      <th class="text-end" style="font-size:.72rem;">សកម្មភាព</th>
+                    </tr>
+                  </thead>
+                  <tbody id="expenseTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ----------- Profit & Loss Tab ----------- -->
+        <div class="acct-tab-pane" id="pane-pl">
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <h2 class="h5 fw-bold mb-0">របាយការណ៍ចំណេញ-ខាត</h2>
+                <div class="km text-secondary small">របាយការណ៍ចំណេញ-ខាត តាមប្រភេទ</div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr class="text-secondary small text-uppercase">
+                      <th style="font-size:.72rem;">ប្រភេទ</th>
+                      <th style="font-size:.72rem;">ប្រភេទ</th>
+                      <th style="font-size:.72rem;">ចំនួនទឹកប្រាក់</th>
+                      <th style="font-size:.72rem;">ចែករំលែក</th>
+                    </tr>
+                  </thead>
+                  <tbody id="plTableBody"></tbody>
+                  <tfoot>
+                    <tr class="fw-bold">
+                      <td colspan="2">ប្រាក់ចំណេញ/ខាតសុទ្ធ</td>
+                      <td id="plNet">$0.00</td>
+                      <td></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- ----------- Cash Flow Tab ----------- -->
+        <div class="acct-tab-pane" id="pane-cashflow">
+          <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body p-4">
+              <div class="mb-3">
+                <h2 class="h5 fw-bold mb-0">របាយការណ៍លំហូរសាច់ប្រាក់</h2>
+                <div class="km text-secondary small">លំហូរសាច់ប្រាក់ចូល-ចេញ តាមកាលបរិច្ឆេទ</div>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr class="text-secondary small text-uppercase">
+                      <th style="font-size:.72rem;">កាលបរិច្ឆេទ</th>
+                      <th style="font-size:.72rem;">ការពិពណ៌នា</th>
+                      <th style="font-size:.72rem;">ចំណូល</th>
+                      <th style="font-size:.72rem;">ចំណាយ</th>
+                      <th style="font-size:.72rem;">សមតុល្យបន្ត</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cashflowTableBody"></tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </nav>
-    <!-- === -->
-     <!-- writing content here -->
- 
-  </main>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-     <!-- NEW: powers the Purchase Management open/close behavior above -->
-     <script src="/assest/js/menu.js"></script>
- 
+    </main>
+  </div>
+  <!-- ----------- Record Income Modal ----------- -->
+  <div aria-hidden="true" class="modal fade" id="incomeModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="incomeModalTitle">កត់ត្រាចំណូល</h5>
+          <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+        </div>
+        <div class="modal-body">
+          <form id="incomeForm">
+            <input id="incomeId" type="hidden" />
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">កាលបរិច្ឆេទ</label>
+              <input class="form-control rounded-3" id="incomeDate" required="" type="date" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">ប្រភព <span class="km text-secondary">/ ប្រភព</span></label>
+              <input class="form-control rounded-3" id="incomeSource" placeholder="ឧ. ការលក់ប្រចាំថ្ងៃ, ការវិនិយោគ"
+                required="" type="text" />
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold">ប្រភេទ</label>
+                <select class="form-select rounded-3" id="incomeCategory">
+                  <option>ចំណូលពីការលក់</option>
+                  <option>ចំណូលពីសេវាកម្ម</option>
+                  <option>ការវិនិយោគ</option>
+                  <option>ចំណូលផ្សេងទៀត</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold">វិធីសាស្ត្រ</label>
+                <select class="form-select rounded-3" id="incomeMethod">
+                  <option>សាច់ប្រាក់</option>
+                  <option>ផ្ទេរប្រាក់តាមធនាគារ</option>
+                  <option>ABA KHQR</option>
+                  <option>កាតឥណទាន</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-1">
+              <label class="form-label small fw-semibold">ចំនួនទឹកប្រាក់ ($)</label>
+              <input class="form-control rounded-3" id="incomeAmount" min="0" required="" step="0.01" type="number" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-light rounded-3" data-bs-dismiss="modal" type="button">បោះបង់</button>
+          <button class="btn text-white rounded-3" id="saveIncomeBtn" style="background:var(--violet);"
+            type="button">រក្សាទុក</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ----------- Record Expense Modal ----------- -->
+  <div aria-hidden="true" class="modal fade" id="expenseModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content rounded-4">
+        <div class="modal-header border-0">
+          <h5 class="modal-title fw-bold" id="expenseModalTitle">កត់ត្រាចំណាយ</h5>
+          <button class="btn-close" data-bs-dismiss="modal" type="button"></button>
+        </div>
+        <div class="modal-body">
+          <form id="expenseForm">
+            <input id="expenseId" type="hidden" />
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">កាលបរិច្ឆេទ</label>
+              <input class="form-control rounded-3" id="expenseDate" required="" type="date" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-semibold">អ្នកទទួលប្រាក់ <span class="km text-secondary">/
+                  អ្នកទទួលប្រាក់</span></label>
+              <input class="form-control rounded-3" id="expensePayee" placeholder="ឧ. អ្នកផ្គត់ផ្គង់ ABC, អគ្គិសនី"
+                required="" type="text" />
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label class="form-label small fw-semibold">ប្រភេទ</label>
+                <select class="form-select rounded-3" id="expenseCategory">
+                  <option>ការទិញស្តុកទំនិញ</option>
+                  <option>ថ្លៃជួល</option>
+                  <option>ថ្លៃឧបភោគបរិភោគ</option>
+                  <option>ប្រាក់បៀវត្សរ៍</option>
+                  <option>ទីផ្សារ</option>
+                  <option>ចំណាយផ្សេងទៀត</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small fw-semibold">វិធីសាស្ត្រ</label>
+                <select class="form-select rounded-3" id="expenseMethod">
+                  <option>សាច់ប្រាក់</option>
+                  <option>ផ្ទេរប្រាក់តាមធនាគារ</option>
+                  <option>ABA KHQR</option>
+                  <option>កាតឥណទាន</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-1">
+              <label class="form-label small fw-semibold">ចំនួនទឹកប្រាក់ ($)</label>
+              <input class="form-control rounded-3" id="expenseAmount" min="0" required="" step="0.01" type="number" />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer border-0">
+          <button class="btn btn-light rounded-3" data-bs-dismiss="modal" type="button">បោះបង់</button>
+          <button class="btn text-white rounded-3" id="saveExpenseBtn" style="background:var(--clay);"
+            type="button">រក្សាទុក</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap Toast -->
+  <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x mb-4">
+    <div class="toast align-items-center text-white bg-dark border-0" id="liveToast" role="alert">
+      <div class="d-flex">
+        <div class="toast-body" id="toastBody">បានធ្វើបច្ចុប្បន្នភាព</div>
+        <button class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" type="button"></button>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/assest/js/sidebar-scroll.js"></script>
+  <script src="/assest/js/accounting.js"></script>
 </body>
+
 </html>

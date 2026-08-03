@@ -468,3 +468,172 @@ body {
   background: #fff;
   transform: translateY(-50%);
 }
+/* ---------------- Attendance Sheet table ---------------- */
+.att-sheet-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.att-sheet-table thead th {
+  background: #f7f7fc;
+  color: var(--text-secondary);
+  font-weight: 700;
+  border-bottom: 2px solid #eceefa;
+  padding: .65rem .35rem;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.att-sheet-table thead th:first-child {
+  z-index: 4;
+  text-align: left;
+  border-top-left-radius: .9rem;
+}
+
+.att-sheet-table thead th.weekend-col {
+  background: #f0f1f8;
+}
+
+.att-sheet-table tbody td {
+  border-bottom: 1px solid #f1f2f8;
+  padding: .55rem .35rem;
+}
+
+.att-sheet-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.att-sheet-table tbody tr:hover td {
+  background: #faf9ff;
+}
+
+.att-sheet-table tbody td.weekend-col {
+  background: #f7f7fb;
+}
+
+.att-sheet-table tbody tr:hover td.weekend-col {
+  background: #f1f0fa;
+}
+
+.att-sheet-table th:first-child,
+.att-sheet-table td:first-child {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 1;
+  box-shadow: 2px 0 4px rgba(20, 20, 50, .04);
+}
+
+.att-sheet-table thead th:first-child {
+  background: #f7f7fc;
+}
+
+.att-sheet-table tbody tr:hover td:first-child {
+  background: #faf9ff;
+}
+
+.emp-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px #eceefa;
+  flex-shrink: 0;
+}
+
+.emp-avatar-fallback {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--violet-soft);
+  color: var(--violet);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .65rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.day-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .8rem;
+  line-height: 1;
+}
+
+.day-badge.status-weekend {
+  color: #b7bacb;
+  background: transparent;
+}
+
+.day-badge.status-present {
+  background: #22c55e;
+  color: #fff;
+}
+
+.day-badge.status-leave {
+  background: #ef4444;
+  color: #fff;
+}
+
+.day-badge.status-holiday {
+  background: #f5b301;
+  color: #fff;
+}
+
+.att-legend-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  padding: .3rem .7rem;
+  border-radius: 999px;
+  background: #f7f7fc;
+  font-weight: 600;
+  font-size: .78rem;
+  color: #565a72;
+}
+
+.table-responsive.att-scroll {
+  border-radius: .9rem;
+  scrollbar-width: thin;
+  scrollbar-color: #d7d8ea transparent;
+}
+
+.table-responsive.att-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-responsive.att-scroll::-webkit-scrollbar-thumb {
+  background: #d7d8ea;
+  border-radius: 999px;
+}
+
+.table-responsive.att-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Saturday half-day (morning only) column + badge */
+.att-sheet-table thead th.half-col {
+  background: #fff7e6;
+}
+
+.att-sheet-table tbody td.half-col {
+  background: #fffaf0;
+}
+
+.att-sheet-table tbody tr:hover td.half-col {
+  background: #fef3d9;
+}
+
+.day-badge.status-half {
+  background: #0ea5e9;
+  color: #fff;
+  font-size: .7rem;
+}

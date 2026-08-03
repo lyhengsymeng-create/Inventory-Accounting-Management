@@ -33,41 +33,67 @@
         Main</div>
       <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
-              class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+              class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
         <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2"
             href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
         <li class="nav-item">
-          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)"
-            data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false"
-            aria-controls="attendanceSubmenu1">
+          <a aria-controls="attendanceSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
             <i class="bi bi-calendar-check-fill"></i> វត្តមាន
             <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
           </a>
           <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
             <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
-            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">សន្លឹកវត្តមាន</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
               class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
-              class="bi bi-boxes"></i>ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
+              class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
               class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
               class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i
-              class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i
-              class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
+        <li class="nav-item">
+          <a aria-controls="purchaseSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="purchaseSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="PurchaseRequest.html">ស្នើសុំការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="CreatePurchaseOrder.html">បង្កើតការបញ្ជាទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
+            <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a aria-controls="accountingSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#accountingSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-calculator-fill"></i> គណនេយ្យ
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="accountingSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#income">កត់ត្រា - ចំណូល</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#expenses">កត់ត្រា - ចំណាយ</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#pl">របាយការណ៍ចំណេញ-ខាត</a></li>
+            <li class="nav-item"><a class="nav-link" href="Accounting.html#cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
+          </ul>
+        </li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
               class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
               class="bi bi-gear-fill"></i> ការកំណត់</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
               class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
-
       </ul>
       <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
         <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
@@ -90,43 +116,69 @@
       <div class="offcanvas-body p-3">
         <div class="text-uppercase small text-secondary fw-bold px-2 mb-2"
           style="letter-spacing:.08em; font-size:.7rem;">Main</div>
-        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
+        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenuOff">
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
-                class="bi bi-grid-1x2-fill"></i> Dashboard</a></li>
+                class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
           <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2"
               href="EmployeeManagement.html"><i class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
           <li class="nav-item">
-            <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)"
-              data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false"
-              aria-controls="attendanceSubmenu1">
+            <a aria-controls="attendanceSubmenu2" aria-expanded="false"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
               <i class="bi bi-calendar-check-fill"></i> វត្តមាន
               <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
             </a>
-            <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+            <ul class="nav flex-column submenu collapse" id="attendanceSubmenu2">
               <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-              <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
-              <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+              <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
+              <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">សន្លឹកវត្តមាន</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
                 class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
-                class="bi bi-boxes"></i>ការគ្រប់គ្រងទំនិញក្នុងស្តុក</a></li>
+                class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
                 class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
                 class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="PurchaseManagement.html"><i
-                class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Accounting.html"><i
-                class="bi bi-calculator-fill"></i> គណនេយ្យ</a></li>
+          <li class="nav-item">
+            <a aria-controls="purchaseSubmenu2" aria-expanded="false"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+              <i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+            </a>
+            <ul class="nav flex-column submenu collapse" id="purchaseSubmenu2">
+              <li class="nav-item"><a class="nav-link" href="PurchaseRequest.html">ស្នើសុំការទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="CreatePurchaseOrder.html">បង្កើតការបញ្ជាទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
+              <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a aria-controls="accountingSubmenu2" aria-expanded="false"
+              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#accountingSubmenu2"
+              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+              <i class="bi bi-calculator-fill"></i> គណនេយ្យ
+              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+            </a>
+            <ul class="nav flex-column submenu collapse" id="accountingSubmenu2">
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#income">កត់ត្រា - ចំណូល</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#expenses">កត់ត្រា - ចំណាយ</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#pl">របាយការណ៍ចំណេញ-ខាត</a></li>
+              <li class="nav-item"><a class="nav-link" href="Accounting.html#cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
+            </ul>
+          </li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
                 class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
                 class="bi bi-gear-fill"></i> ការកំណត់</a></li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
                 class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
-
         </ul>
         <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
           <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។

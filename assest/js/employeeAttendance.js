@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const employees = [
     { id: 3, name: 'Vet Chansarak', image: '/assest/image/DSC_1541 copy.jpg', position: 'Cashier', department: 'Sales Floor', joinDate: '2023-01-10', empCode: 'IM062501VC' },
     { id: 4, name: 'Lyheng Symeny', image: '/assest/image/meng_image.jpg', position: 'Stock Clerk', department: 'Stock Room', joinDate: '2023-05-22', empCode: 'IM062502LS' },
-    { id: 5, name: 'Sok Pisey', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXKt6OpGc7iHjVJSEUr9pV7EyG821ENIwipSvKStOVTQ&s=10', position: 'Cashier', department: 'Sales Floor', joinDate: '2024-02-01', empCode: 'IM062503SP' },
+    { id: 5, name: 'Rim Phearoun', image: '/assest/image/phearoun_image.jpg', position: 'Cashier', department: 'Sales Floor', joinDate: '2023-01-10', empCode: 'IM062503RP' },
     { id: 6, name: 'Sok Dara', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP66xZe_6NzZqJBWm79x8S2MHyt4QklAK-9-jQ-IRAFw&s=10', position: 'Stock Clerk', department: 'Stock Room', joinDate: '2023-09-18', empCode: 'IM062504SD' },
-    { id: 7, name: 'Sopheak', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10', position: 'Cashier', department: 'Sales Floor', joinDate: '2024-08-05', empCode: 'IM062505SK' },
+    { id: 7, name: 'Sok Pisey', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10', position: 'Cashier', department: 'Sales Floor', joinDate: '2024-08-05', empCode: 'IM062505SK' },
     { id: 8, name: 'Heng Sylong', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gR8rxs27HynIOIU9zUAwqEZdJ8ktrvK22xDCiUj59Q&s=10', position: 'Cashier', department: 'Sales Floor', joinDate: '2024-11-12', empCode: 'IM062506HS' },
   ];
 
@@ -32,25 +32,43 @@ document.addEventListener('DOMContentLoaded', () => {
       d.setDate(d.getDate() - i);
       const day = d.getDay();
       const dateStr = `${pad(d.getDate())}-${pad(d.getMonth() + 1)}-${d.getFullYear()}`;
+
       if (day === 0) { // Sunday off
         log.push({ date: dateStr, checkIn: '-', checkOut: '-', hours: '-', shift: '-', status: 'Weekend' });
         continue;
       }
+
       const r = seededRandom(empId * 100 + i);
+
+      if (day === 6) { // Saturday: half-day, morning only (08:00 - 12:00)
+        if (r > 0.85) {
+          log.push({ date: dateStr, checkIn: '-', checkOut: '-', hours: '-', shift: 'General', status: 'Absent' });
+          continue;
+        }
+        const inM = Math.floor(r * 15);
+        const checkIn = `08:${pad(inM)}`;
+        const checkOut = '12:00';
+        const mins = (12 * 60) - (8 * 60 + inM);
+        const hours = `${Math.floor(mins / 60)}h ${pad(mins % 60)}m`;
+        log.push({ date: dateStr, checkIn, checkOut, hours, shift: 'General', status: 'Half Day' });
+        continue;
+      }
+
+      // Monday - Friday: standard shift 08:00 - 17:00
       let status = 'Present';
-      let inH = 9, inM = Math.floor(r * 20);
+      let inH = 8, inM = Math.floor(r * 15);
       if (r > 0.85) { status = 'Absent'; }
       else if (r > 0.7) { status = 'Late'; inM = 15 + Math.floor(r * 20); }
-      else if (r > 0.6) { status = 'Half Day'; }
 
       if (status === 'Absent') {
         log.push({ date: dateStr, checkIn: '-', checkOut: '-', hours: '-', shift: 'General', status });
         continue;
       }
-      const outH = status === 'Half Day' ? 13 : 18;
+      const outH = 17;
+      const outM = Math.floor(r * 15);
       const checkIn = `${pad(inH)}:${pad(inM)}`;
-      const checkOut = `${pad(outH)}:${pad(Math.floor(r * 30))}`;
-      const mins = (outH * 60) - (inH * 60 + inM);
+      const checkOut = `${pad(outH)}:${pad(outM)}`;
+      const mins = (outH * 60 + outM) - (inH * 60 + inM);
       const hours = `${Math.floor(mins / 60)}h ${pad(mins % 60)}m`;
       log.push({ date: dateStr, checkIn, checkOut, hours, shift: 'General', status });
     }

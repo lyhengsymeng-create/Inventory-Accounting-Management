@@ -6,7 +6,7 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <link href="/assest/image/logos.png" rel="icon" />
-  <title>ប្រព័ន្ធ IAM — ប្រវត្តិការទិញ</title>
+  <title>ប្រព័ន្ធ IAM — ការត្រឡប់ទំនិញ</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
   <link href="/assest/css/cheatDBAdmin.css" rel="stylesheet" />
@@ -89,8 +89,8 @@
             <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
             <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
             <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
-            <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
-            <li class="nav-item"><a class="nav-link active" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link active" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -173,8 +173,8 @@
               <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
               <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
               <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
-              <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
-              <li class="nav-item"><a class="nav-link active" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+              <li class="nav-item"><a class="nav-link active" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+              <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
             </ul>
           </li>
           <li class="nav-item">
@@ -212,8 +212,8 @@
             <i class="bi bi-list fs-5"></i>
           </button>
           <div>
-            <h1 class="h4 fw-bold mb-0">ប្រវត្តិការទិញ</h1>
-            <div class="km text-secondary small">កំណត់ត្រាការបញ្ជាទិញទាំងអស់</div>
+            <h1 class="h4 fw-bold mb-0">ការត្រឡប់ទំនិញ</h1>
+            <div class="km text-secondary small">ស្នើសុំត្រឡប់ទំនិញទៅអ្នកផ្គត់ផ្គង់វិញ ហើយអនុម័តការត្រឡប់នោះ</div>
           </div>
         </div>
         <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
@@ -234,89 +234,121 @@
         </div>
       </nav>
       <div class="p-3 p-lg-4">
-        <!-- ----------- KPI Cards ----------- -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
-          <div class="col">
-            <div class="card border-0 shadow-sm rounded-4 h-100">
-              <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
-                <div class="kpi-icon" style="background:#eee9ff;color:var(--violet);"><i class="bi bi-receipt"></i>
-                </div>
-                <div>
-                  <div class="km text-secondary small mb-1">ការបញ្ជាទិញសរុប</div>
-                  <div class="fw-bold" id="kpiTotalPO" style="font-size:1.6rem; color:var(--violet);">0</div>
-                  <div class="text-secondary small">ការបញ្ជាទិញសរុប</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card border-0 shadow-sm rounded-4 h-100">
-              <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
-                <div class="kpi-icon" style="background:#fdece3;color:#c1793a;"><i class="bi bi-hourglass-split"></i>
-                </div>
-                <div>
-                  <div class="km text-secondary small mb-1">រង់ចាំការអនុម័ត</div>
-                  <div class="fw-bold" id="kpiPending" style="font-size:1.6rem; color:#c1793a;">0</div>
-                  <div class="text-secondary small">រង់ចាំការអនុម័ត</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card border-0 shadow-sm rounded-4 h-100">
-              <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
-                <div class="kpi-icon" style="background:#e7f5ee;color:#1f4d43;"><i class="bi bi-box-seam"></i></div>
-                <div>
-                  <div class="km text-secondary small mb-1">បានទទួលរួច</div>
-                  <div class="fw-bold" id="kpiReceived" style="font-size:1.6rem; color:#1f4d43;">0</div>
-                  <div class="text-secondary small">ការបញ្ជាទិញដែលបានទទួល</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card border-0 shadow-sm rounded-4 h-100">
-              <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
-                <div class="kpi-icon" style="background:#e7ecff;color:#2f4bd6;"><i class="bi bi-cash-stack"></i></div>
-                <div>
-                  <div class="km text-secondary small mb-1">ចំណាយសរុប</div>
-                  <div class="fw-bold" id="kpiSpend" style="font-size:1.6rem; color:#2f4bd6;">$0.00</div>
-                  <div class="text-secondary small">ចំណាយសរុប</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
         <!-- ----------- Section indicator ----------- -->
         <div class="d-flex align-items-center gap-2 mb-4">
           <span class="badge rounded-pill px-3 py-2"
             style="background:var(--violet-soft); color:var(--violet); font-size:.8rem;">
-            <i class="bi bi-clock-history me-1"></i> ប្រវត្តិការទិញ
+            <i class="bi bi-arrow-return-left me-1"></i> ការត្រឡប់ទំនិញ
           </span>
+        </div>
+        <!-- Return KPIs -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-3">
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 d-flex align-items-center gap-3">
+                <div class="kpi-icon"
+                  style="background:#eee9ff;color:var(--violet); width:38px; height:38px; font-size:1rem;"><i
+                    class="bi bi-arrow-return-left"></i></div>
+                <div>
+                  <div class="fw-bold" id="kpiRetTotal" style="font-size:1.3rem; color:var(--violet);">0</div>
+                  <div class="text-secondary small">ការត្រឡប់សរុប</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 d-flex align-items-center gap-3">
+                <div class="kpi-icon"
+                  style="background:#fdece3;color:#c1793a; width:38px; height:38px; font-size:1rem;"><i
+                    class="bi bi-hourglass-split"></i></div>
+                <div>
+                  <div class="fw-bold" id="kpiRetPending" style="font-size:1.3rem; color:#c1793a;">0</div>
+                  <div class="text-secondary small">រង់ចាំពិនិត្យ</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 d-flex align-items-center gap-3">
+                <div class="kpi-icon"
+                  style="background:#e7f5ee;color:#1f4d43; width:38px; height:38px; font-size:1rem;"><i
+                    class="bi bi-check2-circle"></i></div>
+                <div>
+                  <div class="fw-bold" id="kpiRetApproved" style="font-size:1.3rem; color:#1f4d43;">0</div>
+                  <div class="text-secondary small">បានអនុម័ត</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 d-flex align-items-center gap-3">
+                <div class="kpi-icon"
+                  style="background:#e7ecff;color:#2f4bd6; width:38px; height:38px; font-size:1rem;"><i
+                    class="bi bi-cash-stack"></i></div>
+                <div>
+                  <div class="fw-bold" id="kpiRetValue" style="font-size:1.3rem; color:#2f4bd6;">$0.00</div>
+                  <div class="text-secondary small">តម្លៃប៉ាន់ស្មានសរុប</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="card border-0 shadow-sm rounded-4">
           <div class="card-body p-4">
-            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
-              <div>
-                <h2 class="h5 fw-bold mb-0">ប្រវត្តិការទិញ</h2>
-                <div class="km text-secondary small">កំណត់ត្រាការបញ្ជាទិញទាំងអស់</div>
+            <div class="mb-3">
+              <h2 class="h5 fw-bold mb-0"><i class="bi bi-arrow-return-left me-2"
+                  style="color:var(--violet);"></i>ការត្រឡប់ទំនិញ</h2>
+              <div class="km text-secondary small">ស្នើសុំត្រឡប់ទំនិញទៅអ្នកផ្គត់ផ្គង់វិញ ហើយអនុម័តការត្រឡប់នោះ</div>
+            </div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-3">
+                <label class="form-label small fw-semibold">ការបញ្ជាទិញដើម</label>
+                <select class="form-select rounded-3" id="retPO"></select>
               </div>
-              <input class="form-control rounded-3" id="historySearch" placeholder="ស្វែងរក PO ឬអ្នកផ្គត់ផ្គង់..."
-                style="min-width:220px;" type="text" />
+              <div class="col-md-2">
+                <label class="form-label small fw-semibold">ទំនិញ</label>
+                <select class="form-select rounded-3" id="retItem"></select>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small fw-semibold">បរិមាណត្រឡប់</label>
+                <input class="form-control rounded-3" id="retQty" min="1" placeholder="បរិមាណ" type="number" />
+              </div>
+              <div class="col-md-3">
+                <label class="form-label small fw-semibold">មូលហេតុ</label>
+                <select class="form-select rounded-3" id="retReason">
+                  <option value="ទំនិញខូចខាត">ទំនិញខូចខាត</option>
+                  <option value="ខូចខាតកំឡុងពេលដឹកជញ្ជូន">ខូចខាតកំឡុងពេលដឹកជញ្ជូន</option>
+                  <option value="ទំនិញខុសពីការបញ្ជាទិញ">ទំនិញខុសពីការបញ្ជាទិញ</option>
+                  <option value="គុណភាពមិនត្រូវតាមស្តង់ដារ">គុណភាពមិនត្រូវតាមស្តង់ដារ</option>
+                  <option value="ដឹកជញ្ជូនលើសចំនួន">ដឹកជញ្ជូនលើសចំនួន</option>
+                  <option value="ផ្សេងទៀត">ផ្សេងទៀត...</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label class="form-label small fw-semibold d-none d-md-block">&nbsp;</label>
+                <button class="btn text-white rounded-3 w-100 d-flex align-items-center justify-content-center gap-2"
+                  id="addReturnBtn" style="background:var(--violet);"><i class="bi bi-plus-lg"></i>
+                  ដាក់ស្នើសុំត្រឡប់</button>
+              </div>
             </div>
             <div class="table-responsive">
               <table class="table align-middle">
                 <thead>
                   <tr class="text-secondary small text-uppercase">
-                    <th style="font-size:.72rem;">លេខ PO</th>
-                    <th style="font-size:.72rem;">អ្នកផ្គត់ផ្គង់</th>
+                    <th style="font-size:.72rem;">លេខត្រឡប់</th>
+                    <th style="font-size:.72rem;">PO ដើម</th>
                     <th style="font-size:.72rem;">ទំនិញ</th>
-                    <th style="font-size:.72rem;">កាលបរិច្ឆេទបញ្ជាទិញ</th>
-                    <th style="font-size:.72rem;">សរុប</th>
+                    <th style="font-size:.72rem;">បរិមាណ</th>
+                    <th style="font-size:.72rem;">តម្លៃប៉ាន់ស្មាន</th>
+                    <th style="font-size:.72rem;">មូលហេតុ</th>
                     <th style="font-size:.72rem;">ស្ថានភាព</th>
+                    <th class="text-end" style="font-size:.72rem;">សកម្មភាព</th>
                   </tr>
                 </thead>
-                <tbody id="historyTableBody"></tbody>
+                <tbody id="returnTableBody"></tbody>
               </table>
             </div>
           </div>
@@ -338,7 +370,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="/assest/js/sidebar-scroll.js"></script>
   <script src="/assest/js/purchaseDataStore.js"></script>
-  <script src="/assest/js/purchaseHistory.js"></script>
+  <script src="/assest/js/purchaseReturn.js"></script>
 </body>
 
 </html>
