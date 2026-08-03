@@ -174,7 +174,34 @@
           </div>
         </div>
       </div>
+      <!-- ----------------- Leave Requests (សំណើសុំច្បាប់) ----------------- -->
+        <div class="card border-0 shadow-sm rounded-4 mt-4">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-3">
+              <div>
+                <h2 class="h5 fw-bold mb-0">Leave Requests</h2>
+                <div class="km text-secondary small">សំណើសុំច្បាប់ពីបុគ្គលិក — ត្រូវការការអនុម័ត</div>
+              </div>
+              <span class="badge rounded-pill bg-danger-subtle text-danger-emphasis px-3 py-2 d-none"
+                id="leaveReqPendingBadge" style="font-size:.78rem;"></span>
+            </div>
 
+            <div class="table-responsive">
+              <table class="table align-middle">
+                <thead>
+                  <tr class="text-secondary small text-uppercase">
+                    <th style="font-size:.72rem; letter-spacing:.05em;">បុគ្គលិក</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">កាលបរិច្ឆេទ</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">មូលហេតុ</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;">ស្ថានភាព</th>
+                    <th style="font-size:.72rem; letter-spacing:.05em;" class="text-end">សកម្មភាព</th>
+                  </tr>
+                </thead>
+                <tbody id="leaveRequestsTableBody"><!-- rows injected by JS --></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
     </div>
   </main>
 </div>
@@ -187,7 +214,9 @@
   </div>
 </div>
 
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="/assest/js/attendanceSheet.js"></script>
+<script src="/assest/js/employeeManagement.js"></script>
 </body>
 </html>
