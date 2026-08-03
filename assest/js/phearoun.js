@@ -311,7 +311,12 @@ function confirmQrPayment() {
     { id: 1, name: "រឹម​ ភារុន", phone: "096 555 123", email: "roun@mail.com", address: "ភ្នំពេញ", hasDebt: true, points: 24 },
     { id: 2, name: "វ៉េត សុជាតិ", phone: "012 888 999", email: "cheak@mail.com", address: "សៀមរាប", hasDebt: false, points: 8 },
     { id: 3, name: "ចាន់​ សារ៉ាក់", phone: "088 777 666", email: "rak@mail.com", address: "បាត់ដំបង", hasDebt: false, points: 0 },
-    { id: 3, name: "លីហេង ស៊ីម៉េង", phone: "088 777 666", email: "meng@mail.com", address: "បាត់ដំបង", hasDebt: false, points: 15 }
+    { id: 4, name: "លីហេង ស៊ីម៉េង", phone: "088 777 666", email: "meng@mail.com", address: "បាត់ដំបង", hasDebt: false, points: 15 },
+    { id: 5, name: "វិទូ", phone: "088 777 888", email: "tu@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 },
+    { id: 6, name: "រឹម​ វីរះ", phone: "088 777 999", email: "vireak@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 },
+    { id: 7, name: "មករា", phone: "088 777 111", email: "makera@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 },
+    { id: 8, name: "ចាន់ មិនា", phone: "088 777 222", email: "mine@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 },
+    { id: 9, name: "សុ​ ផល", phone: "088 777 444", email: "pol@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 }
   ];
 
   
