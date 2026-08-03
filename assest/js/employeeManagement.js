@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   let staff = [
-    { id: 1, name: 'Veth Socheat',        phone: '012 345 678', role: 'Admin',     active: true , image: '/assest/image/DSC_1535 copy.jpg',
+    { id: 1, name: 'Veth Socheat',        phone: '012 345 678', role: 'Admin',     active: true , image: '/assest/image/socheat.jpg',
       email: 'socheat.veth@iam.com', department: 'Management', joinDate: '2022-03-14', lastLogin: '2026-07-25 08:12',
       manages: 7, modules: ['Employees', 'Products', 'Inventory', 'Sales', 'Purchases', 'Accounting', 'Reports'],
       history: [
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { action: 'Added new staff: Sok Pisey', time: '2026-07-20 10:05' },
         { action: 'Updated product price list', time: '2026-07-18 09:30' },
       ] },
-    { id: 2, name: 'Rim Phearoun', phone: '096 555 210', role: 'Admin', active: true , image: '/assest/image/phearoun_image.jpg',
+    { id: 2, name: 'Rim Phearoun', phone: '096 555 210', role: 'Staff', active: true , image: '/assest/image/phearoun_image.jpg',
       email: 'phearoun.rim@iam.com', department: 'Management', joinDate: '2022-06-02', lastLogin: '2026-07-25 07:55',
       manages: 7, modules: ['Employees', 'Sales', 'Purchases', 'Reports'],
       history: [
@@ -141,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="d-flex justify-content-end gap-1">
             <button class="btn btn-sm btn-light border rounded-3" data-action="view" data-id="${s.id}" title="View Profile"><i class="bi bi-eye-fill"></i></button>
             <button class="btn btn-sm btn-light border rounded-3" data-action="edit" data-id="${s.id}" title="Edit"><i class="bi bi-pencil-square"></i></button>
-            <button class="btn btn-sm btn-light border rounded-3" data-action="reset" data-id="${s.id}" title="Reset Password"><i class="bi bi-key-fill"></i></button>
             <button class="btn btn-sm btn-light border rounded-3" data-action="toggle" data-id="${s.id}" title="${s.active ? 'Disable' : 'Enable'}">
               <i class="bi ${s.active ? 'bi-toggle-on text-success' : 'bi-toggle-off text-secondary'}"></i>
             </button>

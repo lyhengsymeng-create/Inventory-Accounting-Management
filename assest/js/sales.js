@@ -1,7 +1,3 @@
-// ============ salesManagement.js ============
-// Renders the sales/invoice table, KPI cards, invoice builder,
-// receipt preview, cancel-sale flow, and sales history for SalesManagement.html
-
 document.addEventListener('DOMContentLoaded', function () {
 
   // ---------- Sample data (replace with API data later) ----------

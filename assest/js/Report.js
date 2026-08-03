@@ -263,9 +263,6 @@ const REPORTS = {
     const bsExportModal = new bootstrap.Modal(exportModalEl);
 
     let currentReportKey = 'bestSelling';
-    // Tracks whether the export modal was opened FROM the print flow,
-    // so we only reopen the report modal in that specific case —
-    // not every time the export modal happens to close.
     let returningFromExport = false;
 
     function statusPillHtml(val) {
@@ -283,8 +280,6 @@ const REPORTS = {
     }
 
     const STATUS_VALUES = ["បានទូទាត់", "មិនទាន់ទូទាត់", "ជិតអស់", "អស់ស្តុក", "គ្រប់គ្រាន់", "កំពុងកើនឡើង", "កំពុងធ្លាក់ចុះ", "ស្ថិតស្ថេរ", "ល្អប្រសើរ", "ល្អ"];
-
-    // Builds the always-in-DOM printable version of a report (independent of modal visibility)
     function renderPrintArea(key) {
       const data = REPORTS[key];
       const from = document.getElementById('fromDate').value || '—';
@@ -366,8 +361,6 @@ const REPORTS = {
     });
 
     renderRecentReports();
-
-    // Keep the print area in sync if the date filters change
     document.getElementById('fromDate').addEventListener('change', () => renderPrintArea(currentReportKey));
     document.getElementById('toDate').addEventListener('change', () => renderPrintArea(currentReportKey));
 
@@ -413,57 +406,36 @@ const REPORTS = {
       });
       bsModal.hide();
     });
-
-    // Only reopen the report modal when the export modal was reached
-    // through the print flow above — closing it any other way (X button,
-    // "បិទ" button, Escape, backdrop click, or after a successful export)
-    // just closes it, instead of looping back into the report modal.
     exportModalEl.addEventListener('hidden.bs.modal', () => {
       if (returningFromExport) {
         returningFromExport = false;
         bsModal.show();
       }
     });
-
-    // ---- Export option handlers ----
-    // NOTE: These buttons intentionally do nothing right now. The popup
-    // still opens and closes normally, but Preview/Print/PDF/Excel/Email
-    // are disabled (no window.print(), no file generation, no mailto).
     document.getElementById('btnPreview').addEventListener('click', () => {
-      // disabled: no action
     });
 
     document.getElementById('btnPrintNow').addEventListener('click', () => {
-      // disabled: no action
     });
 
     document.getElementById('btnExportPdf').addEventListener('click', () => {
-      // disabled: no action
     });
 
     document.getElementById('btnExportExcel').addEventListener('click', () => {
-      // disabled: no action
     });
 
     document.getElementById('btnSendEmail').addEventListener('click', () => {
-      // disabled: no action
     });
   
   (function () {
-    // 1. Catch and surface any script errors so you can see what's failing
     window.addEventListener('error', function (e) {
       console.error('[Report Debug] Script error:', e.message, 'at', e.filename + ':' + e.lineno);
     });
-
-    // 2. Self-contained fallback: opens the modal directly via delegated click,
-    //    independent of whatever the original inline script did or didn't do.
     document.addEventListener('click', function (e) {
       const card = e.target.closest('[data-report]');
       if (!card) return;
 
       const key = card.getAttribute('data-report');
-
-      // If the original openReport function exists and works, prefer it
       if (typeof window.openReport === 'function') {
         try {
           window.openReport(key);
@@ -472,9 +444,6 @@ const REPORTS = {
           console.error('[Report Debug] openReport(key) threw:', err);
         }
       }
-
-      // Otherwise fall back to raw Bootstrap modal show, so at least
-      // something visibly happens (even without populated content)
       const modalNode = document.getElementById('reportModal');
       if (modalNode && window.bootstrap) {
         console.warn('[Report Debug] Falling back to raw modal show for key:', key);
