@@ -35,7 +35,9 @@
       display: flex;
       min-height: 100vh;
     }
-
+#settingsDrawer {
+  display: none !important;
+}
     .main {
       flex: 1 1 auto;
       min-width: 0;

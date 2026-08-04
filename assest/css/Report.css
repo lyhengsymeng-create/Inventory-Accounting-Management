@@ -107,7 +107,7 @@
     }
 
     .topbar .crumb {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--ink-500);
       display: flex;
       align-items: center;
@@ -196,7 +196,7 @@
     }
 
     .page-head p {
-      font-size: 14px;
+      font-size: 16px;
       color: var(--ink-500);
       margin: 0;
     }
@@ -361,7 +361,7 @@
     }
 
     .report-card .rc-desc {
-      font-size: 12.5px;
+      font-size: 13.5px;
       color: var(--ink-500);
       margin: 6px 0 0;
       line-height: 1.55;
@@ -386,8 +386,6 @@
     .report-card:hover .rc-foot i {
       transform: translateX(3px);
     }
-
-    /* ===== Daily / Weekly / Monthly quick-report card ===== */
     .quick-report-card {
       background: var(--panel);
       border: 1px solid var(--line);
@@ -428,7 +426,7 @@
     }
 
     .quick-report-card .rc-desc {
-      font-size: 12.5px;
+      font-size: 13.5px;
       color: var(--ink-500);
       margin: 3px 0 0;
       line-height: 1.55;
