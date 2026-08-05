@@ -574,7 +574,7 @@ body {
 }
 
 .day-badge.status-present {
-  background: #22c55e;
+  background: #15803d;
   color: #fff;
 }
 
@@ -584,7 +584,7 @@ body {
 }
 
 .day-badge.status-holiday {
-  background: #f5b301;
+  background: #a16b03;
   color: #fff;
 }
 
@@ -637,44 +637,33 @@ body {
   color: #fff;
   font-size: .7rem;
 }
-.hvr-float-shadow {
-  display: inline-block;
+.staff-table-card .table-responsive {
+  border: 1px solid #E7E9F0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.staff-table-card .table thead th {
+  background: #FAFBFD;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #6B7280;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-bottom: 1px solid #E7E9F0;
+}
+
+.staff-table-card .table tbody td {
+  padding: 13px 18px;
+  border-bottom: 1px solid #E7E9F0;
   vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  position: relative;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
 }
-.hvr-float-shadow:before {
-  pointer-events: none;
-  position: absolute;
-  z-index: -1;
-  content: '';
-  top: 100%;
-  left: 5%;
-  height: 10px;
-  width: 90%;
-  opacity: 0;
-  background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
-  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
-  /* W3C */
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform, opacity;
-  transition-property: transform, opacity;
+
+.staff-table-card .table tbody tr:last-child td {
+  border-bottom: none;
 }
-.hvr-float-shadow:hover, .hvr-float-shadow:focus, .hvr-float-shadow:active {
-  -webkit-transform: translateY(-5px);
-  transform: translateY(-5px);
-  /* move the element up by 5px */
-}
-.hvr-float-shadow:hover:before, .hvr-float-shadow:focus:before, .hvr-float-shadow:active:before {
-  opacity: 1;
-  -webkit-transform: translateY(5px);
-  transform: translateY(5px);
-  /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+
+.staff-table-card .table tbody tr:hover {
+  background: #FAFBFD;
 }
