@@ -3,6 +3,9 @@
 <html lang="km">
 
 <head>
+    <script id="ims-theme-preload">(function(){try{if(localStorage.getItem("ims-theme-v2")==="dark"){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();</script>
+    <link rel="stylesheet" href="../../../assest/css/theme-toggle.css">
+
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <link href="/assest/image/logos.png" rel="icon" />
@@ -65,7 +68,7 @@
           <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
             <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
             <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
-            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">សន្លឹកវត្តមាន</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
@@ -101,10 +104,10 @@
             <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
           </a>
           <ul class="nav flex-column submenu collapse" id="accountingSubmenu1">
-            <li class="nav-item"><a class="nav-link" href="Accounting.html#income">កត់ត្រា - ចំណូល</a></li>
-            <li class="nav-item"><a class="nav-link" href="Accounting.html#expenses">កត់ត្រា - ចំណាយ</a></li>
-            <li class="nav-item"><a class="nav-link" href="Accounting.html#pl">របាយការណ៍ចំណេញ-ខាត</a></li>
-            <li class="nav-item"><a class="nav-link" href="Accounting.html#cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
+            <li class="nav-item"><a class="nav-link" href="AccountingIncome.html">កត់ត្រា - ចំណូល</a></li>
+            <li class="nav-item"><a class="nav-link" href="AccountingExpense.html">កត់ត្រា - ចំណាយ</a></li>
+            <li class="nav-item"><a class="nav-link" href="AccountingProfitLoss.html">របាយការណ៍ចំណេញ-ខាត</a></li>
+            <li class="nav-item"><a class="nav-link" href="AccountingCashFlow.html">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
@@ -149,7 +152,7 @@
             <ul class="nav flex-column submenu collapse" id="attendanceSubmenu2">
               <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
               <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
-              <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">សន្លឹកវត្តមាន</a></li>
+              <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
@@ -185,10 +188,10 @@
               <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
             </a>
             <ul class="nav flex-column submenu collapse" id="accountingSubmenu2">
-              <li class="nav-item"><a class="nav-link" href="Accounting.html#income">កត់ត្រា - ចំណូល</a></li>
-              <li class="nav-item"><a class="nav-link" href="Accounting.html#expenses">កត់ត្រា - ចំណាយ</a></li>
-              <li class="nav-item"><a class="nav-link" href="Accounting.html#pl">របាយការណ៍ចំណេញ-ខាត</a></li>
-              <li class="nav-item"><a class="nav-link" href="Accounting.html#cashflow">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
+              <li class="nav-item"><a class="nav-link" href="AccountingIncome.html">កត់ត្រា - ចំណូល</a></li>
+              <li class="nav-item"><a class="nav-link" href="AccountingExpense.html">កត់ត្រា - ចំណាយ</a></li>
+              <li class="nav-item"><a class="nav-link" href="AccountingProfitLoss.html">របាយការណ៍ចំណេញ-ខាត</a></li>
+              <li class="nav-item"><a class="nav-link" href="AccountingCashFlow.html">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
             </ul>
           </li>
           <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
@@ -236,7 +239,7 @@
       <div class="p-3 p-lg-4">
         <!-- ----------- KPI Cards ----------- -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-xl-4 g-3 mb-4">
-          <div class="col hvr-float-shadow">
+          <div class="col">
             <div class="card border-0 shadow-sm rounded-4 h-100">
               <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
                 <div class="kpi-icon" style="background:#eee9ff;color:var(--violet);"><i class="bi bi-receipt"></i>
@@ -249,7 +252,7 @@
               </div>
             </div>
           </div>
-          <div class="col hvr-float-shadow">
+          <div class="col">
             <div class="card border-0 shadow-sm rounded-4 h-100">
               <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
                 <div class="kpi-icon" style="background:#fdece3;color:#c1793a;"><i class="bi bi-hourglass-split"></i>
@@ -262,7 +265,7 @@
               </div>
             </div>
           </div>
-          <div class="col hvr-float-shadow">
+          <div class="col">
             <div class="card border-0 shadow-sm rounded-4 h-100">
               <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
                 <div class="kpi-icon" style="background:#e7f5ee;color:#1f4d43;"><i class="bi bi-box-seam"></i></div>
@@ -274,7 +277,7 @@
               </div>
             </div>
           </div>
-          <div class="col hvr-float-shadow">
+          <div class="col">
             <div class="card border-0 shadow-sm rounded-4 h-100">
               <div class="card-body p-3 p-lg-4 d-flex align-items-start gap-3">
                 <div class="kpi-icon" style="background:#e7ecff;color:#2f4bd6;"><i class="bi bi-cash-stack"></i></div>
@@ -294,14 +297,14 @@
             <i class="bi bi-check2-circle me-1"></i> អនុម័តការទិញ
           </span>
         </div>
-        <div class="card border-0 shadow-sm rounded-4">
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden staff-table-card">
           <div class="card-body p-4">
             <div class="mb-3">
               <h2 class="h5 fw-bold mb-0">អនុម័តការបញ្ជាទិញ</h2>
               <div class="km text-secondary small">ពិនិត្យ និងអនុម័តការបញ្ជាទិញរង់ចាំ</div>
             </div>
             <div class="table-responsive">
-              <table class="table align-middle">
+              <table class="table align-middle table-hover table-borderless mb-0">
                 <thead>
                   <tr class="text-secondary small text-uppercase">
                     <th style="font-size:.72rem;">លេខ PO</th>
@@ -336,6 +339,7 @@
   <script src="/assest/js/sidebar-scroll.js"></script>
   <script src="/assest/js/purchaseDataStore.js"></script>
   <script src="/assest/js/approvePurchase.js"></script>
+    <script src="../../../assest/js/theme-toggle.js"></script>
 </body>
 
 </html>
