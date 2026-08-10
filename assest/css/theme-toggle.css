@@ -342,6 +342,7 @@ html[data-theme="dark"] .search-box input,
 html[data-theme="dark"] .border,
 html[data-theme="dark"] p,
 html[data-theme="dark"] .bi, */
+html[data-theme="dark"] .btn,
 html[data-theme="dark"] .btn-outline {
   background-color: var(--dt-surface-2) !important;
   color: rgba(255, 255, 255, 0.749)!important;

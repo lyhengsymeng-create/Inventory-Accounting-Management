@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
 
   const employees = [
-    { id: 3, name: 'Vet Chansarak', image: '/assest/image/DSC_1541 copy.jpg', position: 'Cashier', department: 'Sales Floor', joinDate: '2023-01-10', empCode: 'IM062501VC' },
+    { id: 3, name: 'Rim Phearoun', image: '/assest/image/phearoun_image.jpg', position: 'Management', department: 'Sales Floor', joinDate: '2023-01-10', empCode: 'IM062501VC' },
     { id: 4, name: 'Lyheng Symeny', image: '/assest/image/meng_image.jpg', position: 'Stock Clerk', department: 'Stock Room', joinDate: '2023-05-22', empCode: 'IM062502LS' },
-    { id: 5, name: 'Rim Phearoun', image: '/assest/image/phearoun_image.jpg', position: 'Cashier', department: 'Sales Floor', joinDate: '2023-01-10', empCode: 'IM062503RP' },
+    { id: 5, name: 'Vet Chansarak', image:  '/assest/image/DSC_1541 copy.jpg', position: 'Cashier', department: 'Sales Floor', joinDate: '2023-01-10', empCode: 'IM062503RP' },
     { id: 6, name: 'Sok Dara', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP66xZe_6NzZqJBWm79x8S2MHyt4QklAK-9-jQ-IRAFw&s=10', position: 'Stock Clerk', department: 'Stock Room', joinDate: '2023-09-18', empCode: 'IM062504SD' },
     { id: 7, name: 'Sok Pisey', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10', position: 'Cashier', department: 'Sales Floor', joinDate: '2024-08-05', empCode: 'IM062505SK' },
     { id: 8, name: 'Heng Sylong', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gR8rxs27HynIOIU9zUAwqEZdJ8ktrvK22xDCiUj59Q&s=10', position: 'Cashier', department: 'Sales Floor', joinDate: '2024-11-12', empCode: 'IM062506HS' },
