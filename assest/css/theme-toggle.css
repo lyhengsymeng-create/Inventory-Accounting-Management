@@ -1,4 +1,3 @@
-
 html {
   transition: background-color .2s ease, color .2s ease;
 }
@@ -342,6 +341,7 @@ html[data-theme="dark"] .search-box input,
 html[data-theme="dark"] .border,
 html[data-theme="dark"] p,
 html[data-theme="dark"] .bi, */
+html[data-theme="dark"] .btn,
 html[data-theme="dark"] .btn-outline {
   background-color: var(--dt-surface-2) !important;
   color: rgba(255, 255, 255, 0.749)!important;
@@ -354,6 +354,24 @@ html[data-theme="dark"] .recent-table tbody tr:hover,
 html[data-theme="dark"] .detail-table tbody tr:hover,
 html[data-theme="dark"] #productsTable tbody tr:hover {
   background-color: var(--dt-surface-2) !important;
+}
+
+/* mobile card rows for the inventory product table */
+@media (max-width: 768px) {
+  html[data-theme="dark"] #productTable tbody tr,
+  html[data-theme="dark"] #productTable tbody tr:hover {
+    background-color: var(--dt-surface) !important;
+    border-color: var(--dt-border) !important;
+  }
+  html[data-theme="dark"] #productTable td {
+    border-bottom-color: var(--dt-border) !important;
+  }
+  html[data-theme="dark"] #productTable td:nth-child(2)::before,
+  html[data-theme="dark"] #productTable td:nth-child(3)::before,
+  html[data-theme="dark"] #productTable td:nth-child(4)::before,
+  html[data-theme="dark"] #productTable td:nth-child(5)::before {
+    color: var(--dt-text-faint) !important;
+  }
 }
 
 html[data-theme="dark"] .prod-name,
@@ -607,12 +625,6 @@ html[data-theme="dark"] [style*="background: #fafafa"] {
 }
 
 .theme-toggle-btn {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
   border: none;
   background: #20213a;
   color: #fff;
@@ -620,17 +632,7 @@ html[data-theme="dark"] [style*="background: #fafafa"] {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
-  z-index: 2147483647;
   transition: transform .15s ease, box-shadow .15s ease;
-}
-.theme-toggle-btn:hover {
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 10px 22px rgba(0, 0, 0, .3);
-}
-
-.theme-toggle-btn:active {
-  transform: scale(.95);
 }
 
 .theme-toggle-btn svg {
@@ -638,12 +640,65 @@ html[data-theme="dark"] [style*="background: #fafafa"] {
   height: 22px;
 }
 
-/* On small screens, keep it clear of mobile nav bars */
+/* Inline variant: sits in the topbar next to the profile pill,
+   sized to match the search / bell icon buttons beside it. */
+.theme-toggle-btn--inline {
+  width: 38px;
+  height: 38px;
+  border-radius: .5rem;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn--inline svg {
+  width: 18px;
+  height: 18px;
+}
+
+.theme-toggle-btn--inline:hover {
+  transform: translateY(-1px);
+}
+
+.theme-toggle-btn--inline:active {
+  transform: scale(.95);
+}
+
+/* Floating variant: fallback for pages with no topbar to dock into. */
+.theme-toggle-btn--floating {
+  position: fixed;
+  bottom: 22px;
+  right: 22px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+  z-index: 2147483647;
+}
+
+.theme-toggle-btn--floating:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, .3);
+}
+
+.theme-toggle-btn--floating:active {
+  transform: scale(.95);
+}
+
+/* On small screens, keep the floating fallback clear of mobile nav bars */
 @media (max-width: 576px) {
-  .theme-toggle-btn {
+  .theme-toggle-btn--floating {
     width: 44px;
     height: 44px;
     bottom: 16px;
     right: 16px;
+  }
+
+  .theme-toggle-btn--inline {
+    width: 34px;
+    height: 34px;
+  }
+
+  .theme-toggle-btn--inline svg {
+    width: 16px;
+    height: 16px;
   }
 }

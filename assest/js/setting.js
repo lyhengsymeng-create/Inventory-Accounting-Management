@@ -141,6 +141,40 @@
 
     const PILL_LABEL = { ok: 'ពេញលេញ', warn: 'មើលបានតែប៉ុណ្ណោះ', bad: 'គ្មាន' };
 
+    // ---- Roles persistence (localStorage) ----
+    const ROLES_STORAGE_KEY = 'iam_settings_roles';
+
+    const DEFAULT_ROLES = [
+      { name: 'អ្នកគ្រប់គ្រង', users: 3, perms: ['ok', 'ok', 'ok', 'ok'] },
+      { name: 'អ្នកគិតលុយ', users: 8, perms: ['ok', 'warn', 'bad', 'bad'] },
+      { name: 'បុគ្គលិកស្តុក', users: 4, perms: ['bad', 'ok', 'warn', 'bad'] },
+    ];
+
+    function loadRoles() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(ROLES_STORAGE_KEY));
+        if (Array.isArray(saved) && saved.length) return saved;
+      } catch (e) { /* fall through to defaults */ }
+      return DEFAULT_ROLES;
+    }
+
+    function saveRoles(roles) {
+      localStorage.setItem(ROLES_STORAGE_KEY, JSON.stringify(roles));
+    }
+
+    function renderRoles(roles) {
+      rolesTbody.innerHTML = roles.map(r => `
+      <tr>
+        <td class="t">${r.name.replace(/</g, '&lt;')}</td>
+        <td>${r.users}</td>
+        ${r.perms.map(p => `<td><span class="pill ${p}">${PILL_LABEL[p]}</span></td>`).join('')}
+      </tr>
+    `).join('');
+    }
+
+    let roles = loadRoles();
+    renderRoles(roles);
+
     function openRoleModal() {
       roleOverlay.classList.add('show');
       roleNameInput.value = '';
@@ -172,13 +206,9 @@
       const perms = ['rolePermSales', 'rolePermInventory', 'rolePermReports', 'rolePermSettings']
         .map(id => document.getElementById(id).value);
 
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-      <td class="t">${name.replace(/</g, '&lt;')}</td>
-      <td>${users}</td>
-      ${perms.map(p => `<td><span class="pill ${p}">${PILL_LABEL[p]}</span></td>`).join('')}
-    `;
-      rolesTbody.appendChild(tr);
+      roles.push({ name, users, perms });
+      saveRoles(roles);
+      renderRoles(roles);
 
       closeRoleModal();
       const t = document.getElementById('toast');
