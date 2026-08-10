@@ -664,6 +664,8 @@ function saveCust() {
         products:  'ផលិតផល',
         inventory: 'ស្ថានភាពស្តុក',
         customers: 'អតិថិជន',
+        online_orders: 'ការបញ្ចាទិញអនឡាញ',
+        tickets: 'ការទាក់ទងពីអតិថិជង',
         reports:   'របាយការណ៍',
         communication: 'ទំនាក់ទំនង',
         attendance: 'វត្តមាន',
