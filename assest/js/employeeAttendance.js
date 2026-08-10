@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     'Half Day': 'bg-primary-subtle text-primary'
   };
 
+
   // Deterministic pseudo-random log generator per employee (so it's stable across reloads)
   function seededRandom(seed) {
     let x = Math.sin(seed) * 10000;
@@ -198,4 +199,5 @@ function avgStats(log) {
 
   renderList();
   if (employees.length) selectEmployee(employees[0].id);
+  
 });

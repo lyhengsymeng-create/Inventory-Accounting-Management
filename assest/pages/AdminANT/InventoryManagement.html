@@ -39,33 +39,35 @@
       </div>
 
       <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">
-        Main</div>
+        MENU</div>
         <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
               class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
               class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
         <li class="nav-item">
-          <a aria-controls="attendanceSubmenu1" aria-expanded="false"
-            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu1"
-            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)"
+            data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false"
+            aria-controls="attendanceSubmenu1">
             <i class="bi bi-calendar-check-fill"></i> វត្តមាន
             <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
           </a>
           <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
             <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
             <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
               class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
-        <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2"
-            href="InventoryManagement.html"><i class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
+        <li class="nav-item"><a class="nav-link d-flex active align-items-center gap-2" href="InventoryManagement.html"><i
+              class="bi bi-boxes"></i>ការគ្រប់គ្រងស្តុក</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
               class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
               class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="StaffChat.html"><i
+              class="bi bi-chat-left-text-fill"></i> ជជែកជាមួយបុគ្គលិក</a></li>
         <li class="nav-item">
           <a aria-controls="purchaseSubmenu1" aria-expanded="false"
             class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu1"
@@ -103,6 +105,7 @@
               class="bi bi-gear-fill"></i> ការកំណត់</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
               class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+
       </ul>
 
       <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
@@ -129,71 +132,74 @@
       </div>
       <div class="offcanvas-body p-3">
         <div class="text-uppercase small text-secondary fw-bold px-2 mb-2"
-          style="letter-spacing:.08em; font-size:.7rem;">Main</div>
-        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenuOff">
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
-                class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
-                class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
-          <li class="nav-item">
-            <a aria-controls="attendanceSubmenu2" aria-expanded="false"
-              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu2"
-              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
-              <i class="bi bi-calendar-check-fill"></i> វត្តមាន
-              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
-            </a>
-            <ul class="nav flex-column submenu collapse" id="attendanceSubmenu2">
-              <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-              <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
-              <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
-                class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
-          <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2"
-              href="InventoryManagement.html"><i class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
-                class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
-                class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
-          <li class="nav-item">
-            <a aria-controls="purchaseSubmenu2" aria-expanded="false"
-              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu2"
-              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
-              <i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ
-              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
-            </a>
-            <ul class="nav flex-column submenu collapse" id="purchaseSubmenu2">
-              <li class="nav-item"><a class="nav-link" href="PurchaseRequest.html">ស្នើសុំការទិញ</a></li>
-              <li class="nav-item"><a class="nav-link" href="CreatePurchaseOrder.html">បង្កើតការបញ្ជាទិញ</a></li>
-              <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
-              <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
-              <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
-              <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
-              <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a aria-controls="accountingSubmenu2" aria-expanded="false"
-              class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#accountingSubmenu2"
-              data-bs-toggle="collapse" href="javascript:void(0)" role="button">
-              <i class="bi bi-calculator-fill"></i> គណនេយ្យ
-              <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
-            </a>
-            <ul class="nav flex-column submenu collapse" id="accountingSubmenu2">
-              <li class="nav-item"><a class="nav-link" href="AccountingIncome.html">កត់ត្រា - ចំណូល</a></li>
-              <li class="nav-item"><a class="nav-link" href="AccountingExpense.html">កត់ត្រា - ចំណាយ</a></li>
-              <li class="nav-item"><a class="nav-link" href="AccountingProfitLoss.html">របាយការណ៍ចំណេញ-ខាត</a></li>
-              <li class="nav-item"><a class="nav-link" href="AccountingCashFlow.html">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
-                class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
-                class="bi bi-gear-fill"></i> ការកំណត់</a></li>
-          <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
-                class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
-        </ul>
+          style="letter-spacing:.08em; font-size:.7rem;">MENU</div>
+        <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
+              class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
+              class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
+        <li class="nav-item">
+          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)"
+            data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false"
+            aria-controls="attendanceSubmenu1">
+            <i class="bi bi-calendar-check-fill"></i> វត្តមាន
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
+              class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
+        <li class="nav-item"><a class="nav-link d-flex active align-items-center gap-2" href="InventoryManagement.html"><i
+              class="bi bi-boxes"></i>ការគ្រប់គ្រងស្តុក</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
+              class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
+              class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="StaffChat.html"><i
+              class="bi bi-chat-left-text-fill"></i> ជជែកជាមួយបុគ្គលិក</a></li>
+        <li class="nav-item">
+          <a aria-controls="purchaseSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-truck"></i> ការគ្រប់គ្រងការទិញ
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="purchaseSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="PurchaseRequest.html">ស្នើសុំការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="CreatePurchaseOrder.html">បង្កើតការបញ្ជាទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="ApprovePurchase.html">អនុម័តការទិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PendingPurchaseOrders.html">ការបញ្ជាទិញកំពុងរង់ចាំ</a></li>
+            <li class="nav-item"><a class="nav-link" href="ReceiveGoods.html">ទទួលទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseReturn.html">ការត្រឡប់ទំនិញ</a></li>
+            <li class="nav-item"><a class="nav-link" href="PurchaseHistory.html">ប្រវត្តិការទិញ</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a aria-controls="accountingSubmenu1" aria-expanded="false"
+            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#accountingSubmenu1"
+            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+            <i class="bi bi-calculator-fill"></i> គណនេយ្យ
+            <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
+          </a>
+          <ul class="nav flex-column submenu collapse" id="accountingSubmenu1">
+            <li class="nav-item"><a class="nav-link" href="AccountingIncome.html">កត់ត្រា - ចំណូល</a></li>
+            <li class="nav-item"><a class="nav-link" href="AccountingExpense.html">កត់ត្រា - ចំណាយ</a></li>
+            <li class="nav-item"><a class="nav-link" href="AccountingProfitLoss.html">របាយការណ៍ចំណេញ-ខាត</a></li>
+            <li class="nav-item"><a class="nav-link" href="AccountingCashFlow.html">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Reports.html"><i
+              class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
+              class="bi bi-gear-fill"></i> ការកំណត់</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
+              class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+
+      </ul>
 
         <div class="mt-4 p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
           <b class="text-white">គន្លឹះ៖</b> ចុចលើម៉ឺនុយខាងលើ ដើម្បីមើលព័ត៌មានលម្អិតបន្ថែម។
@@ -212,24 +218,40 @@
             <div class="km text-secondary small">គ្រប់គ្រងស្តុក និងសម្ភារៈក្នុងស្ថានភាពគ្រប់គ្រង</div>
           </div>
         </div>
-        <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
-          <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
-          <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
-            <i class="bi bi-bell-fill"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-              style="font-size:.6rem;">3</span>
-          </button>
-          <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
-            <div class="avatar-circle d-flex align-items-center justify-content-center"><img
-                src="/assest/image/DSC_1535 copy.JPG" alt=""></div>
-            <div>
-            <div>
-              <div class="small fw-bold lh-1">Socheat</div>
-              <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
+        <div class="d-flex align-items-center gap-2">
+            <span id="lowStockAlert" class="badge bg-danger" style="display:none!important"></span>
+
+            <!-- ស្វែងរក (Search) -->
+            <div class="position-relative">
+              <button class="btn btn-light border rounded-3" id="topbarSearchBtn" type="button" title="ស្វែងរកផលិតផល">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+              <div id="topbarSearchBox" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2" style="width:240px; z-index:1055;">
+                <input type="text" id="topbarSearchInput" class="form-control form-control-sm font-khmer" placeholder="ស្វែងរកផលិតផល ហើយចុច Enter...">
+              </div>
+            </div>
+
+            <!-- ការជូនដំណឹង (Notifications) -->
+            <div class="position-relative">
+              <button class="btn btn-light border rounded-3 position-relative" id="topbarBellBtn" type="button" title="ការជូនដំណឹង">
+                <i class="fa-solid fa-bell"></i>
+                <span id="topbarBellCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" style="font-size:.6rem;">0</span>
+              </button>
+              <div id="topbarNotifDropdown" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2 font-khmer" style="width:280px; max-height:320px; overflow:auto; z-index:1055;">
+                <div class="fw-bold small text-secondary mb-2 px-1">ការជូនដំណឹង</div>
+                <div id="topbarNotifList"></div>
+              </div>
+            </div>
+            <!-- ប្រូហ្វាល (Profile) -->
+            <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1" id="topbarProfilePill" style="cursor:pointer;" title="គណនីខ្ញុំ">
+              <img src="/assest/image/phearoun_image.jpg" alt="Profile" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;">
+              <div>
+                <div class="small fw-bold lh-1" id="topbarProfileName">សុជាតិ</div>
+                <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
       <div class="p-3 p-lg-4">
         <div class="row g-3 mb-3">
@@ -238,7 +260,7 @@
               <div class="prod-thumb tone-purple"><i class="fa-solid fa-box"></i></div>
               <div>
                 <div class="text-secondary" style="font-size:12px;">ទំនិញសរុប</div>
-                <div class="fw-semibold" style="font-size:18px;">3,300</div>
+                <div class="fw-semibold" style="font-size:18px;">49</div>
               </div>
             </div>
           </div>
@@ -247,7 +269,7 @@
               <div class="prod-thumb tone-green"><i class="fa-solid fa-check"></i></div>
               <div>
                 <div class="text-secondary" style="font-size:12px;">មានស្តុកគ្រប់គ្រាន់</div>
-                <div class="fw-semibold" style="font-size:18px;">3,162</div>
+                <div class="fw-semibold" style="font-size:18px;">38</div>
               </div>
             </div>
           </div>
@@ -256,7 +278,7 @@
               <div class="prod-thumb tone-amber"><i class="fa-solid fa-triangle-exclamation"></i></div>
               <div>
                 <div class="text-secondary" style="font-size:12px;">ជិតអស់ស្តុក</div>
-                <div class="fw-semibold" style="font-size:18px;">123</div>
+                <div class="fw-semibold" style="font-size:18px;">5</div>
               </div>
             </div>
           </div>
@@ -265,7 +287,7 @@
               <div class="prod-thumb tone-pink"><i class="fa-solid fa-xmark"></i></div>
               <div>
                 <div class="text-secondary" style="font-size:12px;">អស់ស្តុក</div>
-                <div class="fw-semibold" style="font-size:18px;">15</div>
+                <div class="fw-semibold" style="font-size:18px;">6</div>
               </div>
             </div>
           </div>
@@ -329,10 +351,9 @@
           </div>
           <select class="form-select" id="categoryFilter" style="width:auto; min-width:160px;">
             <option value="">គ្រប់ប្រភេទទាំងអស់</option>
-            <option value="សម្លៀកបំពាក់">សម្លៀកបំពាក់</option>
-            <option value="ស្បែកជើង">ស្បែកជើង</option>
-            <option value="គ្រឿងសំអាង">គ្រឿងសំអាង</option>
-            <option value="គ្រឿងអេឡិចត្រូនិច">គ្រឿងអេឡិចត្រូនិច</option>
+            <option value="Grocery / គ្រឿងទេស">Grocery / គ្រឿងទេស</option>
+            <option value="Beverages / ភេសជ្ជៈ">Beverages / ភេសជ្ជៈ</option>
+            <option value="Household / សម្ភារៈ">Household / សម្ភារៈ</option>
           </select>
           <select class="form-select" id="statusFilter" style="width:auto; min-width:160px;">
             <option value="">គ្រប់ស្ថានភាពទាំងអស់</option>
@@ -340,7 +361,7 @@
             <option value="low">ជិតអស់ស្តុក</option>
             <option value="out">អស់ស្តុក</option>
           </select>
-          <button class="btn btn-primary-brand text-white ms-auto" data-bs-toggle="modal"
+          <button class="btn btn-primary-brand text-white ms-auto" id="openAddProductBtn" data-bs-toggle="modal"
             data-bs-target="#addProductModal">
             <i class="fa-solid fa-plus me-1"></i> បន្ថែមទំនិញថ្មី
           </button>
@@ -362,383 +383,20 @@
               </thead>
               <tbody>
 
-                <tr data-category="កាបូប" data-status="low" data-name="កាបូបស្បែក ម៉ូដថ្មី SKU-1042">
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="អង្គរ ៥គីឡូ GRC-1001">
                   <td>
                     <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-purple"><i class="fa-solid fa-bag-shopping"></i></div>
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
                       <div>
-                        <div class="prod-name">កាបូបស្បែក ម៉ូដថ្មី</div>
-                        <div class="prod-sku">SKU-1042</div>
+                        <div class="prod-name">អង្គរ ៥គីឡូ</div>
+                        <div class="prod-sku">GRC-1001</div>
                       </div>
                     </div>
                   </td>
-                  <td>កាបូប</td>
+                  <td>គ្រឿងទេស</td>
                   <td><span class="stock-bar-mini">
-                      <div style="width:20%; background:#E24B4A;"></div>
-                    </span>4 / 20</td>
-                  <td>$45.00</td>
-                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="សម្លៀកបំពាក់" data-status="instock" data-name="អាវយឺតកប្បាស ពណ៌ខ្មៅ SKU-1078">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-shirt"></i></div>
-                      <div>
-                        <div class="prod-name">អាវយឺតកប្បាស</div>
-                        <div class="prod-sku">SKU-1078</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>សម្លៀកបំពាក់</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:78%; background:#639922;"></div>
-                    </span>78 / 100</td>
-                  <td>$12.00</td>
-                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="ស្បែកជើង" data-status="out" data-name="ស្បែកជើងកីឡា Size 41 SKU-1103">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-pink"><i class="fa-solid fa-shoe-prints"></i></div>
-                      <div>
-                        <div class="prod-name">ស្បែកជើងកីឡា Size 41</div>
-                        <div class="prod-sku">SKU-1103</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>ស្បែកជើង</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:0%; background:#E24B4A;"></div>
-                    </span>0 / 30</td>
-                  <td>$68.00</td>
-                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="គ្រឿងសំអាង" data-status="instock" data-name="ក្រែមការពារថ្ងៃ SPF50 SKU-2033">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-green"><i class="fa-solid fa-pump-soap"></i></div>
-                      <div>
-                        <div class="prod-name">ក្រែមការពារថ្ងៃ SPF50</div>
-                        <div class="prod-sku">SKU-2033</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>គ្រឿងសំអាង</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:68%; background:#639922;"></div>
-                    </span>34 / 50</td>
-                  <td>$18.50</td>
-                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="គ្រឿងអេឡិចត្រូនិច" data-status="low" data-name="កាសស្តាប់ត្រចៀក Bluetooth SKU-3012">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-headphones"></i></div>
-                      <div>
-                        <div class="prod-name">កាសស្តាប់ត្រចៀក Bluetooth</div>
-                        <div class="prod-sku">SKU-3012</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>គ្រឿងអេឡិចត្រូនិច</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:16%; background:#E24B4A;"></div>
-                    </span>8 / 50</td>
-                  <td>$32.00</td>
-                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="សម្លៀកបំពាក់" data-status="instock" data-name="ខោខូវប៊យទឹកប្រផេះ SKU-1156">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-purple"><i class="fa-solid fa-vest"></i></div>
-                      <div>
-                        <div class="prod-name">ខោខូវប៊យ​ពណ៏ផេះ</div>
-                        <div class="prod-sku">SKU-1156</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>សម្លៀកបំពាក់</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:45%; background:#EF9F27;"></div>
-                    </span>9 / 20</td>
-                  <td>$24.00</td>
-                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="កាបូប" data-status="instock" data-name="កាបូបស្ពាយ Canvas SKU-1210">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-briefcase"></i></div>
-                      <div>
-                        <div class="prod-name">កាបូបស្ពាយ Canvas</div>
-                        <div class="prod-sku">SKU-1210</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>កាបូប</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:82%; background:#639922;"></div>
-                    </span>41 / 50</td>
-                  <td>$29.00</td>
-                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="ស្បែកជើង" data-status="instock" data-name="ស្បែកជើងសម្រាប់ដើរលេង Size 39 SKU-1305">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-pink"><i class="fa-solid fa-shoe-prints"></i></div>
-                      <div>
-                        <div class="prod-name">ស្បែកជើងសម្រាប់ដើរលេង Size 39</div>
-                        <div class="prod-sku">SKU-1305</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>ស្បែកជើង</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:60%; background:#639922;"></div>
-                    </span>18 / 30</td>
-                  <td>$52.00</td>
-                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="គ្រឿងសំអាង" data-status="out" data-name="ទឹកអប់ Lavender 100ml SKU-2011">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-green"><i class="fa-solid fa-spray-can"></i></div>
-                      <div>
-                        <div class="prod-name">ទឹកអប់ Lavender 100ml</div>
-                        <div class="prod-sku">SKU-2011</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>គ្រឿងសំអាង</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:0%; background:#E24B4A;"></div>
-                    </span>0 / 40</td>
-                  <td>$22.00</td>
-                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="គ្រឿងសំអាង" data-status="instock" data-name="វីតាមីន C Serum SKU-2050">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-purple"><i class="fa-solid fa-flask"></i></div>
-                      <div>
-                        <div class="prod-name">វីតាមីន C Serum</div>
-                        <div class="prod-sku">SKU-2050</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>គ្រឿងសំអាង</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:60%; background:#639922;"></div>
-                    </span>12 / 20</td>
-                  <td>$34.00</td>
-                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="គ្រឿងអេឡិចត្រូនិច" data-status="instock"
-                  data-name="បន្ទះសាកថ្ម Power Bank 10000mAh SKU-3050">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-battery-full"></i></div>
-                      <div>
-                        <div class="prod-name"> Power Bank 10000mAh</div>
-                        <div class="prod-sku">SKU-3050</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>គ្រឿងអេឡិចត្រូនិច</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:70%; background:#639922;"></div>
-                    </span>35 / 50</td>
-                  <td>$19.90</td>
-                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="គ្រឿងអេឡិចត្រូនិច" data-status="low"
-                  data-name="កណ្តុរឥតខ្សែ Wireless Mouse SKU-3078">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-pink"><i class="fa-solid fa-computer-mouse"></i></div>
-                      <div>
-                        <div class="prod-name">Mouse Bluetooth </div>
-                        <div class="prod-sku">SKU-3078</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>គ្រឿងអេឡិចត្រូនិច</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:24%; background:#EF9F27;"></div>
-                    </span>6 / 25</td>
-                  <td>$15.00</td>
-                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="សម្លៀកបំពាក់" data-status="instock" data-name="អាវធំរដូវរងា Hoodie SKU-1420">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-green"><i class="fa-solid fa-shirt"></i></div>
-                      <div>
-                        <div class="prod-name">អាវរងា Hoodie</div>
-                        <div class="prod-sku">SKU-1420</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>សម្លៀកបំពាក់</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:88%; background:#639922;"></div>
-                    </span>44 / 50</td>
-                  <td>$38.00</td>
-                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="ស្បែកជើង" data-status="low" data-name="ស្បែកជើងកវែង Boots Size 42 SKU-1512">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-purple">
-                        <i class="fa-solid fa-socks"></i></div>
-                      <div>
-                        <div class="prod-name">ស្បែកជើងកវែង Boots Size 42</div>
-                        <div class="prod-sku">SKU-1512</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>ស្បែកជើង</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:30%; background:#EF9F27;"></div>
-                    </span>6 / 20</td>
-                  <td>$74.00</td>
-                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="កាបូប" data-status="out" data-name="កាបូបលុយស្បែក SKU-1289">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-wallet"></i></div>
-                      <div>
-                        <div class="prod-name">កាបូបលុយស្បែក</div>
-                        <div class="prod-sku">SKU-1289</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>កាបូប</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:0%; background:#E24B4A;"></div>
-                    </span>0 / 25</td>
-                  <td>$16.50</td>
-                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
-                  <td class="text-end">
-                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
-                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
-                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
-                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
-                  </td>
-                </tr>
-
-                <tr data-category="គ្រឿងអេឡិចត្រូនិច" data-status="instock" data-name="ខ្សែសាកទូរស័ព្ទ USB-C SKU-3102">
-                  <td>
-                    <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-green"><i class="fa-solid fa-plug"></i></div>
-                      <div>
-                        <div class="prod-name">ខ្សែសាកទូរស័ព្ទ USB-C</div>
-                        <div class="prod-sku">SKU-3102</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td>គ្រឿងអេឡិចត្រូនិច</td>
-                  <td><span class="stock-bar-mini">
-                      <div style="width:92%; background:#639922;"></div>
-                    </span>92 / 100</td>
+                      <div style="width:55%; background:#3AA76D;"></div>
+                    </span>11 / 20</td>
                   <td>$6.50</td>
                   <td><span class="badge-status badge-instock">មានស្តុក</span></td>
                   <td class="text-end">
@@ -749,21 +407,213 @@
                   </td>
                 </tr>
 
-                <tr data-category="សម្លៀកបំពាក់" data-status="low" data-name="ខោខ្លីកីឡា Shorts SKU-1455">
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ប្រេងសា ១លីត្រ GRC-1002">
                   <td>
                     <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-pink"><i class="fa-solid fa-person-running"></i></div>
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
                       <div>
-                        <div class="prod-name">ខោខ្លីកីឡា Shorts</div>
-                        <div class="prod-sku">SKU-1455</div>
+                        <div class="prod-name">ប្រេងសា ១លីត្រ</div>
+                        <div class="prod-sku">GRC-1002</div>
                       </div>
                     </div>
                   </td>
-                  <td>សម្លៀកបំពាក់</td>
+                  <td>គ្រឿងទេស</td>
                   <td><span class="stock-bar-mini">
-                      <div style="width:35%; background:#EF9F27;"></div>
-                    </span>7 / 20</td>
-                  <td>$14.00</td>
+                      <div style="width:60%; background:#3AA76D;"></div>
+                    </span>12 / 20</td>
+                  <td>$3.20</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="គ្រាកគូឡ្យា កំប៉ុង BEV-2001">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">គ្រាកគូឡ្យា កំប៉ុង</div>
+                        <div class="prod-sku">BEV-2001</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:55%; background:#3AA76D;"></div>
+                    </span>55 / 100</td>
+                  <td>$0.75</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="សាប៊ូកក់សក់ HSE-3001">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">សាប៊ូកក់សក់</div>
+                        <div class="prod-sku">HSE-3001</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:80%; background:#3AA76D;"></div>
+                    </span>8 / 10</td>
+                  <td>$1.00</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ទឹកសុទ្ធ ៦00ml BEV-2002">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកសុទ្ធ ៦00ml</div>
+                        <div class="prod-sku">BEV-2002</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:77%; background:#3AA76D;"></div>
+                    </span>77 / 100</td>
+                  <td>$0.30</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="Coca-cola BEV-2003">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">Coca-cola</div>
+                        <div class="prod-sku">BEV-2003</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:98%; background:#3AA76D;"></div>
+                    </span>49 / 50</td>
+                  <td>$2.50</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="fanta BEV-2004">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">fanta</div>
+                        <div class="prod-sku">BEV-2004</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:96%; background:#3AA76D;"></div>
+                    </span>48 / 50</td>
+                  <td>$2.30</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="កូកាកូឡា (Coca-Cola) BEV-2005">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">កូកាកូឡា (Coca-Cola)</div>
+                        <div class="prod-sku">BEV-2005</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:80%; background:#3AA76D;"></div>
+                    </span>120 / 150</td>
+                  <td>$0.60</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="PION BEV-2006">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">PION</div>
+                        <div class="prod-sku">BEV-2006</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:85%; background:#3AA76D;"></div>
+                    </span>85 / 100</td>
+                  <td>$0.70</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="low" data-name="កាហ្វេដប BEV-2007">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">កាហ្វេដប</div>
+                        <div class="prod-sku">BEV-2007</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:40%; background:#E24B4A;"></div>
+                    </span>4 / 10</td>
+                  <td>$1.20</td>
                   <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
                   <td class="text-end">
                     <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
@@ -773,21 +623,21 @@
                   </td>
                 </tr>
 
-                <tr data-category="គ្រឿងសំអាង" data-status="instock" data-name="ស្នាមញើស Deodorant Roll-on SKU-2098">
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ទឹកក្រូចដប BEV-2008">
                   <td>
                     <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-purple"><i class="fa-solid fa-droplet"></i></div>
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
                       <div>
-                        <div class="prod-name">Deodorant Roll-on</div>
-                        <div class="prod-sku">SKU-2098</div>
+                        <div class="prod-name">ទឹកក្រូចដប</div>
+                        <div class="prod-sku">BEV-2008</div>
                       </div>
                     </div>
                   </td>
-                  <td>គ្រឿងសំអាង</td>
+                  <td>ភេសជ្ជៈ</td>
                   <td><span class="stock-bar-mini">
-                      <div style="width:76%; background:#639922;"></div>
-                    </span>38 / 50</td>
-                  <td>$8.00</td>
+                      <div style="width:100%; background:#3AA76D;"></div>
+                    </span>50 / 50</td>
+                  <td>$2.50</td>
                   <td><span class="badge-status badge-instock">មានស្តុក</span></td>
                   <td class="text-end">
                     <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
@@ -797,22 +647,910 @@
                   </td>
                 </tr>
 
-                <tr data-category="ស្បែកជើង" data-status="instock" data-name="ស្បែកជើងផ្លាស្ទិច Sandals SKU-1600">
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ទឹកស៊ីអ៊ីវ GRC-1003">
                   <td>
                     <div class="d-flex align-items-center gap-3">
-                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-socks"></i></div>
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
                       <div>
-                        <div class="prod-name">ស្បែកជើង Sandals</div>
-                        <div class="prod-sku">SKU-1600</div>
+                        <div class="prod-name">ទឹកស៊ីអ៊ីវ</div>
+                        <div class="prod-sku">GRC-1003</div>
                       </div>
                     </div>
                   </td>
-                  <td>ស្បែកជើង</td>
+                  <td>គ្រឿងទេស</td>
                   <td><span class="stock-bar-mini">
-                      <div style="width:64%; background:#639922;"></div>
-                    </span>32 / 50</td>
-                  <td>$9.00</td>
+                      <div style="width:100%; background:#3AA76D;"></div>
+                    </span>100 / 100</td>
+                  <td>$1.50</td>
                   <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="តែបៃតង អូអ៊ិឈិ (Oishi) BEV-2009">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">តែបៃតង អូអ៊ិឈិ (Oishi)</div>
+                        <div class="prod-sku">BEV-2009</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:90%; background:#3AA76D;"></div>
+                    </span>90 / 100</td>
+                  <td>$0.75</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ពៅកម្លាំង វើក (WURKZ) BEV-2010">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ពៅកម្លាំង វើក (WURKZ)</div>
+                        <div class="prod-sku">BEV-2010</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:100%; background:#3AA76D;"></div>
+                    </span>150 / 150</td>
+                  <td>$0.65</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ទឹកបរិសុទ្ធ វីតាល់ (Vital) ៥០០ml BEV-2011">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកបរិសុទ្ធ វីតាល់ (Vital) ៥០០ml</div>
+                        <div class="prod-sku">BEV-2011</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:100%; background:#3AA76D;"></div>
+                    </span>250 / 250</td>
+                  <td>$0.25</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="low" data-name="ការ៉ាបាវ (Carabao) BEV-2012">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ការ៉ាបាវ (Carabao)</div>
+                        <div class="prod-sku">BEV-2012</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:50%; background:#E24B4A;"></div>
+                    </span>5 / 10</td>
+                  <td>$0.70</td>
+                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ស្តីងក្រហម (Sting) BEV-2013">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ស្តីងក្រហម (Sting)</div>
+                        <div class="prod-sku">BEV-2013</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:73%; background:#3AA76D;"></div>
+                    </span>110 / 150</td>
+                  <td>$0.70</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ទឹកដោះគោជូរ ឌីឡាក់ (Delight) BEV-2014">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកដោះគោជូរ ឌីឡាក់ (Delight)</div>
+                        <div class="prod-sku">BEV-2014</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:65%; background:#3AA76D;"></div>
+                    </span>65 / 100</td>
+                  <td>$0.50</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="low" data-name="តែក្រូចឆ្មា ហ្វ្រូស (Iced Tea) BEV-2015">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">តែក្រូចឆ្មា ហ្វ្រូស (Iced Tea)</div>
+                        <div class="prod-sku">BEV-2015</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:30%; background:#E24B4A;"></div>
+                    </span>3 / 10</td>
+                  <td>$0.80</td>
+                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ទឹកផ្លែឈើ ជូស៊ី (Juice) BEV-2016">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកផ្លែឈើ ជូស៊ី (Juice)</div>
+                        <div class="prod-sku">BEV-2016</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:90%; background:#3AA76D;"></div>
+                    </span>45 / 50</td>
+                  <td>$1.00</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ប៉ិបស៊ី (Pepsi) BEV-2017">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ប៉ិបស៊ី (Pepsi)</div>
+                        <div class="prod-sku">BEV-2017</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:90%; background:#3AA76D;"></div>
+                    </span>135 / 150</td>
+                  <td>$0.60</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="instock" data-name="ទឹកដោះគោ កំប៉ុង BEAR BRAND BEV-2018">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកដោះគោ កំប៉ុង BEAR BRAND</div>
+                        <div class="prod-sku">BEV-2018</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:70%; background:#3AA76D;"></div>
+                    </span>70 / 100</td>
+                  <td>$0.85</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ទឹកស៊ីអ៊ីវ ម៉ាកស៊ុបភើគីតឆេន GRC-1004">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកស៊ីអ៊ីវ ម៉ាកស៊ុបភើគីតឆេន</div>
+                        <div class="prod-sku">GRC-1004</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:100%; background:#3AA76D;"></div>
+                    </span>100 / 100</td>
+                  <td>$1.50</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="អំបិលអុីយ៉ូដ ១កញ្ចប់ GRC-1005">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">អំបិលអុីយ៉ូដ ១កញ្ចប់</div>
+                        <div class="prod-sku">GRC-1005</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:100%; background:#3AA76D;"></div>
+                    </span>300 / 300</td>
+                  <td>$0.25</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ទឹកត្រី ផ្ការំដួល GRC-1006">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកត្រី ផ្ការំដួល</div>
+                        <div class="prod-sku">GRC-1006</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:80%; background:#3AA76D;"></div>
+                    </span>80 / 100</td>
+                  <td>$1.80</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ប៊ីចេង រូបភ្នំ (៥០០ក្រាម) GRC-1007">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ប៊ីចេង រូបភ្នំ (៥០០ក្រាម)</div>
+                        <div class="prod-sku">GRC-1007</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:60%; background:#3AA76D;"></div>
+                    </span>6 / 10</td>
+                  <td>$1.25</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ស្ករសធម្មជាតិ (១គីឡូ) GRC-1008">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ស្ករសធម្មជាតិ (១គីឡូ)</div>
+                        <div class="prod-sku">GRC-1008</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:95%; background:#3AA76D;"></div>
+                    </span>95 / 100</td>
+                  <td>$1.10</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ GRC-1009">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ</div>
+                        <div class="prod-sku">GRC-1009</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:80%; background:#3AA76D;"></div>
+                    </span>40 / 50</td>
+                  <td>$2.30</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ប្រេងខ្យង ម៉ាកក្បាលតោ GRC-1010">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ប្រេងខ្យង ម៉ាកក្បាលតោ</div>
+                        <div class="prod-sku">GRC-1010</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:75%; background:#3AA76D;"></div>
+                    </span>75 / 100</td>
+                  <td>$2.10</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="low" data-name="ម្រេចកំពតម៉ត់ (កំប៉ុងតូច) GRC-1011">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ម្រេចកំពតម៉ត់ (កំប៉ុងតូច)</div>
+                        <div class="prod-sku">GRC-1011</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:20%; background:#E24B4A;"></div>
+                    </span>2 / 10</td>
+                  <td>$3.50</td>
+                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza) GRC-1012">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza)</div>
+                        <div class="prod-sku">GRC-1012</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:55%; background:#3AA76D;"></div>
+                    </span>55 / 100</td>
+                  <td>$1.40</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef) GRC-1013">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef)</div>
+                        <div class="prod-sku">GRC-1013</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:60%; background:#3AA76D;"></div>
+                    </span>60 / 100</td>
+                  <td>$1.35</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="instock" data-name="ម្សៅការី (កញ្ចប់តូច) GRC-1014">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ម្សៅការី (កញ្ចប់តូច)</div>
+                        <div class="prod-sku">GRC-1014</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:80%; background:#3AA76D;"></div>
+                    </span>120 / 150</td>
+                  <td>$0.40</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="សាប៊ូដុសខ្លួន Lux (ដុំ) HSE-3002">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">សាប៊ូដុសខ្លួន Lux (ដុំ)</div>
+                        <div class="prod-sku">HSE-3002</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:90%; background:#3AA76D;"></div>
+                    </span>90 / 100</td>
+                  <td>$0.85</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម) HSE-3003">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម)</div>
+                        <div class="prod-sku">HSE-3003</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:90%; background:#3AA76D;"></div>
+                    </span>45 / 50</td>
+                  <td>$2.75</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ HSE-3004">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ</div>
+                        <div class="prod-sku">HSE-3004</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:60%; background:#3AA76D;"></div>
+                    </span>60 / 100</td>
+                  <td>$1.90</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១) HSE-3005">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១)</div>
+                        <div class="prod-sku">HSE-3005</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:80%; background:#3AA76D;"></div>
+                    </span>8 / 10</td>
+                  <td>$1.20</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="សាប៊ូលាងចាន សាន់ឡាយ (Sunlight) HSE-3006">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)</div>
+                        <div class="prod-sku">HSE-3006</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:73%; background:#3AA76D;"></div>
+                    </span>110 / 150</td>
+                  <td>$1.10</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម HSE-3007">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម</div>
+                        <div class="prod-sku">HSE-3007</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:75%; background:#3AA76D;"></div>
+                    </span>75 / 100</td>
+                  <td>$1.40</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="ក្រដាសអនាម័យ (ប៉េក ១០ដុំ) HSE-3008">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">ក្រដាសអនាម័យ (ប៉េក ១០ដុំ)</div>
+                        <div class="prod-sku">HSE-3008</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:70%; background:#3AA76D;"></div>
+                    </span>35 / 50</td>
+                  <td>$2.20</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="low" data-name="ថង់យួរផ្លាស្ទិក (១គីឡូ) HSE-3009">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">ថង់យួរផ្លាស្ទិក (១គីឡូ)</div>
+                        <div class="prod-sku">HSE-3009</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:40%; background:#E24B4A;"></div>
+                    </span>4 / 10</td>
+                  <td>$1.50</td>
+                  <td><span class="badge-status badge-low">ជិតអស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean) HSE-3010">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)</div>
+                        <div class="prod-sku">HSE-3010</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:100%; background:#3AA76D;"></div>
+                    </span>50 / 50</td>
+                  <td>$2.60</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="instock" data-name="អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ) HSE-3011">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)</div>
+                        <div class="prod-sku">HSE-3011</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:93%; background:#3AA76D;"></div>
+                    </span>140 / 150</td>
+                  <td>$0.60</td>
+                  <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="out" data-name="ស្ករត្នោត (៥០០ក្រាម) GRC-1015">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ស្ករត្នោត (៥០០ក្រាម)</div>
+                        <div class="prod-sku">GRC-1015</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:0%; background:#A32D2D;"></div>
+                    </span>0 / 20</td>
+                  <td>$1.75</td>
+                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Grocery / គ្រឿងទេស" data-status="out" data-name="ម្សៅជ្រក់សាច់ GRC-1016">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-amber"><i class="fa-solid fa-basket-shopping"></i></div>
+                      <div>
+                        <div class="prod-name">ម្សៅជ្រក់សាច់</div>
+                        <div class="prod-sku">GRC-1016</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>គ្រឿងទេស</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:0%; background:#A32D2D;"></div>
+                    </span>0 / 20</td>
+                  <td>$0.95</td>
+                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="out" data-name="ទឹកដោះគោសុទ្ធ Anchor កំប៉ុង BEV-2019">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ទឹកដោះគោសុទ្ធ Anchor កំប៉ុង</div>
+                        <div class="prod-sku">BEV-2019</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:0%; background:#A32D2D;"></div>
+                    </span>0 / 20</td>
+                  <td>$1.10</td>
+                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Beverages / ភេសជ្ជៈ" data-status="out" data-name="ស្រាបៀរ Anchor កំប៉ុង BEV-2020">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-blue"><i class="fa-solid fa-bottle-water"></i></div>
+                      <div>
+                        <div class="prod-name">ស្រាបៀរ Anchor កំប៉ុង</div>
+                        <div class="prod-sku">BEV-2020</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>ភេសជ្ជៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:0%; background:#A32D2D;"></div>
+                    </span>0 / 20</td>
+                  <td>$1.00</td>
+                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="out" data-name="ជ័រក្រអូបបន្ទប់ Air Freshener HSE-3012">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">ជ័រក្រអូបបន្ទប់ Air Freshener</div>
+                        <div class="prod-sku">HSE-3012</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:0%; background:#A32D2D;"></div>
+                    </span>0 / 20</td>
+                  <td>$2.40</td>
+                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
+                  <td class="text-end">
+                    <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+                    <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+                    <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+                      data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+                  </td>
+                </tr>
+
+                <tr data-category="Household / សម្ភារៈ" data-status="out" data-name="ស្រោមដៃកៅស៊ូ (គូ) HSE-3013">
+                  <td>
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="prod-thumb tone-green"><i class="fa-solid fa-soap"></i></div>
+                      <div>
+                        <div class="prod-name">ស្រោមដៃកៅស៊ូ (គូ)</div>
+                        <div class="prod-sku">HSE-3013</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>សម្ភារៈ</td>
+                  <td><span class="stock-bar-mini">
+                      <div style="width:0%; background:#A32D2D;"></div>
+                    </span>0 / 20</td>
+                  <td>$0.90</td>
+                  <td><span class="badge-status badge-out">អស់ស្តុក</span></td>
                   <td class="text-end">
                     <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
                     <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
@@ -826,7 +1564,7 @@
           </div>
 
           <div class="pagination-footer">
-            <span>បង្ហាញ <strong id="visibleCount">18</strong> ក្នុងចំណោម 3,300 ទំនិញ</span>
+            <span>បង្ហាញ <strong id="visibleCount">49</strong> ក្នុងចំណោម 49 ទំនិញ</span>
             <nav>
               <ul class="pagination pagination-sm mb-0">
                 <li class="page-item disabled"><a class="page-link" href="#">មុន</a></li>
@@ -847,8 +1585,8 @@
           <div class="modal-content">
             <div class="modal-header border-0 pb-0">
               <div>
-                <h5 class="modal-title fw-medium">បន្ថែមទំនិញថ្មី</h5>
-                <p class="text-secondary mb-0" style="font-size:13px;">បំពេញព័ត៌មានទំនិញខាងក្រោម
+                <h5 class="modal-title fw-medium" id="addProductModalTitle">បន្ថែមទំនិញថ្មី</h5>
+                <p class="text-secondary mb-0" style="font-size:13px;" id="addProductModalSubtitle">បំពេញព័ត៌មានទំនិញខាងក្រោម
                   ដើម្បីបន្ថែមទៅក្នុងស្តុក</p>
               </div>
               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -858,41 +1596,39 @@
                 <div class="row g-3">
                   <div class="col-md-6">
                     <label class="form-label">ឈ្មោះទំនិញ</label>
-                    <input type="text" class="form-control" placeholder="ឧ. អាវយឺតកប្បាស" required>
+                    <input type="text" class="form-control" id="prodNameInput" placeholder="ឧ. អាវយឺតកប្បាស" required>
                   </div>
                   <div class="col-md-6">
                     <label class="form-label">SKU / លេខកូដ</label>
-                    <input type="text" class="form-control" placeholder="ឧ. SKU-1234" required>
+                    <input type="text" class="form-control" id="prodSkuInput" placeholder="ឧ. SKU-1234" required>
                   </div>
                   <div class="col-md-6">
                     <label class="form-label">ប្រភេទ</label>
-                    <select class="form-select">
-                      <option>សម្លៀកបំពាក់</option>
-                      <option>ស្បែកជើង</option>
-                      <option>គ្រឿងសំអាង</option>
-                      <option>គ្រឿងអេឡិចត្រូនិច</option>
-                      <option>កាបូប</option>
+                    <select class="form-select" id="prodCategorySelect">
+                      <option>គ្រឿងទេស</option>
+                      <option>ភេសជ្ជៈ</option>
+                      <option>សម្ភារៈ</option>
                     </select>
                   </div>
                   <div class="col-md-6">
                     <label class="form-label">អ្នកផ្គត់ផ្គង់</label>
-                    <input type="text" class="form-control" placeholder="ឈ្មោះអ្នកផ្គត់ផ្គង់">
+                    <input type="text" class="form-control" id="prodSupplierInput" placeholder="ឈ្មោះអ្នកផ្គត់ផ្គង់">
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">បរិមាណស្តុក</label>
-                    <input type="number" class="form-control" placeholder="0" min="0" required>
+                    <input type="number" class="form-control" id="prodStockInput" placeholder="0" min="0" required>
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">កម្រិតអប្បបរមា</label>
-                    <input type="number" class="form-control" placeholder="0" min="0">
+                    <input type="number" class="form-control" id="prodMinStockInput" placeholder="0" min="0">
                   </div>
                   <div class="col-md-4">
                     <label class="form-label">តម្លៃ ($)</label>
-                    <input type="number" class="form-control" placeholder="0.00" min="0" step="0.01" required>
+                    <input type="number" class="form-control" id="prodPriceInput" placeholder="0.00" min="0" step="0.01" required>
                   </div>
                   <div class="col-12">
                     <label class="form-label">ចំណាំបន្ថែម (ស្រេចចិត្ត)</label>
-                    <textarea class="form-control" rows="2" placeholder="ព័ត៌មានបន្ថែម..."></textarea>
+                    <textarea class="form-control" id="prodNoteInput" rows="2" placeholder="ព័ត៌មានបន្ថែម..."></textarea>
                   </div>
                 </div>
               </form>
@@ -900,6 +1636,52 @@
             <div class="modal-footer border-0 pt-0">
               <button type="button" class="btn btn-light" data-bs-dismiss="modal">បោះបង់</button>
               <button type="button" class="btn btn-primary-brand text-white" id="saveProductBtn">រក្សាទុកទំនិញ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Modal: View product details -->
+      <div class="modal fade" id="viewProductModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header border-0 pb-0">
+              <div>
+                <h5 class="modal-title fw-medium">លម្អិតទំនិញ</h5>
+                <p class="text-secondary mb-0" style="font-size:13px;">ព័ត៌មានពេញលេញអំពីទំនិញនេះ</p>
+              </div>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="text-secondary" style="font-size:12px;">ឈ្មោះទំនិញ</div>
+                  <div class="fw-semibold" id="viewProdName">—</div>
+                </div>
+                <div class="col-6">
+                  <div class="text-secondary" style="font-size:12px;">SKU / លេខកូដ</div>
+                  <div class="fw-semibold" id="viewProdSku">—</div>
+                </div>
+                <div class="col-6">
+                  <div class="text-secondary" style="font-size:12px;">ប្រភេទ</div>
+                  <div class="fw-semibold" id="viewProdCategory">—</div>
+                </div>
+                <div class="col-6">
+                  <div class="text-secondary" style="font-size:12px;">តម្លៃ</div>
+                  <div class="fw-semibold" id="viewProdPrice">—</div>
+                </div>
+                <div class="col-6">
+                  <div class="text-secondary" style="font-size:12px;">ស្តុកនៅសល់</div>
+                  <div class="fw-semibold" id="viewProdStock">—</div>
+                </div>
+                <div class="col-6">
+                  <div class="text-secondary" style="font-size:12px;">ស្ថានភាព</div>
+                  <div id="viewProdStatus">—</div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer border-0 pt-0">
+              <button type="button" class="btn btn-light" data-bs-dismiss="modal">បិទ</button>
             </div>
           </div>
         </div>
@@ -919,7 +1701,7 @@
                 ទំនិញនេះនឹងត្រូវបានលុបចេញពីស្តុកជាអចិន្ត្រៃយ៍។</p>
               <div class="d-flex justify-content-center gap-2">
                 <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">បោះបង់</button>
-                <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal">លុបចេញ</button>
+                <button type="button" class="btn btn-danger px-4" id="confirmDeleteProductBtn" data-bs-dismiss="modal">លុបចេញ</button>
               </div>
             </div>
           </div>
@@ -943,10 +1725,10 @@
                 <div class="col-12">
                   <label class="form-label">ជ្រើសរើសទំនិញ</label>
                   <select class="form-select">
-                    <option>កាបូបស្បែក ម៉ូដថ្មី — SKU-1042</option>
-                    <option>អាវយឺតកប្បាស ពណ៌ខ្មៅ — SKU-1078</option>
-                    <option>ស្បែកជើងកីឡា Size 41 — SKU-1103</option>
-                    <option>ទឹកអប់ Lavender 100ml — SKU-2011</option>
+                    <option>អង្គរ ៥គីឡូ — GRC-1001</option>
+                    <option>ប្រេងសា ១លីត្រ — GRC-1002</option>
+                    <option>កូកាកូឡា (Coca-Cola) — BEV-2005</option>
+                    <option>ទឹកបរិសុទ្ធ វីតាល់ (Vital) ៥០០ml — BEV-2011</option>
                   </select>
                 </div>
                 <div class="col-md-6">
@@ -995,9 +1777,8 @@
                 <div class="col-12">
                   <label class="form-label">ជ្រើសរើសទំនិញ</label>
                   <select class="form-select">
-                    <option>អាវយឺតកប្បាស ពណ៌ខ្មៅ — SKU-1078 (78 នៅសល់)</option>
-                    <option>ក្រែមការពារថ្ងៃ SPF50 — SKU-2033 (34 នៅសល់)</option>
-                    <option>បន្ទះសាកថ្ម Power Bank — SKU-3050 (35 នៅសល់)</option>
+                    <option>កាហ្វេដប — BEV-2007 (ស្តុកបច្ចុប្បន្ន: 4)</option>
+                    <option>ការ៉ាបាវ (Carabao) — BEV-2012 (ស្តុកបច្ចុប្បន្ន: 5)</option>
                   </select>
                 </div>
                 <div class="col-md-6">
@@ -1045,8 +1826,8 @@
                 <div class="col-12">
                   <label class="form-label">ជ្រើសរើសទំនិញ</label>
                   <select class="form-select">
-                    <option>ខោខូវប៊យទឹកប្រផេះ — SKU-1156 (ស្តុកបច្ចុប្បន្ន: 9)</option>
-                    <option>កណ្តុរឥតខ្សែ Wireless Mouse — SKU-3078 (ស្តុកបច្ចុប្បន្ន: 6)</option>
+                    <option>ម្រេចកំពតម៉ត់ (កំប៉ុងតូច) — GRC-1011 (ស្តុកបច្ចុប្បន្ន: 2)</option>
+                    <option>ថង់យួរផ្លាស្ទិក (១គីឡូ) — HSE-3009 (ស្តុកបច្ចុប្បន្ន: 4)</option>
                   </select>
                 </div>
                 <div class="col-md-6">
@@ -1448,6 +2229,176 @@ document.addEventListener('DOMContentLoaded', function () {
   <script src="/assest/js/employeeManagement.js"></script>
   <script src="/assest/js/inventory.js"></script>
     <script src="../../../assest/js/theme-toggle.js"></script>
+    <script src="/assest/js/sidebar-accordion.js"></script>
+    <script src="/assest/js/topbar-widgets.js"></script>
+
+  <!-- Wiring for the product table's View / Edit / Delete row actions -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const productTbody = document.querySelector('#productTable tbody');
+    const addProductModalEl = document.getElementById('addProductModal');
+    const addProductModal = new bootstrap.Modal(addProductModalEl);
+    const viewProductModal = new bootstrap.Modal(document.getElementById('viewProductModal'));
+    const deleteConfirmModalEl = document.getElementById('deleteConfirmModal');
+
+    const modalTitleEl = document.getElementById('addProductModalTitle');
+    const modalSubtitleEl = document.getElementById('addProductModalSubtitle');
+    const nameInput = document.getElementById('prodNameInput');
+    const skuInput = document.getElementById('prodSkuInput');
+    const categorySelect = document.getElementById('prodCategorySelect');
+    const stockInput = document.getElementById('prodStockInput');
+    const priceInput = document.getElementById('prodPriceInput');
+
+    let editingRow = null;   // <tr> currently being edited (null = "add" mode)
+    let rowPendingDelete = null;
+
+    function showSavedToast(message) {
+      const toastEl = document.getElementById('saveToast');
+      if (!toastEl) return;
+      toastEl.querySelector('.toast-body').innerHTML = '<i class="fa-solid fa-circle-check me-2"></i>' + message;
+      new bootstrap.Toast(toastEl).show();
+    }
+
+    // Reset modal to "Add" mode whenever opened via the top "+ Add Product" button
+    document.getElementById('openAddProductBtn').addEventListener('click', function () {
+      editingRow = null;
+      modalTitleEl.textContent = 'បន្ថែមទំនិញថ្មី';
+      modalSubtitleEl.textContent = 'បំពេញព័ត៌មានទំនិញខាងក្រោម ដើម្បីបន្ថែមទៅក្នុងស្តុក';
+      document.getElementById('addProductForm').reset();
+    });
+
+    // Read a row's current values straight from its cells (table is static HTML, not array-driven)
+    function readRowData(tr) {
+      return {
+        name: tr.querySelector('.prod-name')?.textContent.trim() || '',
+        sku: (tr.querySelector('.prod-sku')?.textContent || '').replace('SKU-', '').trim(),
+        category: tr.children[1].textContent.trim(),
+        stockText: tr.children[2].textContent.trim(), // e.g. "4 / 20"
+        price: tr.children[3].textContent.replace('$', '').trim(),
+        statusHtml: tr.children[4].innerHTML
+      };
+    }
+
+    productTbody.addEventListener('click', function (e) {
+      const btn = e.target.closest('.row-action-btn');
+      if (!btn) return;
+      const tr = btn.closest('tr');
+      if (!tr) return;
+      const isView = !!btn.querySelector('.fa-eye');
+      const isEdit = !!btn.querySelector('.fa-pen-to-square');
+      const isDelete = btn.classList.contains('danger');
+      const data = readRowData(tr);
+
+      if (isView) {
+        document.getElementById('viewProdName').textContent = data.name;
+        document.getElementById('viewProdSku').textContent = 'SKU-' + data.sku;
+        document.getElementById('viewProdCategory').textContent = data.category;
+        document.getElementById('viewProdPrice').textContent = '$' + data.price;
+        document.getElementById('viewProdStock').textContent = data.stockText;
+        document.getElementById('viewProdStatus').innerHTML = data.statusHtml;
+        viewProductModal.show();
+      }
+
+      if (isEdit) {
+        editingRow = tr;
+        modalTitleEl.textContent = 'កែប្រែទំនិញ';
+        modalSubtitleEl.textContent = 'កែប្រែព័ត៌មានទំនិញនេះ រួចរក្សាទុក';
+        nameInput.value = data.name;
+        skuInput.value = 'SKU-' + data.sku;
+        const stockNum = parseInt(data.stockText, 10);
+        stockInput.value = isNaN(stockNum) ? '' : stockNum;
+        priceInput.value = data.price;
+        // Best-effort match of the category dropdown to the row's category text
+        [...categorySelect.options].forEach(opt => {
+          if (data.category.indexOf(opt.value) !== -1 || opt.value.indexOf(data.category) !== -1) {
+            categorySelect.value = opt.value;
+          }
+        });
+        addProductModal.show();
+      }
+
+      if (isDelete) {
+        rowPendingDelete = tr;
+        // deleteConfirmModal opens declaratively via data-bs-toggle already on this button
+      }
+    });
+
+    document.getElementById('confirmDeleteProductBtn').addEventListener('click', function () {
+      if (rowPendingDelete) {
+        const data = readRowData(rowPendingDelete);
+        rowPendingDelete.remove();
+        rowPendingDelete = null;
+        showSavedToast('បានលុបទំនិញ "' + data.name + '" ចេញរួចរាល់!');
+      }
+    });
+
+    document.getElementById('saveProductBtn').addEventListener('click', function () {
+      if (!nameInput.value.trim() || !skuInput.value.trim() || !stockInput.value || !priceInput.value) {
+        alert('សូមបំពេញព័ត៌មានចាំបាច់ទាំងអស់ (ឈ្មោះ, SKU, បរិមាណស្តុក, តម្លៃ)!');
+        return;
+      }
+
+      const name = nameInput.value.trim();
+      const sku = skuInput.value.trim().replace(/^SKU-/i, '');
+      const category = categorySelect.value;
+      const stock = parseInt(stockInput.value, 10) || 0;
+      const price = parseFloat(priceInput.value) || 0;
+
+      if (editingRow) {
+        // Update the existing row's cells in place
+        const nameEl = editingRow.querySelector('.prod-name');
+        const skuEl = editingRow.querySelector('.prod-sku');
+        if (nameEl) nameEl.textContent = name;
+        if (skuEl) skuEl.textContent = 'SKU-' + sku;
+        editingRow.children[1].textContent = category;
+        editingRow.children[3].textContent = '$' + price.toFixed(2);
+        editingRow.dataset.name = name + ' SKU-' + sku;
+
+        // Keep the stock fraction's denominator, just update the numerator
+        const stockCell = editingRow.children[2];
+        const stockTextMatch = stockCell.textContent.match(/\/\s*(\d+)/);
+        const total = stockTextMatch ? parseInt(stockTextMatch[1], 10) : stock;
+        stockCell.innerHTML = '<span class="stock-bar-mini"><div style="width:' +
+          Math.min(100, Math.round((stock / (total || 1)) * 100)) + '%; background:#639922;"></div></span>' +
+          stock + ' / ' + total;
+
+        showSavedToast('បានកែប្រែទំនិញ "' + name + '" ដោយជោគជ័យ!');
+      } else {
+        // Append a new row, mirroring the structure of existing rows
+        const tr = document.createElement('tr');
+        tr.dataset.category = category;
+        tr.dataset.status = 'instock';
+        tr.dataset.name = name + ' SKU-' + sku;
+        tr.innerHTML = `
+          <td>
+            <div class="d-flex align-items-center gap-3">
+              <div class="prod-thumb tone-blue"><i class="fa-solid fa-box"></i></div>
+              <div>
+                <div class="prod-name">${name}</div>
+                <div class="prod-sku">SKU-${sku}</div>
+              </div>
+            </div>
+          </td>
+          <td>${category}</td>
+          <td><span class="stock-bar-mini"><div style="width:100%; background:#639922;"></div></span>${stock} / ${stock}</td>
+          <td>$${price.toFixed(2)}</td>
+          <td><span class="badge-status badge-instock">មានស្តុក</span></td>
+          <td class="text-end">
+            <button class="row-action-btn" title="មើលលម្អិត"><i class="fa-regular fa-eye"></i></button>
+            <button class="row-action-btn" title="កែប្រែ"><i class="fa-regular fa-pen-to-square"></i></button>
+            <button class="row-action-btn danger" title="លុប" data-bs-toggle="modal"
+              data-bs-target="#deleteConfirmModal"><i class="fa-regular fa-trash-can"></i></button>
+          </td>`;
+        productTbody.prepend(tr);
+        showSavedToast('បានបន្ថែមទំនិញ "' + name + '" ដោយជោគជ័យ!');
+      }
+
+      editingRow = null;
+      addProductModal.hide();
+      document.getElementById('addProductForm').reset();
+    });
+  });
+  </script>
 </body>
 
 </html>

@@ -48,26 +48,39 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  overflow-y: auto;
+  overflow: hidden;
   z-index: 1030;
+}
+
+/* Only the menu list scrolls — the logo header and the tip box at the bottom
+   stay fixed in place instead of scrolling away with the menu. */
+.sidebar > ul.nav {
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
 
   /* slim, themed scrollbar (Firefox) */
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, .25) transparent;
 }
+.sidebar > div.mt-auto {
+  flex-shrink: 0;
+}
 
 /* slim, themed scrollbar (WebKit / Chrome / Edge) */
-.sidebar::-webkit-scrollbar {
+.sidebar > ul.nav::-webkit-scrollbar {
   width: 6px;
 }
-.sidebar::-webkit-scrollbar-track {
+.sidebar > ul.nav::-webkit-scrollbar-track {
   background: transparent;
 }
-.sidebar::-webkit-scrollbar-thumb {
+.sidebar > ul.nav::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, .25);
   border-radius: 999px;
 }
-.sidebar::-webkit-scrollbar-thumb:hover {
+.sidebar > ul.nav::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, .4);
 }
 
@@ -84,6 +97,25 @@ body {
 .offcanvas.offcanvas-start::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, .25);
   border-radius: 999px;
+}
+
+/* Same treatment for the mobile off-canvas menu: header stays put, only the
+   menu list inside the body scrolls, and the tip box stays fixed at the bottom. */
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.offcanvas-body > ul.nav {
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.offcanvas-body > div:last-child {
+  flex-shrink: 0;
 }
 
 /* pushes the main content right so it isn't hidden under the fixed sidebar */
@@ -428,6 +460,12 @@ body {
   transform: rotate(180deg);
 }
 
+.sidebar .nav-link.submenu-toggle[aria-expanded="true"],
+.offcanvas .nav-link.submenu-toggle[aria-expanded="true"] {
+  background: rgba(255, 255, 255, .06);
+  color: #fff;
+}
+
 .sidebar .submenu,
 .offcanvas .submenu {
   list-style: none;
@@ -673,6 +711,142 @@ body {
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
+}
+
+/* Badges (status pills) should never wrap onto two lines */
+.badge.rounded-pill {
+  white-space: nowrap;
+}
+
+/* keep view / print / cancel icon buttons on a single row */
+#salesTable td.text-end {
+  white-space: nowrap;
+}
+
+/* ================================================================
+   Sales List table — responsive behaviour
+   - Tablet (769px–991px): a real minimum width so the wrapper
+     scrolls horizontally instead of squeezing/hiding columns.
+   - Phone (<=768px): each invoice becomes its own readable card.
+   ================================================================ */
+@media (min-width: 769px) {
+  #salesTable {
+    min-width: 760px;
+  }
+}
+
+/* Sales List toolbar (status filter / search / create button):
+   on desktop these sit in a row; on tablet/phone they were being
+   squeezed onto one line, which crushed the search box down to
+   just its icon. Let them wrap and take the full row width instead. */
+@media (max-width: 991.98px) {
+  #salesFilterBar {
+    flex-wrap: wrap !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  #salesFilterBar > * {
+    flex: 1 1 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Only the Sales table gets turned into stacked cards below, so only
+     ITS wrapper should lose its horizontal-scroll container. Every other
+     .staff-table-card table (Employee/Product/Customer Management, etc.)
+     keeps overflow-x: auto so it can still be scrolled left/right on
+     phones instead of having columns silently clipped. */
+  .sales-table-card .table-responsive {
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  #salesTable {
+    min-width: 0;
+  }
+  #salesTable thead {
+    display: none;
+  }
+  #salesTable,
+  #salesTable tbody,
+  #salesTable tr,
+  #salesTable td {
+    display: block;
+    width: 100%;
+  }
+
+  #salesTable tbody tr {
+    background: #fff;
+    border: 1px solid #E7E9F0;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    padding: 4px 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .04);
+  }
+  #salesTable tbody tr:last-child {
+    margin-bottom: 0;
+  }
+  #salesTable tbody tr:hover {
+    background: #fff;
+  }
+
+  #salesTable td {
+    border-bottom: 1px solid #F1F2F6 !important;
+    padding: 10px 0 !important;
+  }
+  #salesTable tr td:last-child {
+    border-bottom: none !important;
+  }
+
+  /* Invoice # cell: full width header line of the card */
+  #salesTable td:first-child {
+    padding-top: 14px !important;
+    font-size: 15px;
+  }
+
+  /* Customer / Date / Items / Total / Status: label left, value right */
+  #salesTable td:nth-child(2),
+  #salesTable td:nth-child(3),
+  #salesTable td:nth-child(4),
+  #salesTable td:nth-child(5),
+  #salesTable td:nth-child(6) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  #salesTable td:nth-child(2)::before,
+  #salesTable td:nth-child(3)::before,
+  #salesTable td:nth-child(4)::before,
+  #salesTable td:nth-child(5)::before,
+  #salesTable td:nth-child(6)::before {
+    flex-shrink: 0;
+    min-width: 84px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #9ca3af;
+  }
+  #salesTable td:nth-child(2)::before { content: "Customer"; }
+  #salesTable td:nth-child(3)::before { content: "Date"; }
+  #salesTable td:nth-child(4)::before { content: "Items"; }
+  #salesTable td:nth-child(5)::before { content: "Total"; }
+  #salesTable td:nth-child(6)::before { content: "Status"; }
+
+  /* action icons: right-aligned row, own line, never stacked */
+  #salesTable td:last-child {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 14px 0 12px !important;
+    white-space: normal;
+  }
+  #salesTable td:last-child .btn {
+    margin: 0 !important;
+  }
 }
 /* Float Shadow */
 .hvr-float-shadow {

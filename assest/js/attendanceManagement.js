@@ -153,9 +153,11 @@ function to12h(t) {
         <td><span class="badge rounded-pill ${badge}">${r.status}</span></td>
         <td>${r.shift}</td>
         <td class="text-end">
-          <button class="btn btn-sm btn-light border rounded-2 me-1 edit-record" data-id="${r.id}"><i class="bi bi-pencil-square"></i></button>
-          <button class="btn btn-sm btn-light border rounded-2 delete-record" data-id="${r.id}"><i class="bi bi-trash text-danger"></i></button>
-        </td>
+  <div class="d-flex justify-content-between align-items-center gap-1" style="width:64px; margin-left:auto;">
+    <button class="btn btn-sm btn-light border rounded-2 edit-record" data-id="${r.id}"><i class="bi bi-pencil-square"></i></button>
+    <button class="btn btn-sm btn-light border rounded-2 delete-record" data-id="${r.id}"><i class="bi bi-trash text-danger"></i></button>
+  </div>
+</td>
       </tr>`;
     }).join('');
   }

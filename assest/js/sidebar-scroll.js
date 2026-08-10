@@ -1,8 +1,8 @@
 (function () {
   var STORAGE_KEY = 'iamSidebarScrollTop';
 
-  var desktopNav = document.querySelector('aside.sidebar');
-  var mobileNav = document.querySelector('#mobileSidebar .offcanvas-body');
+  var desktopNav = document.querySelector('aside.sidebar > ul.nav');
+  var mobileNav = document.querySelector('#mobileSidebar .offcanvas-body > ul.nav');
 
   function restoreScroll(el) {
     if (!el) return;

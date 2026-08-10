@@ -9,12 +9,19 @@ document.addEventListener('DOMContentLoaded', () => {
     toast.show();
   }
 
+// Unified category list — kept identical to the customer shop (shop.html / script.js)
+// so a category picked here always matches a filter on the storefront.
 let categories = [
-  'ភេសជ្ជៈ',
-  'អាហារសម្រន់',
-  'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ',
-  'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន'
+  'Electronics / គ្រឿងអេឡិចត្រូនិច',
+  'Fashion / សម្លៀកបំពាក់',
+  'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ',
+  'Beauty / ផលិតផលថែទាំសម្រស់',
+  'Sports / កីឡា',
+  'Grocery / គ្រឿងទេស',
+  'Beverages / ភេសជ្ជៈ'
 ];
+
+const STOCK_KEY = 'shopease_stock'; // shared with the Customer shop; declared early so it's in scope everywhere below
 
 let suppliers = [
   'ក្រុមហ៊ុនចែកចាយ ABC',
@@ -23,47 +30,66 @@ let suppliers = [
 ];
 
 let products = [
-  { id: 1,  name: 'កូកា-កូឡា 330ml',      category: 'ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 0.75, active: true },
-  { id: 2,  name: 'Fan Ta 330ml', category: 'ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 0.75, active: true },
-  { id: 3,  name: 'ទឹកសុទ្ធ 500ml',       category: 'ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 0.40, active: true },
-  { id: 4,  name: 'ទឹកក្រូច',            category: 'ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.20, active: true },
-  { id: 5,  name: 'ទឹកផ្លែប៉ោម',         category: 'ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.30, active: true },
+  { id: 1,  name: 'កូកា-កូឡា 330ml',      category: 'Beverages / ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 0.75, quantity: 30, active: true ,brand: 'Coca-Cola', rating: 5, discountPercent: 0 },
+  { id: 2,  name: 'Fan Ta 330ml', category: 'Beverages / ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 0.75, quantity: 30, active: true ,brand: 'Fanta', rating: 4, discountPercent: 0 },
+  { id: 3,  name: 'ទឹកសុទ្ធ 500ml',       category: 'Beverages / ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 0.40, quantity: 30, active: true ,brand: 'PureSpring', rating: 4, discountPercent: 0 },
+  { id: 4,  name: 'ទឹកក្រូច',            category: 'Beverages / ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.20, quantity: 30, active: true ,brand: 'PureSpring', rating: 4, discountPercent: 10 },
+  { id: 5,  name: 'ទឹកផ្លែប៉ោម',         category: 'Beverages / ភេសជ្ជៈ', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.30, quantity: 30, active: true ,brand: 'PureSpring', rating: 4, discountPercent: 0 },
 
-  { id: 6,  name: 'មីកញ្ចប់',            category: 'អាហារសម្រន់', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 0.55, active: true },
-  { id: 7,  name: 'នំប៉័ង',              category: 'អាហារសម្រន់', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 0.80, active: true },
-  { id: 8,  name: 'នំប៊ីស្គីត',           category: 'អាហារសម្រន់', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 1.20, active: true },
-  { id: 9,  name: 'ដំឡូងបំពង',           category: 'អាហារសម្រន់', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 1.50, active: false },
-  { id: 10, name: 'សណ្តែកដីលីង',         category: 'អាហារសម្រន់', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 1.00, active: true },
+  { id: 6,  name: 'មីកញ្ចប់',            category: 'Grocery / គ្រឿងទេស', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 0.55, quantity: 30, active: true ,brand: 'Mama', rating: 4, discountPercent: 0 },
+  { id: 7,  name: 'នំប៉័ង',              category: 'Grocery / គ្រឿងទេស', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 0.80, quantity: 30, active: true ,brand: 'FarmFresh', rating: 4, discountPercent: 0 },
+  { id: 8,  name: 'នំប៊ីស្គីត',           category: 'Grocery / គ្រឿងទេស', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 1.20, quantity: 30, active: true ,brand: 'FarmFresh', rating: 3, discountPercent: 15 },
+  { id: 9,  name: 'ដំឡូងបំពង',           category: 'Grocery / គ្រឿងទេស', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 1.50, quantity: 0, active: false ,brand: 'FarmFresh', rating: 3, discountPercent: 0 },
+  { id: 10, name: 'សណ្តែកដីលីង',         category: 'Grocery / គ្រឿងទេស', supplier: 'ក្រុមហ៊ុនចែកចាយ ABC', price: 1.00, quantity: 30, active: true ,brand: 'FarmFresh', rating: 4, discountPercent: 0 },
 
-  { id: 11, name: 'អង្ករ 25kg',          category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 20.00, active: true },
-  { id: 12, name: 'ប្រេងឆា 1L',          category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 2.80, active: true },
-  { id: 13, name: 'ទឹកត្រី',             category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.60, active: true },
-  { id: 14, name: 'ទឹកស៊ីអ៊ីវ',          category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.50, active: false },
-  { id: 15, name: 'ស្ករស 1kg',           category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.40, active: true },
+  { id: 11, name: 'អង្ករ 25kg',          category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 20.00, quantity: 30, active: true ,brand: 'Angkor', rating: 5, discountPercent: 0 },
+  { id: 12, name: 'ប្រេងឆា 1L',          category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 2.80, quantity: 30, active: true ,brand: 'Chefs', rating: 4, discountPercent: 0 },
+  { id: 13, name: 'ទឹកត្រី',             category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.60, quantity: 30, active: true ,brand: 'Khmer', rating: 4, discountPercent: 0 },
+  { id: 14, name: 'ទឹកស៊ីអ៊ីវ',          category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.50, quantity: 0, active: false ,brand: 'Khmer', rating: 3, discountPercent: 0 },
+  { id: 15, name: 'ស្ករស 1kg',           category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.40, quantity: 30, active: true ,brand: 'Chefs', rating: 4, discountPercent: 5 },
 
-  { id: 16, name: 'អំបិល 1kg',           category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 0.60, active: true },
-  { id: 17, name: 'សាប៊ូបោកខោអាវ',      category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 4.50, active: true },
-  { id: 18, name: 'សាប៊ូលាងចាន',         category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 2.30, active: true },
-  { id: 19, name: 'ក្រដាសអនាម័យ',        category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.80, active: true },
-  { id: 20, name: 'ថង់សំរាម',            category: 'សម្ភារៈប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.20, active: false },
+  { id: 16, name: 'អំបិល 1kg',           category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 0.60, quantity: 30, active: true ,brand: 'Chefs', rating: 4, discountPercent: 0 },
+  { id: 17, name: 'សាប៊ូបោកខោអាវ',      category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 4.50, quantity: 30, active: true ,brand: 'OMO', rating: 5, discountPercent: 20 },
+  { id: 18, name: 'សាប៊ូលាងចាន',         category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 2.30, quantity: 30, active: true ,brand: 'Sunlight', rating: 4, discountPercent: 0 },
+  { id: 19, name: 'ក្រដាសអនាម័យ',        category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.80, quantity: 30, active: true ,brand: 'Kleenex', rating: 4, discountPercent: 0 },
+  { id: 20, name: 'ថង់សំរាម',            category: 'Home & Living / របស់ប្រើប្រាស់ក្នុងផ្ទះ', supplier: 'ក្រុមហ៊ុនផ្គត់ផ្គង់ មេគង្គ', price: 1.20, quantity: 0, active: false ,brand: 'HomeWrap', rating: 3, discountPercent: 0 },
 
-  { id: 21, name: 'សាប៊ូដុសខ្លួន',        category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.50, active: true },
-  { id: 22, name: 'សាប៊ូកក់សក់',         category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 3.50, active: true },
-  { id: 23, name: 'ថ្នាំដុសធ្មេញ',        category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 2.20, active: true },
-  { id: 24, name: 'ច្រាសដុសធ្មេញ',        category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.00, active: true },
-  { id: 25, name: 'ឡេការពារកម្ដៅថ្ងៃ',    category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 5.50, active: false },
-  { id: 26, name: 'ឡេលាបខ្លួន',          category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 4.80, active: true },
-  { id: 27, name: 'កន្សែងសើម',           category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.70, active: true },
-  { id: 28, name: 'ទឹកអប់',              category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 8.50, active: true },
-  { id: 29, name: 'សាប៊ូលាងដៃ',          category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 2.10, active: false },
-  { id: 30, name: 'ទឹកខ្ពុរមាត់',         category: 'ផលិតផលថែរក្សាផ្ទាល់ខ្លួន', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 3.20, active: true }
+  { id: 21, name: 'សាប៊ូដុសខ្លួន',        category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.50, quantity: 30, active: true ,brand: 'Dove', rating: 5, discountPercent: 0 },
+  { id: 22, name: 'សាប៊ូកក់សក់',         category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 3.50, quantity: 30, active: true ,brand: 'Sunsilk', rating: 4, discountPercent: 10 },
+  { id: 23, name: 'ថ្នាំដុសធ្មេញ',        category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 2.20, quantity: 30, active: true ,brand: 'Colgate', rating: 5, discountPercent: 0 },
+  { id: 24, name: 'ច្រាសដុសធ្មេញ',        category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.00, quantity: 30, active: true ,brand: 'Colgate', rating: 4, discountPercent: 0 },
+  { id: 25, name: 'ឡេការពារកម្ដៅថ្ងៃ',    category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 5.50, quantity: 0, active: false ,brand: 'Nivea', rating: 3, discountPercent: 0 },
+  { id: 26, name: 'ឡេលាបខ្លួន',          category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 4.80, quantity: 30, active: true ,brand: 'Nivea', rating: 4, discountPercent: 15 },
+  { id: 27, name: 'កន្សែងសើម',           category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 1.70, quantity: 30, active: true ,brand: 'Wet Wipes', rating: 3, discountPercent: 0 },
+  { id: 28, name: 'ទឹកអប់',              category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 8.50, quantity: 30, active: true ,brand: 'Dior', rating: 5, discountPercent: 25 },
+  { id: 29, name: 'សាប៊ូលាងដៃ',          category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 2.10, quantity: 0, active: false ,brand: 'Dettol', rating: 4, discountPercent: 0 },
+  { id: 30, name: 'ទឹកខ្ពុរមាត់',         category: 'Beauty / ផលិតផលថែទាំសម្រស់', supplier: 'ក្រុមហ៊ុនពាណិជ្ជកម្ម ហ្គោលដិន', price: 3.20, quantity: 30, active: true ,brand: 'Listerine', rating: 4, discountPercent: 0 }
 ];
+
+// ---------- Stock sync (shared with the Customer shop via localStorage) ----------
+// key = admin product id, value = current quantity remaining.
+// The Customer checkout deducts from this same key when an order is placed.
+(function syncStockFromStorage(){
+  let stock;
+  try { stock = JSON.parse(localStorage.getItem(STOCK_KEY)); } catch(e) { stock = null; }
+  if (!stock) {
+    stock = {};
+    products.forEach(p => { stock[p.id] = p.quantity; });
+    localStorage.setItem(STOCK_KEY, JSON.stringify(stock));
+  } else {
+    products.forEach(p => { if (stock[p.id] !== undefined) p.quantity = stock[p.id]; });
+  }
+})();
+
   let nextId = products.length + 1;
 
   const tbody = document.getElementById('productTableBody');
   const searchInput = document.getElementById('productSearch');
   const categorySelect = document.getElementById('productCategory');
   const supplierSelect = document.getElementById('productSupplier');
+  const brandInput = document.getElementById('productBrand');
+  const ratingSelect = document.getElementById('productRating');
+  const discountInput = document.getElementById('productDiscount');
   const categoryList = document.getElementById('categoryList');
   const supplierList = document.getElementById('supplierList');
 
@@ -106,22 +132,33 @@ let products = [
     const rows = products.filter(p =>
       p.name.toLowerCase().includes(query) ||
       p.category.toLowerCase().includes(query) ||
-      p.supplier.toLowerCase().includes(query)
+      p.supplier.toLowerCase().includes(query) ||
+      (p.brand || '').toLowerCase().includes(query)
     );
 
     tbody.innerHTML = '';
     if(rows.length === 0){
-      tbody.innerHTML = `<tr><td colspan="6" class="text-center text-secondary py-4">No products found</td></tr>`;
+      tbody.innerHTML = `<tr><td colspan="9" class="text-center text-secondary py-4">No products found</td></tr>`;
       return;
     }
 
     rows.forEach(p => {
       const tr = document.createElement('tr');
+      const stars = p.rating > 0 ? '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating) : '—';
+      const priceHtml = p.discountPercent > 0
+        ? `$${p.price.toFixed(2)} <span class="badge rounded-pill bg-danger-subtle text-danger">-${p.discountPercent}%</span>`
+        : `$${p.price.toFixed(2)}`;
       tr.innerHTML = `
         <td class="fw-semibold small">${p.name}</td>
         <td><span class="badge rounded-pill bg-secondary-subtle text-secondary">${p.category}</span></td>
+        <td class="small text-secondary">${p.brand || '—'}</td>
         <td class="small text-secondary">${p.supplier}</td>
-        <td class="small">$${p.price.toFixed(2)}</td>
+        <td class="small">${priceHtml}</td>
+        <td class="small">
+          <span class="fw-semibold ${p.quantity === 0 ? 'text-danger' : (p.quantity <= 5 ? 'text-warning' : '')}">${p.quantity}</span>
+          ${p.quantity === 0 ? '<span class="badge rounded-pill bg-danger-subtle text-danger ms-1">Out</span>' : (p.quantity <= 5 ? '<span class="badge rounded-pill bg-warning-subtle text-warning ms-1">Low</span>' : '')}
+        </td>
+        <td class="small text-warning">${stars}</td>
         <td>
           <span class="badge rounded-pill ${p.active ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary'}">
             ${p.active ? 'Selling' : 'Stopped'}
@@ -159,6 +196,8 @@ let products = [
     productForm.reset();
     document.getElementById('productId').value = '';
     document.getElementById('productActive').checked = true;
+    ratingSelect.value = '0';
+    discountInput.value = '';
     refreshLookups();
   });
 
@@ -169,15 +208,18 @@ let products = [
     const name = document.getElementById('productName').value.trim();
     const category = categorySelect.value;
     const supplier = supplierSelect.value;
+    const brand = brandInput.value.trim();
+    const rating = parseInt(ratingSelect.value, 10) || 0;
+    const discountPercent = parseInt(discountInput.value, 10) || 0;
     const price = parseFloat(document.getElementById('productPrice').value) || 0;
     const active = document.getElementById('productActive').checked;
 
     if(id){
       const p = products.find(x => x.id === Number(id));
-      if(p){ Object.assign(p, { name, category, supplier, price, active }); }
+      if(p){ Object.assign(p, { name, category, supplier, brand, rating, discountPercent, price, active }); }
       notify('Product updated');
     } else {
-      products.push({ id: nextId++, name, category, supplier, price, active });
+      products.push({ id: nextId++, name, category, supplier, brand, rating, discountPercent, price, active });
       notify('Product added');
     }
 
@@ -201,6 +243,9 @@ let products = [
       document.getElementById('productName').value = p.name;
       categorySelect.value = p.category;
       supplierSelect.value = p.supplier;
+      brandInput.value = p.brand || '';
+      ratingSelect.value = String(p.rating || 0);
+      discountInput.value = p.discountPercent || '';
       document.getElementById('productPrice').value = p.price;
       document.getElementById('productActive').checked = p.active;
       productModal.show();
@@ -265,4 +310,15 @@ let products = [
 
   refreshLookups();
   renderAll();
+
+  window.addEventListener('storage', (e) => {
+    if (e.key === STOCK_KEY) {
+      let stock;
+      try { stock = JSON.parse(localStorage.getItem(STOCK_KEY)); } catch(err) { stock = null; }
+      if (stock) {
+        products.forEach(p => { if (stock[p.id] !== undefined) p.quantity = stock[p.id]; });
+        renderAll();
+      }
+    }
+  });
 });
