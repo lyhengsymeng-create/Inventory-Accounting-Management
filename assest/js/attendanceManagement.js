@@ -54,10 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // { id: 6, empId: 8, firstIn: '08:00', break: '12:00', lastOut: '17:00', status: 'Present', shift: 'General' },
     ];
   }
-
-// Records are stored per-date: { '2026-07-25': [ {id, empId, firstIn, break, lastOut, status, shift}, ... ] }
-// SEED_VERSION: bump this any time seedTodayRecords() changes, so browsers with
-// stale cached localStorage data automatically pick up the new seed values.
 const SEED_VERSION = 2;
 let allRecords = loadFromStorage('attendanceRecords', {});
 let currentDate = todayStr();

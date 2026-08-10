@@ -574,7 +574,7 @@ body {
 }
 
 .day-badge.status-present {
-  background: #22c55e;
+  background: #15803d;
   color: #fff;
 }
 
@@ -584,7 +584,7 @@ body {
 }
 
 .day-badge.status-holiday {
-  background: #f5b301;
+  background: #a16b03;
   color: #fff;
 }
 
@@ -636,4 +636,34 @@ body {
   background: #0ea5e9;
   color: #fff;
   font-size: .7rem;
+}
+.staff-table-card .table-responsive {
+  border: 1px solid #E7E9F0;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.staff-table-card .table thead th {
+  background: #FAFBFD;
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  color: #6B7280;
+  font-weight: 700;
+  padding: 12px 18px;
+  border-bottom: 1px solid #E7E9F0;
+}
+
+.staff-table-card .table tbody td {
+  padding: 13px 18px;
+  border-bottom: 1px solid #E7E9F0;
+  vertical-align: middle;
+}
+
+.staff-table-card .table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.staff-table-card .table tbody tr:hover {
+  background: #FAFBFD;
 }

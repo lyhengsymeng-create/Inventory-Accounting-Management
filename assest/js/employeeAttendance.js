@@ -75,16 +75,35 @@ document.addEventListener('DOMContentLoaded', () => {
     return log.reverse();
   }
 
-  function avgStats(log) {
-    const workDays = log.filter(l => l.status !== 'Weekend' && l.status !== 'Absent');
-    if (workDays.length === 0) return { hours: '0h 00m', inTime: '-', outTime: '-', breakTime: '1h 00m' };
-    let totalMins = 0, totalInMins = 0, totalOutMins = 0;
+function avgStats(log) {
+    const workDays = log.filter(
+        l => l.status !== 'Weekend' && l.status !== 'Absent'
+    );
+
+    if (workDays.length === 0) {
+        return {
+            hours: '0h 00m',
+            inTime: '-',
+            outTime: '-',
+            breakTime: '1h 00m'
+        };
+    }
+
+    let totalMins = 0,
+        totalInMins = 0,
+        totalOutMins = 0;
+
     workDays.forEach(l => {
-      const [ih, im] = l.checkIn.split(':').map(Number);
-      const [oh, om] = l.checkOut.split(':').map(Number);
-      totalInMins += ih * 60 + im;
-      totalOutMins += oh * 60 + om;
-      totalMins += (oh * 60 + om) - (ih * 60 + im);
+        const [ih, im] = l.checkIn.split(':').map(Number);
+        let [oh, om] = l.checkOut.split(':').map(Number);
+        oh += 1;
+
+        const inMinutes = ih * 60 + im;
+        const outMinutes = oh * 60 + om;
+
+        totalInMins += inMinutes;
+        totalOutMins += outMinutes;
+        totalMins += outMinutes - inMinutes;
     });
     const avgMins = Math.round(totalMins / workDays.length);
     const avgInMins = Math.round(totalInMins / workDays.length);
