@@ -10,10 +10,6 @@ const CATEGORIES = [
   { name: "More", icon: "bi-three-dots" },
 ];
 
-
-/* PRODUCTS now comes from SharedStore (shared/shared-store.js) so stock levels
-   and catalog stay in sync with the Staff/Admin app. Falls back to a static
-   snapshot if shared-store.js failed to load for some reason. */
 function staticProductsFallback() {
   return [
     { id: 1, name: "Wireless Headphones", cat: "electronics", brand: "Sony", price: 59.99, old: 79.99, rating: 5, reviews: 128, stock: "in", badge: "SALE", img: "headphones", image: "https://kfourgroup.com.kh/wp-content/uploads/2024/01/JBLT770NC-BLK.webp", isNew: false, dealPct: 25, stockLeft: 62 },
@@ -23,12 +19,7 @@ function staticProductsFallback() {
 }
 const PRODUCTS = (typeof SharedStore !== 'undefined') ? SharedStore.getProducts() : staticProductsFallback();
 
-/* Demo storefront account: every cart / order / profile action acts as this
-   customer (id 100 = LyHeng Symeng in SharedStore). */
 const CURRENT_CUSTOMER_ID = 100;
-
-/* Keep the little cart badge in the navbar in sync with the real persisted
-   cart on every page (not just cart.html). */
 function syncCartBadge() {
   const badgeEl = document.getElementById('cartBadge');
   if (!badgeEl || typeof SharedStore === 'undefined') return;
@@ -306,8 +297,6 @@ function updateCartTotals() {
   }
 }
 
-/* Checkout -> opens the KHQR payment modal; the order is only created once
-   the customer confirms payment was received (mirrors the Staff POS flow). */
 const checkoutBtn = document.getElementById('checkoutBtn');
 const qrPaymentModalEl = document.getElementById('qrPaymentModal');
 if (checkoutBtn && qrPaymentModalEl) {
@@ -343,14 +332,12 @@ if (confirmQrPaymentBtn) {
     const modalInstance = bootstrap.Modal.getInstance(qrPaymentModalEl);
     if (modalInstance) modalInstance.hide();
 
-    // បង្ហាញ modal បញ្ជាក់ការទូទាត់ជោគជ័យ ព្រមទាំងវិក្កយបត្រ
     setTimeout(() => {
       if (typeof window.showInvoiceModal === 'function') window.showInvoiceModal(order);
-    }, 350); // ចាំ QR modal បិទសិន
+    }, 350); 
   });
 }
 
-/* ---------- 11d. INVOICE (generated after payment) ---------- */
 function buildInvoiceContentHtml(order, customer) {
   const itemsRows = (order.items || []).map(i => `
     <tr>
@@ -421,9 +408,6 @@ if (viewInvoiceBtn) {
   });
 }
 
-/* Payment-success modal on cart.html — shows the invoice inline (as a
-   modal, confirming the order to the customer) instead of only opening
-   a separate browser tab. */
 const invoiceModalEl = document.getElementById('invoiceModal');
 if (invoiceModalEl) {
   const printInvoiceBtn = document.getElementById('printInvoiceBtn');
@@ -537,7 +521,6 @@ if (trackForm) {
     trackByInput();
   });
 
-  // Auto-load when arriving from checkout: track-order.html?id=ORD-...
   const params = new URLSearchParams(window.location.search);
   const idFromUrl = params.get('id');
   if (idFromUrl && typeof SharedStore !== 'undefined') {
@@ -546,7 +529,6 @@ if (trackForm) {
   }
 }
 
-/* ---------- 11b. MY PURCHASES (my-purchase.html) ---------- */
 const purchaseList = document.getElementById('purchaseOrdersList');
 if (purchaseList && typeof SharedStore !== 'undefined') {
   const STATUS_BADGE_STYLE = {
@@ -617,7 +599,6 @@ if (purchaseList && typeof SharedStore !== 'undefined') {
   renderPurchases('all');
 }
 
-/* ---------- 11c. ACCOUNT PROFILE (account.html) ---------- */
 const profileForm = document.getElementById('profileForm');
 if (profileForm && typeof SharedStore !== 'undefined') {
   const ACCOUNT_CUSTOMER_ID = 100; // LyHeng Symeng
@@ -675,7 +656,6 @@ if (profileForm && typeof SharedStore !== 'undefined') {
   loadRecentOrders();
 }
 
-/* ---------- 13. SUPPORT TICKETS (support.html) — Customer -> Staff ---------- */
 const supportTicketForm = document.getElementById('supportTicketForm');
 if (supportTicketForm && typeof SharedStore !== 'undefined') {
   const TICKET_STATUS_LABEL = { open: 'កំពុងរង់ចាំចម្លើយ', resolved: 'បានឆ្លើយតបរួច' };
@@ -730,7 +710,6 @@ if (supportTicketForm && typeof SharedStore !== 'undefined') {
   renderMyTickets();
 }
 
-/* ---------- 14. UNREAD NOTIFICATION BADGE (every page navbar) ---------- */
 (function () {
   const badgeEl = document.getElementById('notifBadge');
   if (!badgeEl || typeof SharedStore === 'undefined') return;
@@ -743,7 +722,7 @@ if (supportTicketForm && typeof SharedStore !== 'undefined') {
   if (unread > 0) { badgeEl.textContent = unread; badgeEl.style.display = ''; }
   else { badgeEl.style.display = 'none'; }
 })();
-/* ---------- 12b. NOTIFICATIONS LIST (notifications.html) — driven by SharedStore ---------- */
+
 const notifList = document.getElementById('notifList');
 if (notifList && typeof SharedStore !== 'undefined') {
   const READ_KEY = 'notif_read_' + CURRENT_CUSTOMER_ID;
