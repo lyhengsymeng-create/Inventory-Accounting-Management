@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
-  // ---------- Sample data (replace with API data later) ----------
   const catalog = [
     { name: 'អាវយឺតកប្បាស ពណ៌ខ្មៅ', price: 12.00 },
     { name: 'ស្បែកជើងកីឡា Size 41', price: 68.00 },
@@ -9,82 +7,54 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'កាបូបស្ពាយ Canvas', price: 29.00 },
   ];
 
-  // ---------- Customers (fixed data kept directly in this file — no localStorage) ----------
-  // Kept identical to the Admin/Staff Customer Management list so names stay consistent.
   const customerList = [
     'រឹម​ ភារុន', 'វ៉េត សុជាតិ', 'ចាន់​ សារ៉ាក់', 'លីហេង ស៊ីម៉េង', 'វិទូ',
     'រឹម​ វីរះ', 'មករា', 'ចាន់ មិនា', 'សុ​ ផល', 'Walk-in'
   ];
 
  const sales = [
-  { id: '1001', customer: 'រឹម​ ភារុន', date: '2026/07/14', items: 3, total: 86.00, status: 'paid' },
-  { id: '1002', customer: 'Walk-in', date: '2026-07-14', items: 1, total: 12.00, status: 'paid' },
-  { id: '1003', customer: 'វ៉េត សុជាតិ', date: '2026-07-13', items: 2, total: 100.00, status: 'unpaid' },
-  { id: '1004', customer: 'ចាន់​ សារ៉ាក់', date: '2026-07-13', items: 4, total: 143.50, status: 'paid' },
-  { id: '1005', customer: 'Walk-in', date: '2026-07-12', items: 1, total: 68.00, status: 'cancelled' },
-  { id: '1006', customer: 'លីហេង ស៊ីម៉េង', date: '2026-07-12', items: 2, total: 50.50, status: 'paid' },
-  { id: '1007', customer: 'វិទូ', date: '2026-07-11', items: 1, total: 32.00, status: 'unpaid' },
+    { id: 'ORD-0101', customer: 'LyHeng Symeng', date: '2026-08-09', items: 2, total: 92.49, status: 'paid', online: true, fulfillment: 'pending', products: [{ name: 'Smart Watch Series 5', qty: 2, price: 46.24 }] },
+  { id: 'ORD-0102', customer: 'សុខា', date: '2026-08-08', items: 1, total: 59.99, status: 'cancelled', online: true, fulfillment: 'cancelled', products: [{ name: 'Wireless Headphones', qty: 1, price: 59.99 }] },
+  { id: 'ORD-0103', customer: 'ដារា', date: '2026-08-07', items: 3, total: 149.97, status: 'paid', online: true, fulfillment: 'shipped', products: [{ name: 'Travel Backpack', qty: 3, price: 49.99 }] },
+  { id: 'ORD-0104', customer: 'ស្រីនាង', date: '2026-08-06', items: 2, total: 79.98, status: 'paid', online: true, fulfillment: 'delivered', products: [{ name: 'Digital Camera', qty: 2, price: 39.99 }] },
+  { id: 'ORD-0105', customer: 'វិសាល', date: '2026-08-05', items: 1, total: 129.99, status: 'paid', online: true, fulfillment: 'delivered', products: [{ name: 'Classic Sunglasses', qty: 1, price: 129.99 }] },
+  { id: 'ORD-0106', customer: 'មាលី', date: '2026-08-04', items: 4, total: 210.50, status: 'cancelled', online: true, fulfillment: 'cancelled', products: [{ name: 'Bluetooth Speaker', qty: 4, price: 52.63 }] },
+  { id: 'ORD-0107', customer: 'ចាន់ថា', date: '2026-08-03', items: 2, total: 44.98, status: 'paid', online: true, fulfillment: 'delivered', products: [{ name: 'Running Shoes', qty: 2, price: 22.49 }] },
 
-  { id: '1008', customer: 'រឹម​ វីរះ', date: '2026-07-11', items: 5, total: 210.00, status: 'paid' },
-  { id: '1009', customer: 'មករា', date: '2026-07-10', items: 3, total: 75.50, status: 'paid' },
-  { id: '1010', customer: 'Walk-in', date: '2026-07-10', items: 2, total: 45.00, status: 'cancelled' },
-  { id: '1011', customer: 'ចាន់ មិនា', date: '2026-07-09', items: 6, total: 320.00, status: 'paid' },
-  { id: '1012', customer: 'សុ​ ផល', date: '2026-07-09', items: 2, total: 95.00, status: 'unpaid' },
-  { id: '1013', customer: 'រឹម​ ភារុន', date: '2026-07-08', items: 4, total: 180.50, status: 'paid' },
-  { id: '1014', customer: 'Walk-in', date: '2026-07-08', items: 1, total: 25.00, status: 'paid' },
-  { id: '1015', customer: 'វ៉េត សុជាតិ', date: '2026-07-07', items: 3, total: 120.00, status: 'cancelled' },
+  { id: '1001', customer: 'រឹម​ ភារុន', date: '2026/07/14', items: 3, total: 86.00, status: 'paid', products: [{ name: 'អាវយឺតកប្បាស ពណ៌ខ្មៅ', qty: 3, price: 28.67 }] },
+  { id: '1002', customer: 'Walk-in', date: '2026-07-14', items: 1, total: 12.00, status: 'paid', products: [{ name: 'ស្បែកជើងកីឡា Size 41', qty: 1, price: 12 }] },
+  { id: '1003', customer: 'វ៉ែត សុជាតិ', date: '2026-07-13', items: 2, total: 100.00, status: 'unpaid', products: [{ name: 'ក្រែមការពារថ្ងៃ SPF50', qty: 2, price: 50 }] },
+  { id: '1004', customer: 'ចាន់​ សារ៉ាក់', date: '2026-07-13', items: 4, total: 143.50, status: 'paid', products: [{ name: 'កាសស្តាប់ត្រចៀក Bluetooth', qty: 4, price: 35.88 }] },
+  { id: '1005', customer: 'Walk-in', date: '2026-07-12', items: 1, total: 68.00, status: 'cancelled', products: [{ name: 'កាបូបស្ពាយ Canvas', qty: 1, price: 68 }] },
+  { id: '1006', customer: 'លីហេង ស៊ីម៉េង', date: '2026-07-12', items: 2, total: 50.50, status: 'paid', products: [{ name: 'នាឡិកាដៃ Digital', qty: 2, price: 25.25 }] },
+  { id: '1007', customer: 'វិទូ', date: '2026-07-11', items: 1, total: 32.00, status: 'unpaid', products: [{ name: 'ខោខូវប៊យ Denim', qty: 1, price: 32 }] },
 
-  { id: '1016', customer: 'ចាន់​ សារ៉ាក់', date: '2026-07-07', items: 2, total: 65.00, status: 'paid' },
-  { id: '1017', customer: 'លីហេង ស៊ីម៉េង', date: '2026-07-06', items: 7, total: 350.00, status: 'paid' },
-  { id: '1018', customer: 'Walk-in', date: '2026-07-06', items: 1, total: 18.50, status: 'unpaid' },
-  { id: '1019', customer: 'វិទូ', date: '2026-07-05', items: 4, total: 220.00, status: 'paid' },
-  { id: '1020', customer: 'រឹម​ វីរះ', date: '2026-07-05', items: 3, total: 90.00, status: 'paid' },
-  { id: '1021', customer: 'Walk-in', date: '2026-07-04', items: 2, total: 40.00, status: 'cancelled' },
-  { id: '1022', customer: 'មករា', date: '2026-07-04', items: 5, total: 275.00, status: 'paid' },
-  { id: '1023', customer: 'ចាន់ មិនា', date: '2026-07-03', items: 1, total: 55.00, status: 'unpaid' },
-  { id: '1024', customer: 'សុ​ ផល', date: '2026-07-03', items: 6, total: 410.00, status: 'paid' },
+  { id: '1008', customer: 'រឹម​ វីរះ', date: '2026-07-11', items: 5, total: 210.00, status: 'paid', products: [{ name: 'ដបទឹកអាលុយមីញ៉ូម', qty: 5, price: 42 }] },
+  { id: '1009', customer: 'មករា', date: '2026-07-10', items: 3, total: 75.50, status: 'paid', products: [{ name: 'អាវយឺតកប្បាស ពណ៌ខ្មៅ', qty: 3, price: 25.17 }] },
+  { id: '1010', customer: 'Walk-in', date: '2026-07-10', items: 2, total: 45.00, status: 'cancelled', products: [{ name: 'ស្បែកជើងកីឡា Size 41', qty: 2, price: 22.5 }] },
+  { id: '1011', customer: 'ចាន់ មិនា', date: '2026-07-09', items: 6, total: 320.00, status: 'paid', products: [{ name: 'ក្រែមការពារថ្ងៃ SPF50', qty: 6, price: 53.33 }] },
+  { id: '1012', customer: 'សុ​ ផល', date: '2026-07-09', items: 2, total: 95.00, status: 'unpaid', products: [{ name: 'កាសស្តាប់ត្រចៀក Bluetooth', qty: 2, price: 47.5 }] },
+  { id: '1013', customer: 'រឹម​ ភារុន', date: '2026-07-08', items: 4, total: 180.50, status: 'paid', products: [{ name: 'កាបូបស្ពាយ Canvas', qty: 4, price: 45.13 }] },
+  { id: '1014', customer: 'Walk-in', date: '2026-07-08', items: 1, total: 25.00, status: 'paid', products: [{ name: 'នាឡិកាដៃ Digital', qty: 1, price: 25 }] },
+  { id: '1015', customer: 'វ៉េត សុជាតិ', date: '2026-07-07', items: 3, total: 120.00, status: 'cancelled', products: [{ name: 'ខោខូវប៊យ Denim', qty: 3, price: 40 }] },
 
-  { id: '1025', customer: 'Walk-in', date: '2026-07-02', items: 2, total: 35.00, status: 'paid' },
-  { id: '1026', customer: 'រឹម​ ភារុន', date: '2026-07-02', items: 3, total: 150.00, status: 'paid' },
-  { id: '1027', customer: 'វ៉េត សុជាតិ', date: '2026-07-01', items: 4, total: 185.50, status: 'unpaid' },
-  { id: '1028', customer: 'Walk-in', date: '2026-07-01', items: 1, total: 22.00, status: 'paid' },
-  { id: '1029', customer: 'ចាន់​ សារ៉ាក់', date: '2026-06-30', items: 5, total: 260.00, status: 'paid' },
-  { id: '1030', customer: 'លីហេង ស៊ីម៉េង', date: '2026-06-30', items: 3, total: 130.00, status: 'cancelled' }
+  { id: '1016', customer: 'ចាន់​ សារ៉ាក់', date: '2026-07-07', items: 2, total: 65.00, status: 'paid', products: [{ name: 'ដបទឹកអាលុយមីញ៉ូម', qty: 2, price: 32.5 }] },
+  { id: '1017', customer: 'លីហេង ស៊ីម៉េង', date: '2026-07-06', items: 7, total: 350.00, status: 'paid', products: [{ name: 'អាវយឺតកប្បាស ពណ៌ខ្មៅ', qty: 7, price: 50 }] },
+  { id: '1018', customer: 'Walk-in', date: '2026-07-06', items: 1, total: 18.50, status: 'unpaid', products: [{ name: 'ស្បែកជើងកីឡា Size 41', qty: 1, price: 18.5 }] },
+  { id: '1019', customer: 'វិទូ', date: '2026-07-05', items: 4, total: 220.00, status: 'paid', products: [{ name: 'ក្រែមការពារថ្ងៃ SPF50', qty: 4, price: 55 }] },
+  { id: '1020', customer: 'រឹម​ វីរះ', date: '2026-07-05', items: 3, total: 90.00, status: 'paid', products: [{ name: 'កាសស្តាប់ត្រចៀក Bluetooth', qty: 3, price: 30 }] },
+  { id: '1021', customer: 'Walk-in', date: '2026-07-04', items: 2, total: 40.00, status: 'cancelled', products: [{ name: 'កាបូបស្ពាយ Canvas', qty: 2, price: 20 }] },
+  { id: '1022', customer: 'មករា', date: '2026-07-04', items: 5, total: 275.00, status: 'paid', products: [{ name: 'នាឡិកាដៃ Digital', qty: 5, price: 55 }] },
+  { id: '1023', customer: 'ចាន់ មិនា', date: '2026-07-03', items: 1, total: 55.00, status: 'unpaid', products: [{ name: 'ខោខូវប៊យ Denim', qty: 1, price: 55 }] },
+  { id: '1024', customer: 'សុ​ ផល', date: '2026-07-03', items: 6, total: 410.00, status: 'paid', products: [{ name: 'ដបទឹកអាលុយមីញ៉ូម', qty: 6, price: 68.33 }] },
+
+  { id: '1025', customer: 'Walk-in', date: '2026-07-02', items: 2, total: 35.00, status: 'paid', products: [{ name: 'អាវយឺតកប្បាស ពណ៌ខ្មៅ', qty: 2, price: 17.5 }] },
+  { id: '1026', customer: 'រឹម​ ភារុន', date: '2026-07-02', items: 3, total: 150.00, status: 'paid', products: [{ name: 'ស្បែកជើងកីឡា Size 41', qty: 3, price: 50 }] },
+  { id: '1027', customer: 'វ៉េត សុជាតិ', date: '2026-07-01', items: 4, total: 185.50, status: 'unpaid', products: [{ name: 'ក្រែមការពារថ្ងៃ SPF50', qty: 4, price: 46.38 }] },
+  { id: '1028', customer: 'Walk-in', date: '2026-07-01', items: 1, total: 22.00, status: 'paid', products: [{ name: 'កាសស្តាប់ត្រចៀក Bluetooth', qty: 1, price: 22 }] },
+  { id: '1029', customer: 'ចាន់​ សារ៉ាក់', date: '2026-06-30', items: 5, total: 260.00, status: 'paid', products: [{ name: 'កាបូបស្ពាយ Canvas', qty: 5, price: 52 }] },
+  { id: '1030', customer: 'លីហេង ស៊ីម៉េង', date: '2026-06-30', items: 3, total: 130.00, status: 'cancelled', products: [{ name: 'នាឡិកាដៃ Digital', qty: 3, price: 43.33 }] }
 ];
-
-  // ---------- Online orders (written by the Customer shop's checkout, shared via localStorage) ----------
-  const ONLINE_ORDERS_KEY = 'shopease_orders';
-  function loadOnlineOrdersIntoSales() {
-    let onlineOrders = [];
-    try { onlineOrders = JSON.parse(localStorage.getItem(ONLINE_ORDERS_KEY)) || []; }
-    catch (e) { onlineOrders = []; }
-
-    // Remove any previously-merged online orders so re-loading doesn't duplicate them
-    for (let i = sales.length - 1; i >= 0; i--) {
-      if (sales[i].online) sales.splice(i, 1);
-    }
-
-    onlineOrders.slice().reverse().forEach(o => {
-      sales.unshift({
-        id: o.id,
-        customer: o.customer || 'Online customer',
-        date: (o.date || '').slice(0, 10),
-        items: (o.items || []).reduce((n, it) => n + it.qty, 0),
-        total: Number(o.total) || 0,
-        status: o.status === 'Delivered' ? 'paid' : 'unpaid',
-        online: true,
-        fulfillment: o.status
-      });
-    });
-  }
-  loadOnlineOrdersIntoSales();
-  window.addEventListener('storage', function (e) {
-    if (e.key === ONLINE_ORDERS_KEY) {
-      loadOnlineOrdersIntoSales();
-      renderKpis();
-      renderTable();
-    }
-  });
 
   const salesHistory = [
     { type: 'create', title: 'Invoice created — 1007', date: '11 Jul 2026, 3:40 PM', note: 'អតិថិជន ចាន់ថា • $32.00' },
@@ -102,7 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   let invoiceLineCount = 0;
 
-  // ---------- Helpers ----------
   function statusBadge(status) {
     if (status === 'paid') return '<span class="badge rounded-pill" style="background:#e6f2ef; color:#1f4d43;">បានទូទាត់</span>';
     if (status === 'unpaid') return '<span class="badge rounded-pill" style="background:#faf1e6; color:#c1793a;">មិនទាន់ទូទាត់</span>';
@@ -114,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
     new bootstrap.Toast(document.getElementById('liveToast')).show();
   }
 
-  // ---------- Render KPI cards ----------
   function renderKpis() {
     const today = '2026-07-14';
     const todaySales = sales.filter(s => s.date === today && s.status !== 'cancelled');
@@ -128,7 +96,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('kpiCancelled').textContent = cancelled;
   }
 
-  // ---------- Render sales table ----------
   function renderTable() {
     const term = (document.getElementById('invoiceSearch').value || '').toLowerCase();
     const status = document.getElementById('statusFilter').value;
@@ -164,7 +131,6 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('totalCount').textContent = sales.length;
   }
 
-  // ---------- Invoice builder (Create Sales Invoice modal) ----------
   function addInvoiceLine() {
     invoiceLineCount++;
     const rowId = 'line-' + invoiceLineCount;
@@ -244,7 +210,6 @@ document.addEventListener('DOMContentLoaded', function () {
     };
     sales.unshift(newSale);
 
-    // Reset the form for next time
     document.getElementById('invoiceItemsBody').innerHTML = '';
     if (customerSelect) customerSelect.selectedIndex = 0;
     if (dateInput) dateInput.value = '';
@@ -256,7 +221,6 @@ document.addEventListener('DOMContentLoaded', function () {
     showToast('Invoice created successfully');
   });
 
-  // ---------- Print Receipt modal ----------
   function populatePrintSelect() {
     const select = document.getElementById('printInvoiceSelect');
     select.innerHTML = sales.map(s => `<option value="${s.id}">${s.id} — ${s.customer} ($${s.total.toFixed(2)})</option>`).join('');
@@ -281,10 +245,8 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('confirmPrintBtn').addEventListener('click', function () {
     bootstrap.Modal.getInstance(document.getElementById('printReceiptModal')).hide();
     showToast('Receipt sent to printer');
-    // TODO: trigger window.print() or a dedicated print template
   });
 
-  // ---------- View Invoice modal ----------
   function renderViewInvoice(invoiceId) {
     const s = sales.find(x => x.id === invoiceId);
     if (!s) return;
@@ -295,6 +257,20 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('viewInvDate').textContent = s.date;
     document.getElementById('viewInvItems').textContent = s.items;
     document.getElementById('viewInvTotal').textContent = '$' + s.total.toFixed(2);
+
+    const productsBody = document.getElementById('viewInvProductsBody');
+    if (productsBody) {
+      const lines = s.products || [];
+      productsBody.innerHTML = lines.length
+        ? lines.map(p => `
+            <tr>
+              <td>${p.name}</td>
+              <td class="text-center">${p.qty}</td>
+              <td class="text-end">$${Number(p.price).toFixed(2)}</td>
+              <td class="text-end fw-semibold">$${(p.qty * p.price).toFixed(2)}</td>
+            </tr>`).join('')
+        : `<tr><td colspan="4" class="text-center text-secondary small py-2">No product detail available</td></tr>`;
+    }
   }
 
   document.getElementById('salesTableBody').addEventListener('click', function (e) {
@@ -302,7 +278,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (viewBtn) renderViewInvoice(viewBtn.dataset.id);
   });
 
-  // ---------- Cancel Sales modal ----------
   function populateCancelSelect() {
     const select = document.getElementById('cancelInvoiceSelect');
     select.innerHTML = sales.filter(s => s.status !== 'cancelled')
@@ -312,10 +287,8 @@ document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('confirmCancelSaleBtn').addEventListener('click', function () {
     bootstrap.Modal.getInstance(document.getElementById('cancelSalesModal')).hide();
     showToast('Sale cancelled and stock restored');
-    // TODO: set matching sale's status to 'cancelled', then renderTable()/renderKpis()
   });
 
-  // ---------- Sales History modal ----------
   function renderHistory() {
     const list = document.getElementById('salesHistoryList');
     list.innerHTML = salesHistory.map(h => {
@@ -336,15 +309,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }).join('');
   }
 
-  // ---------- Wire up table filters ----------
   document.getElementById('invoiceSearch').addEventListener('input', renderTable);
   document.getElementById('statusFilter').addEventListener('change', renderTable);
 
-  // ---------- Modal show events to (re)populate dynamic content ----------
   document.getElementById('printReceiptModal').addEventListener('show.bs.modal', populatePrintSelect);
   document.getElementById('cancelSalesModal').addEventListener('show.bs.modal', populateCancelSelect);
 
-  // ---------- Initial render ----------
   renderKpis();
   renderTable();
   renderHistory();
