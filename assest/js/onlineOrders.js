@@ -1,11 +1,3 @@
-/* ==========================================================================
-   ONLINE ORDERS (Staff)
-   Static sample data — all fixed in one place below (ONLINE_ORDERS_DATA).
-   Not read from or written to localStorage; edit the array directly to
-   change what Staff sees. Status changes made with the "➜" button only
-   update this in-memory list and reset on page refresh.
-   ========================================================================== */
-
 const ORDER_STATUS_FLOW = ['Pending', 'Processing', 'Shipped', 'Delivered'];
 const ORDER_STATUS_LABEL_KM = {
   Pending: 'កំពុងរង់ចាំ',
