@@ -386,6 +386,29 @@
       overflow: hidden;
     }
 
+    /* ---------- Responsive centering (mobile) ---------- */
+    @media (max-width: 767.98px) {
+      #profileModal .modal-dialog {
+        margin: 1.25rem auto;
+        max-height: calc(100vh - 2.5rem);
+      }
+
+      #profileModal .modal-content {
+        max-height: calc(100vh - 2.5rem);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Pin the close button to the screen itself (not the scrolling card),
+         so it stays put and visible no matter how far the profile is scrolled. */
+      #profileModal .btn-close {
+        position: fixed !important;
+        top: calc(1.25rem + 12px) !important;
+        right: 16px !important;
+        margin: 0 !important;
+      }
+    }
+
     #profileModal .profile-banner {
       background: linear-gradient(135deg, #1f2733 0%, #181a35 100%);
       padding: 28px 24px 56px;
@@ -504,15 +527,41 @@
     #profileModal .side-pane.active {
       display: block;
     }
+
+    /* ---- Responsive (phone) ----
+       Keep the card centered on the screen with breathing room on all
+       sides, cap its height so it never runs edge-to-edge, and let only
+       the inner content scroll — the close button stays put and visible. */
+    @media (max-width: 767.98px) {
+      #profileModal .modal-dialog {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: calc(100% - 1.5rem);
+        margin: .75rem auto;
+        max-width: calc(100% - 1.5rem);
+      }
+
+      #profileModal .modal-content {
+        max-height: 88vh;
+        width: 100%;
+      }
+
+      #profileModal .profile-scroll-wrap {
+        max-height: 88vh;
+        overflow-y: auto;
+      }
+    }
   </style>
 
   <div class="modal fade" id="profileModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content rounded-4 border-0">
-        <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" style="z-index:5;"
-          data-bs-dismiss="modal"></button>
+        <button type="button" class="btn-close position-absolute top-0 end-0 m-3"
+          style="z-index:5; background-color:#fff; border-radius:50%; opacity:1; box-shadow:0 2px 8px rgba(0,0,0,.18); width:30px; height:30px; padding:0; display:flex; align-items:center; justify-content:center;"
+          data-bs-dismiss="modal" aria-label="បិទ"></button>
 
-        <div class="d-flex flex-column flex-md-row">
+        <div class="d-flex flex-column flex-md-row profile-scroll-wrap">
 
           <div style="width:100%; max-width:260px; flex-shrink:0;" class="border-end">
             <div class="profile-banner text-center">
@@ -550,9 +599,9 @@
 
             <ul class="nav side-tabs px-3 pt-3 mb-0">
               <li class="nav-item"><button type="button" class="nav-link active small fw-semibold"
-                  data-side-tab="bio">About</button></li>
+                  data-side-tab="bio">អំពី</button></li>
               <li class="nav-item"><button type="button" class="nav-link small fw-semibold"
-                  data-side-tab="access">Access</button></li>
+                  data-side-tab="access">សិទ្ធិចូលប្រើ</button></li>
             </ul>
             <div class="px-3 pb-4 pt-2">
               <div class="side-pane active" data-side-pane="bio">
@@ -568,42 +617,42 @@
           <div class="flex-grow-1" style="min-width:0;">
             <ul class="nav main-tabs px-4 pt-4 mb-0">
               <li class="nav-item"><button type="button" class="nav-link active" data-main-tab="about"><i
-                    class="bi bi-person-fill me-1"></i>About Me</button></li>
+                    class="bi bi-person-fill me-1"></i>អំពីខ្ញុំ</button></li>
               <li class="nav-item"><button type="button" class="nav-link" data-main-tab="activity"><i
-                    class="bi bi-clock-history me-1"></i>Activity</button></li>
+                    class="bi bi-clock-history me-1"></i>សកម្មភាព</button></li>
             </ul>
 
             <div class="p-4">
               <div class="pane active" data-main-pane="about">
-                <div class="section-title mb-3">About</div>
+                <div class="section-title mb-3">អំពី</div>
                 <div class="row g-3 mb-4">
                   <div class="col-6 col-lg-3 info-field">
-                    <div class="label">Full Name</div>
+                    <div class="label">ឈ្មោះពេញ</div>
                     <div class="value" id="profileFullName"></div>
                   </div>
                   <div class="col-6 col-lg-3 info-field">
-                    <div class="label">Mobile</div>
+                    <div class="label">លេខទូរស័ព្ទ</div>
                     <div class="value" id="profileMobile"></div>
                   </div>
                   <div class="col-6 col-lg-3 info-field">
-                    <div class="label">Email</div>
+                    <div class="label">អ៊ីមែល</div>
                     <div class="value text-truncate" id="profileEmail"></div>
                   </div>
                   <div class="col-6 col-lg-3 info-field">
-                    <div class="label">Status</div>
+                    <div class="label">ស្ថានភាព</div>
                     <span id="profileStatus" class="badge rounded-pill"></span>
                   </div>
                 </div>
 
-                <div class="section-title mb-2">Employment Details</div>
+                <div class="section-title mb-2">ព័ត៌មានការងារ</div>
                 <div id="profileEmploymentList" class="mb-4"></div>
 
-                <div class="section-title mb-2">System Access &amp; Permissions</div>
+                <div class="section-title mb-2">សិទ្ធិចូលប្រើប្រព័ន្ធ</div>
                 <div id="profileAccessList"></div>
               </div>
 
               <div class="pane" data-main-pane="activity">
-                <div class="section-title mb-3">Activity History</div>
+                <div class="section-title mb-3">ប្រវត្តិសកម្មភាព</div>
                 <div id="profileHistoryList" class="d-flex flex-column gap-2"
                   style="max-height:340px; overflow-y:auto;"></div>
               </div>

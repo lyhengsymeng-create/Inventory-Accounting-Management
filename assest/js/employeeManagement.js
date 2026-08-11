@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   let staff = [
-    { id: 1, name: 'Veth Socheat',        phone: '012 345 678', role: 'Admin',     active: true , image: '/assest/image/socheat.jpg',
+    { id: 1, name: 'វ៉ែត​ សុជាតិ',        phone: '012 345 678', role: 'Admin',     active: true , image: '/assest/image/socheat.jpg',
       email: 'socheat.veth@iam.com', department: 'Management', joinDate: '2022-03-14', lastLogin: '2026-07-25 08:12',
       manages: 7, modules: ['Employees', 'Products', 'Inventory', 'Sales', 'Purchases', 'Accounting', 'Reports'],
       history: [
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { action: 'Added new staff: Sok Pisey', time: '2026-07-20 10:05' },
         { action: 'Updated product price list', time: '2026-07-18 09:30' },
       ] },
-    { id: 2, name: 'Rim Phearoun', phone: '096 555 210', role: 'Staff', active: true , image: '/assest/image/phearoun_image.jpg',
+    { id: 2, name: 'រឹម​ ភារុន', phone: '096 555 210', role: 'Staff', active: true , image: '/assest/image/phearoun_image.jpg',
       email: 'phearoun.rim@iam.com', department: 'Management', joinDate: '2022-06-02', lastLogin: '2026-07-25 07:55',
       manages: 7, modules: ['Employees', 'Sales', 'Purchases', 'Reports'],
       history: [
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { action: 'Disabled account: Lyheng Symeny', time: '2026-07-22 14:12' },
         { action: 'Generated monthly report', time: '2026-07-01 09:00' },
       ] },
-    { id: 3, name: 'Vet Chansarak', phone: '077 888 001', role: 'Staff', active: true , image: '/assest/image/DSC_1541 copy.jpg',
+    { id: 3, name: 'ចាន់​ សារ៉ាក់', phone: '077 888 001', role: 'Staff', active: true , image: '/assest/image/DSC_1541 copy.jpg',
       email: 'chansarak.vet@iam.com', department: 'Sales Floor', joinDate: '2023-01-10', lastLogin: '2026-07-25 09:02',
       position: 'Cashier', supervisor: 'Veth Socheat', shift: 'Morning (7am - 3pm)', salesCount: 42, attendance: '96%',
       history: [
@@ -42,35 +42,35 @@ document.addEventListener('DOMContentLoaded', () => {
         { action: 'Processed sale #SL-2305', time: '2026-07-25 09:20' },
         { action: 'Clocked out', time: '2026-07-24 18:00' },
       ] },
-    { id: 4, name: 'Lyheng Symeny', phone: '070 222 456', role: 'Staff', active: false , image: '/assest/image/meng_image.jpg',
+    { id: 4, name: 'លីហេង ស៊ីម៉េង', phone: '070 222 456', role: 'Staff', active: false , image: '/assest/image/meng_image.jpg',
       email: 'symeny.lyheng@iam.com', department: 'Stock Room', joinDate: '2023-05-22', lastLogin: '2026-07-21 08:30',
       position: 'Stock Clerk', supervisor: 'Rim Phearoun', shift: 'Evening (2pm - 10pm)', salesCount: 0, attendance: '71%',
       history: [
         { action: 'Account disabled by Admin', time: '2026-07-22 14:12' },
         { action: 'Logged in', time: '2026-07-21 08:30' },
       ] },
-    { id: 5, name: 'Sok Pisey', phone: '012 909 333', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXKt6OpGc7iHjVJSEUr9pV7EyG821ENIwipSvKStOVTQ&s=10',
+    { id: 5, name: 'សុខ ពិសី', phone: '012 909 333', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQXKt6OpGc7iHjVJSEUr9pV7EyG821ENIwipSvKStOVTQ&s=10',
       email: 'pisey.sok@iam.com', department: 'Sales Floor', joinDate: '2024-02-01', lastLogin: '2026-07-25 08:45',
       position: 'Cashier', supervisor: 'Veth Socheat', shift: 'Morning (7am - 3pm)', salesCount: 35, attendance: '99%',
       history: [
         { action: 'Logged in', time: '2026-07-25 08:45' },
         { action: 'Processed sale #SL-2299', time: '2026-07-24 13:10' },
       ] },
-    { id: 6, name: 'Sok Dara', phone: '016 700 990', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP66xZe_6NzZqJBWm79x8S2MHyt4QklAK-9-jQ-IRAFw&s=10',
+    { id: 6, name: 'សុខ ដារា', phone: '016 700 990', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP66xZe_6NzZqJBWm79x8S2MHyt4QklAK-9-jQ-IRAFw&s=10',
       email: 'dara.sok@iam.com', department: 'Stock Room', joinDate: '2023-09-18', lastLogin: '2026-07-25 08:50',
       position: 'Stock Clerk', supervisor: 'Rim Phearoun', shift: 'Morning (7am - 3pm)', salesCount: 0, attendance: '94%',
       history: [
         { action: 'Logged in', time: '2026-07-25 08:50' },
         { action: 'Received inventory shipment', time: '2026-07-23 11:00' },
       ] },
-    { id: 7, name: 'Sopheak', phone: '010 90 88 57', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10',
+    { id: 7, name: 'សុភ័ក្រ្ត', phone: '010 90 88 57', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxEug8Ah6v72E2hoe23E2t5awqBYfr80J9f3La5y0QSg&s=10',
       email: 'sopheak@iam.com', department: 'Sales Floor', joinDate: '2024-08-05', lastLogin: '2026-07-25 07:40',
       position: 'Cashier', supervisor: 'Rim Phearoun', shift: 'Evening (2pm - 10pm)', salesCount: 18, attendance: '88%',
       history: [
         { action: 'Logged in', time: '2026-07-25 07:40' },
         { action: 'Processed sale #SL-2280', time: '2026-07-19 15:22' },
       ] },
-    { id: 8, name: 'Heng Sylong', phone: '096 97 777 254', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gR8rxs27HynIOIU9zUAwqEZdJ8ktrvK22xDCiUj59Q&s=10',
+    { id: 8, name: 'ហេង ស៊ីលុង', phone: '096 97 777 254', role: 'Staff', active: true , image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5gR8rxs27HynIOIU9zUAwqEZdJ8ktrvK22xDCiUj59Q&s=10',
       email: 'sylong.heng@iam.com', department: 'Sales Floor', joinDate: '2024-11-12', lastLogin: '2026-07-25 08:05',
       position: 'Cashier', supervisor: 'Veth Socheat', shift: 'Morning (7am - 3pm)', salesCount: 27, attendance: '92%',
       history: [
@@ -223,13 +223,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function bioText(s, admin) {
     const tenure = yearsSince(s.joinDate);
     if (admin) {
-      return `${s.name} has served as ${s.role} in the ${s.department || '—'} department since ${s.joinDate || '—'} `
-        + `(${tenure} yr${tenure === '1' ? '' : 's'} with the company), overseeing ${s.manages ?? 0} staff members `
-        + `and managing access across ${(s.modules || []).length} system module${(s.modules || []).length === 1 ? '' : 's'}.`;
+      return `${s.name} បម្រើការងារជា ${s.role} ក្នុងផ្នែក ${s.department || '—'} តាំងពីថ្ងៃទី ${s.joinDate || '—'} `
+        + `(${tenure} ឆ្នាំជាមួយក្រុមហ៊ុន) ត្រួតពិនិត្យបុគ្គលិកចំនួន ${s.manages ?? 0} នាក់ `
+        + `និងគ្រប់គ្រងសិទ្ធិចូលប្រើលើម៉ូឌុលប្រព័ន្ធចំនួន ${(s.modules || []).length}។`;
     }
-    return `${s.name} works as a ${s.position || s.role} in the ${s.department || '—'} department, reporting to `
-      + `${s.supervisor || '—'} on the ${s.shift || '—'} shift. Joined on ${s.joinDate || '—'} `
-      + `(${tenure} yr${tenure === '1' ? '' : 's'} with the company), with an attendance record of ${s.attendance || '—'}.`;
+    return `${s.name} ធ្វើការជា ${s.position || s.role} ក្នុងផ្នែក ${s.department || '—'} ដោយរាយការណ៍ទៅ `
+      + `${s.supervisor || '—'} នៅវេន ${s.shift || '—'}។ បានចូលធ្វើការនៅថ្ងៃទី ${s.joinDate || '—'} `
+      + `(${tenure} ឆ្នាំជាមួយក្រុមហ៊ុន) មានកំណត់ត្រាវត្តមាន ${s.attendance || '—'}។`;
   }
 
   function fieldRow(label, value) {
@@ -268,18 +268,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // Stats row
     if (admin) {
       document.getElementById('statOneVal').textContent = yearsSince(s.joinDate);
-      document.getElementById('statOneLabel').textContent = 'Years';
+      document.getElementById('statOneLabel').textContent = 'ឆ្នាំ';
       document.getElementById('statTwoVal').textContent = s.manages ?? 0;
-      document.getElementById('statTwoLabel').textContent = 'Manages';
+      document.getElementById('statTwoLabel').textContent = 'គ្រប់គ្រង';
       document.getElementById('statThreeVal').textContent = (s.history || []).length;
-      document.getElementById('statThreeLabel').textContent = 'Activities';
+      document.getElementById('statThreeLabel').textContent = 'សកម្មភាព';
     } else {
       document.getElementById('statOneVal').textContent = yearsSince(s.joinDate);
-      document.getElementById('statOneLabel').textContent = 'Years';
+      document.getElementById('statOneLabel').textContent = 'ឆ្នាំ';
       document.getElementById('statTwoVal').textContent = s.salesCount ?? 0;
-      document.getElementById('statTwoLabel').textContent = 'Sales';
+      document.getElementById('statTwoLabel').textContent = 'ការលក់';
       document.getElementById('statThreeVal').textContent = s.attendance || '—';
-      document.getElementById('statThreeLabel').textContent = 'Attendance';
+      document.getElementById('statThreeLabel').textContent = 'វត្តមាន';
     }
 
     document.getElementById('profileBio').textContent = bioText(s, admin);
@@ -289,12 +289,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const modules = s.modules || [];
       accessBadges.innerHTML = modules.length
         ? modules.map(m => `<span class="badge rounded-pill bg-light text-dark border">${m}</span>`).join('')
-        : `<span class="text-secondary small">No modules assigned</span>`;
+        : `<span class="text-secondary small">មិនទាន់បានកំណត់ម៉ូឌុលទេ</span>`;
     } else {
       accessBadges.innerHTML = `
         <span class="badge rounded-pill bg-light text-dark border">${s.position || s.role}</span>
         <span class="badge rounded-pill bg-light text-dark border">${s.shift || '—'}</span>
-        <span class="badge rounded-pill bg-light text-dark border">Supervisor: ${s.supervisor || '—'}</span>
+        <span class="badge rounded-pill bg-light text-dark border">អ្នកគ្រប់គ្រង៖ ${s.supervisor || '—'}</span>
       `;
     }
 
@@ -304,38 +304,38 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('profileEmail').textContent = s.email || '—';
 
     const statusEl = document.getElementById('profileStatus');
-    statusEl.textContent = s.active ? 'Active' : 'Disabled';
+    statusEl.textContent = s.active ? 'សកម្ម' : 'បិទដំណើរការ';
     statusEl.className = `badge rounded-pill ${s.active ? 'bg-success-subtle text-success' : 'bg-secondary-subtle text-secondary'}`;
 
     const employmentList = document.getElementById('profileEmploymentList');
     employmentList.innerHTML =
-      fieldRow('Staff ID', s.id) +
-      fieldRow('Role', `<span class="badge rounded-pill ${roleClass}">${s.role}</span>`) +
-      fieldRow('Department', s.department || '—') +
-      fieldRow('Join Date', s.joinDate || '—') +
-      fieldRow('Last Login', s.lastLogin || '—') +
-      (admin ? '' : fieldRow('Supervisor', s.supervisor || '—') + fieldRow('Shift', s.shift || '—'));
+      fieldRow('លេខសម្គាល់បុគ្គលិក', s.id) +
+      fieldRow('តួនាទី', `<span class="badge rounded-pill ${roleClass}">${s.role}</span>`) +
+      fieldRow('នាយកដ្ឋាន', s.department || '—') +
+      fieldRow('ថ្ងៃចូលធ្វើការ', s.joinDate || '—') +
+      fieldRow('ចូលចុងក្រោយ', s.lastLogin || '—') +
+      (admin ? '' : fieldRow('អ្នកគ្រប់គ្រង', s.supervisor || '—') + fieldRow('វេន', s.shift || '—'));
 
     const accessList = document.getElementById('profileAccessList');
     if (admin) {
       accessList.innerHTML =
-        permBadge('Full System Access', true) +
-        permBadge('Can Manage Staff', true) +
-        permBadge('Can Approve Sales', true) +
-        permBadge('Can View Reports', true) +
-        `<div class="text-secondary small mt-2">Manages ${s.manages ?? 0} staff members across ${(s.modules || []).length} modules.</div>`;
+        permBadge('សិទ្ធិចូលប្រើពេញលេញ', true) +
+        permBadge('អាចគ្រប់គ្រងបុគ្គលិក', true) +
+        permBadge('អាចអនុម័តការលក់', true) +
+        permBadge('អាចមើលរបាយការណ៍', true) +
+        `<div class="text-secondary small mt-2">គ្រប់គ្រងបុគ្គលិកចំនួន ${s.manages ?? 0} នាក់ លើម៉ូឌុលចំនួន ${(s.modules || []).length}។</div>`;
     } else {
       accessList.innerHTML =
-        permBadge('Limited System Access', false) +
-        permBadge('Can Process Sales', true) +
-        `<div class="text-secondary small mt-2">Sales handled this month: ${s.salesCount ?? 0} · Attendance: ${s.attendance || '—'}</div>`;
+        permBadge('សិទ្ធិចូលប្រើមានកម្រិត', false) +
+        permBadge('អាចដំណើរការការលក់', true) +
+        `<div class="text-secondary small mt-2">ការលក់ខែនេះ៖ ${s.salesCount ?? 0} · វត្តមាន៖ ${s.attendance || '—'}</div>`;
     }
 
     // --- Activity tab ---
     const historyEl = document.getElementById('profileHistoryList');
     const history = s.history || [];
     if (history.length === 0) {
-      historyEl.innerHTML = `<div class="text-secondary small text-center py-3">No activity recorded</div>`;
+      historyEl.innerHTML = `<div class="text-secondary small text-center py-3">មិនទាន់មានសកម្មភាពទេ</div>`;
     } else {
       historyEl.innerHTML = history.map(h => `
         <div class="d-flex align-items-start gap-2 border rounded-3 p-2">
