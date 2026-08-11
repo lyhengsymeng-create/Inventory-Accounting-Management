@@ -11,6 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="asset/css/style.css" rel="stylesheet">
+<link rel="stylesheet" href="/assest/css/socheat.css">
 <style>
 
 </style>
@@ -20,7 +21,13 @@
 <nav class="navbar-shopease sticky-top" id="mainNavbar">
   <div class="container-xl d-flex align-items-center gap-3">
     <button class="btn btn-light-pill cat-toggle d-none d-md-inline-flex align-items-center gap-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#categoriesOffcanvas"><i class="bi bi-list"></i> Categories</button>
-    <a href="index.html" class="d-flex align-items-center gap-2 flex-shrink-0"><span class="brand-logo"><i class="bi bi-bag-fill"></i></span><span class="brand-name d-none d-sm-inline">ShopEase</span></a>
+    <a href="index.html" class="d-flex align-items-center gap-2 flex-shrink-0">
+      <!-- <span class="brand-logo"><i class="bi bi-bag-fill"></i></span><span class="brand-name d-none d-sm-inline">ShopEase</span> -->
+       <div class="d-flex align-items-center">
+                <img class="logoimg" src="/assest/image/logos.png" alt="IAM Logo">
+                <a class="navbar-brand fw-bold text-primary fs-4 ms-2" href="#">IAM</a>
+        </div>
+    </a>
     <form class="search-wrap flex-grow-1 d-none d-lg-block" role="search"><i class="bi bi-search"></i><input type="search" class="form-control" placeholder="Search for products, brands and more..."></form>
     <div class="d-flex align-items-center gap-2 ms-auto">
       <a href="notifications.html" class="btn btn-icon" aria-label="Notifications"><i class="bi bi-bell fs-6"></i><span class="badge-count" id="notifBadge">2</span></a>
