@@ -46,26 +46,28 @@
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="EmployeeManagement.html"><i
               class="bi bi-people-fill"></i> ការគ្រប់គ្រងបុគ្គលិក</a></li>
         <li class="nav-item">
-          <a aria-controls="attendanceSubmenu1" aria-expanded="false"
-            class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#attendanceSubmenu1"
-            data-bs-toggle="collapse" href="javascript:void(0)" role="button">
+          <a class="nav-link submenu-toggle d-flex align-items-center gap-2" href="javascript:void(0)"
+            data-bs-toggle="collapse" data-bs-target="#attendanceSubmenu1" role="button" aria-expanded="false"
+            aria-controls="attendanceSubmenu1">
             <i class="bi bi-calendar-check-fill"></i> វត្តមាន
             <i class="bi bi-chevron-down submenu-chevron ms-auto"></i>
           </a>
           <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
             <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានបុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
             <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
           </ul>
         </li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="ProductManagement.html"><i
               class="bi bi-box-seam-fill"></i> ការគ្រប់គ្រងផលិតផល</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="InventoryManagement.html"><i
-              class="bi bi-boxes"></i> ការគ្រប់គ្រងស្តុក</a></li>
+              class="bi bi-boxes"></i>ការគ្រប់គ្រងស្តុក</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="SalesManagement.html"><i
               class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
               class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
+        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="StaffChat.html"><i
+              class="bi bi-chat-left-text-fill"></i> ជជែកជាមួយបុគ្គលិក</a></li>
         <li class="nav-item">
           <a aria-controls="purchaseSubmenu1" aria-expanded="false"
             class="nav-link submenu-toggle d-flex align-items-center gap-2" data-bs-target="#purchaseSubmenu1"
@@ -97,12 +99,13 @@
             <li class="nav-item"><a class="nav-link" href="AccountingCashFlow.html">របាយការណ៍លំហូរសាច់ប្រាក់</a></li>
           </ul>
         </li>
-        <li class="nav-item"><a class="nav-link active d-flex align-items-center gap-2" href="Reports.html"><i
+        <li class="nav-item"><a class="nav-link d-flex active align-items-center gap-2" href="Reports.html"><i
               class="bi bi-bar-chart-line-fill"></i> របាយការណ៍</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Settings.html"><i
               class="bi bi-gear-fill"></i> ការកំណត់</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="/index.html"><i
               class="bi bi-box-arrow-right"></i> ចាកចេញ</a></li>
+
       </ul>
 
       <div class="mt-auto p-3 rounded-3 km small text-secondary" style="background:rgba(255,255,255,.05);">
@@ -113,10 +116,6 @@
     <div class="offcanvas offcanvas-start d-lg-none" tabindex="-1" id="mobileSidebar">
       <div class="offcanvas-header">
         <div class="d-flex align-items-center gap-2">
-          <div class="bg-violet rounded-3 d-flex align-items-center justify-content-center"
-            style="width:34px;height:34px;">
-            <i class="bi bi-bar-chart-fill"></i>
-          </div>
           <div class="d-flex gap-2">
             <img class="w-25 h-25" src="/assest/image/logos.png" alt="">
             <div>
@@ -214,24 +213,40 @@
             <div class="km text-secondary small">ដើម្បីវិភាគទិន្នន័យអាជីវកម្ម</div>
           </div>
         </div>
-        <div class="d-flex align-items-center gap-2 mt-2 mt-sm-0">
-          <button class="btn btn-light border rounded-3"><i class="bi bi-search"></i></button>
-          <button class="btn btn-light border rounded-3 position-relative" id="bellBtn">
-            <i class="bi bi-bell-fill"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-              style="font-size:.6rem;">3</span>
-          </button>
-          <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1">
-            <div class="avatar-circle d-flex align-items-center justify-content-center"><img
-                src="/assest/image/DSC_1535 copy.JPG" alt=""></div>
-            <div>
-            <div>
-              <div class="small fw-bold lh-1">Socheat</div>
-              <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
+        <div class="d-flex align-items-center gap-2">
+            <span id="lowStockAlert" class="badge bg-danger" style="display:none!important"></span>
+
+            <!-- ស្វែងរក (Search) -->
+            <div class="position-relative">
+              <button class="btn btn-light border rounded-3" id="topbarSearchBtn" type="button" title="ស្វែងរកផលិតផល">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+              <div id="topbarSearchBox" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2" style="width:240px; z-index:1055;">
+                <input type="text" id="topbarSearchInput" class="form-control form-control-sm font-khmer" placeholder="ស្វែងរកផលិតផល ហើយចុច Enter...">
+              </div>
+            </div>
+
+            <!-- ការជូនដំណឹង (Notifications) -->
+            <div class="position-relative">
+              <button class="btn btn-light border rounded-3 position-relative" id="topbarBellBtn" type="button" title="ការជូនដំណឹង">
+                <i class="fa-solid fa-bell"></i>
+                <span id="topbarBellCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" style="font-size:.6rem;">0</span>
+              </button>
+              <div id="topbarNotifDropdown" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2 font-khmer" style="width:280px; max-height:320px; overflow:auto; z-index:1055;">
+                <div class="fw-bold small text-secondary mb-2 px-1">ការជូនដំណឹង</div>
+                <div id="topbarNotifList"></div>
+              </div>
+            </div>
+            <!-- ប្រូហ្វាល (Profile) -->
+            <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1" id="topbarProfilePill" style="cursor:pointer;" title="គណនីខ្ញុំ">
+              <img src="/assest/image/phearoun_image.jpg" alt="Profile" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;">
+              <div>
+                <div class="small fw-bold lh-1" id="topbarProfileName">រឹម ភារុន</div>
+                <div class="text-secondary lh-1" style="font-size:.7rem;">Staff</div>
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
 
       <div class="content">
         <div class="page-head">
@@ -519,6 +534,8 @@
   <script src="/assest/js/Report.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
     <script src="../../../assest/js/theme-toggle.js"></script>
+    <script src="/assest/js/sidebar-accordion.js"></script>
+    <script src="/assest/js/topbar-widgets.js"></script>
 </body>
 
 </html>

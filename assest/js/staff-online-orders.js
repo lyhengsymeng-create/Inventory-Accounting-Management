@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     delivered: 'bg-success-subtle text-success',
     cancelled: 'bg-danger-subtle text-danger'
   };
+  // pending -> processing -> shipped -> delivered, with cancel always possible
   const NEXT_STATUS = { pending: 'processing', processing: 'shipped', shipped: 'delivered' };
 
   // Refresh whenever Staff opens this tab from the sidebar
@@ -72,11 +73,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
       return `
       <tr>
-        <td class="fw-semibold">#${o.id}</td>
+        <td>
+          <div class="fw-semibold">#${o.id}</div>
+          <div class="text-muted" style="font-size:11px;">${dateStr}</div>
+        </td>
         <td>${o.customerName || '-'}</td>
         <td class="small text-secondary" style="max-width:260px;">${itemsSummary}</td>
         <td class="fw-semibold">$${Number(o.total || 0).toFixed(2)}</td>
-        <td><span class="badge bg-light text-muted border">${dateStr}</span></td>
+        <td><span class="badge bg-light text-dark border"><i class="fa-solid fa-qrcode me-1 text-success"></i>${o.paymentMethod || '—'}</span></td>
         <td><span class="badge rounded-pill ${badgeClass}">${statusLabel}</span></td>
         <td class="text-end">${actions}</td>
       </tr>`;
@@ -99,7 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
     refresh: renderOnlineOrders
   };
 
+  // Initial paint
   renderOnlineOrders();
 
+  // keep in sync if another browser tab (e.g. the storefront) adds an order
   SharedStore.onChange(() => renderOnlineOrders());
 });

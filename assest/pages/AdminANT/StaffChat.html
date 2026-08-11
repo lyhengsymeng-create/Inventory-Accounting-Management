@@ -2,8 +2,9 @@
 <html lang="km">
 
 <head>
-    <script id="ims-theme-preload">(function(){try{if(localStorage.getItem("ims-theme-v2")==="dark"){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();</script>
-    <link rel="stylesheet" href="../../../assest/css/theme-toggle.css">
+  <script
+    id="ims-theme-preload">(function () { try { if (localStorage.getItem("ims-theme-v2") === "dark") { document.documentElement.setAttribute("data-theme", "dark"); } } catch (e) { } })();</script>
+  <link rel="stylesheet" href="../../../assest/css/theme-toggle.css">
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,96 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap"
     rel="stylesheet">
+  <style>
+    .chat-card {
+      height: 68vh;
+      min-height: 480px;
+    }
+
+    .chat-contact-list {
+      overflow-y: auto;
+      height: 100%;
+    }
+
+    .chat-contact-item {
+      cursor: pointer;
+      border: 0;
+      border-bottom: 1px solid rgba(0, 0, 0, .06);
+      border-radius: 0;
+      text-align: left;
+      background: transparent;
+      width: 100%;
+    }
+
+    .chat-contact-item:hover,
+    .chat-contact-item.active {
+      background: #f1f3f5;
+    }
+
+    .chat-contact-item.active {
+      background: #e7efeb;
+    }
+
+    .chat-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .chat-thread {
+      flex: 1 1 auto;
+      overflow-y: auto;
+    }
+
+    .chat-bubble {
+      max-width: 75%;
+    }
+
+    .chat-bubble.mine {
+      background: var(--violet);
+      color: #fff;
+      margin-left: auto;
+    }
+
+    .chat-bubble.theirs {
+      background: #f1f3f5;
+      color: #212529;
+    }
+
+    .unread-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #dc3545;
+      flex-shrink: 0;
+    }
+
+    /* ---------------- Mobile: master/detail chat layout ----------------
+       On phones the contact list and the open thread used to stack inside
+       one fixed-height box and fight each other for space. Below 768px we
+       now show ONE pane at a time (list, then thread after a contact is
+       tapped) and give it the full chat-card height, with a back button
+       to return to the list. Desktop/tablet keep the classic 2-column
+       layout untouched. */
+    @media (max-width: 767.98px) {
+      .chat-card {
+        height: 72vh;
+        min-height: 520px;
+      }
+      #staffChatCard .chat-list-pane,
+      #staffChatCard .chat-thread-pane {
+        height: 100%;
+      }
+      #staffChatCard:not(.chat-mobile-thread-open) .chat-thread-pane {
+        display: none !important;
+      }
+      #staffChatCard.chat-mobile-thread-open .chat-list-pane {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -34,7 +125,7 @@
       </div>
 
       <div class="text-uppercase small text-secondary fw-bold px-2 mb-2" style="letter-spacing:.08em; font-size:.7rem;">
-        MENU</div>
+        Main</div>
       <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
               class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
@@ -49,7 +140,7 @@
           </a>
           <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
             <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-            <li class="nav-item"><a class="nav-link active" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
             <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
           </ul>
         </li>
@@ -61,7 +152,7 @@
               class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
               class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="StaffChat.html"><i
+        <li class="nav-item"><a class="nav-link d-flex active align-items-center gap-2" href="StaffChat.html"><i
               class="bi bi-chat-left-text-fill"></i> ជជែកជាមួយបុគ្គលិក</a></li>
         <li class="nav-item">
           <a aria-controls="purchaseSubmenu1" aria-expanded="false"
@@ -123,7 +214,7 @@
       </div>
       <div class="offcanvas-body p-3">
         <div class="text-uppercase small text-secondary fw-bold px-2 mb-2"
-          style="letter-spacing:.08em; font-size:.7rem;">MENU</div>
+          style="letter-spacing:.08em; font-size:.7rem;">Main</div>
         <ul class="nav nav-pills flex-column gap-1 mb-4" id="sidebarMenu">
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="Dashboardadmin.html"><i
               class="bi bi-grid-1x2-fill"></i> ផ្ទាំងគ្រប់គ្រង</a></li>
@@ -138,7 +229,7 @@
           </a>
           <ul class="nav flex-column submenu collapse" id="attendanceSubmenu1">
             <li class="nav-item"><a class="nav-link" href="TodaysAttendance.html">វត្តមានថ្ងៃនេះ</a></li>
-            <li class="nav-item"><a class="nav-link active" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
+            <li class="nav-item"><a class="nav-link" href="EmployeeAttendance.html">វត្តមានរបស់បុគ្គលិក</a></li>
             <li class="nav-item"><a class="nav-link" href="AttendanceSheet.html">បញ្ជីវត្តមាន</a></li>
           </ul>
         </li>
@@ -150,7 +241,7 @@
               class="bi bi-cart-check-fill"></i> ការគ្រប់គ្រងការលក់</a></li>
         <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="CustomerManagement.html"><i
               class="bi bi-person-vcard-fill"></i> ការគ្រប់គ្រងអតិថិជន</a></li>
-        <li class="nav-item"><a class="nav-link d-flex align-items-center gap-2" href="StaffChat.html"><i
+        <li class="nav-item"><a class="nav-link d-flex active align-items-center gap-2" href="StaffChat.html"><i
               class="bi bi-chat-left-text-fill"></i> ជជែកជាមួយបុគ្គលិក</a></li>
         <li class="nav-item">
           <a aria-controls="purchaseSubmenu1" aria-expanded="false"
@@ -197,7 +288,6 @@
         </div>
       </div>
     </div>
-
     <main class="flex-grow-1 main-offset" style="min-width:0;">
       <nav class="sticky-nav px-3 px-lg-4 d-flex align-items-center justify-content-between flex-wrap">
         <div class="d-flex align-items-center gap-2">
@@ -206,138 +296,128 @@
             <i class="bi bi-list fs-5"></i>
           </button>
           <div>
-            <h1 class="h4 fw-bold mb-0">វត្តមានបុគ្គលិក</h1>
-            <div class="km text-secondary small">ព័ត៌មានវត្តមានលម្អិតរបស់បុគ្គលិកម្នាក់ៗ</div>
+            <h1 class="h4 fw-bold mb-0">ជជែកជាមួយបុគ្គលិក</h1>
+            <div class="km text-secondary small">ការសន្ទនាផ្ទាល់រវាងអ្នកគ្រប់គ្រង និងបុគ្គលិកម្នាក់ៗ</div>
           </div>
         </div>
         <div class="d-flex align-items-center gap-2">
-            <span id="lowStockAlert" class="badge bg-danger" style="display:none!important"></span>
+          <span id="lowStockAlert" class="badge bg-danger" style="display:none!important"></span>
 
-            <!-- ស្វែងរក (Search) -->
-            <div class="position-relative">
-              <button class="btn btn-light border rounded-3" id="topbarSearchBtn" type="button" title="ស្វែងរកផលិតផល">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </button>
-              <div id="topbarSearchBox" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2" style="width:240px; z-index:1055;">
-                <input type="text" id="topbarSearchInput" class="form-control form-control-sm font-khmer" placeholder="ស្វែងរកផលិតផល ហើយចុច Enter...">
-              </div>
-            </div>
-
-            <!-- ការជូនដំណឹង (Notifications) -->
-            <div class="position-relative">
-              <button class="btn btn-light border rounded-3 position-relative" id="topbarBellBtn" type="button" title="ការជូនដំណឹង">
-                <i class="fa-solid fa-bell"></i>
-                <span id="topbarBellCount" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none" style="font-size:.6rem;">0</span>
-              </button>
-              <div id="topbarNotifDropdown" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2 font-khmer" style="width:280px; max-height:320px; overflow:auto; z-index:1055;">
-                <div class="fw-bold small text-secondary mb-2 px-1">ការជូនដំណឹង</div>
-                <div id="topbarNotifList"></div>
-              </div>
-            </div>
-            <!-- ប្រូហ្វាល (Profile) -->
-            <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1" id="topbarProfilePill" style="cursor:pointer;" title="គណនីខ្ញុំ">
-              <img src="/assest/image/phearoun_image.jpg" alt="Profile" class="rounded-circle" style="width:28px;height:28px;object-fit:cover;">
-              <div>
-                <div class="small fw-bold lh-1" id="topbarProfileName">សុជាតិ</div>
-                <div class="text-secondary lh-1" style="font-size:.7rem;">Admin</div>
-              </div>
+          <!-- ស្វែងរក (Search) -->
+          <div class="position-relative">
+            <button class="btn btn-light border rounded-3" id="topbarSearchBtn" type="button" title="ស្វែងរកផលិតផល">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <div id="topbarSearchBox" class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2"
+              style="width:240px; z-index:1055;">
+              <input type="text" id="topbarSearchInput" class="form-control form-control-sm font-khmer"
+                placeholder="ស្វែងរកផលិតផល ហើយចុច Enter...">
             </div>
           </div>
-        </nav>
+
+          <!-- ការជូនដំណឹង (Notifications) -->
+          <div class="position-relative">
+            <button class="btn btn-light border rounded-3 position-relative" id="topbarBellBtn" type="button"
+              title="ការជូនដំណឹង">
+              <i class="fa-solid fa-bell"></i>
+              <span id="topbarBellCount"
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none"
+                style="font-size:.6rem;">0</span>
+            </button>
+            <div id="topbarNotifDropdown"
+              class="d-none position-absolute end-0 mt-2 bg-white border rounded-3 shadow p-2 font-khmer"
+              style="width:280px; max-height:320px; overflow:auto; z-index:1055;">
+              <div class="fw-bold small text-secondary mb-2 px-1">ការជូនដំណឹង</div>
+              <div id="topbarNotifList"></div>
+            </div>
+          </div>
+          <!-- ប្រូហ្វាល (Profile) -->
+          <div class="d-flex align-items-center gap-2 bg-white border rounded-pill ps-2 pe-3 py-1"
+            id="topbarProfilePill" style="cursor:pointer;" title="គណនីខ្ញុំ">
+            <img src="/assest/image/phearoun_image.jpg" alt="Profile" class="rounded-circle"
+              style="width:28px;height:28px;object-fit:cover;">
+            <div>
+              <div class="small fw-bold lh-1" id="topbarProfileName">រឹម ភារុន</div>
+              <div class="text-secondary lh-1" style="font-size:.7rem;">Staff</div>
+            </div>
+          </div>
+        </div>
+      </nav>
 
       <div class="p-3 p-lg-4">
-
-        <div class="row g-3 g-lg-4">
-          <div class="col-lg-4 col-xl-3">
+        <div class="row row-cols-1 row-cols-sm-3 g-3 mb-4">
+          <div class="col hvr-float-shadow">
             <div class="card border-0 shadow-sm rounded-4 h-100">
-              <div class="card-body p-3">
-                <input type="text" class="form-control rounded-3 mb-3" id="empListSearch"
-                  placeholder="ស្វែងរកបុគ្គលិក... / Search">
-                <div id="employeeList" class="d-flex flex-column gap-1" style="max-height:640px; overflow-y:auto;">
-                  <!-- injected --></div>
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">សរុបការសន្ទនា</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#1f4d43; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiTotalChats" style="font-size:2rem; color:#1f4d43;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">សន្ទនាជាមួយបុគ្គលិក</div>
               </div>
             </div>
           </div>
-          <div class="col-lg-8 col-xl-9">
-
-            <div class="card border-0 shadow-sm rounded-4 mb-3">
-              <div class="card-body p-3 p-lg-4 d-flex align-items-center gap-3 flex-wrap">
-                <div id="profAvatarWrap"
-                  style="width:72px;height:72px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#e7efeb;display:flex;align-items:center;justify-content:center;">
-                  <img id="profAvatarImg" src="" style="width:100%;height:100%;object-fit:cover;display:none;" alt="">
-                  <span id="profAvatarInitials" class="fw-bold" style="color:#1f4d43;font-size:1.2rem;"></span>
-                </div>
-                <div>
-                  <h2 class="h5 fw-bold mb-0" id="profName">-</h2>
-                  <div class="text-secondary small" id="profPosition">-</div>
-                  <div class="d-flex align-items-center gap-3 mt-1 flex-wrap">
-                    <span class="text-secondary small"><i class="bi bi-person-badge me-1"></i>ID: <span
-                        id="profId"></span></span>
-                    <span class="text-secondary small"><i class="bi bi-building me-1"></i>Dept: <span
-                        id="profDept"></span></span>
-                    <span class="text-secondary small"><i class="bi bi-calendar3 me-1"></i>Joined: <span
-                        id="profJoined"></span></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row row-cols-2 row-cols-md-4 g-3 mb-3">
-              <div class="col hvr-float-shadow">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
-                  <div class="card-body p-3">
-                    <div class="text-secondary small mb-1">Avg Working Hours</div>
-                    <div class="fw-bold" style="font-size:1.5rem;color:#1f4d43;" id="statAvgHours">-</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col hvr-float-shadow">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
-                  <div class="card-body p-3">
-                    <div class="text-secondary small mb-1">Avg In Time</div>
-                    <div class="fw-bold" style="font-size:1.5rem;color:#1f4d43;" id="statAvgIn">-</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col hvr-float-shadow">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
-                  <div class="card-body p-3">
-                    <div class="text-secondary small mb-1">Avg Out Time</div>
-                    <div class="fw-bold" style="font-size:1.5rem;color:#c1793a;" id="statAvgOut">-</div>
-                  </div>
-                </div>
-              </div>
-              <div class="col hvr-float-shadow">
-                <div class="card border-0 shadow-sm rounded-4 h-100">
-                  <div class="card-body p-3">
-                    <div class="text-secondary small mb-1">Avg Break Time</div>
-                    <div class="fw-bold" style="font-size:1.5rem;color:#4f46e5;" id="statAvgBreak">-</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="card border-0 shadow-sm rounded-4 overflow-hidden staff-table-card">
+          <div class="col hvr-float-shadow">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
               <div class="card-body p-3 p-lg-4">
-                <h2 class="h6 fw-bold mb-3"><i class="bi bi-list-columns-reverse me-1"></i>Attendance Log</h2>
-                <div class="table-responsive">
-                  <table class="table align-middle table-hover mb-0">
-                    <thead>
-                      <tr class="text-secondary small text-uppercase">
-                        <th style="font-size:.72rem; letter-spacing:.05em;">Date</th>
-                        <th style="font-size:.72rem; letter-spacing:.05em;">Check In</th>
-                        <th style="font-size:.72rem; letter-spacing:.05em;">Check Out</th>
-                        <th style="font-size:.72rem; letter-spacing:.05em;">Working Hours</th>
-                        <th style="font-size:.72rem; letter-spacing:.05em;">Shift</th>
-                        <th style="font-size:.72rem; letter-spacing:.05em;">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody id="empLogTableBody"><!-- injected --></tbody>
-                  </table>
+                <div class="km text-secondary small mb-2">សារមិនទាន់អាន</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#c1793a; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiUnread" style="font-size:2rem; color:#c1793a;">0</span>
                 </div>
+                <div class="km text-secondary small mt-1">ត្រូវឆ្លើយតប</div>
               </div>
             </div>
+          </div>
+          <div class="col hvr-float-shadow">
+            <div class="card border-0 shadow-sm rounded-4 h-100">
+              <div class="card-body p-3 p-lg-4">
+                <div class="km text-secondary small mb-2">បុគ្គលិកសកម្ម</div>
+                <div class="d-flex align-items-center gap-2">
+                  <i class="bi bi-circle" style="color:#4f46e5; font-size:.6rem;"></i>
+                  <span class="fw-bold" id="kpiActiveStaff" style="font-size:2rem; color:#4f46e5;">0</span>
+                </div>
+                <div class="km text-secondary small mt-1">អាចទាក់ទងបាន</div>
+              </div>
+            </div>
+          </div>
+        </div>
 
+        <!-- ----------------- Staff Chat ----------------- -->
+        <div class="card border-0 shadow-sm rounded-4 overflow-hidden" id="staffChatCard">
+          <div class="row g-0 chat-card">
+            <div class="col-12 col-md-4 border-end d-flex flex-column chat-list-pane">
+              <div class="p-3 border-bottom">
+                <div class="position-relative">
+                  <i class="bi bi-search position-absolute top-50 translate-middle-y text-secondary"
+                    style="left:12px; font-size:13px;"></i>
+                  <input type="text" class="form-control form-control-sm rounded-3" id="staffSearch"
+                    placeholder="ស្វែងរកបុគ្គលិក..." style="padding-left:32px;">
+                </div>
+              </div>
+              <div class="chat-contact-list" id="staffContactList"></div>
+            </div>
+            <div class="col-12 col-md-8 d-flex flex-column chat-thread-pane">
+              <div class="p-3 border-bottom d-flex align-items-center gap-2">
+                <button type="button" id="chatBackBtn"
+                  class="btn btn-light border rounded-3 d-inline-flex d-md-none align-items-center justify-content-center flex-shrink-0"
+                  style="width:38px;height:38px;" title="ត្រឡប់ក្រោយ">
+                  <i class="bi bi-arrow-left"></i>
+                </button>
+                <div class="d-flex align-items-center gap-2 flex-grow-1" id="chatHeader" style="min-width:0;">
+                  <div class="km text-secondary small">សូមជ្រើសរើសបុគ្គលិកម្នាក់ ដើម្បីចាប់ផ្តើមការជជែក</div>
+                </div>
+              </div>
+              <div class="chat-thread p-3 d-flex flex-column gap-2" id="chatThread"></div>
+              <div class="d-flex gap-2 p-3 border-top">
+                <input type="text" class="form-control rounded-3" placeholder="វាយសារទៅ..." disabled readonly>
+                <button type="button" class="btn text-white rounded-3 flex-shrink-0"
+                  style="background:var(--violet); opacity:.6; cursor:not-allowed;" disabled>
+                  <i class="bi bi-send-fill"></i> ផ្ញើ
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -345,21 +425,11 @@
     </main>
   </div>
 
-  <!-- Bootstrap Toast -->
-  <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x mb-4">
-    <div id="liveToast" class="toast align-items-center text-white bg-dark border-0" role="alert">
-      <div class="d-flex">
-        <div class="toast-body" id="toastBody">Updated</div>
-        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
-      </div>
-    </div>
-  </div>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="/assest/js/employeeAttendance.js"></script>
-    <script src="../../../assest/js/theme-toggle.js"></script>
-    <script src="/assest/js/sidebar-accordion.js"></script>
-    <script src="/assest/js/topbar-widgets.js"></script>
+  <script src="/assest/js/staffChat.js"></script>
+  <script src="../../../assest/js/theme-toggle.js"></script>
+  <script src="/assest/js/sidebar-accordion.js"></script>
+  <script src="/assest/js/topbar-widgets.js"></script>
 </body>
 
 </html>

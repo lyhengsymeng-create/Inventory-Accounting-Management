@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script id="ims-theme-preload">(function(){try{if(localStorage.getItem("ims-theme-v2")==="dark"){document.documentElement.setAttribute("data-theme","dark");}}catch(e){}})();</script>
+    <link rel="stylesheet" href="../../../assest/css/theme-toggle.css">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1494,69 +1496,10 @@
         </div>
       </div>
     </div>
- 
-
-       
-        <!-- ============ TAB: REPORTS (placeholder) ============ -->
-        <div id="tab-reports" class="tab-content">
-          <div class="card product-card-panel">
-            <p class="text-muted mb-0">របាយការណ៍ — មាតិកានឹងបន្ថែមនៅទីនេះ។</p>
-          </div>
-        </div>
-
-        <!-- ============ TAB: ACCOUNT (placeholder) ============ -->
-        <div id="tab-account" class="tab-content">
-          <div class="card product-card-panel">
-            <p class="text-muted mb-0">គណនីខ្ញុំ — មាតិកានឹងបន្ថែមនៅទីនេះ។</p>
-          </div>
-        </div>
 
       </div>
     </div>
 
-    <!-- Add / Edit Modal -->
-    <div class="modal-overlay" id="productModal">
-      <div class="modal-box">
-        <h3 class="modal-title" id="productModalTitle">បន្ថែមផលិតផល</h3>
-        <div class="field">
-          <label>ឈ្មោះផលិតផល</label>
-          <input type="text" id="fName" placeholder="ឧ. អង្គរ ៥គីឡូ">
-        </div>
-        <div class="field">
-          <label>ប្រភេទ</label>
-          <select id="fCategory">
-            <option value="គ្រឿងទេស">គ្រឿងទេស</option>
-            <option value="គ្រឿងផ្លូវ:">គ្រឿងភេជ្ជះ:</option>
-            <option value="សម្ភារៈ">សម្ភារៈ</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>តម្លៃលក់ ($)</label>
-          <input type="number" step="0.01" min="0" id="fPrice" placeholder="0.00">
-        </div>
-        <div class="field">
-          <label>ស្តុក</label>
-          <input type="number" min="0" id="fStock" placeholder="0">
-        </div>
-        <div class="modal-actions">
-          <button class="btn btn-outline" id="cancelProductBtn">បោះបង់</button>
-          <button class="btn btn-accent" id="saveProductBtn">រក្សាទុក</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Delete Confirm Modal -->
-    <div class="modal-overlay" id="deleteModal">
-      <div class="modal-box confirm-box">
-        <h3 class="modal-title">លុបផលិតផល</h3>
-        <p class="confirm-text">តើអ្នកប្រាកដជាចង់លុបផលិតផលនេះមែនទេ?</p>
-        <p class="confirm-sub" id="deleteProductName"></p>
-        <div class="modal-actions">
-          <button class="btn btn-outline" id="cancelDeleteBtn">បោះបង់</button>
-          <button class="btn" style="background:#d9534f;color:#fff;" id="confirmDeleteBtn">លុប</button>
-        </div>
-      </div>
-    </div>
     <div class="toast-msg" id="posToast"></div>
     <script src="/assest/js/cheatDBStaff.js"></script>
     <script src="/shared/shared-store.js"></script>

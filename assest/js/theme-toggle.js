@@ -1,4 +1,3 @@
-
 (function () {
   var STORAGE_KEY = 'ims-theme-v2';
 
@@ -51,7 +50,18 @@
 
     var btn = document.createElement('button');
     btn.type = 'button';
-    btn.className = 'theme-toggle-btn no-invert';
+
+    // Prefer placing the toggle inline in the topbar, right next to the
+    // profile pill (matches the search / bell icon buttons already there).
+    // Falls back to a fixed floating button on pages without that topbar.
+    var profilePill = document.getElementById('topbarProfilePill');
+    if (profilePill && profilePill.parentNode) {
+      btn.className = 'theme-toggle-btn theme-toggle-btn--inline no-invert';
+      profilePill.parentNode.insertBefore(btn, profilePill);
+    } else {
+      btn.className = 'theme-toggle-btn theme-toggle-btn--floating no-invert';
+      document.body.appendChild(btn);
+    }
 
     var current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     updateButtonIcon(btn, current);
@@ -63,8 +73,6 @@
       storeTheme(next);
       updateButtonIcon(btn, next);
     });
-
-    document.body.appendChild(btn);
   }
 
   // Apply the saved theme as early as possible (this file is also safe

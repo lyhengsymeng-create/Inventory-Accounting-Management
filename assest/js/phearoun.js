@@ -307,17 +307,24 @@ function confirmQrPayment() {
 }
 
 // customers
-  let customers = [
-    { id: 1, name: "រឹម​ ភារុន", phone: "096 555 123", email: "roun@mail.com", address: "ភ្នំពេញ", hasDebt: true, points: 24 },
-    { id: 2, name: "វ៉េត សុជាតិ", phone: "012 888 999", email: "cheak@mail.com", address: "សៀមរាប", hasDebt: false, points: 8 },
-    { id: 3, name: "ចាន់​ សារ៉ាក់", phone: "088 777 666", email: "rak@mail.com", address: "បាត់ដំបង", hasDebt: false, points: 0 },
-    { id: 4, name: "លីហេង ស៊ីម៉េង", phone: "088 777 666", email: "meng@mail.com", address: "បាត់ដំបង", hasDebt: false, points: 15 },
-    { id: 5, name: "វិទូ", phone: "088 777 888", email: "tu@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 },
-    { id: 6, name: "រឹម​ វីរះ", phone: "088 777 999", email: "vireak@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 },
-    { id: 7, name: "មករា", phone: "088 777 111", email: "makera@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 },
-    { id: 8, name: "ចាន់ មិនា", phone: "088 777 222", email: "mine@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 },
-    { id: 9, name: "សុ​ ផល", phone: "088 777 444", email: "pol@mail.com", address: "ភ្នំពេញ", hasDebt: false, points: 15 }
-  ];
+  // Fixed data kept directly in this file (no localStorage) — kept identical to the
+  // Admin Panel's customer list (assest/js/customerManagement.js) so both pages show
+  // the same customers.
+  function seedCustomers() {
+    return [
+      { id: 1, name: "រឹម​ ភារុន", phone: "096 555 123", email: "roun@mail.com", password: "roun123", address: "ភ្នំពេញ", hasDebt: true, points: 24, active: true, orders: 5, spent: 210.00 },
+      { id: 2, name: "វ៉េត សុជាតិ", phone: "012 888 999", email: "cheak@mail.com", password: "cheak123", address: "សៀមរាប", hasDebt: false, points: 8, active: true, orders: 2, spent: 68.00 },
+      { id: 3, name: "ចាន់​ សារ៉ាក់", phone: "088 777 666", email: "rak@mail.com", password: "rak123", address: "បាត់ដំបង", hasDebt: false, points: 0, active: true, orders: 0, spent: 0 },
+      { id: 4, name: "លីហេង ស៊ីម៉េង", phone: "088 777 666", email: "meng@mail.com", password: "meng123", address: "បាត់ដំបង", hasDebt: false, points: 15, active: true, orders: 3, spent: 95.50 },
+      { id: 5, name: "វិទូ", phone: "088 777 888", email: "tu@mail.com", password: "tu123", address: "ភ្នំពេញ", hasDebt: false, points: 15, active: true, orders: 3, spent: 95.50 },
+      { id: 6, name: "រឹម​ វីរះ", phone: "088 777 999", email: "vireak@mail.com", password: "vireak123", address: "ភ្នំពេញ", hasDebt: false, points: 15, active: true, orders: 3, spent: 95.50 },
+      { id: 7, name: "មករា", phone: "088 777 111", email: "makera@mail.com", password: "makera123", address: "ភ្នំពេញ", hasDebt: false, points: 15, active: true, orders: 3, spent: 95.50 },
+      { id: 8, name: "ចាន់ មិនា", phone: "088 777 222", email: "mine@mail.com", password: "mine123", address: "ភ្នំពេញ", hasDebt: false, points: 15, active: true, orders: 3, spent: 95.50 },
+      { id: 9, name: "សុ​ ផល", phone: "088 777 444", email: "pol@mail.com", password: "pol123", address: "ភ្នំពេញ", hasDebt: false, points: 15, active: true, orders: 3, spent: 95.50 }
+    ];
+  }
+
+  let customers = seedCustomers();
 
   
   function populatePosCustomerSelect() {
@@ -387,6 +394,8 @@ function confirmQrPayment() {
     document.getElementById('custName').value = "";
     document.getElementById('custPhone').value = "";
     document.getElementById('custEmail').value = "";
+    document.getElementById('custPassword').value = "";
+    document.getElementById('custPassword').placeholder = "ពាក្យសម្ងាត់ចូលប្រើសម្រាប់អតិថិជនថ្មី";
     document.getElementById('custAddress').value = "";
     document.getElementById('custDebt').checked = false;
   }
@@ -395,6 +404,7 @@ function saveCust() {
   const name = document.getElementById('custName').value.trim();
   const phone = document.getElementById('custPhone').value.trim();
   const email = document.getElementById('custEmail').value.trim();
+  const enteredPassword = document.getElementById('custPassword').value.trim();
   const address = document.getElementById('custAddress').value.trim();
   const hasDebt = document.getElementById('custDebt').checked;
 
@@ -408,12 +418,24 @@ function saveCust() {
     const index = customers.findIndex(c => c.id == id);
     if (index !== -1) {
       const existingPoints = customers[index].points || 0;
-      customers[index] = { id: Number(id), name, phone, email, address, hasDebt, points: existingPoints };
+      const existingPassword = customers[index].password || '';
+      const password = enteredPassword ? enteredPassword : existingPassword;
+      customers[index] = {
+        ...customers[index],
+        id: Number(id), name, phone, email, password, address, hasDebt,
+        points: existingPoints
+      };
     }
   } else {
-   
+    if (email && !enteredPassword) {
+      alert("សូមកំណត់ពាក្យសម្ងាត់ចូលប្រើសម្រាប់អតិថិជនថ្មីនេះ!");
+      return;
+    }
     const newId = customers.length > 0 ? Math.max(...customers.map(c => c.id)) + 1 : 1;
-    customers.push({ id: newId, name, phone, email, address, hasDebt, points: 0 });
+    customers.push({
+      id: newId, name, phone, email, password: enteredPassword, address, hasDebt,
+      points: 0, active: true, orders: 0, spent: 0
+    });
   }
 
   renderCustomers(); 
@@ -445,6 +467,8 @@ function saveCust() {
     document.getElementById('custName').value = c.name;
     document.getElementById('custPhone').value = c.phone;
     document.getElementById('custEmail').value = c.email;
+    document.getElementById('custPassword').value = "";
+    document.getElementById('custPassword').placeholder = "ទុកទទេ = មិនផ្លាស់ប្តូរ (ពាក្យសម្ងាត់បច្ចុប្បន្នរក្សាដដែល)";
     document.getElementById('custAddress').value = c.address;
     document.getElementById('custDebt').checked = c.hasDebt;
   }
@@ -664,8 +688,8 @@ function saveCust() {
         products:  'ផលិតផល',
         inventory: 'ស្ថានភាពស្តុក',
         customers: 'អតិថិជន',
-        online_orders: 'ការបញ្ចាទិញអនឡាញ',
-        tickets: 'ការទាក់ទងពីអតិថិជង',
+        online_orders: 'ការបញ្ជាទិញអនឡាញ',
+        tickets: 'ការទាក់ទងពីអតិថិជន',
         reports:   'របាយការណ៍',
         communication: 'ទំនាក់ទំនង',
         attendance: 'វត្តមាន',
