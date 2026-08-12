@@ -10,10 +10,10 @@
     productsVersion: "shared_products_version",
   };
 
-  // Bump this whenever seedProducts() below is changed so every browser
-  // automatically drops its old cached product list and reloads the new one,
-  // instead of staying stuck on whatever was first saved to localStorage.
-  const PRODUCTS_VERSION = "2026-08-11-staff-catalog";
+  // The product-catalog "version" is now computed automatically from the
+  // contents of seedProducts() itself (see hashProducts below) — so editing,
+  // adding, or deleting any product automatically invalidates old cached
+  // data in every browser. No manual version bump needed anymore.
 
   function read(key, fallback) {
     try {
@@ -32,6 +32,17 @@
   }
   function nextId(list) {
     return list.length ? Math.max(...list.map((x) => Number(x.id) || 0)) + 1 : 1;
+  }
+  // Simple deterministic string hash (djb2) used to detect when seedProducts()
+  // has changed, so cached localStorage data auto-refreshes without needing
+  // a manually-maintained version number.
+  function hashProducts(list) {
+    const str = JSON.stringify(list);
+    let hash = 5381;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) + hash + str.charCodeAt(i)) | 0;
+    }
+    return String(hash);
   }
   function seedCustomers() {
     return [
@@ -54,18 +65,19 @@
   function seedProducts() {
     return [
       { id: 1, name: "អង្គរ ៥គីឡូ", cat: "grocery", brand: "Local", price: 6.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "jasmine_rice", image: "asset/image/jasmine-rice.jpg", isNew: false, dealPct: null, stockLeft: 11 },
+      { id: 1, name: "Moniter", cat: "electronics", brand: "Local", price: 30, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "computer", image: "asset/image/computer.png", isNew: false, dealPct: null, stockLeft: 30 },
       { id: 2, name: "ប្រេងសា ១លីត្រ", cat: "grocery", brand: "Local", price: 3.2, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "cooking_oil", image: "asset/image/cooking-oil.jpg", isNew: false, dealPct: null, stockLeft: 12 },
       { id: 3, name: "គ្រាកគូឡ្យា កំប៉ុង", cat: "beverages", brand: "Local", price: 0.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "coca_2", image: "asset/image/coca-2.jpg", isNew: false, dealPct: null, stockLeft: 55 },
-      { id: 4, name: "សាប៊ូកក់សក់", cat: "beauty", brand: "Local", price: 1.0, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 8 },
+      { id: 4, name: "សាប៊ូកក់សក់", cat: "beauty", brand: "Local", price: 1.0, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "សាប៊ូកក់សក់", image: "asset/image/សាប៊ូកក់សក់.jpg", isNew: false, dealPct: null, stockLeft: 8 },
       { id: 5, name: "ទឹកសុទ្ធ ៦00ml", cat: "beverages", brand: "Local", price: 0.3, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "Water", image: "asset/image/Water.jpg", isNew: false, dealPct: null, stockLeft: 77 },
       { id: 6, name: "Coca-Cola", cat: "beverages", brand: "Coca-Cola", price: 2.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "coca_2", image: "asset/image/coca-2.jpg", isNew: false, dealPct: null, stockLeft: 49 },
-      { id: 7, name: "Fanta", cat: "beverages", brand: "Fanta", price: 2.3, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 48 },
+      { id: 7, name: "Fanta", cat: "beverages", brand: "Fanta", price: 2.3, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "Fanta", image: "asset/image/Fanta.webp", isNew: false, dealPct: null, stockLeft: 48 },
       { id: 8, name: "កូកាកូឡា (Coca-Cola)", cat: "beverages", brand: "Coca-Cola", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "coca_2", image: "asset/image/coca-2.jpg", isNew: false, dealPct: null, stockLeft: 120 },
-      { id: 9, name: "PION", cat: "beverages", brand: "PION", price: 0.7, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 85 },
-      { id: 10, name: "កាហ្វេដប", cat: "beverages", brand: "Local", price: 1.2, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 4 },
+      // { id: 9, name: "PION", cat: "beverages", brand: "PION", price: 0.7, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 85 },
+      { id: 10, name: "កាហ្វេដប", cat: "beverages", brand: "Local", price: 1.2, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "កាហ្វេដប", image: "asset/image/កាហ្វេដប.jpg", isNew: false, dealPct: null, stockLeft: 4 },
       { id: 11, name: "ទឹកក្រូចដប", cat: "beverages", brand: "Local", price: 2.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "iced_orange_juice", image: "asset/image/iced-orange-juice.webp", isNew: false, dealPct: null, stockLeft: 50 },
       { id: 12, name: "ទឹកស៊ីអ៊ីវ", cat: "grocery", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "soy_sauce", image: "asset/image/soy-sauce.jpg", isNew: false, dealPct: null, stockLeft: 100 },
-      { id: 13, name: "តែបៃតង អូអ៊ិឈិ (Oishi)", cat: "beverages", brand: "Oishi", price: 0.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 90 },
+      { id: 13, name: "តែបៃតង អូអ៊ិឈិ (Oishi)", cat: "beverages", brand: "Oishi", price: 0.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "តែបៃតង អូអ៊ិឈិ (Oishi)", image: "asset/image/តែបៃតង អូអ៊ិឈិ (Oishi).jpg", isNew: false, dealPct: null, stockLeft: 90 },
       { id: 14, name: "ពៅកម្លាំង វើក (WURKZ)", cat: "beverages", brand: "WURKZ", price: 0.65, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "wurkz_energy_drink", image: "asset/image/wurkz-energy-drink.jpg", isNew: false, dealPct: null, stockLeft: 150 },
       { id: 15, name: "ទឹកបរិសុទ្ធ វីតាល់ (Vital) ៥០០ml", cat: "beverages", brand: "Vital", price: 0.25, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "Water", image: "asset/image/Water.jpg", isNew: false, dealPct: null, stockLeft: 250 },
       { id: 16, name: "ការ៉ាបាវ (Carabao)", cat: "beverages", brand: "Carabao", price: 0.7, old: null, rating: 4, reviews: 0, stock: "low", badge: "NEW", img: "vikingz_energy_drink", image: "asset/image/vikingz-energy-drink.jpg", isNew: false, dealPct: null, stockLeft: 5 },
@@ -73,29 +85,29 @@
       { id: 18, name: "ទឹកដោះគោជូរ ឌីឡាក់ (Delight)", cat: "beverages", brand: "Delight", price: 0.5, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "dahs_energy_drink", image: "asset/image/dahs-energy-drink.jpg", isNew: false, dealPct: null, stockLeft: 65 },
       { id: 19, name: "តែក្រូចឆ្មា ហ្វ្រូស (Iced Tea)", cat: "beverages", brand: "Fruso", price: 0.8, old: null, rating: 4, reviews: 0, stock: "low", badge: "NEW", img: "exprez_strawberry_drink", image: "asset/image/exprez-strawberry-drink.jpg", isNew: false, dealPct: null, stockLeft: 3 },
       { id: 20, name: "ទឹកផ្លែឈើ ជូស៊ី (Juice)", cat: "beverages", brand: "Juicy", price: 1.0, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "iced_orange_juice", image: "asset/image/iced-orange-juice.webp", isNew: false, dealPct: null, stockLeft: 45 },
-      { id: 21, name: "ប៉ិបស៊ី (Pepsi)", cat: "beverages", brand: "Pepsi", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 135 },
-      { id: 22, name: "ទឹកដោះគោ កំប៉ុង BEAR BRAND", cat: "beverages", brand: "Bear Brand", price: 0.85, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 70 },
-      { id: 23, name: "ទឹកស៊ីអ៊ីវ ម៉ាកស៊ុបភើគីតឆេន", cat: "grocery", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "soy_sauce", image: "asset/image/soy-sauce.jpg", isNew: false, dealPct: null, stockLeft: 100 },
+      { id: 21, name: "ប៉ិបស៊ី (Pepsi)", cat: "beverages", brand: "Pepsi", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ប៉ិបស៊ី (Pepsi)", image: "asset/image/ប៉ិបស៊ី (Pepsi).jpg", isNew: false, dealPct: null, stockLeft: 135 },
+      { id: 22, name: "ទឹកដោះគោ កំប៉ុង BEAR BRAND", cat: "beverages", brand: "Bear Brand", price: 0.85, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកដោះគោ កំប៉ុង BEAR BRAND", image: "asset/image/ទឹកដោះគោ កំប៉ុង BEAR BRAND.jpeg", isNew: false, dealPct: null, stockLeft: 70 },
+      // { id: 23, name: "ទឹកស៊ីអ៊ីវ ម៉ាកស៊ុបភើគីតឆេន", cat: "grocery", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "soy_sauce", image: "asset/image/soy-sauce.jpg", isNew: false, dealPct: null, stockLeft: 100 },
       { id: 24, name: "អំបិលអុីយ៉ូដ ១កញ្ចប់", cat: "grocery", brand: "Local", price: 0.25, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "iodized_salt", image: "asset/image/iodized-salt.jpg", isNew: false, dealPct: null, stockLeft: 300 },
       { id: 25, name: "ទឹកត្រី ផ្ការំដួល", cat: "grocery", brand: "Local", price: 1.8, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "canned_fish", image: "asset/image/canned-fish.jpg", isNew: false, dealPct: null, stockLeft: 80 },
-      { id: 26, name: "ប៊ីចេង រូបភ្នំ (500g)", cat: "grocery", brand: "Local", price: 1.25, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 6 },
+      { id: 26, name: "ប៊ីចេង រូបភ្នំ (500g)", cat: "grocery", brand: "Local", price: 1.25, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ប៊ីចេង រូបភ្នំ (500g)", image: "asset/image/ប៊ីចេង រូបភ្នំ.jpg", isNew: false, dealPct: null, stockLeft: 6 },
       { id: 27, name: "ស្ករសធម្មជាតិ (១គីឡូ)", cat: "grocery", brand: "Local", price: 1.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "white_sugar", image: "asset/image/white-sugar.jpg", isNew: false, dealPct: null, stockLeft: 95 },
-      { id: 28, name: "ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ", cat: "grocery", brand: "Knorr", price: 2.3, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 40 },
-      { id: 29, name: "ប្រេងខ្យង ម៉ាកក្បាលតោ", cat: "grocery", brand: "Local", price: 2.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 75 },
-      { id: 30, name: "ម្រេចកំពតម៉ត់ (កំប៉ុងតូច)", cat: "grocery", brand: "Local", price: 3.5, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 2 },
-      { id: 31, name: "ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza)", cat: "grocery", brand: "Roza", price: 1.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 55 },
-      { id: 32, name: "ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef)", cat: "grocery", brand: "Chef's", price: 1.35, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 60 },
-      { id: 33, name: "ម្សៅការី (កញ្ចប់តូច)", cat: "grocery", brand: "Local", price: 0.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 120 },
-      { id: 34, name: "សាប៊ូដុសខ្លួន Lux (ដុំ)", cat: "beauty", brand: "Lux", price: 0.85, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 90 },
-      { id: 35, name: "សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម)", cat: "beauty", brand: "Sunsilk", price: 2.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 45 },
-      { id: 36, name: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", cat: "beauty", brand: "Colgate", price: 1.9, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 60 },
-      { id: 37, name: "ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១)", cat: "beauty", brand: "Local", price: 1.2, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 8 },
-      { id: 38, name: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", cat: "home", brand: "Sunlight", price: 1.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 110 },
-      { id: 39, name: "ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម", cat: "home", brand: "Viso", price: 1.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 75 },
-      { id: 40, name: "ក្រដាសអនាម័យ (ប៉េក ១០ដុំ)", cat: "home", brand: "Local", price: 2.2, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 35 },
-      { id: 41, name: "ថង់យួរផ្លាស្ទិក (១គីឡូ)", cat: "home", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 4 },
-      { id: 42, name: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", cat: "home", brand: "Clean", price: 2.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 50 },
-      { id: 43, name: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", cat: "home", brand: "Local", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 140 }
+      { id: 28, name: "ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ", cat: "grocery", brand: "Knorr", price: 2.3, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ", image: "asset/image/ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ.jpg", isNew: false, dealPct: null, stockLeft: 40 },
+      { id: 29, name: "ប្រេងខ្យង ម៉ាកក្បាលតោ", cat: "grocery", brand: "Local", price: 2.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ប្រេងខ្យង ម៉ាកក្បាលតោ", image: "asset/image/ប្រេងខ្យង ម៉ាកក្បាលតោ.jpg", isNew: false, dealPct: null, stockLeft: 75 },
+      { id: 30, name: "ម្រេចកំពតម៉ត់ (កំប៉ុងតូច)", cat: "grocery", brand: "Local", price: 3.5, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ម្រេចកំពតម៉ត់ (កំប៉ុងតូច)", image: "asset/image/ម្រេចកំពតម៉ត់ (កំប៉ុងតូច).jpg", isNew: false, dealPct: null, stockLeft: 2 },
+      { id: 31, name: "ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza)", cat: "grocery", brand: "Roza", price: 1.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza)", image: "asset/image/ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza).jpg", isNew: false, dealPct: null, stockLeft: 55 },
+      { id: 32, name: "ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef)", cat: "grocery", brand: "Chef's", price: 1.35, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef)", image: "asset/image/ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef).jpg", isNew: false, dealPct: null, stockLeft: 60 },
+      { id: 33, name: "ម្សៅការី (កញ្ចប់តូច)", cat: "grocery", brand: "Local", price: 0.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម្សៅការី (កញ្ចប់តូច)", image: "asset/image/ម្សៅការី (កញ្ចប់តូច).jpg", isNew: false, dealPct: null, stockLeft: 120 },
+      { id: 34, name: "សាប៊ូដុសខ្លួន Lux (ដុំ)", cat: "beauty", brand: "Lux", price: 0.85, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូដុសខ្លួន Lux (ដុំ)", image: "asset/image/សាប៊ូដុសខ្លួន Lux (ដុំ).jpg", isNew: false, dealPct: null, stockLeft: 90 },
+      { id: 35, name: "សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម)", cat: "beauty", brand: "Sunsilk", price: 2.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម)", image: "asset/image/សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម).jpg", isNew: false, dealPct: null, stockLeft: 45 },
+      { id: 36, name: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", cat: "beauty", brand: "Colgate", price: 1.9, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", image: "asset/image/ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ.webp", isNew: false, dealPct: null, stockLeft: 60 },
+      { id: 37, name: "ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១)", cat: "beauty", brand: "Local", price: 1.2, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១)", image: "asset/image/ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១).jpg", isNew: false, dealPct: null, stockLeft: 8 },
+      { id: 38, name: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", cat: "home", brand: "Sunlight", price: 1.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", image: "asset/image/សាប៊ូលាងចាន សាន់ឡាយ (Sunlight).jpg", isNew: false, dealPct: null, stockLeft: 110 },
+      { id: 39, name: "ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម", cat: "home", brand: "Viso", price: 1.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម", image: "asset/image/ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម.jpg", isNew: false, dealPct: null, stockLeft: 75 },
+      { id: 40, name: "ក្រដាសអនាម័យ (ប៉េក ១០ដុំ)", cat: "home", brand: "Local", price: 2.2, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ក្រដាសអនាម័យ (ប៉េក ១០ដុំ)", image: "asset/image/ក្រដាសអនាម័យ (ប៉េក ១០ដុំ).jpg", isNew: false, dealPct: null, stockLeft: 35 },
+      { id: 41, name: "ថង់យួរផ្លាស្ទិក (១គីឡូ)", cat: "home", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ថង់យួរផ្លាស្ទិក (១គីឡូ)", image: "asset/image/ថង់យួរផ្លាស្ទិក (១គីឡូ).jpg", isNew: false, dealPct: null, stockLeft: 4 },
+      { id: 42, name: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", cat: "home", brand: "Clean", price: 2.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", image: "asset/image/ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean).jpg", isNew: false, dealPct: null, stockLeft: 50 },
+      { id: 43, name: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", cat: "home", brand: "Local", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", image: "asset/image/អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ).jpg", isNew: false, dealPct: null, stockLeft: 140 }
     ];
   }
 
@@ -114,12 +126,13 @@
     return list;
   }
   function _products() {
+    const currentVersion = hashProducts(seedProducts());
     const savedVersion = read(KEYS.productsVersion, null);
     let list = read(KEYS.products, null);
-    if (!list || savedVersion !== PRODUCTS_VERSION) {
+    if (!list || savedVersion !== currentVersion) {
       list = seedProducts();
       write(KEYS.products, list);
-      write(KEYS.productsVersion, PRODUCTS_VERSION);
+      write(KEYS.productsVersion, currentVersion);
     }
     return list;
   }
@@ -134,7 +147,6 @@
     return read(KEYS.tickets, []);
   }
 
-  /* ---------------- public API ---------------- */
 
   const SharedStore = {
     /* ---- Customers ---- */
@@ -194,9 +206,7 @@
         .filter((o) => Number(o.customerId) === Number(customerId))
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     },
-    /**
-     * order = { customerId, customerName, items: [{id,name,price,qty}], total, source: 'online'|'pos', paymentMethod, address }
-     */
+    
     addOrder(order) {
       const list = _orders();
       const id = order.id || "ORD-" + Date.now();
@@ -246,11 +256,6 @@
         if (Object.values(KEYS).includes(e.key)) callback(e);
       });
     },
-
-    /* ---- Cart (per customer) ----
-       Real, persisted cart used by cart.html + "Add to Cart" buttons across
-       the storefront — replaces the old badge-only counter so items survive
-       navigation/reload and only clear on a real checkout. */
     getCart(customerId) {
       const carts = _carts();
       const lines = carts[customerId] || [];

@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Staff Panel's customer list (assest/js/phearoun.js) so both pages show the same customers.
     return [
       { id: 1, name: 'រឹម​ ភារុន', phone: '096 555 123', email: 'roun@mail.com', password: 'roun123', address: 'ភ្នំពេញ', orders: 5, spent: 210.00, active: true },
-      { id: 2, name: 'វ៉េត សុជាតិ', phone: '012 888 999', email: 'cheak@mail.com', password: 'cheak123', address: 'សៀមរាប', orders: 2, spent: 68.00, active: true },
+      { id: 2, name: 'វ៉ែត សុជាតិ', phone: '012 888 999', email: 'cheak@mail.com', password: 'cheak123', address: 'សៀមរាប', orders: 2, spent: 68.00, active: true },
       { id: 3, name: 'ចាន់​ សារ៉ាក់', phone: '088 777 666', email: 'rak@mail.com', password: 'rak123', address: 'បាត់ដំបង', orders: 0, spent: 0, active: true },
       { id: 4, name: 'លីហេង ស៊ីម៉េង', phone: '088 777 666', email: 'meng@mail.com', password: 'meng123', address: 'បាត់ដំបង', orders: 3, spent: 95.50, active: true },
       { id: 5, name: 'វិទូ', phone: '088 777 888', email: 'tu@mail.com', password: 'tu123', address: 'ភ្នំពេញ', orders: 3, spent: 95.50, active: true },
