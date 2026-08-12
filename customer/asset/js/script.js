@@ -68,7 +68,7 @@ function productCardHtml(p) {
   <div class="col product-item reveal in-view" data-cat="${p.cat}" data-brand="${p.brand}" data-price="${p.price}">
     <div class="product-card">
       <div class="product-media">
-        <img src="${p.image ? p.image : 'https://loremflickr.com/500/500/' + p.img}" alt="${p.name}" loading="lazy">
+        <img src="${p.image ? p.image : 'asset/image/no-image.svg'}" alt="${p.name}" loading="lazy">
         ${badge}
         <button class="fav-btn" data-idx="${p.id}" aria-label="Add to favorites"><i class="bi bi-heart"></i></button>
         <div class="quick-add" data-idx="${p.id}"><i class="bi bi-eye me-1"></i>Quick View</div>
@@ -219,7 +219,7 @@ const cartTable = document.getElementById('cartItems');
 if (cartTable && typeof SharedStore !== 'undefined') {
 
   function cartItemRowHtml(item) {
-    const imgSrc = item.image ? item.image : `https://picsum.photos/seed/product-${item.id}/200/200`;
+    const imgSrc = item.image ? item.image : 'asset/image/no-image.svg';
     return `
       <div class="cart-item" data-id="${item.id}" data-price="${item.price}">
         <img src="${imgSrc}" alt="${item.name}">
@@ -562,7 +562,7 @@ if (purchaseList && typeof SharedStore !== 'undefined') {
         : '';
       return `
       <div class="order-row">
-        <img src="https://picsum.photos/seed/order-${o.id}/120/120" alt="${firstItem ? firstItem.name : 'Order'}">
+        <img src="${firstItem && firstItem.image ? firstItem.image : 'asset/image/no-image.svg'}" alt="${firstItem ? firstItem.name : 'Order'}">
         <div class="flex-grow-1">
           <div class="d-flex align-items-center gap-2 flex-wrap">
             <span class="fw-semibold">Order #${o.id}</span>

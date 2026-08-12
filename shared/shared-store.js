@@ -1,14 +1,3 @@
-/* ============================================================
-   SharedStore — localStorage-based shared "database"
-   Connects the Staff/Admin app (Inventory-Accounting-Manage)
-   with the Customer storefront (/customer).
-
-   Load this file BEFORE any page-specific script (script.js,
-   customerManagement.js, phearoun.js, etc). It must be served
-   from a local web server with the project root as document
-   root so the absolute path /shared/shared-store.js resolves
-   the same way from both the root app and /customer pages.
-   ============================================================ */
 (function (global) {
   "use strict";
 
@@ -18,7 +7,13 @@
     orders: "shared_orders",
     carts: "shared_carts",
     tickets: "shared_tickets",
+    productsVersion: "shared_products_version",
   };
+
+  // The product-catalog "version" is now computed automatically from the
+  // contents of seedProducts() itself (see hashProducts below) — so editing,
+  // adding, or deleting any product automatically invalidates old cached
+  // data in every browser. No manual version bump needed anymore.
 
   function read(key, fallback) {
     try {
@@ -32,15 +27,23 @@
     try {
       localStorage.setItem(key, JSON.stringify(value));
     } catch (e) {
-      /* storage full / unavailable — fail silently */
+      
     }
   }
   function nextId(list) {
     return list.length ? Math.max(...list.map((x) => Number(x.id) || 0)) + 1 : 1;
   }
-
-  /* ---------------- seed data ---------------- */
-
+  // Simple deterministic string hash (djb2) used to detect when seedProducts()
+  // has changed, so cached localStorage data auto-refreshes without needing
+  // a manually-maintained version number.
+  function hashProducts(list) {
+    const str = JSON.stringify(list);
+    let hash = 5381;
+    for (let i = 0; i < str.length; i++) {
+      hash = ((hash << 5) + hash + str.charCodeAt(i)) | 0;
+    }
+    return String(hash);
+  }
   function seedCustomers() {
     return [
       { id: 1, name: "សុខា", phone: "012 345 678", email: "sokha@gmail.com", address: "Phnom Penh", orders: 3, spent: 86.0, active: true, hasDebt: false, points: 0, source: "staff" },
@@ -61,32 +64,50 @@
 
   function seedProducts() {
     return [
-      { id: 1, name: "Wireless Headphones", cat: "electronics", brand: "Sony", price: 59.99, old: 79.99, rating: 5, reviews: 128, stock: "in", badge: "SALE", img: "headphones", image: "https://kfourgroup.com.kh/wp-content/uploads/2024/01/JBLT770NC-BLK.webp", isNew: false, dealPct: 25, stockLeft: 62 },
-      { id: 2, name: "Smart Watch Series 5", cat: "electronics", brand: "Apple", price: 129.99, old: null, rating: 4, reviews: 89, stock: "in", badge: "NEW", img: "smartwatch", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3BqE121r3vujeCt-B6E11Pac8Ily1CfFUmqqCCoPx_w&s=10", isNew: true, dealPct: null, stockLeft: 40 },
-      { id: 3, name: "Travel Backpack", cat: "fashion", brand: "Nike", price: 39.99, old: 49.99, rating: 4, reviews: 56, stock: "low", badge: "SALE", img: "backpack", image: "https://nakie.co/cdn/shop/files/MBA_-_BACKPACK_TRAVEL_-_River_Blue.png?v=1783678535&width=1150", isNew: false, dealPct: 20, stockLeft: 8 },
-      { id: 4, name: "Digital Camera", cat: "electronics", brand: "Canon", price: 499.99, old: 599.99, rating: 5, reviews: 35, stock: "in", badge: "SALE", img: "camera", image: "https://pyxis.nymag.com/v1/imgs/dfb/03c/bbf932df3accf8c09ebbbae70a438f45d4-2----.2x.h473.w710.jpg", isNew: false, dealPct: 17, stockLeft: 40 },
-      { id: 5, name: "Classic Sunglasses", cat: "fashion", brand: "Adidas", price: 19.99, old: 29.99, rating: 4, reviews: 64, stock: "in", badge: "SALE", img: "sunglasses", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtQCutaCHhDrcIZoae7OAlN-a6WBkuSkKb4_QqF2WXbHbPXhe2_kIwFQE&s=10", isNew: false, dealPct: 33, stockLeft: 70 },
-      { id: 6, name: "Blender Machine", cat: "home", brand: "Philips", price: 29.99, old: null, rating: 4, reviews: 41, stock: "in", badge: null, img: "blender", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGN0gWnYprgq29FIKd7wvsxJo8MWsB0OutqphxCrez5OihrScLL4BkGl8&s=10", isNew: false, dealPct: null, stockLeft: 20 },
-      { id: 7, name: "Men's Cotton T-Shirt", cat: "fashion", brand: "Puma", price: 15.99, old: null, rating: 4, reviews: 88, stock: "in", badge: "NEW", img: "tshirt", image: null, isNew: true, dealPct: null, stockLeft: 25 },
-      { id: 8, name: "Casual Sneakers", cat: "sports", brand: "Nike", price: 49.99, old: 64.99, rating: 5, reviews: 72, stock: "in", badge: "SALE", img: "sneakers", image: null, isNew: false, dealPct: 23, stockLeft: 55 },
-      { id: 9, name: "Perfume Bottle", cat: "beauty", brand: "Dior", price: 34.99, old: null, rating: 5, reviews: 72, stock: "low", badge: null, img: "perfume", image: null, isNew: false, dealPct: null, stockLeft: 5 },
-      { id: 10, name: "LED Desk Lamp", cat: "home", brand: "Philips", price: 25.99, old: null, rating: 4, reviews: 30, stock: "in", badge: "NEW", img: "desklamp", image: null, isNew: true, dealPct: null, stockLeft: 18 },
-      { id: 11, name: "Yoga Mat Pro", cat: "sports", brand: "Adidas", price: 22.99, old: 27.99, rating: 4, reviews: 45, stock: "in", badge: "SALE", img: "yogamat", image: null, isNew: false, dealPct: 18, stockLeft: 33 },
-      { id: 12, name: "Facial Skincare Set", cat: "beauty", brand: "LG", price: 44.99, old: null, rating: 5, reviews: 97, stock: "in", badge: "NEW", img: "skincare", image: null, isNew: true, dealPct: null, stockLeft: 21 },
-      { id: 13, name: "Bluetooth Speaker", cat: "electronics", brand: "Sony", price: 49.99, old: 69.99, rating: 4, reviews: 61, stock: "in", badge: "SALE", img: "speaker", image: null, isNew: false, dealPct: 29, stockLeft: 47 },
-      { id: 14, name: "Running Shoes", cat: "sports", brand: "Puma", price: 39.99, old: 54.99, rating: 5, reviews: 110, stock: "in", badge: "SALE", img: "runningshoes", image: null, isNew: false, dealPct: 27, stockLeft: 19 },
-      { id: 15, name: "Leather Handbag", cat: "fashion", brand: "Dior", price: 79.99, old: null, rating: 4, reviews: 24, stock: "in", badge: "NEW", img: "handbag", image: "https://static.zara.net/assets/public/9af0/16c4/dded4fe39b29/7f3be61d451c/13328720700-a1/13328720700-a1.jpg?ts=1775050184369&w=792&f=auto", isNew: true, dealPct: null, stockLeft: 30 },
-      { id: 16, name: "Smart Blender Pro", cat: "home", brand: "Philips", price: 59.99, old: 74.99, rating: 4, reviews: 18, stock: "low", badge: "SALE", img: "blender", image: null, isNew: false, dealPct: 20, stockLeft: 6 },
-      { id: 17, name: "Exprez Strawberry Energy Drink", cat: "beverages", brand: "Exprez", price: 1.25, old: null, rating: 5, reviews: 14, stock: "in", badge: "NEW", img: "energy-drink", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqexWiw89QYk9VDbCFbe68FTOoM958AUSglPu7W51udgI-_25PtEsj2wU&s=10", isNew: true, dealPct: null, stockLeft: 120 },
-      { id: 18, name: "Mineral Water Bottle 500ml", cat: "beverages", brand: "PureSpring", price: 0.75, old: null, rating: 4, reviews: 32, stock: "in", badge: null, img: "water-bottle", image: "https://d3nhsn9xe1wma5.cloudfront.net/product/1669601348028", isNew: false, dealPct: null, stockLeft: 200 },
-      { id: 19, name: "Aluminum Foil Roll", cat: "home", brand: "HomeWrap", price: 3.49, old: 4.29, rating: 4, reviews: 21, stock: "in", badge: "SALE", img: "aluminum-foil", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp-BdCjkhRWOIvmTEAlY1u4Aa_dSK5ZGAA1e7AKtliCA2NqTuu_8LjdsT5&s=10", isNew: false, dealPct: 19, stockLeft: 44 },
-      { id: 20, name: "Canned Fish in Tomato Sauce", cat: "grocery", brand: "Khmer", price: 1.99, old: null, rating: 5, reviews: 9, stock: "in", badge: "NEW", img: "canned-fish", image: "assets/products/canned-fish.png", isNew: true, dealPct: null, stockLeft: 60 },
-      { id: 21, name: "Rice Bran Cooking Oil 1L", cat: "grocery", brand: "Chef's", price: 4.5, old: 5.25, rating: 5, reviews: 27, stock: "in", badge: "SALE", img: "cooking-oil", image: "assets/products/cooking-oil.png", isNew: false, dealPct: 14, stockLeft: 38 },
-      { id: 22, name: "Roasted Peanuts (500g)", cat: "grocery", brand: "FarmFresh", price: 2.25, old: null, rating: 4, reviews: 16, stock: "in", badge: null, img: "peanuts", image: "assets/products/peanuts.png", isNew: false, dealPct: null, stockLeft: 50 },
-      { id: 23, name: "Digital Air Fryer 6.5L", cat: "home", brand: "Lecko", price: 69.99, old: 89.99, rating: 5, reviews: 53, stock: "in", badge: "SALE", img: "air-fryer", image: "assets/products/air-fryer.png", isNew: false, dealPct: 22, stockLeft: 17 },
-      { id: 24, name: "Cream Crewneck Sweatshirt", cat: "fashion", brand: "Puma", price: 28.99, old: null, rating: 4, reviews: 11, stock: "in", badge: "NEW", img: "sweatshirt", image: "assets/products/sweatshirt.png", isNew: true, dealPct: null, stockLeft: 26 },
-      { id: 25, name: "Men's Denim Jacket", cat: "fashion", brand: "Nike", price: 54.99, old: 69.99, rating: 5, reviews: 38, stock: "in", badge: "SALE", img: "denim-jacket", image: "assets/products/denim-jacket.png", isNew: false, dealPct: 21, stockLeft: 25 },
-      { id: 26, name: "Stand Mixer", cat: "home", brand: "Philips", price: 149.99, old: 179.99, rating: 5, reviews: 44, stock: "in", badge: "SALE", img: "stand-mixer", image: "assets/products/stand-mixer.png", isNew: false, dealPct: 17, stockLeft: 12 },
+      { id: 1, name: "អង្គរ ៥គីឡូ", cat: "grocery", brand: "Local", price: 6.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "jasmine_rice", image: "asset/image/jasmine-rice.jpg", isNew: false, dealPct: null, stockLeft: 11 },
+      { id: 1, name: "Moniter", cat: "electronics", brand: "Local", price: 30, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "computer", image: "asset/image/computer.png", isNew: false, dealPct: null, stockLeft: 30 },
+      { id: 2, name: "ប្រេងសា ១លីត្រ", cat: "grocery", brand: "Local", price: 3.2, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "cooking_oil", image: "asset/image/cooking-oil.jpg", isNew: false, dealPct: null, stockLeft: 12 },
+      { id: 3, name: "គ្រាកគូឡ្យា កំប៉ុង", cat: "beverages", brand: "Local", price: 0.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "coca_2", image: "asset/image/coca-2.jpg", isNew: false, dealPct: null, stockLeft: 55 },
+      { id: 4, name: "សាប៊ូកក់សក់", cat: "beauty", brand: "Local", price: 1.0, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "សាប៊ូកក់សក់", image: "asset/image/សាប៊ូកក់សក់.jpg", isNew: false, dealPct: null, stockLeft: 8 },
+      { id: 5, name: "ទឹកសុទ្ធ ៦00ml", cat: "beverages", brand: "Local", price: 0.3, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "Water", image: "asset/image/Water.jpg", isNew: false, dealPct: null, stockLeft: 77 },
+      { id: 6, name: "Coca-Cola", cat: "beverages", brand: "Coca-Cola", price: 2.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "coca_2", image: "asset/image/coca-2.jpg", isNew: false, dealPct: null, stockLeft: 49 },
+      { id: 7, name: "Fanta", cat: "beverages", brand: "Fanta", price: 2.3, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "Fanta", image: "asset/image/Fanta.webp", isNew: false, dealPct: null, stockLeft: 48 },
+      { id: 8, name: "កូកាកូឡា (Coca-Cola)", cat: "beverages", brand: "Coca-Cola", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "coca_2", image: "asset/image/coca-2.jpg", isNew: false, dealPct: null, stockLeft: 120 },
+      // { id: 9, name: "PION", cat: "beverages", brand: "PION", price: 0.7, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: null, image: null, isNew: false, dealPct: null, stockLeft: 85 },
+      { id: 10, name: "កាហ្វេដប", cat: "beverages", brand: "Local", price: 1.2, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "កាហ្វេដប", image: "asset/image/កាហ្វេដប.jpg", isNew: false, dealPct: null, stockLeft: 4 },
+      { id: 11, name: "ទឹកក្រូចដប", cat: "beverages", brand: "Local", price: 2.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "iced_orange_juice", image: "asset/image/iced-orange-juice.webp", isNew: false, dealPct: null, stockLeft: 50 },
+      { id: 12, name: "ទឹកស៊ីអ៊ីវ", cat: "grocery", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "soy_sauce", image: "asset/image/soy-sauce.jpg", isNew: false, dealPct: null, stockLeft: 100 },
+      { id: 13, name: "តែបៃតង អូអ៊ិឈិ (Oishi)", cat: "beverages", brand: "Oishi", price: 0.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "តែបៃតង អូអ៊ិឈិ (Oishi)", image: "asset/image/តែបៃតង អូអ៊ិឈិ (Oishi).jpg", isNew: false, dealPct: null, stockLeft: 90 },
+      { id: 14, name: "ពៅកម្លាំង វើក (WURKZ)", cat: "beverages", brand: "WURKZ", price: 0.65, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "wurkz_energy_drink", image: "asset/image/wurkz-energy-drink.jpg", isNew: false, dealPct: null, stockLeft: 150 },
+      { id: 15, name: "ទឹកបរិសុទ្ធ វីតាល់ (Vital) ៥០០ml", cat: "beverages", brand: "Vital", price: 0.25, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "Water", image: "asset/image/Water.jpg", isNew: false, dealPct: null, stockLeft: 250 },
+      { id: 16, name: "ការ៉ាបាវ (Carabao)", cat: "beverages", brand: "Carabao", price: 0.7, old: null, rating: 4, reviews: 0, stock: "low", badge: "NEW", img: "vikingz_energy_drink", image: "asset/image/vikingz-energy-drink.jpg", isNew: false, dealPct: null, stockLeft: 5 },
+      { id: 17, name: "ស្តីងក្រហម (Sting)", cat: "beverages", brand: "Sting", price: 0.7, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "icy_cool_energy_drink", image: "asset/image/icy-cool-energy-drink.webp", isNew: false, dealPct: null, stockLeft: 110 },
+      { id: 18, name: "ទឹកដោះគោជូរ ឌីឡាក់ (Delight)", cat: "beverages", brand: "Delight", price: 0.5, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "dahs_energy_drink", image: "asset/image/dahs-energy-drink.jpg", isNew: false, dealPct: null, stockLeft: 65 },
+      { id: 19, name: "តែក្រូចឆ្មា ហ្វ្រូស (Iced Tea)", cat: "beverages", brand: "Fruso", price: 0.8, old: null, rating: 4, reviews: 0, stock: "low", badge: "NEW", img: "exprez_strawberry_drink", image: "asset/image/exprez-strawberry-drink.jpg", isNew: false, dealPct: null, stockLeft: 3 },
+      { id: 20, name: "ទឹកផ្លែឈើ ជូស៊ី (Juice)", cat: "beverages", brand: "Juicy", price: 1.0, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "iced_orange_juice", image: "asset/image/iced-orange-juice.webp", isNew: false, dealPct: null, stockLeft: 45 },
+      { id: 21, name: "ប៉ិបស៊ី (Pepsi)", cat: "beverages", brand: "Pepsi", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ប៉ិបស៊ី (Pepsi)", image: "asset/image/ប៉ិបស៊ី (Pepsi).jpg", isNew: false, dealPct: null, stockLeft: 135 },
+      { id: 22, name: "ទឹកដោះគោ កំប៉ុង BEAR BRAND", cat: "beverages", brand: "Bear Brand", price: 0.85, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកដោះគោ កំប៉ុង BEAR BRAND", image: "asset/image/ទឹកដោះគោ កំប៉ុង BEAR BRAND.jpeg", isNew: false, dealPct: null, stockLeft: 70 },
+      // { id: 23, name: "ទឹកស៊ីអ៊ីវ ម៉ាកស៊ុបភើគីតឆេន", cat: "grocery", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "soy_sauce", image: "asset/image/soy-sauce.jpg", isNew: false, dealPct: null, stockLeft: 100 },
+      { id: 24, name: "អំបិលអុីយ៉ូដ ១កញ្ចប់", cat: "grocery", brand: "Local", price: 0.25, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "iodized_salt", image: "asset/image/iodized-salt.jpg", isNew: false, dealPct: null, stockLeft: 300 },
+      { id: 25, name: "ទឹកត្រី ផ្ការំដួល", cat: "grocery", brand: "Local", price: 1.8, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "canned_fish", image: "asset/image/canned-fish.jpg", isNew: false, dealPct: null, stockLeft: 80 },
+      { id: 26, name: "ប៊ីចេង រូបភ្នំ (500g)", cat: "grocery", brand: "Local", price: 1.25, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ប៊ីចេង រូបភ្នំ (500g)", image: "asset/image/ប៊ីចេង រូបភ្នំ.jpg", isNew: false, dealPct: null, stockLeft: 6 },
+      { id: 27, name: "ស្ករសធម្មជាតិ (១គីឡូ)", cat: "grocery", brand: "Local", price: 1.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "white_sugar", image: "asset/image/white-sugar.jpg", isNew: false, dealPct: null, stockLeft: 95 },
+      { id: 28, name: "ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ", cat: "grocery", brand: "Knorr", price: 2.3, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ", image: "asset/image/ម្សៅស៊ុបខ្នរ (Knorr) ប្រអប់ធំ.jpg", isNew: false, dealPct: null, stockLeft: 40 },
+      { id: 29, name: "ប្រេងខ្យង ម៉ាកក្បាលតោ", cat: "grocery", brand: "Local", price: 2.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ប្រេងខ្យង ម៉ាកក្បាលតោ", image: "asset/image/ប្រេងខ្យង ម៉ាកក្បាលតោ.jpg", isNew: false, dealPct: null, stockLeft: 75 },
+      { id: 30, name: "ម្រេចកំពតម៉ត់ (កំប៉ុងតូច)", cat: "grocery", brand: "Local", price: 3.5, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ម្រេចកំពតម៉ត់ (កំប៉ុងតូច)", image: "asset/image/ម្រេចកំពតម៉ត់ (កំប៉ុងតូច).jpg", isNew: false, dealPct: null, stockLeft: 2 },
+      { id: 31, name: "ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza)", cat: "grocery", brand: "Roza", price: 1.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza)", image: "asset/image/ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza).jpg", isNew: false, dealPct: null, stockLeft: 55 },
+      { id: 32, name: "ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef)", cat: "grocery", brand: "Chef's", price: 1.35, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef)", image: "asset/image/ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef).jpg", isNew: false, dealPct: null, stockLeft: 60 },
+      { id: 33, name: "ម្សៅការី (កញ្ចប់តូច)", cat: "grocery", brand: "Local", price: 0.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម្សៅការី (កញ្ចប់តូច)", image: "asset/image/ម្សៅការី (កញ្ចប់តូច).jpg", isNew: false, dealPct: null, stockLeft: 120 },
+      { id: 34, name: "សាប៊ូដុសខ្លួន Lux (ដុំ)", cat: "beauty", brand: "Lux", price: 0.85, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូដុសខ្លួន Lux (ដុំ)", image: "asset/image/សាប៊ូដុសខ្លួន Lux (ដុំ).jpg", isNew: false, dealPct: null, stockLeft: 90 },
+      { id: 35, name: "សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម)", cat: "beauty", brand: "Sunsilk", price: 2.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម)", image: "asset/image/សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម).jpg", isNew: false, dealPct: null, stockLeft: 45 },
+      { id: 36, name: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", cat: "beauty", brand: "Colgate", price: 1.9, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", image: "asset/image/ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ.webp", isNew: false, dealPct: null, stockLeft: 60 },
+      { id: 37, name: "ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១)", cat: "beauty", brand: "Local", price: 1.2, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១)", image: "asset/image/ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១).jpg", isNew: false, dealPct: null, stockLeft: 8 },
+      { id: 38, name: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", cat: "home", brand: "Sunlight", price: 1.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", image: "asset/image/សាប៊ូលាងចាន សាន់ឡាយ (Sunlight).jpg", isNew: false, dealPct: null, stockLeft: 110 },
+      { id: 39, name: "ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម", cat: "home", brand: "Viso", price: 1.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម", image: "asset/image/ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម.jpg", isNew: false, dealPct: null, stockLeft: 75 },
+      { id: 40, name: "ក្រដាសអនាម័យ (ប៉េក ១០ដុំ)", cat: "home", brand: "Local", price: 2.2, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ក្រដាសអនាម័យ (ប៉េក ១០ដុំ)", image: "asset/image/ក្រដាសអនាម័យ (ប៉េក ១០ដុំ).jpg", isNew: false, dealPct: null, stockLeft: 35 },
+      { id: 41, name: "ថង់យួរផ្លាស្ទិក (១គីឡូ)", cat: "home", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ថង់យួរផ្លាស្ទិក (១គីឡូ)", image: "asset/image/ថង់យួរផ្លាស្ទិក (១គីឡូ).jpg", isNew: false, dealPct: null, stockLeft: 4 },
+      { id: 42, name: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", cat: "home", brand: "Clean", price: 2.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", image: "asset/image/ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean).jpg", isNew: false, dealPct: null, stockLeft: 50 },
+      { id: 43, name: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", cat: "home", brand: "Local", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", image: "asset/image/អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ).jpg", isNew: false, dealPct: null, stockLeft: 140 }
     ];
   }
 
@@ -105,10 +126,13 @@
     return list;
   }
   function _products() {
+    const currentVersion = hashProducts(seedProducts());
+    const savedVersion = read(KEYS.productsVersion, null);
     let list = read(KEYS.products, null);
-    if (!list) {
+    if (!list || savedVersion !== currentVersion) {
       list = seedProducts();
       write(KEYS.products, list);
+      write(KEYS.productsVersion, currentVersion);
     }
     return list;
   }
@@ -123,7 +147,6 @@
     return read(KEYS.tickets, []);
   }
 
-  /* ---------------- public API ---------------- */
 
   const SharedStore = {
     /* ---- Customers ---- */
@@ -183,9 +206,7 @@
         .filter((o) => Number(o.customerId) === Number(customerId))
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     },
-    /**
-     * order = { customerId, customerName, items: [{id,name,price,qty}], total, source: 'online'|'pos', paymentMethod, address }
-     */
+    
     addOrder(order) {
       const list = _orders();
       const id = order.id || "ORD-" + Date.now();
@@ -235,11 +256,6 @@
         if (Object.values(KEYS).includes(e.key)) callback(e);
       });
     },
-
-    /* ---- Cart (per customer) ----
-       Real, persisted cart used by cart.html + "Add to Cart" buttons across
-       the storefront — replaces the old badge-only counter so items survive
-       navigation/reload and only clear on a real checkout. */
     getCart(customerId) {
       const carts = _carts();
       const lines = carts[customerId] || [];
