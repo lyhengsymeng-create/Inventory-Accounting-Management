@@ -6,6 +6,7 @@
     products: "shared_products",
     orders: "shared_orders",
     carts: "shared_carts",
+    wishlists: "shared_wishlists",
     tickets: "shared_tickets",
     productsVersion: "shared_products_version",
   };
@@ -98,17 +99,45 @@
       { id: 31, name: "ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza)", cat: "grocery", brand: "Roza", price: 1.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza)", image: "asset/image/ទឹកប៉េងប៉ោះ ម៉ាករ៉ូសា (Roza).jpg", isNew: false, dealPct: null, stockLeft: 55 },
       { id: 32, name: "ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef)", cat: "grocery", brand: "Chef's", price: 1.35, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef)", image: "asset/image/ទឹកម្ទេសហិរ ម៉ាកឆេហ្វ (Chef).jpg", isNew: false, dealPct: null, stockLeft: 60 },
       { id: 33, name: "ម្សៅការី (កញ្ចប់តូច)", cat: "grocery", brand: "Local", price: 0.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម្សៅការី (កញ្ចប់តូច)", image: "asset/image/ម្សៅការី (កញ្ចប់តូច).jpg", isNew: false, dealPct: null, stockLeft: 120 },
-      { id: 34, name: "សាប៊ូដុសខ្លួន Lux (ដុំ)", cat: "beauty", brand: "Lux", price: 0.85, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូដុសខ្លួន Lux (ដុំ)", image: "asset/image/សាប៊ូដុសខ្លួន Lux (ដុំ).jpg", isNew: false, dealPct: null, stockLeft: 90 },
+      { id: 34, name: "សាប៊ូដុសខ្លួន Lux (ដុំ)", cat: "beauty", brand: "Lux", price: 0.85, old: 1.05, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "សាប៊ូដុសខ្លួន Lux (ដុំ)", image: "asset/image/សាប៊ូដុសខ្លួន Lux (ដុំ).jpg", isNew: true, dealPct: 19, stockLeft: 90 },
       { id: 35, name: "សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម)", cat: "beauty", brand: "Sunsilk", price: 2.75, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម)", image: "asset/image/សាប៊ូកក់សក់ Sunsilk (ដបមធ្យម).jpg", isNew: false, dealPct: null, stockLeft: 45 },
-      { id: 36, name: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", cat: "beauty", brand: "Colgate", price: 1.9, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", image: "asset/image/ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ.webp", isNew: false, dealPct: null, stockLeft: 60 },
+      { id: 36, name: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", cat: "beauty", brand: "Colgate", price: 1.9, old: 2.4, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ", image: "asset/image/ថ្នាំដុសធ្មេញ Colgate ប្រអប់ធំ.webp", isNew: true, dealPct: 21, stockLeft: 60 },
       { id: 37, name: "ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១)", cat: "beauty", brand: "Local", price: 1.2, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១)", image: "asset/image/ច្រាសដុសធ្មេញ (កញ្ចប់ ១ថែម១).jpg", isNew: false, dealPct: null, stockLeft: 8 },
-      { id: 38, name: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", cat: "home", brand: "Sunlight", price: 1.1, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", image: "asset/image/សាប៊ូលាងចាន សាន់ឡាយ (Sunlight).jpg", isNew: false, dealPct: null, stockLeft: 110 },
+      { id: 38, name: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", cat: "home", brand: "Sunlight", price: 1.1, old: 1.35, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "សាប៊ូលាងចាន សាន់ឡាយ (Sunlight)", image: "asset/image/សាប៊ូលាងចាន សាន់ឡាយ (Sunlight).jpg", isNew: true, dealPct: 19, stockLeft: 110 },
       { id: 39, name: "ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម", cat: "home", brand: "Viso", price: 1.4, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម", image: "asset/image/ម្សៅសាប៊ូបោកខោអាវ វីហ្សូ (Viso) ៥០០ក្រាម.jpg", isNew: false, dealPct: null, stockLeft: 75 },
       { id: 40, name: "ក្រដាសអនាម័យ (ប៉េក ១០ដុំ)", cat: "home", brand: "Local", price: 2.2, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ក្រដាសអនាម័យ (ប៉េក ១០ដុំ)", image: "asset/image/ក្រដាសអនាម័យ (ប៉េក ១០ដុំ).jpg", isNew: false, dealPct: null, stockLeft: 35 },
       { id: 41, name: "ថង់យួរផ្លាស្ទិក (១គីឡូ)", cat: "home", brand: "Local", price: 1.5, old: null, rating: 4, reviews: 0, stock: "low", badge: null, img: "ថង់យួរផ្លាស្ទិក (១គីឡូ)", image: "asset/image/ថង់យួរផ្លាស្ទិក (១គីឡូ).jpg", isNew: false, dealPct: null, stockLeft: 4 },
-      { id: 42, name: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", cat: "home", brand: "Clean", price: 2.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", image: "asset/image/ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean).jpg", isNew: false, dealPct: null, stockLeft: 50 },
-      { id: 43, name: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", cat: "home", brand: "Local", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", image: "asset/image/អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ).jpg", isNew: false, dealPct: null, stockLeft: 140 }
-    ];
+      { id: 42, name: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", cat: "home", brand: "Clean", price: 2.6, old: 3.2, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean)", image: "asset/image/ទឹកជូតការ៉ូ ម៉ាកក្លីន (Clean).jpg", isNew: true, dealPct: 19, stockLeft: 50 },
+      { id: 43, name: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", cat: "home", brand: "Local", price: 0.6, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ)", image: "asset/image/អេប៉ុងលាងចាន (កញ្ចប់ ៥បន្ទះ).jpg", isNew: false, dealPct: null, stockLeft: 140 },
+      // electronics
+      { id: 44, name: "ទូរទស្សន៍ (TV)", cat: "electronics", brand: "Samsung", price: 349.99, old: 399.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "ទូរទស្សន៍ (TV)", image: "asset/image/ទូរទស្សន៍ (TV).jpg", isNew: false, dealPct: 13, stockLeft: 15 },
+      { id: 45, name: "ទូទឹកកក (Refrigerator)", cat: "electronics", brand: "LG", price: 429.99, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ទូទឹកកក (Refrigerator)", image: "asset/image/ទូទឹកកក (Refrigerator).webp", isNew: false, dealPct: null, stockLeft: 10 },
+      { id: 46, name: "ម៉ាស៊ីនត្រជាក់ (Air Conditioner)", cat: "electronics", brand: "Panasonic", price: 389.99, old: 449.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "ម៉ាស៊ីនត្រជាក់ (Air Conditioner)", image: "asset/image/ម៉ាស៊ីនត្រជាក់ (Air Conditioner).webp", isNew: false, dealPct: 13, stockLeft: 8 },
+      { id: 47, name: "ម៉ាស៊ីនបោកខោអាវ (Washing Machine)", cat: "electronics", brand: "Samsung", price: 299.99, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ម៉ាស៊ីនបោកខោអាវ (Washing Machine)", image: "asset/image/ម៉ាស៊ីនបោកខោអាវ (Washing Machine).jpg", isNew: false, dealPct: null, stockLeft: 9 },
+      { id: 48, name: "កុំព្យូទ័រ (Computer)", cat: "electronics", brand: "Dell", price: 549.99, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "កុំព្យូទ័រ (Computer)", image: "asset/image/កុំព្យូទ័រ (Computer).jpg", isNew: true, dealPct: null, stockLeft: 12 },
+      { id: 49, name: "Laptop", cat: "electronics", brand: "HP", price: 649.99, old: 749.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "Laptop", image: "asset/image/Laptop.jpg", isNew: false, dealPct: 13, stockLeft: 14 },
+      { id: 50, name: "ទូរស័ព្ទដៃ (Smartphone)", cat: "electronics", brand: "Samsung", price: 279.99, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "ទូរស័ព្ទដៃ (Smartphone)", image: "asset/image/ទូរស័ព្ទដៃ (Smartphone).webp", isNew: true, dealPct: null, stockLeft: 30 },
+      { id: 51, name: "ម៉ាស៊ីនព្រីន (Printer)", cat: "electronics", brand: "Canon", price: 89.99, old: 109.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "ម៉ាស៊ីនព្រីន (Printer)", image: "asset/image/ម៉ាស៊ីនព្រីន (Printer).webp", isNew: false, dealPct: 18, stockLeft: 20 },
+      { id: 52, name: "មីក្រូវ៉េវ (Microwave)", cat: "electronics", brand: "Panasonic", price: 79.99, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "មីក្រូវ៉េវ (Microwave)", image: "asset/image/មីក្រូវ៉េវ (Microwave).jpg", isNew: false, dealPct: null, stockLeft: 18 },
+      { id: 53, name: "កង្ហារអគ្គិសនី (Electric Fan)", cat: "electronics", brand: "Local", price: 24.99, old: 29.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "កង្ហារអគ្គិសនី (Electric Fan)", image: "asset/image/កង្ហារអគ្គិសនី (Electric Fan).jpg", isNew: false, dealPct: 17, stockLeft: 40 },
+      // fashion
+      { id: 54, name: "អាវយឺត (T-Shirt)", cat: "fashion", brand: "Nike", price: 14.99, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "អាវយឺត (T-Shirt)", image: "asset/image/អាវយឺត (T-Shirt).jpg", isNew: true, dealPct: null, stockLeft: 45 },
+      { id: 55, name: "អាវសឺមី (Shirt)", cat: "fashion", brand: "Zara", price: 22.99, old: 27.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "អាវសឺមី (Shirt)", image: "asset/image/អាវសឺមី (Shirt).jpg", isNew: false, dealPct: 18, stockLeft: 30 },
+      { id: 56, name: "អាវធំ (Jacket)", cat: "fashion", brand: "Adidas", price: 45.99, old: 59.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "អាវធំ (Jacket)", image: "asset/image/អាវធំ (Jacket).jpg", isNew: false, dealPct: 23, stockLeft: 20 },
+      { id: 57, name: "ខោជើងវែង (Long Pants)", cat: "fashion", brand: "Levi's", price: 34.99, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "ខោជើងវែង (Long Pants)", image: "asset/image/ខោជើងវែង (Long Pants).jpg", isNew: false, dealPct: null, stockLeft: 25 },
+      { id: 58, name: "ខោខ្លី (Shorts)", cat: "fashion", brand: "Puma", price: 17.99, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "ខោខ្លី (Shorts)", image: "asset/image/ខោខ្លី (Shorts).jpg", isNew: true, dealPct: null, stockLeft: 35 },
+      { id: 59, name: "រ៉ូប (Dress)", cat: "fashion", brand: "H&M", price: 29.99, old: 39.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "រ៉ូប (Dress)", image: "asset/image/រ៉ូប (Dress).jpg", isNew: false, dealPct: 25, stockLeft: 18 },
+      { id: 60, name: "អាវនារី (Blouse)", cat: "fashion", brand: "Zara", price: 19.99, old: null, rating: 4, reviews: 0, stock: "in", badge: null, img: "អាវនារី (Blouse)", image: "asset/image/អាវនារី (Blouse).jpg", isNew: false, dealPct: null, stockLeft: 28 },
+      { id: 61, name: "អាវ Hoodie", cat: "fashion", brand: "Nike", price: 32.99, old: 42.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "អាវ Hoodie", image: "asset/image/អាវ Hoodie.jpg", isNew: false, dealPct: 23, stockLeft: 22 },
+      { id: 62, name: "សម្លៀកបំពាក់ប្រពៃណីខ្មែរ", cat: "fashion", brand: "Local", price: 39.99, old: null, rating: 4, reviews: 0, stock: "in", badge: "NEW", img: "សម្លៀកបំពាក់ប្រពៃណីខ្មែរ", image: "asset/image/សម្លៀកបំពាក់ប្រពៃណីខ្មែរ.jpg", isNew: true, dealPct: null, stockLeft: 10 },
+      { id: 63, name: "ឈុតកីឡា (Sportswear)", cat: "fashion", brand: "Adidas", price: 27.99, old: 34.99, rating: 4, reviews: 0, stock: "in", badge: "SALE", img: "ឈុតកីឡា (Sportswear)", image: "asset/image/ឈុតកីឡា (Sportswear).jpg", isNew: false, dealPct: 20, stockLeft: 26 },
+      // sports
+      { id: 64, name: "អាវកីឡាបាល់ទាត់ Real Madrid", cat: "sports", brand: "Real Madrid", price: 79.99, old: 99.99, rating: 5, reviews: 0, stock: "in", badge: "SALE", img: "1", image: "asset/image/1.jpg", isNew: false, dealPct: 20, stockLeft: 25 },
+      { id: 65, name: "អាវកីឡាបាល់ទាត់ FC Barcelona", cat: "sports", brand: "FC Barcelona", price: 79.99, old: 99.99, rating: 5, reviews: 0, stock: "in", badge: "SALE", img: "2", image: "asset/image/2.jpg", isNew: false, dealPct: 20, stockLeft: 25 },
+      { id: 66, name: "អាវកីឡាបាល់ទាត់ Manchester United", cat: "sports", brand: "Manchester United", price: 79.99, old: null, rating: 5, reviews: 0, stock: "in", badge: "NEW", img: "3", image: "asset/image/3.jpg", isNew: true, dealPct: null, stockLeft: 22 },
+      { id: 67, name: "អាវកីឡាបាល់ទាត់ Liverpool FC", cat: "sports", brand: "Liverpool FC", price: 79.99, old: null, rating: 5, reviews: 0, stock: "in", badge: "NEW", img: "4", image: "asset/image/4.jpg", isNew: true, dealPct: null, stockLeft: 22 },
+      { id: 68, name: "អាវកីឡាបាល់ទាត់ Manchester City", cat: "sports", brand: "Manchester City", price: 79.99, old: 94.99, rating: 5, reviews: 0, stock: "in", badge: "SALE", img: "5", image: "asset/image/5.jpg", isNew: true, dealPct: 16, stockLeft: 20 },
+          ];
   }
 
   function seedOrders() {
@@ -142,6 +171,10 @@
   /* carts are stored as { [customerId]: [{ id, qty }] } */
   function _carts() {
     return read(KEYS.carts, {});
+  }
+  /* wishlists are stored as { [customerId]: [productId, productId, ...] } */
+  function _wishlists() {
+    return read(KEYS.wishlists, {});
   }
   function _tickets() {
     return read(KEYS.tickets, []);
@@ -307,6 +340,51 @@
       const carts = _carts();
       carts[customerId] = [];
       write(KEYS.carts, carts);
+    },
+
+    /* ---- Wishlist / Favorites ---- */
+    getWishlist(customerId) {
+      const wishlists = _wishlists();
+      const ids = wishlists[customerId] || [];
+      return ids.map((id) => SharedStore.getProduct(id)).filter(Boolean);
+    },
+    getWishlistIds(customerId) {
+      const wishlists = _wishlists();
+      return (wishlists[customerId] || []).map(Number);
+    },
+    getWishlistCount(customerId) {
+      const wishlists = _wishlists();
+      return (wishlists[customerId] || []).length;
+    },
+    isInWishlist(customerId, productId) {
+      const wishlists = _wishlists();
+      return (wishlists[customerId] || []).some((id) => Number(id) === Number(productId));
+    },
+    addToWishlist(customerId, productId) {
+      const wishlists = _wishlists();
+      const ids = wishlists[customerId] || [];
+      if (!ids.some((id) => Number(id) === Number(productId))) {
+        ids.push(Number(productId));
+      }
+      wishlists[customerId] = ids;
+      write(KEYS.wishlists, wishlists);
+      return SharedStore.getWishlist(customerId);
+    },
+    removeFromWishlist(customerId, productId) {
+      const wishlists = _wishlists();
+      wishlists[customerId] = (wishlists[customerId] || []).filter((id) => Number(id) !== Number(productId));
+      write(KEYS.wishlists, wishlists);
+      return SharedStore.getWishlist(customerId);
+    },
+    toggleWishlist(customerId, productId) {
+      const wishlists = _wishlists();
+      const ids = wishlists[customerId] || [];
+      const has = ids.some((id) => Number(id) === Number(productId));
+      wishlists[customerId] = has
+        ? ids.filter((id) => Number(id) !== Number(productId))
+        : ids.concat(Number(productId));
+      write(KEYS.wishlists, wishlists);
+      return !has; // returns true if now in wishlist
     },
 
     /* ---- Support Tickets (Customer <-> Staff communication) ---- */

@@ -25,7 +25,13 @@ function syncCartBadge() {
   if (!badgeEl || typeof SharedStore === 'undefined') return;
   badgeEl.textContent = SharedStore.getCartCount(CURRENT_CUSTOMER_ID);
 }
+function syncFavBadge() {
+  const badgeEl = document.getElementById('favBadge');
+  if (!badgeEl || typeof SharedStore === 'undefined') return;
+  badgeEl.textContent = SharedStore.getWishlistCount(CURRENT_CUSTOMER_ID);
+}
 syncCartBadge();
+syncFavBadge();
 
 const BRANDS = [
   { name: "Apple", count: 48}, { name: "Samsung", count: 65 }, { name: "Sony", count: 37 }, { name: "Nike", count: 52 },
@@ -64,13 +70,14 @@ function productCardHtml(p) {
   const badge = p.badge ? `<span class="product-badge ${p.badge === 'NEW' ? 'badge-new' : 'badge-sale'}">${p.badge}</span>` : '';
   const oldPrice = p.old ? `<span class="price-old">$${p.old.toFixed(2)}</span>` : '';
   const stockChip = p.stock === 'in' ? `<span class="stock-chip stock-in">In Stock</span>` : `<span class="stock-chip stock-low">Low Stock</span>`;
+  const isFav = (typeof SharedStore !== 'undefined') && SharedStore.isInWishlist(CURRENT_CUSTOMER_ID, p.id);
   return `
   <div class="col product-item reveal in-view" data-cat="${p.cat}" data-brand="${p.brand}" data-price="${p.price}">
     <div class="product-card">
       <div class="product-media">
         <img src="${p.image ? p.image : 'asset/image/no-image.svg'}" alt="${p.name}" loading="lazy">
         ${badge}
-        <button class="fav-btn" data-idx="${p.id}" aria-label="Add to favorites"><i class="bi bi-heart"></i></button>
+        <button class="fav-btn${isFav ? ' active' : ''}" data-idx="${p.id}" aria-label="Add to favorites"><i class="bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}"></i></button>
         <div class="quick-add" data-idx="${p.id}"><i class="bi bi-eye me-1"></i>Quick View</div>
       </div>
       <div class="product-body">
@@ -94,9 +101,15 @@ function renderProducts(containerId, list) {
 document.addEventListener('click', (e) => {
   const fav = e.target.closest('.fav-btn');
   if (fav) {
-    fav.classList.toggle('active');
+    const idx = fav.dataset.idx;
+    let nowFav = fav.classList.contains('active') ? false : true;
+    if (typeof SharedStore !== 'undefined' && idx) {
+      nowFav = SharedStore.toggleWishlist(CURRENT_CUSTOMER_ID, idx);
+    }
+    fav.classList.toggle('active', nowFav);
     fav.classList.remove('pulse'); void fav.offsetWidth; fav.classList.add('pulse');
-    fav.querySelector('i').className = fav.classList.contains('active') ? 'bi bi-heart-fill' : 'bi bi-heart';
+    fav.querySelector('i').className = nowFav ? 'bi bi-heart-fill' : 'bi bi-heart';
+    syncFavBadge();
     return;
   }
   const addBtn = e.target.closest('.add-cart-btn');
@@ -119,6 +132,117 @@ document.addEventListener('click', (e) => {
       new bootstrap.Toast(toastEl).show();
     }
   }
+});
+
+/* ---------- 5b. QUICK VIEW MODAL (product details popup) ---------- */
+function ensureQuickViewModal() {
+  if (document.getElementById('quickViewModal')) return;
+  const div = document.createElement('div');
+  div.innerHTML = `
+  <div class="modal fade" id="quickViewModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="border-radius:var(--radius-sm, 12px); border:none;">
+        <div class="modal-header border-0 pb-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pt-0">
+          <div class="row g-4">
+            <div class="col-md-6">
+              <img id="qvImage" src="" alt="" style="width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:10px; background:#f1f3f5;">
+            </div>
+            <div class="col-md-6 d-flex flex-column">
+              <span id="qvBadge" class="product-badge badge-sale align-self-start mb-2" style="display:none;"></span>
+              <div class="text-muted small mb-1" id="qvBrand"></div>
+              <h4 class="fw-bold mb-2" id="qvName"></h4>
+              <div class="mb-2" id="qvRating"></div>
+              <div class="mb-3">
+                <span class="fs-3 fw-bold" id="qvPrice"></span>
+                <span class="text-muted text-decoration-line-through ms-2" id="qvOldPrice"></span>
+              </div>
+              <div class="mb-3" id="qvStock"></div>
+              <p class="text-muted" id="qvDesc"></p>
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <label class="me-2 fw-semibold">Qty</label>
+                <button class="btn btn-outline-secondary btn-sm" id="qvQtyMinus">-</button>
+                <span id="qvQty" class="px-3">1</span>
+                <button class="btn btn-outline-secondary btn-sm" id="qvQtyPlus">+</button>
+              </div>
+              <button class="add-cart-btn mt-auto" id="qvAddToCart"><i class="bi bi-cart-plus me-1"></i>Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>`;
+  document.body.appendChild(div.firstElementChild);
+
+  let qvQty = 1;
+  const qtyEl = document.getElementById('qvQty');
+  document.getElementById('qvQtyMinus').addEventListener('click', () => {
+    qvQty = Math.max(1, qvQty - 1);
+    qtyEl.textContent = qvQty;
+  });
+  document.getElementById('qvQtyPlus').addEventListener('click', () => {
+    qvQty = qvQty + 1;
+    qtyEl.textContent = qvQty;
+  });
+  document.getElementById('qvAddToCart').addEventListener('click', () => {
+    const productId = document.getElementById('qvAddToCart').dataset.idx;
+    const product = PRODUCTS.find(p => String(p.id) === String(productId));
+    if (typeof SharedStore !== 'undefined' && product) {
+      SharedStore.addToCart(CURRENT_CUSTOMER_ID, product.id, qvQty);
+    }
+    syncCartBadge();
+    const modalEl = document.getElementById('quickViewModal');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+    const toastMsg = document.getElementById('toastMsg');
+    const toastEl = document.getElementById('cartToast');
+    if (toastMsg && toastEl && product) {
+      toastMsg.textContent = `${product.name} added to cart`;
+      new bootstrap.Toast(toastEl).show();
+    }
+  });
+
+  // reset quantity each time the modal opens
+  document.getElementById('quickViewModal').addEventListener('show.bs.modal', () => {
+    qvQty = 1;
+    qtyEl.textContent = qvQty;
+  });
+}
+
+document.addEventListener('click', (e) => {
+  const qv = e.target.closest('.quick-add');
+  if (!qv) return;
+  const idx = qv.dataset.idx;
+  const product = PRODUCTS.find(p => String(p.id) === String(idx));
+  if (!product) return;
+
+  ensureQuickViewModal();
+
+  document.getElementById('qvImage').src = product.image ? product.image : 'asset/image/no-image.svg';
+  document.getElementById('qvImage').alt = product.name;
+  document.getElementById('qvBrand').textContent = product.brand || '';
+  document.getElementById('qvName').textContent = product.name;
+  document.getElementById('qvRating').innerHTML = `${starHtml(product.rating)} <span class="count">(${product.reviews})</span>`;
+  document.getElementById('qvPrice').textContent = `$${product.price.toFixed(2)}`;
+  document.getElementById('qvOldPrice').textContent = product.old ? `$${product.old.toFixed(2)}` : '';
+  const badgeEl = document.getElementById('qvBadge');
+  if (product.badge) {
+    badgeEl.textContent = product.badge;
+    badgeEl.className = `product-badge align-self-start mb-2 ${product.badge === 'NEW' ? 'badge-new' : 'badge-sale'}`;
+    badgeEl.style.display = '';
+  } else {
+    badgeEl.style.display = 'none';
+  }
+  const stockEl = document.getElementById('qvStock');
+  stockEl.innerHTML = product.stock === 'in'
+    ? `<span class="stock-chip stock-in">In Stock${product.stockLeft ? ` (${product.stockLeft} left)` : ''}</span>`
+    : `<span class="stock-chip stock-low">Low Stock${product.stockLeft ? ` (${product.stockLeft} left)` : ''}</span>`;
+  document.getElementById('qvDesc').textContent = `${product.brand ? product.brand + ' ' : ''}${product.name} — quality product from the ${product.cat} category.`;
+  document.getElementById('qvAddToCart').dataset.idx = product.id;
+
+  new bootstrap.Modal(document.getElementById('quickViewModal')).show();
 });
 
 /* ---------- 6. FILTER BAR (shop page + home popular products) ---------- */
