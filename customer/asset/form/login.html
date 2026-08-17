@@ -8,9 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --brand-blue: #2952e3;
-    --brand-blue-dark: #1f3fc0;
-    --panel-bg: #f0f1f5;
+    --brand-blue: #0c257e;
+    --brand-blue-dark: #091e76;
+    --panel-bg: #e0e6fa;
   }
   body{
     font-family: 'Poppins', sans-serif;
@@ -140,7 +140,7 @@
     color: #fff;
   }
   .btn-google{
-    background: #f5f6fa;
+    background: #dfe2f0;
     border: 1px solid #e5e7eb;
     border-radius: 10px;
     padding: 13px;
@@ -152,7 +152,7 @@
     gap: 10px;
   }
   .btn-google:hover{
-    background: #eceef3;
+    background: #dae0ed;
     color: #374151;
   }
   .signup-text a{
@@ -181,6 +181,10 @@
     display:flex;align-items:center;justify-content:center;
     font-size:32px;margin:0 auto 20px;
   }
+  .img-customer{
+    width: 100% !important;
+    height: 100% !important;
+  }
   .btn-link-switch{
     background:none;border:none;color:var(--brand-blue);
     font-weight:600;text-decoration:underline;padding:0;
@@ -196,25 +200,12 @@
         <div class="dot-red"></div>
         <div class="circle-orange"></div>
         <div class="circle-yellow"></div>
-
         <div class="id-card">
-          <div class="id-dot"></div>
-          <div class="id-row">
-            <div class="id-avatar">🧑</div>
-            <div class="id-lines"><span></span><span></span></div>
-          </div>
-          <div class="id-row">
-            <div class="id-avatar">🧑</div>
-            <div class="id-lines"><span></span><span></span></div>
-          </div>
-          <div class="id-row" style="margin-bottom:0;">
-            <div class="id-avatar">🧑</div>
-            <div class="id-lines"><span></span><span></span></div>
-          </div>
+          <img class="img-customer" src="../image/customer.webp" alt="">
         </div>
 
-        <div class="visual-heading">Be Verified</div>
-        <div class="visual-sub">Join experienced Designers on this platform.</div>
+        <!-- <div class="visual-heading">Be Verified</div>
+        <div class="visual-sub">Join experienced Designers on this platform.</div> -->
       </div>
     </div>
     <div class="col-md-7">
@@ -246,9 +237,9 @@
               <button type="button" class="btn-link-switch" id="showSignup">Sign Up</button>
             </p>
           </form>
-          <p class="text-center text-muted mt-4" style="font-size:0.8rem;">
+          <!-- <p class="text-center text-muted mt-4" style="font-size:0.8rem;">
             Demo account &mdash; email: <strong>demo@example.com</strong>, password: <strong>demo1234</strong>
-          </p>
+          </p> -->
         </div>
 
         <!-- SIGNUP VIEW -->
@@ -257,7 +248,7 @@
           <p class="lead-text">Join and get verified in seconds.</p>
 
           <div id="signupAlert" class="alert alert-demo hidden mb-3"></div>
-          <form  action="../../index.html" onsubmit="return true";>
+          <form  action="" onsubmit="return true";>
             <div class="mb-3">
               <input type="text" class="form-control" id="signupName" placeholder="Full name" required>
             </div>
@@ -286,7 +277,7 @@
 
   // In-memory fake user store (demo only — resets on page reload, no real backend)
   const users = [
-    { name: "Demo User", email: "demo@example.com", password: "demo1234" }
+    { name: "Demo User", email: "rimphearun349@gmail.com", password: "1234" }
   ];
 
   const loginView = document.getElementById('loginView');
