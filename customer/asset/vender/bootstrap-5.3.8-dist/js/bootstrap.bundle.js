@@ -1,24 +1,8 @@
-/*!
-  * Bootstrap v5.3.8 (https://getbootstrap.com/)
-  * Copyright 2011-2025 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
-  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.bootstrap = factory());
 })(this, (function () { 'use strict';
-
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/data.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-  /**
-   * Constants
-   */
 
   const elementMap = new Map();
   const Data = {
@@ -27,9 +11,6 @@
         elementMap.set(element, new Map());
       }
       const instanceMap = elementMap.get(element);
-
-      // make it clear we only want one instance per element
-      // can be removed later when multiple key/instances are fine to be used
       if (!instanceMap.has(key) && instanceMap.size !== 0) {
         // eslint-disable-next-line no-console
         console.error(`Bootstrap doesn't allow more than one instance per element. Bound instance: ${Array.from(instanceMap.keys())[0]}.`);
@@ -50,19 +31,11 @@
       const instanceMap = elementMap.get(element);
       instanceMap.delete(key);
 
-      // free up element references if there are no instances left for an element
       if (instanceMap.size === 0) {
         elementMap.delete(element);
       }
     }
   };
-
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/index.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
 
   const MAX_UID = 1000000;
   const MILLISECONDS_MULTIPLIER = 1000;
@@ -75,13 +48,11 @@
    */
   const parseSelector = selector => {
     if (selector && window.CSS && window.CSS.escape) {
-      // document.querySelector needs escaping to handle IDs (html5+) containing for instance /
+      
       selector = selector.replace(/#([^\s"#']+)/g, (match, id) => `#${CSS.escape(id)}`);
     }
     return selector;
   };
-
-  // Shout-out Angus Croll (https://goo.gl/pxwQGp)
   const toType = object => {
     if (object === null || object === undefined) {
       return `${object}`;
@@ -104,7 +75,6 @@
       return 0;
     }
 
-    // Get transition-duration of the element
     let {
       transitionDuration,
       transitionDelay
@@ -112,12 +82,10 @@
     const floatTransitionDuration = Number.parseFloat(transitionDuration);
     const floatTransitionDelay = Number.parseFloat(transitionDelay);
 
-    // Return 0 if element or transition duration is not found
     if (!floatTransitionDuration && !floatTransitionDelay) {
       return 0;
     }
 
-    // If multiple durations are defined, take the first
     transitionDuration = transitionDuration.split(',')[0];
     transitionDelay = transitionDelay.split(',')[0];
     return (Number.parseFloat(transitionDuration) + Number.parseFloat(transitionDelay)) * MILLISECONDS_MULTIPLIER;
@@ -182,7 +150,6 @@
       return null;
     }
 
-    // Can find the shadow root otherwise it'll return the document
     if (typeof element.getRootNode === 'function') {
       const root = element.getRootNode();
       return root instanceof ShadowRoot ? root : null;
@@ -208,7 +175,7 @@
    * @see https://www.harrytheo.com/blog/2021/02/restart-a-css-animation-with-javascript/#restarting-a-css-animation
    */
   const reflow = element => {
-    element.offsetHeight; // eslint-disable-line no-unused-expressions
+    element.offsetHeight; 
   };
   const getjQuery = () => {
     if (window.jQuery && !document.body.hasAttribute('data-bs-no-jquery')) {
@@ -219,7 +186,6 @@
   const DOMContentLoadedCallbacks = [];
   const onDOMContentLoaded = callback => {
     if (document.readyState === 'loading') {
-      // add listener on the first call when the document is in loading state
       if (!DOMContentLoadedCallbacks.length) {
         document.addEventListener('DOMContentLoaded', () => {
           for (const callback of DOMContentLoadedCallbacks) {
@@ -281,18 +247,15 @@
   /**
    * Return the previous/next element of a list.
    *
-   * @param {array} list    The list of elements
-   * @param activeElement   The active element
-   * @param shouldGetNext   Choose to get next or previous element
+   * @param {array} list   
+   * @param activeElement   
+   * @param shouldGetNext   
    * @param isCycleAllowed
-   * @return {Element|elem} The proper element
+   * @return {Element|elem} 
    */
   const getNextActiveElement = (list, activeElement, shouldGetNext, isCycleAllowed) => {
     const listLength = list.length;
     let index = list.indexOf(activeElement);
-
-    // if the element does not exist in the list return an element
-    // depending on the direction and if cycle is allowed
     if (index === -1) {
       return !shouldGetNext && isCycleAllowed ? list[listLength - 1] : list[0];
     }
@@ -302,18 +265,6 @@
     }
     return list[Math.max(0, Math.min(index, listLength - 1))];
   };
-
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/event-handler.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const namespaceRegex = /[^.]*(?=\..*)\.|.*/;
   const stripNameRegex = /\..*/;
@@ -325,10 +276,6 @@
     mouseleave: 'mouseout'
   };
   const nativeEvents = new Set(['click', 'dblclick', 'mouseup', 'mousedown', 'contextmenu', 'mousewheel', 'DOMMouseScroll', 'mouseover', 'mouseout', 'mousemove', 'selectstart', 'selectend', 'keydown', 'keypress', 'keyup', 'orientationchange', 'touchstart', 'touchmove', 'touchend', 'touchcancel', 'pointerdown', 'pointermove', 'pointerup', 'pointerleave', 'pointercancel', 'gesturestart', 'gesturechange', 'gestureend', 'focus', 'blur', 'change', 'reset', 'select', 'submit', 'focusin', 'focusout', 'load', 'unload', 'beforeunload', 'resize', 'move', 'DOMContentLoaded', 'readystatechange', 'error', 'abort', 'scroll']);
-
-  /**
-   * Private methods
-   */
 
   function makeEventUid(element, uid) {
     return uid && `${uid}::${uidEvent++}` || element.uidEvent || uidEvent++;
@@ -389,9 +336,6 @@
       return;
     }
     let [isDelegated, callable, typeEvent] = normalizeParameters(originalTypeEvent, handler, delegationFunction);
-
-    // in case of mouseenter or mouseleave wrap the handler within a function that checks for its DOM position
-    // this prevents the handler from being dispatched the same way as mouseover or mouseout does
     if (originalTypeEvent in customEvents) {
       const wrapFunction = fn => {
         return function (event) {
@@ -525,12 +469,6 @@
     return obj;
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/manipulator.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
 
   function normalizeData(value) {
     if (value === 'true') {
@@ -582,18 +520,6 @@
     }
   };
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/config.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Class definition
-   */
-
   class Config {
     // Getters
     static get Default() {
@@ -635,23 +561,10 @@
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap base-component.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
+ 
   const VERSION = '5.3.8';
 
-  /**
-   * Class definition
-   */
+  
 
   class BaseComponent extends Config {
     constructor(element, config) {
@@ -706,22 +619,11 @@
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dom/selector-engine.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
+  
   const getSelector = element => {
     let selector = element.getAttribute('data-bs-target');
     if (!selector || selector === '#') {
       let hrefAttribute = element.getAttribute('href');
-
-      // The only valid content that could double as a selector are IDs or classes,
-      // so everything starting with `#` or `.`. If a "real" URL is used as the selector,
-      // `document.querySelector` will rightfully complain it is invalid.
-      // See https://github.com/twbs/bootstrap/issues/32273
       if (!hrefAttribute || !hrefAttribute.includes('#') && !hrefAttribute.startsWith('.')) {
         return null;
       }
@@ -795,13 +697,6 @@
     }
   };
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/component-functions.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
   const enableDismissTrigger = (component, method = 'hide') => {
     const clickEvent = `click.dismiss${component.EVENT_KEY}`;
     const name = component.NAME;
@@ -820,18 +715,6 @@
     });
   };
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap alert.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
   const NAME$f = 'alert';
   const DATA_KEY$a = 'bs.alert';
   const EVENT_KEY$b = `.${DATA_KEY$a}`;
@@ -840,10 +723,7 @@
   const CLASS_NAME_FADE$5 = 'fade';
   const CLASS_NAME_SHOW$8 = 'show';
 
-  /**
-   * Class definition
-   */
-
+ 
   class Alert extends BaseComponent {
     // Getters
     static get NAME() {
@@ -883,29 +763,13 @@
     }
   }
 
-  /**
-   * Data API implementation
-   */
 
   enableDismissTrigger(Alert, 'close');
 
-  /**
-   * jQuery
-   */
-
+ 
   defineJQueryPlugin(Alert);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap button.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
+  
 
   const NAME$e = 'button';
   const DATA_KEY$9 = 'bs.button';
@@ -915,9 +779,6 @@
   const SELECTOR_DATA_TOGGLE$5 = '[data-bs-toggle="button"]';
   const EVENT_CLICK_DATA_API$6 = `click${EVENT_KEY$a}${DATA_API_KEY$6}`;
 
-  /**
-   * Class definition
-   */
 
   class Button extends BaseComponent {
     // Getters
@@ -942,9 +803,7 @@
     }
   }
 
-  /**
-   * Data API implementation
-   */
+ 
 
   EventHandler.on(document, EVENT_CLICK_DATA_API$6, SELECTOR_DATA_TOGGLE$5, event => {
     event.preventDefault();
@@ -953,23 +812,9 @@
     data.toggle();
   });
 
-  /**
-   * jQuery
-   */
 
   defineJQueryPlugin(Button);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/swipe.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$d = 'swipe';
   const EVENT_KEY$9 = '.bs.swipe';
@@ -992,10 +837,6 @@
     leftCallback: '(function|null)',
     rightCallback: '(function|null)'
   };
-
-  /**
-   * Class definition
-   */
 
   class Swipe extends Config {
     constructor(element, config) {
@@ -1079,17 +920,6 @@
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap carousel.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$c = 'carousel';
   const DATA_KEY$8 = 'bs.carousel';
@@ -1182,9 +1012,7 @@
       this._slide(ORDER_NEXT);
     }
     nextWhenVisible() {
-      // FIXME TODO use `document.visibilityState`
-      // Don't call next when the page isn't visible
-      // or the carousel or its parent isn't visible
+    
       if (!document.hidden && isVisible(this._element)) {
         this.next();
       }
@@ -1262,14 +1090,7 @@
           return;
         }
 
-        // If it's a touch-enabled device, mouseenter/leave are fired as
-        // part of the mouse compatibility events on first tap - the carousel
-        // would stop cycling until user tapped out of it;
-        // here, we listen for touchend, explicitly pause the carousel
-        // (as if it's the second time we tap on it, mouseenter compat event
-        // is NOT fired) and after a timeout (to allow for mouse compatibility
-        // events to fire) we explicitly restart cycling
-
+       
         this.pause();
         if (this.touchTimeout) {
           clearTimeout(this.touchTimeout);
@@ -1341,8 +1162,7 @@
         return;
       }
       if (!activeElement || !nextElement) {
-        // Some weirdness is happening, so we bail
-        // TODO: change tests that use empty divs to avoid this check
+       
         return;
       }
       const isCycling = Boolean(this._interval);
@@ -1414,9 +1234,6 @@
     }
   }
 
-  /**
-   * Data API implementation
-   */
 
   EventHandler.on(document, EVENT_CLICK_DATA_API$5, SELECTOR_DATA_SLIDE, function (event) {
     const target = SelectorEngine.getElementFromSelector(this);
@@ -1446,23 +1263,8 @@
     }
   });
 
-  /**
-   * jQuery
-   */
-
   defineJQueryPlugin(Carousel);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap collapse.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$b = 'collapse';
   const DATA_KEY$7 = 'bs.collapse';
@@ -1492,10 +1294,7 @@
     toggle: 'boolean'
   };
 
-  /**
-   * Class definition
-   */
-
+  
   class Collapse extends BaseComponent {
     constructor(element, config) {
       super(element, config);
@@ -1664,12 +1463,8 @@
     }
   }
 
-  /**
-   * Data API implementation
-   */
-
   EventHandler.on(document, EVENT_CLICK_DATA_API$4, SELECTOR_DATA_TOGGLE$4, function (event) {
-    // preventDefault only for <a> elements (which change the URL) not inside the collapsible element
+  
     if (event.target.tagName === 'A' || event.delegateTarget && event.delegateTarget.tagName === 'A') {
       event.preventDefault();
     }
@@ -1680,9 +1475,7 @@
     }
   });
 
-  /**
-   * jQuery
-   */
+  
 
   defineJQueryPlugin(Collapse);
 
@@ -1703,15 +1496,15 @@
   }, []);
   var placements = /*#__PURE__*/[].concat(basePlacements, [auto]).reduce(function (acc, placement) {
     return acc.concat([placement, placement + "-" + start, placement + "-" + end]);
-  }, []); // modifiers that need to read the DOM
+  }, []); 
 
   var beforeRead = 'beforeRead';
   var read = 'read';
-  var afterRead = 'afterRead'; // pure-logic modifiers
+  var afterRead = 'afterRead'; 
 
   var beforeMain = 'beforeMain';
   var main = 'main';
-  var afterMain = 'afterMain'; // modifier with the purpose to write to the DOM (or write into a framework state)
+  var afterMain = 'afterMain'; 
 
   var beforeWrite = 'beforeWrite';
   var write = 'write';
@@ -1755,7 +1548,7 @@
     return node instanceof OwnElement || node instanceof ShadowRoot;
   }
 
-  // and applies them to the HTMLElements such as popper and arrow
+  
 
   function applyStyles(_ref) {
     var state = _ref.state;
@@ -1766,9 +1559,7 @@
 
       if (!isHTMLElement(element) || !getNodeName(element)) {
         return;
-      } // Flow doesn't support to extend this property, but it's the most
-      // effective way to apply styles to an HTMLElement
-      // $FlowFixMe[cannot-write]
+      } 
 
 
       Object.assign(element.style, style);
@@ -1814,7 +1605,7 @@
         var style = styleProperties.reduce(function (style, property) {
           style[property] = '';
           return style;
-        }, {}); // arrow is optional + virtual elements
+        }, {}); 
 
         if (!isHTMLElement(element) || !getNodeName(element)) {
           return;
@@ -1826,8 +1617,7 @@
         });
       });
     };
-  } // eslint-disable-next-line import/no-unused-modules
-
+  } 
 
   const applyStyles$1 = {
     name: 'applyStyles',
@@ -1900,11 +1690,9 @@
     };
   }
 
-  // means it doesn't take into account transforms.
 
   function getLayoutRect(element) {
-    var clientRect = getBoundingClientRect(element); // Use the clientRect sizes if it's not been transformed.
-    // Fixes https://github.com/popperjs/popper-core/issues/1223
+    var clientRect = getBoundingClientRect(element); 
 
     var width = element.offsetWidth;
     var height = element.offsetHeight;
@@ -1926,23 +1714,22 @@
   }
 
   function contains(parent, child) {
-    var rootNode = child.getRootNode && child.getRootNode(); // First, attempt with faster native method
+    var rootNode = child.getRootNode && child.getRootNode(); 
 
     if (parent.contains(child)) {
       return true;
-    } // then fallback to custom implementation with Shadow DOM support
+    } 
     else if (rootNode && isShadowRoot(rootNode)) {
         var next = child;
 
         do {
           if (next && parent.isSameNode(next)) {
             return true;
-          } // $FlowFixMe[prop-missing]: need a better way to handle this...
-
+          } 
 
           next = next.parentNode || next.host;
         } while (next);
-      } // Give up, the result is false
+      } 
 
 
     return false;
@@ -1957,8 +1744,7 @@
   }
 
   function getDocumentElement(element) {
-    // $FlowFixMe[incompatible-return]: assume body is always available
-    return ((isElement(element) ? element.ownerDocument : // $FlowFixMe[prop-missing]
+    return ((isElement(element) ? element.ownerDocument : 
     element.document) || window.document).documentElement;
   }
 
@@ -1967,27 +1753,24 @@
       return element;
     }
 
-    return (// this is a quicker (but less type safe) way to save quite some bytes from the bundle
-      // $FlowFixMe[incompatible-return]
-      // $FlowFixMe[prop-missing]
-      element.assignedSlot || // step into the shadow DOM of the parent of a slotted node
-      element.parentNode || ( // DOM Element detected
-      isShadowRoot(element) ? element.host : null) || // ShadowRoot detected
-      // $FlowFixMe[incompatible-call]: HTMLElement is a Node
-      getDocumentElement(element) // fallback
+    return (
+      element.assignedSlot || 
+      element.parentNode || ( 
+      isShadowRoot(element) ? element.host : null) || 
+      
+      getDocumentElement(element) 
 
     );
   }
 
   function getTrueOffsetParent(element) {
-    if (!isHTMLElement(element) || // https://github.com/popperjs/popper-core/issues/837
+    if (!isHTMLElement(element) || 
     getComputedStyle$1(element).position === 'fixed') {
       return null;
     }
 
     return element.offsetParent;
-  } // `.offsetParent` reports `null` for fixed elements, while absolute elements
-  // return the containing block
+  } 
 
 
   function getContainingBlock(element) {
@@ -1995,7 +1778,7 @@
     var isIE = /Trident/i.test(getUAString());
 
     if (isIE && isHTMLElement(element)) {
-      // In IE 9, 10 and 11 fixed elements containing block is always established by the viewport
+     
       var elementCss = getComputedStyle$1(element);
 
       if (elementCss.position === 'fixed') {
@@ -2010,9 +1793,7 @@
     }
 
     while (isHTMLElement(currentNode) && ['html', 'body'].indexOf(getNodeName(currentNode)) < 0) {
-      var css = getComputedStyle$1(currentNode); // This is non-exhaustive but covers the most common CSS properties that
-      // create a containing block.
-      // https://developer.mozilla.org/en-US/docs/Web/CSS/Containing_block#identifying_the_containing_block
+      var css = getComputedStyle$1(currentNode); 
 
       if (css.transform !== 'none' || css.perspective !== 'none' || css.contain === 'paint' || ['transform', 'perspective'].indexOf(css.willChange) !== -1 || isFirefox && css.willChange === 'filter' || isFirefox && css.filter && css.filter !== 'none') {
         return currentNode;
@@ -2022,9 +1803,7 @@
     }
 
     return null;
-  } // Gets the closest ancestor positioned element. Handles some edge cases,
-  // such as table ancestors and cross browser bugs.
-
+  } 
 
   function getOffsetParent(element) {
     var window = getWindow(element);
@@ -2105,13 +1884,12 @@
     var startDiff = popperOffsets[axis] - state.rects.reference[axis];
     var arrowOffsetParent = getOffsetParent(arrowElement);
     var clientSize = arrowOffsetParent ? axis === 'y' ? arrowOffsetParent.clientHeight || 0 : arrowOffsetParent.clientWidth || 0 : 0;
-    var centerToReference = endDiff / 2 - startDiff / 2; // Make sure the arrow doesn't overflow the popper if the center point is
-    // outside of the popper bounds
+    var centerToReference = endDiff / 2 - startDiff / 2; 
 
     var min = paddingObject[minProp];
     var max = clientSize - arrowRect[len] - paddingObject[maxProp];
     var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
-    var offset = within(min, center, max); // Prevents breaking syntax highlighting...
+    var offset = within(min, center, max); 
 
     var axisProp = axis;
     state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset, _state$modifiersData$.centerOffset = offset - center, _state$modifiersData$);
@@ -2125,7 +1903,7 @@
 
     if (arrowElement == null) {
       return;
-    } // CSS selector
+    } 
 
 
     if (typeof arrowElement === 'string') {
@@ -2141,7 +1919,7 @@
     }
 
     state.elements.arrow = arrowElement;
-  } // eslint-disable-next-line import/no-unused-modules
+  } 
 
 
   const arrow$1 = {
@@ -2163,9 +1941,7 @@
     right: 'auto',
     bottom: 'auto',
     left: 'auto'
-  }; // Round the offsets to the nearest suitable subpixel based on the DPR.
-  // Zooming can change the DPR, but it seems to report a value that will
-  // cleanly divide the values into the appropriate subpixels.
+  }; 
 
   function roundOffsetsByDPR(_ref, win) {
     var x = _ref.x,
@@ -2308,8 +2084,7 @@
     state.attributes.popper = Object.assign({}, state.attributes.popper, {
       'data-popper-placement': state.placement
     });
-  } // eslint-disable-next-line import/no-unused-modules
-
+  } 
 
   const computeStyles$1 = {
     name: 'computeStyles',
@@ -2355,7 +2130,7 @@
         window.removeEventListener('resize', instance.update, passive);
       }
     };
-  } // eslint-disable-next-line import/no-unused-modules
+  } 
 
 
   const eventListeners = {
@@ -2400,13 +2175,7 @@
   }
 
   function getWindowScrollBarX(element) {
-    // If <html> has a CSS width greater than the viewport, then this will be
-    // incorrect for RTL.
-    // Popper 1 is broken in this case and never had a bug report so let's assume
-    // it's not an issue. I don't think anyone ever specifies width on <html>
-    // anyway.
-    // Browsers where the left scrollbar doesn't cause an issue report `0` for
-    // this (e.g. Edge 2019, IE11, Safari)
+   
     return getBoundingClientRect(getDocumentElement(element)).left + getWindowScroll(element).scrollLeft;
   }
 
@@ -2438,7 +2207,7 @@
     };
   }
 
-  // of the `<html>` and `<body>` rect bounds if horizontally scrollable
+  
 
   function getDocumentRect(element) {
     var _element$ownerDocumen;
@@ -2464,7 +2233,7 @@
   }
 
   function isScrollParent(element) {
-    // Firefox wants us to check `-x` and `-y` variations as well
+    
     var _getComputedStyle = getComputedStyle$1(element),
         overflow = _getComputedStyle.overflow,
         overflowX = _getComputedStyle.overflowX,
@@ -2475,8 +2244,7 @@
 
   function getScrollParent(node) {
     if (['html', 'body', '#document'].indexOf(getNodeName(node)) >= 0) {
-      // $FlowFixMe[incompatible-return]: assume body is always available
-      return node.ownerDocument.body;
+      
     }
 
     if (isHTMLElement(node) && isScrollParent(node)) {
@@ -2486,12 +2254,6 @@
     return getScrollParent(getParentNode(node));
   }
 
-  /*
-  given a DOM element, return the list of all scroll parents, up the list of ancesors
-  until we get to the top window object. This list is what we attach scroll listeners
-  to, because if any of these parent elements scroll, we'll need to re-calculate the
-  reference element's position.
-  */
 
   function listScrollParents(element, list) {
     var _element$ownerDocumen;
@@ -2533,10 +2295,7 @@
 
   function getClientRectFromMixedType(element, clippingParent, strategy) {
     return clippingParent === viewport ? rectToClientRect(getViewportRect(element, strategy)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent, strategy) : rectToClientRect(getDocumentRect(getDocumentElement(element)));
-  } // A "clipping parent" is an overflowable container with the characteristic of
-  // clipping (or hiding) overflowing elements with a position different from
-  // `initial`
-
+  } 
 
   function getClippingParents(element) {
     var clippingParents = listScrollParents(getParentNode(element));
@@ -2545,15 +2304,13 @@
 
     if (!isElement(clipperElement)) {
       return [];
-    } // $FlowFixMe[incompatible-return]: https://github.com/facebook/flow/issues/1414
+    } 
 
 
     return clippingParents.filter(function (clippingParent) {
       return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== 'body';
     });
-  } // Gets the maximum area that the element is visible in due to any number of
-  // clipping parents
-
+  } 
 
   function getClippingRect(element, boundary, rootBoundary, strategy) {
     var mainClippingParents = boundary === 'clippingParents' ? getClippingParents(element) : [].concat(boundary);
@@ -2672,15 +2429,14 @@
     });
     var popperClientRect = rectToClientRect(Object.assign({}, popperRect, popperOffsets));
     var elementClientRect = elementContext === popper ? popperClientRect : referenceClientRect; // positive = overflowing the clipping rect
-    // 0 or negative = within the clipping rect
-
+    
     var overflowOffsets = {
       top: clippingClientRect.top - elementClientRect.top + paddingObject.top,
       bottom: elementClientRect.bottom - clippingClientRect.bottom + paddingObject.bottom,
       left: clippingClientRect.left - elementClientRect.left + paddingObject.left,
       right: elementClientRect.right - clippingClientRect.right + paddingObject.right
     };
-    var offsetData = state.modifiersData.offset; // Offsets can be applied only to the popper element
+    var offsetData = state.modifiersData.offset; 
 
     if (elementContext === popper && offsetData) {
       var offset = offsetData[placement];
@@ -2717,8 +2473,7 @@
 
     if (allowedPlacements.length === 0) {
       allowedPlacements = placements$1;
-    } // $FlowFixMe[incompatible-type]: Flow seems to have problems with two array unions...
-
+    } 
 
     var overflows = allowedPlacements.reduce(function (acc, placement) {
       acc[placement] = detectOverflow(state, {
@@ -2828,7 +2583,6 @@
     }
 
     if (makeFallbackChecks) {
-      // `2` may be desired in some cases – research later
       var numberOfChecks = flipVariations ? 3 : 1;
 
       var _loop = function _loop(_i) {
@@ -2860,8 +2614,7 @@
       state.placement = firstFittingPlacement;
       state.reset = true;
     }
-  } // eslint-disable-next-line import/no-unused-modules
-
+  } 
 
   const flip$1 = {
     name: 'flip',
@@ -2974,8 +2727,7 @@
     }
 
     state.modifiersData[name] = data;
-  } // eslint-disable-next-line import/no-unused-modules
-
+  } 
 
   const offset$1 = {
     name: 'offset',
@@ -2988,16 +2740,13 @@
   function popperOffsets(_ref) {
     var state = _ref.state,
         name = _ref.name;
-    // Offsets are the actual position the popper needs to have to be
-    // properly positioned near its reference element
-    // This is the most basic placement, and will be adjusted by
-    // the modifiers in the next step
+    
     state.modifiersData[name] = computeOffsets({
       reference: state.rects.reference,
       element: state.rects.popper,
       placement: state.placement
     });
-  } // eslint-disable-next-line import/no-unused-modules
+  } 
 
 
   const popperOffsets$1 = {
@@ -3083,11 +2832,7 @@
       };
       var arrowPaddingObject = state.modifiersData['arrow#persistent'] ? state.modifiersData['arrow#persistent'].padding : getFreshSideObject();
       var arrowPaddingMin = arrowPaddingObject[mainSide];
-      var arrowPaddingMax = arrowPaddingObject[altSide]; // If the reference length is smaller than the arrow length, we don't want
-      // to include its full size in the calculation. If the reference is small
-      // and near the edge of a boundary, the popper can overflow even if the
-      // reference is not overflowing as well (e.g. virtual elements with no
-      // width or height)
+      var arrowPaddingMax = arrowPaddingObject[altSide]; 
 
       var arrowLen = within(0, referenceRect[len], arrowRect[len]);
       var minOffset = isBasePlacement ? referenceRect[len] / 2 - additive - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis : minLen - arrowLen - arrowPaddingMin - normalizedTetherOffsetValue.mainAxis;
@@ -3132,7 +2877,7 @@
     }
 
     state.modifiersData[name] = data;
-  } // eslint-disable-next-line import/no-unused-modules
+  }
 
 
   const preventOverflow$1 = {
@@ -3163,9 +2908,7 @@
     var scaleX = round(rect.width) / element.offsetWidth || 1;
     var scaleY = round(rect.height) / element.offsetHeight || 1;
     return scaleX !== 1 || scaleY !== 1;
-  } // Returns the composite rect of an element relative to its offsetParent.
-  // Composite means it takes into account transforms as well as layout.
-
+  } 
 
   function getCompositeRect(elementOrVirtualElement, offsetParent, isFixed) {
     if (isFixed === void 0) {
@@ -3186,7 +2929,7 @@
     };
 
     if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
-      if (getNodeName(offsetParent) !== 'body' || // https://github.com/popperjs/popper-core/issues/1078
+      if (getNodeName(offsetParent) !== 'body' ||
       isScrollParent(documentElement)) {
         scroll = getNodeScroll(offsetParent);
       }
@@ -3275,7 +3018,7 @@
         data: Object.assign({}, existing.data, current.data)
       }) : current;
       return merged;
-    }, {}); // IE11 does not support Object.values
+    }, {}); 
 
     return Object.keys(merged).map(function (key) {
       return merged[key];
@@ -3336,9 +3079,7 @@
           state.scrollParents = {
             reference: isElement(reference) ? listScrollParents(reference) : reference.contextElement ? listScrollParents(reference.contextElement) : [],
             popper: listScrollParents(popper)
-          }; // Orders the modifiers based on their dependencies and `phase`
-          // properties
-
+          };
           var orderedModifiers = orderModifiers(mergeByName([].concat(defaultModifiers, state.options.modifiers))); // Strip out disabled modifiers
 
           state.orderedModifiers = orderedModifiers.filter(function (m) {
@@ -3347,11 +3088,7 @@
           runModifierEffects();
           return instance.update();
         },
-        // Sync update – it will always be executed, even if not necessary. This
-        // is useful for low frequency updates where sync behavior simplifies the
-        // logic.
-        // For high frequency updates (e.g. `resize` and `scroll` events), always
-        // prefer the async Popper#update method
+        
         forceUpdate: function forceUpdate() {
           if (isDestroyed) {
             return;
@@ -3359,29 +3096,18 @@
 
           var _state$elements = state.elements,
               reference = _state$elements.reference,
-              popper = _state$elements.popper; // Don't proceed if `reference` or `popper` are not valid elements
-          // anymore
-
+              popper = _state$elements.popper; 
           if (!areValidElements(reference, popper)) {
             return;
-          } // Store the reference and popper rects to be read by modifiers
+          } 
 
 
           state.rects = {
             reference: getCompositeRect(reference, getOffsetParent(popper), state.options.strategy === 'fixed'),
             popper: getLayoutRect(popper)
-          }; // Modifiers have the ability to reset the current update cycle. The
-          // most common use case for this is the `flip` modifier changing the
-          // placement, which then needs to re-run all the modifiers, because the
-          // logic was previously ran for the previous placement and is therefore
-          // stale/incorrect
-
+          }; 
           state.reset = false;
-          state.placement = state.options.placement; // On each update cycle, the `modifiersData` property for each modifier
-          // is filled with the initial data specified by the modifier. This means
-          // it doesn't persist and is fresh on each update.
-          // To ensure persistent data, use `${name}#persistent`
-
+          state.placement = state.options.placement; 
           state.orderedModifiers.forEach(function (modifier) {
             return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
           });
@@ -3409,8 +3135,7 @@
             }
           }
         },
-        // Async and optimistically optimized update – it will not be executed if
-        // not necessary (debounced to run at most once-per-tick)
+        
         update: debounce(function () {
           return new Promise(function (resolve) {
             instance.forceUpdate();
@@ -3431,11 +3156,7 @@
         if (!isDestroyed && options.onFirstUpdate) {
           options.onFirstUpdate(state);
         }
-      }); // Modifiers have the ability to execute arbitrary code before the first
-      // update cycle runs. They will be executed in the same order as the update
-      // cycle. This is useful when a modifier adds some persistent data that
-      // other modifiers need to use, but the modifier is run after the dependent
-      // one.
+      }); 
 
       function runModifierEffects() {
         state.orderedModifiers.forEach(function (_ref) {
@@ -3469,17 +3190,17 @@
       return instance;
     };
   }
-  var createPopper$2 = /*#__PURE__*/popperGenerator(); // eslint-disable-next-line import/no-unused-modules
+  var createPopper$2 = /*#__PURE__*/popperGenerator(); 
 
   var defaultModifiers$1 = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1];
   var createPopper$1 = /*#__PURE__*/popperGenerator({
     defaultModifiers: defaultModifiers$1
-  }); // eslint-disable-next-line import/no-unused-modules
+  }); 
 
   var defaultModifiers = [eventListeners, popperOffsets$1, computeStyles$1, applyStyles$1, offset$1, flip$1, preventOverflow$1, arrow$1, hide$1];
   var createPopper = /*#__PURE__*/popperGenerator({
     defaultModifiers: defaultModifiers
-  }); // eslint-disable-next-line import/no-unused-modules
+  }); 
 
   const Popper = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
     __proto__: null,
@@ -3523,17 +3244,7 @@
     write
   }, Symbol.toStringTag, { value: 'Module' }));
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap dropdown.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
+  
 
   const NAME$a = 'dropdown';
   const DATA_KEY$6 = 'bs.dropdown';
@@ -3543,8 +3254,7 @@
   const TAB_KEY$1 = 'Tab';
   const ARROW_UP_KEY$1 = 'ArrowUp';
   const ARROW_DOWN_KEY$1 = 'ArrowDown';
-  const RIGHT_MOUSE_BUTTON = 2; // MouseEvent.button value for the secondary button, usually the right button
-
+  const RIGHT_MOUSE_BUTTON = 2; 
   const EVENT_HIDE$5 = `hide${EVENT_KEY$6}`;
   const EVENT_HIDDEN$5 = `hidden${EVENT_KEY$6}`;
   const EVENT_SHOW$5 = `show${EVENT_KEY$6}`;
@@ -3589,16 +3299,11 @@
     reference: '(string|element|object)'
   };
 
-  /**
-   * Class definition
-   */
-
   class Dropdown extends BaseComponent {
     constructor(element, config) {
       super(element, config);
       this._popper = null;
-      this._parent = this._element.parentNode; // dropdown wrapper
-      // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
+      this._parent = this._element.parentNode; 
       this._menu = SelectorEngine.next(this._element, SELECTOR_MENU)[0] || SelectorEngine.prev(this._element, SELECTOR_MENU)[0] || SelectorEngine.findOne(SELECTOR_MENU, this._parent);
       this._inNavbar = this._detectNavbar();
     }
@@ -3631,10 +3336,6 @@
       }
       this._createPopper();
 
-      // If this is a touch-enabled device we add extra
-      // empty mouseover listeners to the body's immediate children;
-      // only needed because of broken event delegation on iOS
-      // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
       if ('ontouchstart' in document.documentElement && !this._parent.closest(SELECTOR_NAVBAR_NAV)) {
         for (const element of [].concat(...document.body.children)) {
           EventHandler.on(element, 'mouseover', noop);
@@ -3675,8 +3376,6 @@
         return;
       }
 
-      // If this is a touch-enabled device we remove the extra
-      // empty mouseover listeners we added for iOS support
       if ('ontouchstart' in document.documentElement) {
         for (const element of [].concat(...document.body.children)) {
           EventHandler.off(element, 'mouseover', noop);
@@ -3792,8 +3491,7 @@
         return;
       }
 
-      // if target isn't included in items (e.g. when expanding the dropdown)
-      // allow cycling to get the last item in case key equals ARROW_UP_KEY
+     
       getNextActiveElement(items, target, key === ARROW_DOWN_KEY$1, !items.includes(target)).focus();
     }
 
@@ -3840,9 +3538,7 @@
       }
     }
     static dataApiKeydownHandler(event) {
-      // If not an UP | DOWN | ESCAPE key => not a dropdown command
-      // If input/textarea && if key is other than ESCAPE => not a dropdown command
-
+     
       const isInput = /input|textarea/i.test(event.target.tagName);
       const isEscapeEvent = event.key === ESCAPE_KEY$2;
       const isUpOrDownEvent = [ARROW_UP_KEY$1, ARROW_DOWN_KEY$1].includes(event.key);
@@ -3854,7 +3550,7 @@
       }
       event.preventDefault();
 
-      // TODO: v6 revert #37011 & change markup https://getbootstrap.com/docs/5.3/forms/input-group/
+     
       const getToggleButton = this.matches(SELECTOR_DATA_TOGGLE$3) ? this : SelectorEngine.prev(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.next(this, SELECTOR_DATA_TOGGLE$3)[0] || SelectorEngine.findOne(SELECTOR_DATA_TOGGLE$3, event.delegateTarget.parentNode);
       const instance = Dropdown.getOrCreateInstance(getToggleButton);
       if (isUpOrDownEvent) {
@@ -3864,7 +3560,7 @@
         return;
       }
       if (instance._isShown()) {
-        // else is escape and we check if it is shown
+       
         event.stopPropagation();
         instance.hide();
         getToggleButton.focus();
@@ -3885,23 +3581,9 @@
     Dropdown.getOrCreateInstance(this).toggle();
   });
 
-  /**
-   * jQuery
-   */
 
   defineJQueryPlugin(Dropdown);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/backdrop.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$9 = 'backdrop';
   const CLASS_NAME_FADE$4 = 'fade';
@@ -3912,8 +3594,8 @@
     clickCallback: null,
     isAnimated: false,
     isVisible: true,
-    // if false, we use the backdrop helper without adding any element to the dom
-    rootElement: 'body' // give the choice to place backdrop under different elements
+   
+    rootElement: 'body' 
   };
   const DefaultType$8 = {
     className: 'string',
@@ -3923,9 +3605,7 @@
     rootElement: '(element|string)'
   };
 
-  /**
-   * Class definition
-   */
+ 
 
   class Backdrop extends Config {
     constructor(config) {
@@ -4015,18 +3695,7 @@
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/focustrap.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
+  
   const NAME$8 = 'focustrap';
   const DATA_KEY$5 = 'bs.focustrap';
   const EVENT_KEY$5 = `.${DATA_KEY$5}`;
@@ -4044,9 +3713,7 @@
     trapElement: 'element'
   };
 
-  /**
-   * Class definition
-   */
+ 
 
   class FocusTrap extends Config {
     constructor(config) {
@@ -4113,17 +3780,6 @@
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/scrollBar.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const SELECTOR_FIXED_CONTENT = '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top';
   const SELECTOR_STICKY_CONTENT = '.sticky-top';
@@ -4141,16 +3797,15 @@
 
     // Public
     getWidth() {
-      // https://developer.mozilla.org/en-US/docs/Web/API/Window/innerWidth#usage_notes
+     
       const documentWidth = document.documentElement.clientWidth;
       return Math.abs(window.innerWidth - documentWidth);
     }
     hide() {
       const width = this.getWidth();
       this._disableOverFlow();
-      // give padding to element to balance the hidden scrollbar width
+      
       this._setElementAttributes(this._element, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
-      // trick: We adjust positive paddingRight and negative marginRight to sticky-top elements to keep showing fullwidth
       this._setElementAttributes(SELECTOR_FIXED_CONTENT, PROPERTY_PADDING, calculatedValue => calculatedValue + width);
       this._setElementAttributes(SELECTOR_STICKY_CONTENT, PROPERTY_MARGIN, calculatedValue => calculatedValue - width);
     }
@@ -4211,17 +3866,6 @@
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap modal.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$7 = 'modal';
   const DATA_KEY$4 = 'bs.modal';
@@ -4442,10 +4086,6 @@
       this._element.focus();
     }
 
-    /**
-     * The following methods are used to handle overflowing modals
-     */
-
     _adjustDialog() {
       const isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
       const scrollbarWidth = this._scrollBar.getWidth();
@@ -4515,18 +4155,6 @@
    */
 
   defineJQueryPlugin(Modal);
-
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap offcanvas.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$6 = 'offcanvas';
   const DATA_KEY$3 = 'bs.offcanvas';
@@ -4741,18 +4369,10 @@
   });
   enableDismissTrigger(Offcanvas);
 
-  /**
-   * jQuery
-   */
+ 
 
   defineJQueryPlugin(Offcanvas);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
 
   // js-docs-start allow-list
   const ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
@@ -4796,12 +4416,7 @@
 
   const uriAttributes = new Set(['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href']);
 
-  /**
-   * A pattern that recognizes URLs that are safe wrt. XSS in URL navigation
-   * contexts.
-   *
-   * Shout-out to Angular https://github.com/angular/angular/blob/15.2.8/packages/core/src/sanitization/url_sanitizer.ts#L38
-   */
+ 
   const SAFE_URL_PATTERN = /^(?!javascript:)(?:[a-z0-9+.-]+:|[^&:/?#]*(?:[/?#]|$))/i;
   const allowedAttribute = (attribute, allowedAttributeList) => {
     const attributeName = attribute.nodeName.toLowerCase();
@@ -4842,18 +4457,6 @@
     return createdDocument.body.innerHTML;
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap util/template-factory.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
   const NAME$5 = 'TemplateFactory';
   const Default$4 = {
     allowList: DefaultAllowlist,
@@ -4879,9 +4482,7 @@
     selector: '(string|element)'
   };
 
-  /**
-   * Class definition
-   */
+ 
 
   class TemplateFactory extends Config {
     constructor(config) {
@@ -4978,17 +4579,6 @@
     }
   }
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap tooltip.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$4 = 'tooltip';
   const DISALLOWED_ATTRIBUTES = new Set(['sanitize', 'allowList', 'sanitizeFn']);
@@ -5154,10 +4744,7 @@
       this._popper = this._createPopper(tip);
       tip.classList.add(CLASS_NAME_SHOW$2);
 
-      // If this is a touch-enabled device we add extra
-      // empty mouseover listeners to the body's immediate children;
-      // only needed because of broken event delegation on iOS
-      // https://www.quirksmode.org/blog/archives/2014/02/mouse_event_bub.html
+      
       if ('ontouchstart' in document.documentElement) {
         for (const element of [].concat(...document.body.children)) {
           EventHandler.on(element, 'mouseover', noop);
@@ -5183,8 +4770,6 @@
       const tip = this._getTipElement();
       tip.classList.remove(CLASS_NAME_SHOW$2);
 
-      // If this is a touch-enabled device we remove the extra
-      // empty mouseover listeners we added for iOS support
       if ('ontouchstart' in document.documentElement) {
         for (const element of [].concat(...document.body.children)) {
           EventHandler.off(element, 'mouseover', noop);
@@ -5328,8 +4913,7 @@
           enabled: true,
           phase: 'beforeMain',
           fn: data => {
-            // Pre-set Popper's placement attribute in order to read the arrow sizes properly.
-            // Otherwise, Popper mixes up the width and height dimensions since the initial arrow style is for top placement
+          
             this._getTipElement().setAttribute('data-popper-placement', data.state.placement);
           }
         }]
@@ -5453,9 +5037,7 @@
       config.selector = false;
       config.trigger = 'manual';
 
-      // In the future can be replaced with:
-      // const keysWithDifferentValues = Object.entries(this._config).filter(entry => this.constructor.Default[entry[0]] !== this._config[entry[0]])
-      // `Object.fromEntries(keysWithDifferentValues)`
+     
       return config;
     }
     _disposePopper() {
@@ -5489,18 +5071,6 @@
    */
 
   defineJQueryPlugin(Tooltip);
-
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap popover.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$3 = 'popover';
   const SELECTOR_TITLE = '.popover-header';
@@ -5571,18 +5141,7 @@
 
   defineJQueryPlugin(Popover);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap scrollspy.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
-
+ 
   const NAME$2 = 'scrollspy';
   const DATA_KEY$2 = 'bs.scrollspy';
   const EVENT_KEY$2 = `.${DATA_KEY$2}`;
@@ -5618,9 +5177,7 @@
     threshold: 'array'
   };
 
-  /**
-   * Class definition
-   */
+  
 
   class ScrollSpy extends BaseComponent {
     constructor(element, config) {
@@ -5785,8 +5342,7 @@
         return;
       }
       for (const listGroup of SelectorEngine.parents(target, SELECTOR_NAV_LIST_GROUP)) {
-        // Set triggered links parents as active
-        // With both <ul> and <nav> markup a parent is the previous sibling of any nav ancestor
+       
         for (const item of SelectorEngine.prev(listGroup, SELECTOR_LINK_ITEMS)) {
           item.classList.add(CLASS_NAME_ACTIVE$1);
         }
@@ -5831,17 +5387,6 @@
 
   defineJQueryPlugin(ScrollSpy);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap tab.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
-
-  /**
-   * Constants
-   */
 
   const NAME$1 = 'tab';
   const DATA_KEY$1 = 'bs.tab';
@@ -6272,25 +5817,12 @@
     }
   }
 
-  /**
-   * Data API implementation
-   */
-
   enableDismissTrigger(Toast);
 
-  /**
-   * jQuery
-   */
-
+  
   defineJQueryPlugin(Toast);
 
-  /**
-   * --------------------------------------------------------------------------
-   * Bootstrap index.umd.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-
+  
   const index_umd = {
     Alert,
     Button,
