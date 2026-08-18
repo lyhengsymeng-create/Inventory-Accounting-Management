@@ -35,17 +35,17 @@
         <button class="btn d-flex align-items-center gap-2 border-0" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="asset/image/photo_2026-08-06_22-34-48.jpg" class="acct-avatar" alt="LyHeng Symeng"><span class="d-none d-lg-inline fw-semibold">LyHeng Symeng</span><i class="bi bi-chevron-down small d-none d-lg-inline"></i>
         </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow border-0" style="border-radius:var(--radius);">
-          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-person me-2 text-brand"></i>Profile</a></li>
-          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-bag-check me-2 text-brand"></i>My Orders</a></li>
-          <li><a class="dropdown-item py-2" href="track-order.html"><i class="bi bi-truck me-2 text-brand"></i>Order Tracking</a></li>
-          <li><a class="dropdown-item py-2" href="notifications.html"><i class="bi bi-bell me-2 text-brand"></i>Notifications</a></li>
-          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-geo-alt me-2 text-brand"></i>Saved Addresses</a></li>
-          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-credit-card me-2 text-brand"></i>Payment History</a></li>
-          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-shield-lock me-2 text-brand"></i>Security Settings</a></li>
-          <li><a class="dropdown-item py-2" href="support.html"><i class="bi bi-question-circle me-2 text-brand"></i>Help &amp; Support</a></li>
+       <ul class="dropdown-menu dropdown-menu-end shadow border-0" style="border-radius:var(--radius);">
+          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-person me-2 text-brand"></i>ប្រវត្តិរូប</a></li>
+          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-bag-check me-2 text-brand"></i>ការបញ្ជាទិញរបស់ខ្ញុំ</a></li>
+          <li><a class="dropdown-item py-2" href="track-order.html"><i class="bi bi-truck me-2 text-brand"></i>តាមដានការបញ្ជាទិញ</a></li>
+          <li><a class="dropdown-item py-2" href="notifications.html"><i class="bi bi-bell me-2 text-brand"></i>ការជូនដំណឹង</a></li>
+          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-geo-alt me-2 text-brand"></i>អាសយដ្ឋានដែលបានរក្សាទុក</a></li>
+          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-credit-card me-2 text-brand"></i>ប្រវត្តិការទូទាត់</a></li>
+          <li><a class="dropdown-item py-2" href="account.html"><i class="bi bi-shield-lock me-2 text-brand"></i>ការកំណត់សុវត្ថិភាព</a></li>
+          <li><a class="dropdown-item py-2" href="support.html"><i class="bi bi-question-circle me-2 text-brand"></i>ជំនួយ &amp; ការគាំទ្រ</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item py-2 text-danger" href="index.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+          <li><a class="dropdown-item py-2 text-danger" href="index.html"><i class="bi bi-box-arrow-right me-2"></i>ចាកចេញ</a></li>
         </ul>
       </div>
     </div>
@@ -55,12 +55,12 @@
 
 <div class="subnav">
   <div class="container-xl d-flex flex-wrap">
-    <a class="nav-link" href="index.html">Home</a>
-    <a class="nav-link" href="shop.html">Shop</a>
-    <a class="nav-link" href="deals.html">Deals</a>
-    <a class="nav-link" href="new-arrivals.html">New Arrivals</a>
-    <a class="nav-link" href="top-brands.html">Top Brands</a>
-    <a class="nav-link" href="support.html">Support</a>
+    <a class="nav-link" href="index.html">ទំព័រដើម</a>
+    <a class="nav-link" href="shop.html">ហាង</a>
+    <a class="nav-link" href="deals.html">ការផ្តល់ជូន</a>
+    <a class="nav-link" href="new-arrivals.html">ទំនិញចូលថ្មី</a>
+    <!-- <a class="nav-link" href="top-brands.html">ម៉ាកយីហោល្បីៗ</a> -->
+    <a class="nav-link" href="support.html">ជំនួយ</a>
   </div>
 </div>
 
@@ -93,19 +93,19 @@
 
 <!-- ============ MAIN: NOTIFICATIONS ============ -->
 <main class="container-xl py-4" style="max-width:820px;">
-  <nav class="breadcrumb-shopease small mb-3"><a href="index.html">Home</a> / <span class="active">Notifications</span></nav>
+  <nav class="breadcrumb-shopease small mb-3"><a href="index.html">ទំព័រដើម</a> / <span class="active">ការជូនដំណឹង</span></nav>
 
   <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
-    <h1 class="section-title mb-0">Notifications</h1>
-    <button class="btn btn-light-pill btn-sm" id="markAllRead">Mark all as read</button>
+    <h1 class="section-title mb-0">ការជូនដំណឹង</h1>
+    <button class="btn btn-light-pill btn-sm" id="markAllRead">សម្គាល់ទាំងអស់ថាបានអាន</button>
   </div>
 
   <div class="d-flex flex-wrap gap-2 mb-4">
-    <button class="filter-pill active notif-tab" data-cat="all">All</button>
-    <button class="filter-pill notif-tab" data-cat="orders">Orders</button>
-    <button class="filter-pill notif-tab" data-cat="payments">Payments</button>
-    <button class="filter-pill notif-tab" data-cat="promotions">Promotions</button>
-    <button class="filter-pill notif-tab" data-cat="system">System</button>
+    <button class="filter-pill active notif-tab" data-cat="all">ទាំងអស់</button>
+    <button class="filter-pill notif-tab" data-cat="orders">ការបញ្ជាទិញ</button>
+    <button class="filter-pill notif-tab" data-cat="payments">ការទូទាត់</button>
+    <button class="filter-pill notif-tab" data-cat="promotions">ការផ្តល់ជូនពិសេស</button>
+    <button class="filter-pill notif-tab" data-cat="system">ប្រព័ន្ធ</button>
   </div>
 
   <div id="notifList">
@@ -113,27 +113,24 @@
   </div>
 </main>
 
-<footer class="footer-shopease mt-5">
+<footer class="footer-shopease">
   <div class="container-xl">
     <div class="row g-4">
       <div class="col-6 col-md-4 col-lg-3">
         <div class="d-flex align-items-center gap-2 mb-3"><span class="brand-logo"><i class="bi bi-bag-fill"></i></span><span class="fw-bold text-white fs-5 font-heading">ShopEase</span></div>
-        <p class="small" style="color:#94A3B8;">Your one-stop shop for quality products at the best prices.</p>
-        <div class="mt-3"><a href="#" class="footer-social"><i class="bi bi-facebook"></i></a>
-         <a href="#" class="footer-social"><i class="bi bi-instagram"></i></a>
-         <a href="#" class="footer-social"><i class="bi bi-twitter-x"></i></a>
-         <a href="#" class="footer-social"><i class="bi bi-youtube"></i></a></div>
+        <p class="small" style="color:#94A3B8;">ជម្រើសទីមួយរបស់អ្នកសម្រាប់ទំនិញគុណភាពក្នុងតម្លៃល្អបំផុត។</p>
+        <div class="mt-3 d-flex"><a href="#" class="footer-social"><i class="bi bi-facebook"></i></a><a href="#" class="footer-social"><i class="bi bi-instagram"></i></a><a href="#" class="footer-social"><i class="bi bi-twitter-x"></i></a><a href="#" class="footer-social"><i class="bi bi-youtube"></i></a></div>
       </div>
-      <div class="col-6 col-md-4 col-lg-2"><h6>Customer Service</h6><a href="support.html">Help Center</a><a href="track-order.html">Track Your Order</a><a href="support.html">Returns &amp; Refunds</a><a href="support.html">Shipping Information</a><a href="support.html">Contact Us</a></div>
-      <div class="col-6 col-md-4 col-lg-2"><h6>Company</h6><a href="#">About Us</a><a href="#">Careers</a><a href="#">Privacy Policy</a><a href="#">Terms &amp; Conditions</a><a href="#">Blog</a></div>
+      <div class="col-6 col-md-4 col-lg-2 "><h6 class="last-title">សេវាកម្មអតិថិជន</h6><a href="support.html" class="last-title">មជ្ឈមណ្ឌលជំនួយ</a><a href="track-order.html" class="last-title">តាមដានការបញ្ជាទិញរបស់អ្នក</a><a href="support.html" class="last-title">ការប្តូរមកវិញ &amp; ការសងប្រាក់</a><a href="support.html" class="last-title">ព័ត៌មានដឹកជញ្ជូន</a><a href="support.html" class="last-title">ទាក់ទងមកយើង</a></div>
+      <div class="col-6 col-md-4 col-lg-2 "><h6 class="last-title">ក្រុមហ៊ុន</h6><a href="#" class="last-title" >អំពីយើង</a><a href="#" class="last-title">ការងារ</a><a href="#" class="last-title">គោលការណ៍ភាពឯកជន</a><a href="#" class="last-title">លក្ខខណ្ឌ &amp; កិច្ចព្រមព្រៀង</a><a href="#" class="last-title">ប្លុក</a></div>
       <div class="col-6 col-md-6 col-lg-2">
-        <h6>Payment Methods</h6>
+        <h6 class="last-title">វិធីទូទាត់ប្រាក់</h6>
         <div class="mb-2"><span class="pay-chip"><i class="bi bi-credit-card-2-front"></i> Visa</span><span class="pay-chip"><i class="bi bi-credit-card"></i> Mastercard</span><span class="pay-chip"><i class="bi bi-paypal"></i> PayPal</span></div>
-        <div class="small text-success fw-semibold"><i class="bi bi-shield-check me-1"></i>100% Secure Payments</div>
+        <div class="small text-success fw-semibold"><i class="bi bi-shield-check me-1"></i>ការទូទាត់ប្រាក់សុវត្ថិភាព 100%</div>
       </div>
-      <div class="col-6 col-md-6 col-lg-3"><h6>Contact Us</h6><a href="#"><i class="bi bi-envelope me-2"></i>support@shopease.com</a><a href="#"><i class="bi bi-telephone me-2"></i>+855 12 345 678</a><a href="#"><i class="bi bi-geo-alt me-2"></i>Phnom Penh, Cambodia</a></div>
+      <div class="col-6 col-md-6 col-lg-3"><h6 class="last-title ">ទាក់ទងមកយើង</h6><a href="#"><i class="bi bi-envelope me-2"></i>lyheng12@shopease.com</a><a href="#"><i class="bi bi-telephone me-2"></i>+855 12 345 678</a><a href="#"><i class="bi bi-geo-alt me-2"></i>ភ្នំពេញ កម្ពុជា</a></div>
     </div>
-    <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2"><span>&copy; 2026 ShopEase. All rights reserved.</span><div class="d-flex gap-3"><a href="#" style="color:#64748B;">Privacy</a><a href="#" style="color:#64748B;">Terms</a><a href="#" style="color:#64748B;">Cookies</a></div></div>
+    <div class="footer-bottom d-flex flex-wrap justify-content-between gap-2"><span>&copy; 2026 ShopEase។ រក្សាសិទ្ធិគ្រប់យ៉ាង។</span><div class="d-flex gap-3"><a href="#" style="color:#64748B;">ភាពឯកជន</a><a href="#" style="color:#64748B;">លក្ខខណ្ឌ</a><a href="#" style="color:#64748B;">Cookies</a></div></div>
   </div>
 </footer>
 
