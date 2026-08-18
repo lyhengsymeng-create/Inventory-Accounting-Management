@@ -78,14 +78,14 @@ function productCardHtml(p) {
         <img src="${p.image ? p.image : 'asset/image/no-image.svg'}" alt="${p.name}" loading="lazy">
         ${badge}
         <button class="fav-btn${isFav ? ' active' : ''}" data-idx="${p.id}" aria-label="Add to favorites"><i class="bi ${isFav ? 'bi-heart-fill' : 'bi-heart'}"></i></button>
-        <div class="quick-add" data-idx="${p.id}"><i class="bi bi-eye me-1"></i>Quick View</div>
+        <div class="quick-add" data-idx="${p.id}"><i class="bi bi-eye me-1"></i>មេីលលំអិត</div>
       </div>
       <div class="product-body">
         <div class="product-name">${p.name}</div>
         <div class="product-rating">${starHtml(p.rating)} <span class="count">(${p.reviews})</span></div>
         <div class="price-row"><span class="price-now">$${p.price.toFixed(2)}</span>${oldPrice}</div>
         ${stockChip}
-        <button class="add-cart-btn" data-idx="${p.id}"><i class="bi bi-cart-plus me-1"></i>Add to Cart</button>
+        <button class="add-cart-btn" data-idx="${p.id}"><i class="bi bi-cart-plus me-1"></i>បន្ថែមទៅក្នុងកន្ត្រកទំនិញ</button>
       </div>
     </div>
   </div>`;
@@ -118,7 +118,7 @@ document.addEventListener('click', (e) => {
     const product = PRODUCTS.find(p => String(p.id) === String(idx));
     addBtn.classList.add('added');
     addBtn.innerHTML = '<i class="bi bi-check2 me-1"></i>Added';
-    setTimeout(() => { addBtn.classList.remove('added'); addBtn.innerHTML = '<i class="bi bi-cart-plus me-1"></i>Add to Cart'; }, 1400);
+    setTimeout(() => { addBtn.classList.remove('added'); addBtn.innerHTML = '<i class="bi bi-cart-plus me-1"></i>បន្ថែមទៅក្នុងកន្ត្រកទំនិញ'; }, 1400);
 
     if (typeof SharedStore !== 'undefined' && product) {
       SharedStore.addToCart(CURRENT_CUSTOMER_ID, product.id, 1);
@@ -167,7 +167,7 @@ function ensureQuickViewModal() {
                 <span id="qvQty" class="px-3">1</span>
                 <button class="btn btn-outline-secondary btn-sm" id="qvQtyPlus">+</button>
               </div>
-              <button class="add-cart-btn mt-auto" id="qvAddToCart"><i class="bi bi-cart-plus me-1"></i>Add to Cart</button>
+              <button class="add-cart-btn mt-auto" id="qvAddToCart"><i class="bi bi-cart-plus me-1"></i>បន្ថែមទៅក្នុងកន្ត្រកទំនិញ</button>
             </div>
           </div>
         </div>
