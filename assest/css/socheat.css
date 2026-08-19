@@ -234,8 +234,6 @@ a {
     color: #fff !important;
 }
 
-/* Hero background image + dark overlay gradient - Bootstrap មិនមាន utility
-   សម្រាប់ bg-image + gradient overlay ២ស្រទាប់ក្នុងពេលតែមួយ */
 .hero-section {
     background-image: url(/assest/image/photo_2026-07-03_11-24-13.jpg);
     background-size: cover;
@@ -258,12 +256,30 @@ a {
     position: relative;
     z-index: 1;
 }
-/* .backg{
-    width: 100%;
-    height: 100px;
-    object-fit: cover;
-} */
-/* decorative floating shapes + rotation keyframes */
+
+.hero-section-customer {
+    background-image: url(/assest/image/benner-customer.jpg);
+    background-size: cover;
+    background-position: center 8%;
+    min-height: 90vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.hero-section-customer::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #1c346cdb, #193376c8);
+    z-index: 0;
+}
+
+.hero-section-customer .container {
+    position: relative;
+    z-index: 1;
+}
+
 @keyframes rotateSlow {
     0% {
         transform: rotate(0deg);
