@@ -330,22 +330,26 @@ input:focus-visible {
 }
 
 .hero-img-frame {
-        border-radius: 24px;
-        overflow: hidden;
-        box-shadow: var(--shadow-lg);
-        position: relative;
+    position: relative;
+    overflow: hidden;
+    border-radius: 30px;
 }
 
 .hero-img-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform .6s ease;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s ease;
 }
 
-.hero-img-frame:hover img {
-        transform: scale(1.05);
+/* Dark overlay */
+.hero-img-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #2735718a;
+    pointer-events: none;
 }
 
 .benefit-card {
